@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Maps;
 
+using METROWIND.ViewModel;
+using METROWIND.Views;
+
 using Microsoft.Extensions.Logging;
 
 namespace METROWIND {
@@ -26,6 +29,7 @@ namespace METROWIND {
 
             builder.Services.AddSingleton<AppShell>();
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainPageViewModel>();
 
             return builder.Build();
         }
