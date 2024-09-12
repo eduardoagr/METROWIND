@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="METROWIND.Views.ChargingStationsMapPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conntrols="clr-namespace:METROWIND.Controls"
+    xmlns:costant="clr-namespace:METROWIND.Constants"
+    xmlns:expander="clr-namespace:Syncfusion.Maui.Expander;assembly=Syncfusion.Maui.Expander"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:model="clr-namespace:METROWIND.Models"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:Name="stationsMapPage"
+    x:DataType="vm:ChargingStationsMapPageViewModel"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Behaviors>
+        <mct:EventToCommandBehavior
+            Command="{Binding AppearingCommand}"
+            CommandParameter="{Binding Source={x:Reference ChargingStationMap}}"
+            EventName="Appearing" />
+
+    </ContentPage.Behaviors>
+
+    <Grid>
+        <Border
+            Margin="0,20,0,0"
+            BackgroundColor="White"
+            HorizontalOptions="Center"
+            Stroke="#CAC4D0"
+            StrokeShape="RoundRectangle 20,20,20,20"
+            VerticalOptions="Start"
+            WidthRequest="400"
+            ZIndex="1">
+            <expander:SfExpander
+                AnimationDuration="200"
+                IsExpanded="{Binding IsExpanded}">
+                <expander:SfExpander.Header>
+                    <Grid
+                        Padding="20,0,0,0"
+                        RowDefinitions="48">
+                        <Label
+                            FontSize="14"
+                            TextColor="Black"
+                            Text="Charging stations"
+                            VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                </expander:SfExpander.Header>
+                <expander:SfExpander.Content>
+                    <Grid
+                        Padding="10,0,0,0"
+                        RowDefinitions="30">
+                        <CollectionView ItemsSource="{Binding Pins}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:PinModel">
+                                    <Border Stroke="Transparent">
+                                        <Grid ColumnDefinitions="Auto">
+                                            <Label
+                                                FontFamily="ma"
+                                                TextColor="Black"
+                                                Text="{x:Static costant:MaterialFonts.Electric_bolt}"
+                                                VerticalTextAlignment="Center" />
+                                            <Label
+                                                Grid.Column="1"
+                                                Padding="20,0,0,0"
+                                                TextColor="Black"
+                                                Text="{Binding Address}"
+                                                VerticalTextAlignment="Center" />
+                                        </Grid>
+                                        <Border.Behaviors>
+                                            <mct:TouchBehavior
+                                                Command="{Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
+                                                CommandParameter="{Binding .}"
+                                                DefaultBackgroundColor="White"
+                                                PressedBackgroundColor="CornflowerBlue" />
+                                        </Border.Behaviors>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </expander:SfExpander.Content>
+            </expander:SfExpander>
+        </Border>
+
+        <maps:Map
+            x:Name="ChargingStationMap"
+            ItemsSource="{Binding Pins}"
+            VerticalOptions="FillAndExpand">
+            <maps:Map.ItemTemplate>
+                <DataTemplate x:DataType="model:PinModel">
+                    <conntrols:CustomPin
+                        Address="{Binding Address}"
+                        CstomPinImages="{Binding Images}"
+                        Label="{Binding Label}"
+                        Location="{Binding Location}"
+                        MarkerClickedCommand="{Binding MarkerClickedCommand}" />
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </maps:Map>
+    </Grid>
+
+
+
+
+</ContentPage>

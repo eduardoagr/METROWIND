@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="METROWIND.Views.StartupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:DataType="vm:StartupPageViewModel">
+
+    <skia:SKLottieView
+        HeightRequest="400"
+        Source="metrowind.json"
+        WidthRequest="400">
+        <skia:SKLottieView.Behaviors>
+            <mct:EventToCommandBehavior
+                Command="{Binding GotoHomeCommand}"
+                EventName="AnimationCompleted" />
+        </skia:SKLottieView.Behaviors>
+    </skia:SKLottieView>
+</ContentPage>

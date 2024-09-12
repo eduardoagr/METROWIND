@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="METROWIND.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constant="clr-namespace:METROWIND.Constants"
+    xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:models="clr-namespace:METROWIND.Models"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:Name="homePage"
+    x:DataType="vm:HomePageViewModel">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            Command="{Binding AppearingCommand}"
+            EventName="Appearing" />
+    </ContentPage.Behaviors>
+
+    <Grid
+        Padding="16,0,16,0"
+        RowDefinitions="Auto,*">
+        <Label
+            Margin="20"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="What's new"
+            VerticalTextAlignment="Center" />
+
+        <core:SfBusyIndicator
+            Title="Loading News"
+            Grid.Row="1"
+            IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}" />
+
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding NewsList}"
+            SelectionMode="None">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="10"
+                    Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Article">
+                    <Border>
+                        <Grid
+                            Padding="10"
+                            RowDefinitions="250,Auto,Auto,Auto">
+
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="250"
+                                Source="{Binding urlToImage, TargetNullValue=no_image.png}"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="1"
+                                Margin="0,10,0,0"
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                Text="{Binding title}" />
+
+                            <HorizontalStackLayout
+                                Grid.Row="2"
+                                Margin="0,20,0,10">
+                                <Label
+                                    FontFamily="ma"
+                                    FontSize="Large"
+                                    Text="{x:Static constant:MaterialFonts.Newspaper}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Margin="10,0,0,0"
+                                    Text="{Binding source.name}"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+
+                            <Grid
+                                Grid.Row="4"
+                                Margin="0,5,0,0"
+                                ColumnDefinitions="Auto,*,Auto">
+                                <Label
+                                    FontFamily="ma"
+                                    FontSize="Large"
+                                    Text="{x:Static constant:MaterialFonts.Person}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="10,0,0,0"
+                                    Text="{Binding author}" />
+                                <Label
+                                    Grid.Column="2"
+                                    Text="{Binding publishedAt}" />
+                            </Grid>
+                        </Grid>
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15" />
+                        </Border.StrokeShape>
+                        <Border.Behaviors>
+                            <toolkit:TouchBehavior
+                                Command="{Binding Source={x:Reference homePage}, Path=BindingContext.ShowNewsDetailCommand}"
+                                CommandParameter="{Binding .}"
+                                LongPressCommand="{Binding Source={x:Reference homePage}, Path=BindingContext.OpenShareMenuCommand}"
+                                LongPressCommandParameter="{Binding url}" />
+                        </Border.Behaviors>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

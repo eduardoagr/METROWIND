@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="METROWIND.Views.TurbineDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
+    xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:DataType="vm:TurbineDetailPageViewModel">
+
+    <VerticalStackLayout>
+        <Label
+            Margin="5"
+            HorizontalOptions="Center"
+            Text="{Binding SelectedPin.Address}"
+            VerticalOptions="Center" />
+
+        <carousel:SfCarousel
+            ItemHeight="300"
+            ItemWidth="300"
+            ItemsSource="{Binding SelectedPin.CstomPinImages}"
+            SelectedItemOffset="40" 
+            Duration="1000">
+            <carousel:SfCarousel.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding .}" />
+                </DataTemplate>
+            </carousel:SfCarousel.ItemTemplate>
+        </carousel:SfCarousel>
+    </VerticalStackLayout>
+    
+</ContentPage>

@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace METROWIND {
+namespace METROWIND {                
+
     [Application]
     public class MainApplication : MauiApplication {
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)

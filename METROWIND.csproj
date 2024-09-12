@@ -40,15 +40,23 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
-
-		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-
+		<MauiImage Update="Resources\Images\charge_station.png">
+		  <CopyToOutputDirectory></CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185">
+		  <CopyToOutputDirectory></CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\no_image.png">
+		  <CopyToOutputDirectory></CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\wind_turbine.png">
+		  <CopyToOutputDirectory></CopyToOutputDirectory>
+		</MauiImage> 
+		
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
@@ -57,11 +65,47 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	  <None Remove="Resources\Images\charge_station.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\no_image.png" />
+	  <None Remove="Resources\Images\stations.png" />
+	  <None Remove="Resources\Images\wind_turbine.png" />
+	  <None Remove="Resources\Raw\metrowind.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
 		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.3" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.9" />
+		<PackageReference Include="Syncfusion.Maui.Carousel" Version="26.2.14" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="26.2.14" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="26.2.14" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="26.2.14" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="26.2.14" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Splash\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Controls\CustomIconFont.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StartupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
