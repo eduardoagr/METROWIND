@@ -4,18 +4,36 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:DataType="vm:StartupPageViewModel">
 
-    <skia:SKLottieView
-        HeightRequest="400"
-        Source="metrowind.json"
-        WidthRequest="400">
-        <skia:SKLottieView.Behaviors>
-            <mct:EventToCommandBehavior
-                Command="{Binding GotoHomeCommand}"
-                EventName="AnimationCompleted" />
-        </skia:SKLottieView.Behaviors>
-    </skia:SKLottieView>
+    <Grid RowDefinitions="Auto,*,*">
+        <Image
+            Margin="40"
+            Aspect="Center"
+            Source="metro_wind_200.png"
+            VerticalOptions="Start" />
+        <skia:SKLottieView
+            Grid.Row="1"
+            HeightRequest="300"
+            HorizontalOptions="Center"
+            Source="metrowind.json"
+            VerticalOptions="Start"
+            WidthRequest="400">
+            <skia:SKLottieView.Behaviors>
+                <mct:EventToCommandBehavior
+                    Command="{Binding GotoHomeCommand}"
+                    EventName="AnimationCompleted" />
+            </skia:SKLottieView.Behaviors>
+        </skia:SKLottieView>
+        <Label
+            Grid.Row="2"
+            FontAttributes="Bold"
+            FontSize="18"
+            HorizontalOptions="Center"
+            Text="{x:Static rex:AppResource.Energy}"
+            VerticalOptions="Start" />
+    </Grid>
 </ContentPage>

@@ -1,38 +1,57 @@
 ﻿namespace METROWIND.Models {
 
+
     public class Source {
 
-        public string? id { get; set; }
+        [JsonPropertyName("id")]
+        public string? Id { get; set; }
 
-        public string? name { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
     }
+
 
     public class Article {
 
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        public Source? source { get; set; }
+        [JsonPropertyName("source")]
+        public Source? Source { get; set; }
 
-        public string? author { get; set; }
+        [JsonPropertyName("author")]
+        public string? Author { get; set; }
 
-        public string? title { get; set; }
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }
 
-        public string? description { get; set; }
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
-        public string? url { get; set; }
+        [JsonPropertyName("url")]
+        public string? Url { get; set; }
 
-        public string? urlToImage { get; set; }
+        [JsonPropertyName("urlToImage")]
+        public string? UrlToImage { get; set; }
 
-        public DateTime? publishedAt { get; set; }
+        [JsonPropertyName("publishedAt")]
+        public DateTime? PublishedAt { get; set; }
 
-        public string? content { get; set; }
-
+        [JsonPropertyName("content")]
+        public string? Content { get; set; }
     }
 
+
     public class News {
-        public string? status { get; set; }
-        public int? totalResults { get; set; }
-        public IList<Article>? articles { get; set; }
+
+        [JsonPropertyName("status")]
+        public string? Status { get; set; }
+
+        [JsonPropertyName("totalResults")]
+        public int? TotalResults { get; set; }
+
+        [JsonPropertyName("articles")]
+        public IList<Article>? Articles { get; set; }
     }
 
 

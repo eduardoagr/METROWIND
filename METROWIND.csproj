@@ -68,8 +68,13 @@
 	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
 	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\charge_station.png" />
+	  <None Remove="Resources\Images\default_layer.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\icon_win.png" />
+	  <None Remove="Resources\Images\metro_wind_200.png" />
 	  <None Remove="Resources\Images\no_image.png" />
+	  <None Remove="Resources\Images\satelite_layer.png" />
+	  <None Remove="Resources\Images\share.png" />
 	  <None Remove="Resources\Images\stations.png" />
 	  <None Remove="Resources\Images\wind_turbine.png" />
 	  <None Remove="Resources\Raw\metrowind.json" />
@@ -79,17 +84,16 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
 		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.90" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.90" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.9" />
-		<PackageReference Include="Syncfusion.Maui.Carousel" Version="26.2.14" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="26.2.14" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="26.2.14" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="26.2.14" />
-		<PackageReference Include="Syncfusion.Maui.Popup" Version="26.2.14" />
+		<PackageReference Include="Syncfusion.Maui.Carousel" Version="27.1.48" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="27.1.48" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.48" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.48" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.48" />
+		<PackageReference Include="Syncfusion.Maui.RadialMenu" Version="27.1.48" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -97,7 +101,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\CustomIconFont.xaml">
+	  <Compile Update="Resources\AppResource.es.Designer.cs">
+	    <DependentUpon>AppResource.es.resx</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	  </Compile>
+	  <Compile Update="Resources\AppResource.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppResource.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\AppResource.es.resx">
+	    <LastGenOutput>AppResource.es.Designer.cs</LastGenOutput>
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\AppResource.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Controls\CustomImage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">

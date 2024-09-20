@@ -1,6 +1,11 @@
-﻿
-namespace METROWIND.ViewModel {
-    public partial class HomePageViewModel(HttpService httpService) : ObservableObject {
+﻿namespace METROWIND.ViewModel {
+
+    public partial class HomePageViewModel(HttpService httpService,
+        DeviceLanguageService deviceLanguageService) : ObservableObject {
+
+        private CollectionView? NewsCollectionView;
+
+        private int scrollToPosition;
 
         [ObservableProperty]
         bool isLoading;
@@ -9,31 +14,48 @@ namespace METROWIND.ViewModel {
             [];
 
         [RelayCommand]
-        void Appearing() {
+        void Appearing(CollectionView collectionView) {
+
             IsLoading = true;
+
+            NewsCollectionView = collectionView;
+
             LoadNews();
         }
         async void LoadNews() {
 
+            var language = deviceLanguageService.GetDeviceLanguage();
+
+            var newsUrl = AppConstants.GetNewsUrl(language);
+
             NewsList!.Clear();
 
-            var newsObj = await httpService.GetAsync<News>(Apis.NEWS_URL);
+            var newsObj = await httpService.GetAsync<News>(newsUrl);
 
-            foreach (var item in newsObj!.articles!) {
-                if (string.IsNullOrWhiteSpace(item.author)) {
-                    item.author = "Uknown Author";
+            foreach (var item in newsObj!.Articles!) {
+                if (string.IsNullOrWhiteSpace(item.Author)) {
+                    item.Author = "Uknown Author";
                 }
 
                 NewsList.Add(item);
             }
 
             IsLoading = false;
+
+            if (scrollToPosition > 0) {
+
+                NewsCollectionView!.ScrollTo(scrollToPosition,
+                    -1, ScrollToPosition.Center,
+                    false);
+            }
         }
 
 
         [RelayCommand]
         protected void ShowNewsDetail(Article article) {
             if (article != null) {
+
+                scrollToPosition = NewsList!.IndexOf(article);
 
                 Shell.Current.GoToAsync($"{nameof(ArticleDetailsPage)}",
                     true,
@@ -42,15 +64,6 @@ namespace METROWIND.ViewModel {
                         { "articleObj", article }
                     });
             }
-        }
-
-        [RelayCommand]
-        void OpenShareMenu(string NewsUrl) {
-
-            Share.Default.RequestAsync(new ShareTextRequest {
-                Uri = NewsUrl,
-                Title = "Check out this article"
-            });
         }
     }
 }

@@ -12,5 +12,7 @@
 
         public ObservableCollection<string>? Images { get; set; }
 
+        public ObservableCollection<TrbineData>? DataCollection { get; set; }
+
     }
 }

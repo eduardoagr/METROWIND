@@ -5,6 +5,7 @@
     xmlns:controls="clr-namespace:METROWIND.Controls"
     xmlns:local="clr-namespace:METROWIND"
     xmlns:popup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:METROWIND.Views"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
@@ -17,65 +18,10 @@
                                     Phone=True}">
 
     <Shell.Behaviors>
-        <toolkit:EventToCommandBehavior
-            Command="{Binding AppearingCommand}"
-            CommandParameter="{Binding Source={x:Reference shell}}"
-            EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
+                                        CommandParameter="{Binding Source={x:Reference shell}}"
+                                        EventName="Appearing" />
     </Shell.Behaviors>
-
-    <Shell.FlyoutHeader>
-        <Grid>
-            <Image
-                x:Name="ConfigMenu"
-                Margin="10,0,0,15"
-                HeightRequest="48"
-                HorizontalOptions="Start"
-                Source="windmill.png"
-                WidthRequest="48">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenMenuCommand}" />
-                </Image.GestureRecognizers>
-            </Image>
-            <popup:SfPopup
-                Padding="20"
-                AbsoluteY="10"
-                AutoSizeMode="Both"
-                IsOpen="{Binding IsMenuPopUpOen}"
-                RelativePosition="AlignBottomLeft"
-                RelativeView="{x:Reference ConfigMenu}"
-                ShowHeader="False"
-                ShowOverlayAlways="False">
-                <popup:SfPopup.PopupStyle>
-                    <popup:PopupStyle CornerRadius="0" />
-                </popup:SfPopup.PopupStyle>
-                <popup:SfPopup.ContentTemplate>
-                    <DataTemplate>
-                        <Grid
-                            BackgroundColor="#908686"
-                            ColumnDefinitions="*,*"
-                            HorizontalOptions="Fill">
-                            <Label
-                                Margin="10,0,0,0"
-                                Text="Compact mode"
-                                VerticalTextAlignment="Center" />
-                            <controls:CustomSwitch
-                                Grid.Column="1"
-                                IsToggled="{Binding IsCompactMode}"
-                                OnColor="Green">
-                                <Switch.Behaviors>
-                                    <toolkit:EventToCommandBehavior
-                                        Command="{Binding ToogleSwitchCommand}"
-                                        CommandParameter="{Binding IsCompactMode}"
-                                        EventName="Toggled" />
-                                </Switch.Behaviors>
-                            </controls:CustomSwitch>
-                        </Grid>
-
-                    </DataTemplate>
-                </popup:SfPopup.ContentTemplate>
-            </popup:SfPopup>
-        </Grid>
-    </Shell.FlyoutHeader>
 
     <ShellContent
         ContentTemplate="{DataTemplate views:StartupPage}"
@@ -85,7 +31,7 @@
 
     <!--  Flyout for Desktop  -->
     <FlyoutItem
-        Title="Home"
+        Title="{x:Static rex:AppResource.HomePage}"
         Icon="home.png"
         IsVisible="{OnIdiom Desktop=True,
                             Phone=False}">
@@ -96,7 +42,7 @@
     </FlyoutItem>
 
     <FlyoutItem
-        Title="Stations"
+        Title="{x:Static rex:AppResource.Stations}"
         Icon="stations.png"
         IsVisible="{OnIdiom Desktop=True,
                             Phone=False}">
@@ -108,7 +54,7 @@
     <!--  TabBar for Phone  -->
     <TabBar IsVisible="{OnIdiom Desktop=False, Phone=True}">
         <Tab
-            Title="Home"
+            Title="{x:Static rex:AppResource.HomePage}"
             Icon="home_mobile.png">
             <ShellContent
                 ContentTemplate="{DataTemplate views:HomePage}"
@@ -116,7 +62,7 @@
                 Shell.NavBarIsVisible="False" />
         </Tab>
         <Tab
-            Title="Stations"
+            Title="{x:Static rex:AppResource.Stations}"
             Icon="station_mobile.png">
             <ShellContent
                 ContentTemplate="{DataTemplate views:ChargingStationsMapPage}"

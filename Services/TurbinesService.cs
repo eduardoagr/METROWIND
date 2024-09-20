@@ -13,6 +13,13 @@
                 Images = [
                     "charge_station.png",
                     "wind_turbine.png"
+                ],
+                DataCollection = [
+                    new("Ipad", 10),
+                    new("Iphone", 10),
+                    new("MacBook", 10),
+                    new("Mac", 10),
+                    new("Others", 10)
                 ]
                 }
             ];

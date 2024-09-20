@@ -6,5 +6,14 @@
         [ObservableProperty]
         Article? articleObj;
 
+        [RelayCommand]
+        private static void OpenShareMenu(Article article) {
+
+            Share.Default.RequestAsync(new ShareTextRequest {
+                Uri = article.Url,
+                Title = "Check out this article"
+            });
+        }
+
     }
 }

@@ -11,6 +11,9 @@ namespace METROWIND.ViewModel {
         public ICommand? OnPinMarkerClickedCommand { get; }
 
         [ObservableProperty]
+        bool isOptionsOpen;
+
+        [ObservableProperty]
         bool isExpanded;
 
         public ChargingStationsMapPageViewModel() {
@@ -46,9 +49,30 @@ namespace METROWIND.ViewModel {
                 Shell.Current.GoToAsync($"{nameof(TurbineDetailPage)}",
                     true,
                     new Dictionary<string, object> {
-                    { "SelectedPin", pin }
+                    { "SelectedTurbine", pin }
                 });
             };
+        }
+
+        [RelayCommand]
+        void OpenMenu() {
+
+            IsOptionsOpen = true;
+        }
+
+        [RelayCommand]
+        void ChangeMapType(int mapType) {
+
+            if (mapType == 0) {
+
+                MapView!.MapType = MapType.Street;
+
+            } else {
+
+                MapView!.MapType = MapType.Satellite;
+            }
+
+            IsOptionsOpen = false;
         }
     }
 }

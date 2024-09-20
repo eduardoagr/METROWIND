@@ -1,8 +1,11 @@
-﻿namespace METROWIND.ViewModel {
+﻿using METROWIND.Resources;
+
+namespace METROWIND.ViewModel {
     public partial class AppShellViewModel : ObservableObject {
 
         public const string FLYOUT_KEY = "flyouy_key";
         public const string SWITCH_KEY = "switch_key";
+        public const string STATION_KEY = "station_key";
 
         private AppShell? _shell;
 
@@ -12,10 +15,19 @@
         [ObservableProperty]
         bool isMenuPopUpOen;
 
+        [ObservableProperty]
+        string? homeTitle;
+
+        [ObservableProperty]
+        string? stationsTitle;
+
         [RelayCommand]
         void Appearing(AppShell appShell) {
             _shell = appShell;
-            LoadConfigurations();
+
+            HomeTitle = AppResource.HomePage;
+            StationsTitle = AppResource.Stations;
+
         }
 
         [RelayCommand]
@@ -27,21 +39,11 @@
         void ToogleSwitch() {
             if (IsCompactMode) {
                 _shell!.FlyoutWidth = 65;
-            } else { _shell!.FlyoutWidth = 320; }
+            } else {
+                _shell!.FlyoutWidth = 320;
+            }
 
             IsMenuPopUpOen = false;
-
-            SaveConfigurations();
-        }
-
-        private void SaveConfigurations() {
-            Preferences.Set(FLYOUT_KEY, _shell!.FlyoutWidth);
-            Preferences.Set(SWITCH_KEY, IsCompactMode);
-        }
-
-        private void LoadConfigurations() {
-            _shell!.FlyoutWidth = Preferences.Get(FLYOUT_KEY, 320.0);
-            IsCompactMode = Preferences.Get(SWITCH_KEY, false);
 
         }
     }

@@ -3,11 +3,43 @@
     x:Class="METROWIND.Views.ArticleDetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constant="clr-namespace:METROWIND.Constants"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
-    Title="Article details"
-    x:DataType="vm:ArticleDetailsPageViewModel">
+    x:DataType="vm:ArticleDetailsPageViewModel"
+    Shell.NavBarIsVisible="True">
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*">
+            <Label
+                Grid.Column="1"
+                Padding="0,0,20,0"
+                FontAttributes="Bold"
+                FontFamily="ma"
+                FontSize="18"
+                HorizontalOptions="End"
+                Text="{x:Static constant:MaterialFonts.Share}"
+                TextColor="White"
+                VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding OpenShareMenuCommand}"
+                        CommandParameter="{Binding ArticleObj}" />
+                </Label.GestureRecognizers>
+            </Label>
 
-    <WebView Source="{Binding ArticleObj.url}" />
+            <Label
+                Margin="20,0,0,0"
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="{x:Static rex:AppResource.Detail}"
+                TextColor="White"
+                VerticalTextAlignment="Center" />
+
+        </Grid>
+
+    </Shell.TitleView>
+
+    <WebView Source="{Binding ArticleObj.Url}" />
 
 </ContentPage>

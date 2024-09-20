@@ -4,11 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:conntrols="clr-namespace:METROWIND.Controls"
-    xmlns:costant="clr-namespace:METROWIND.Constants"
+    xmlns:constant="clr-namespace:METROWIND.Constants"
     xmlns:expander="clr-namespace:Syncfusion.Maui.Expander;assembly=Syncfusion.Maui.Expander"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:model="clr-namespace:METROWIND.Models"
+    xmlns:popup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.RadialMenu;assembly=Syncfusion.Maui.RadialMenu"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="stationsMapPage"
     x:DataType="vm:ChargingStationsMapPageViewModel"
@@ -24,7 +27,8 @@
 
     <Grid>
         <Border
-            Margin="0,20,0,0"
+            Margin="{OnIdiom Phone=60 0 0 0,
+                             Desktop=20 0 0 0}"
             BackgroundColor="White"
             HorizontalOptions="Center"
             Stroke="#CAC4D0"
@@ -41,8 +45,8 @@
                         RowDefinitions="48">
                         <Label
                             FontSize="14"
+                            Text="{x:Static rex:AppResource.ChooseStation}"
                             TextColor="Black"
-                            Text="Charging stations"
                             VerticalOptions="CenterAndExpand" />
                     </Grid>
                 </expander:SfExpander.Header>
@@ -57,14 +61,14 @@
                                         <Grid ColumnDefinitions="Auto">
                                             <Label
                                                 FontFamily="ma"
+                                                Text="{x:Static constant:MaterialFonts.Electric_bolt}"
                                                 TextColor="Black"
-                                                Text="{x:Static costant:MaterialFonts.Electric_bolt}"
                                                 VerticalTextAlignment="Center" />
                                             <Label
                                                 Grid.Column="1"
                                                 Padding="20,0,0,0"
-                                                TextColor="Black"
                                                 Text="{Binding Address}"
+                                                TextColor="Black"
                                                 VerticalTextAlignment="Center" />
                                         </Grid>
                                         <Border.Behaviors>
@@ -85,22 +89,64 @@
 
         <maps:Map
             x:Name="ChargingStationMap"
+            IsShowingUser="True"
             ItemsSource="{Binding Pins}"
             VerticalOptions="FillAndExpand">
             <maps:Map.ItemTemplate>
                 <DataTemplate x:DataType="model:PinModel">
                     <conntrols:CustomPin
                         Address="{Binding Address}"
-                        CstomPinImages="{Binding Images}"
+                        ChartData="{Binding DataCollection}"
+                        TurbineImages="{Binding Images}"
                         Label="{Binding Label}"
                         Location="{Binding Location}"
                         MarkerClickedCommand="{Binding MarkerClickedCommand}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
+        <Button
+            x:Name="mapLayers"
+            Margin="20"
+            Command="{Binding OpenMenuCommand}"
+            HorizontalOptions="Start"
+            Text="{x:Static rex:AppResource.MapTypes}"
+            VerticalOptions="End">
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="ma"
+                    Glyph="{x:Static constant:MaterialFonts.Layers}" />
+            </Button.ImageSource>
+        </Button>
+        <popup:SfPopup
+            AbsoluteY="-20"
+            IsOpen="{Binding IsOptionsOpen}"
+            RelativePosition="AlignTop"
+            RelativeView="{Binding Source={x:Reference mapLayers}}"
+            ShowCloseButton="False"
+            ShowHeader="False"
+            ShowOverlayAlways="False">
+            <popup:SfPopup.PopupStyle>
+                <popup:PopupStyle CornerRadius="0" />
+            </popup:SfPopup.PopupStyle>
+            <popup:SfPopup.ContentTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="40"
+                        VerticalOptions="Center">
+                        <conntrols:CustomImage
+                            Caption="{x:Static rex:AppResource.Default}"
+                            ClickCommand="{Binding ChangeMapTypeCommand}"
+                            ImageName="default_layer.png"
+                            Parameters="0" />
+                        <conntrols:CustomImage
+                            Caption="{x:Static rex:AppResource.Satelite}"
+                            ClickCommand="{Binding ChangeMapTypeCommand}"
+                            ImageName="satelite_layer.png"
+                            Parameters="2" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </popup:SfPopup.ContentTemplate>
+        </popup:SfPopup>
     </Grid>
-
-
-
-
 </ContentPage>

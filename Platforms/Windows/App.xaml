@@ -2,7 +2,34 @@
     x:Class="METROWIND.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:METROWIND.WinUI">
+    xmlns:local="using:METROWIND.WinUI"
+    xmlns:maui="using:Microsoft.Maui">
 
+    <maui:MauiWinUIApplication.Resources>
+
+        <DataTemplate x:Key="MauiAppTitleBarTemplate">
+
+            <Grid>
+
+                <Border
+                    Margin="0,0,0,0"
+                    VerticalAlignment="Stretch"
+                    Canvas.ZIndex="1">
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image
+                            Width="28"
+                            Height="28"
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Source="icon_win.png" />
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="METROWIND" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+    </maui:MauiWinUIApplication.Resources>
 </maui:MauiWinUIApplication>

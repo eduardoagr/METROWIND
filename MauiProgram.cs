@@ -1,32 +1,4 @@
-﻿global using CommunityToolkit.Maui;
-global using CommunityToolkit.Maui.Alerts;
-global using CommunityToolkit.Maui.Core;
-global using CommunityToolkit.Maui.Maps;
-global using CommunityToolkit.Mvvm.ComponentModel;
-global using CommunityToolkit.Mvvm.Input;
-
-global using METROWIND.Constants;
-global using METROWIND.Models;
-global using METROWIND.Services;
-global using METROWIND.ViewModel;
-global using METROWIND.Views;
-
-global using Microsoft.Extensions.Logging;
-global using Microsoft.Maui.Controls.Maps;
-
-global using SkiaSharp.Views.Maui.Controls.Hosting;
-
-global using SQLite;
-
-global using Syncfusion.Maui.Core.Hosting;
-
-global using System.Collections.ObjectModel;
-global using System.Diagnostics;
-global using System.Net.Http.Json;
-global using System.Text.Json;
-global using System.Windows.Input;
-
-namespace METROWIND {
+﻿namespace METROWIND {
 
     public static class MauiProgram {
 
@@ -56,6 +28,7 @@ namespace METROWIND {
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<HttpService>();
             builder.Services.AddSingleton(Connectivity.Current);
+            builder.Services.AddSingleton<DeviceLanguageService>();
 
 
             //Pages and ViewModels
@@ -63,7 +36,7 @@ namespace METROWIND {
             builder.Services.AddSingleton<StartupPage, StartupPageViewModel>();
             builder.Services.AddSingleton<ChargingStationsMapPage, ChargingStationsMapPageViewModel>();
             builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();
-            builder.Services.AddSingleton<ArticleDetailsPage, ArticleDetailsPageViewModel>();
+            builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
             builder.Services.AddTransient<HomePage, HomePageViewModel>();
 
             return builder.Build();

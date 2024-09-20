@@ -19,41 +19,23 @@
                 ("User-Agent",
                 "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
 
-            try {
-                var response =
-                    await httpClient.GetAsync(url);
+            var response =
+                await httpClient.GetAsync(url);
 
-                if (response.IsSuccessStatusCode) {
-                    var jsonData = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode) {
+                var jsonData = await response.Content.ReadAsStringAsync();
 
-                    var data = await response.Content.ReadFromJsonAsync<T>();
-                    return data;
+                var data = await response.Content.ReadFromJsonAsync<T>();
+                return data;
 
-                } else {
+            } else {
 
-                    await Shell.Current.DisplayAlert("HTTP Error",
-                        $"Status code: {response.StatusCode}", "OK");
+                await Shell.Current.DisplayAlert("Error",
+                    "We could not connect to the server", "OK");
 
-                }
-
-            } catch (HttpRequestException httpEx) {
-
-                await Shell.Current.DisplayAlert("HTTP Error",
-                    httpEx.Message, "OK");
-
-            } catch (JsonException jsonEx) {
-
-                await Shell.Current.DisplayAlert("JSON Error",
-                    jsonEx.Message, "OK");
-
-            } catch (Exception ex) {
-
-                await Shell.Current.DisplayAlert("Unknown error",
-                    ex.Message, "OK");
             }
 
             return default;
-
         }
     }
 }

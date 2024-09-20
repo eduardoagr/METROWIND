@@ -35,14 +35,14 @@ namespace METROWIND.Controls {
         }
 
 
-        public static readonly BindableProperty CstomPinImagesProperty = BindableProperty.Create(
-            nameof(CstomPinImages),
+        public static readonly BindableProperty TurbineImagesProperty = BindableProperty.Create(
+            nameof(TurbineImages),
             typeof(IEnumerable),
             typeof(CustomPin));
 
-        public IEnumerable CstomPinImages {
-            get => (IEnumerable)GetValue(CstomPinImagesProperty);
-            set => SetValue(CstomPinImagesProperty, value);
+        public IEnumerable TurbineImages {
+            get => (IEnumerable)GetValue(TurbineImagesProperty);
+            set => SetValue(TurbineImagesProperty, value);
         }
 
 
@@ -59,5 +59,16 @@ namespace METROWIND.Controls {
                 MarkerClickedCommand.Execute(this);
             }
         }
+
+
+        public static readonly BindableProperty ChartDataProperty = BindableProperty.Create(
+            nameof(ChartData), typeof(IEnumerable),
+            typeof(CustomPin));
+
+        public IEnumerable ChartData {
+            get => (IEnumerable)GetValue(ChartDataProperty);
+            set => SetValue(ChartDataProperty, value);
+        }
+
     }
 }

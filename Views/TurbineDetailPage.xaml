@@ -6,27 +6,63 @@
     xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
     xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    Title="Turbine details"
     x:DataType="vm:TurbineDetailPageViewModel">
 
-    <VerticalStackLayout>
-        <Label
-            Margin="5"
-            HorizontalOptions="Center"
-            Text="{Binding SelectedPin.Address}"
-            VerticalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+                Margin="20"
+                HorizontalOptions="Center"
+                Text="{Binding SelectedTurbine.Address}"
+                VerticalOptions="Center" />
 
-        <carousel:SfCarousel
-            ItemHeight="300"
-            ItemWidth="300"
-            ItemsSource="{Binding SelectedPin.CstomPinImages}"
-            SelectedItemOffset="40" 
-            Duration="1000">
-            <carousel:SfCarousel.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="{Binding .}" />
-                </DataTemplate>
-            </carousel:SfCarousel.ItemTemplate>
-        </carousel:SfCarousel>
-    </VerticalStackLayout>
-    
+            <carousel:SfCarousel
+                ItemHeight="200"
+                ItemWidth="200"
+                ItemsSource="{Binding SelectedTurbine.TurbineImages}"
+                SelectedItemOffset="40"
+                ViewMode="Linear"
+                Duration="1000">
+                <carousel:SfCarousel.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}" />
+                    </DataTemplate>
+                </carousel:SfCarousel.ItemTemplate>
+            </carousel:SfCarousel>
+
+            <chart:SfCircularChart Margin="0,10,0,0">
+                <chart:SfCircularChart.Title>
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="Turbine details"
+                        TextColor="Red" />
+                </chart:SfCircularChart.Title>
+                <chart:SfCircularChart.Legend>
+                    <chart:ChartLegend />
+                </chart:SfCircularChart.Legend>
+                <chart:DoughnutSeries
+                    EnableAnimation="True"
+                    EndAngle="360"
+                    ExplodeOnTouch="True"
+                    InnerRadius="0.7"
+                    ItemsSource="{Binding SelectedTurbine.ChartData}"
+                    Radius="0.9"
+                    ShowDataLabels="True"
+                    StartAngle="180"
+                    XBindingPath="Product"
+                    YBindingPath="SalesRate">
+                    <chart:DoughnutSeries.CenterView>
+                        <VerticalStackLayout>
+                            <Label Text="Total: 50 %" />
+                        </VerticalStackLayout>
+                    </chart:DoughnutSeries.CenterView>
+                </chart:DoughnutSeries>
+            </chart:SfCircularChart>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
 </ContentPage>
