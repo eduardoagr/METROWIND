@@ -101,12 +101,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Include="Resources\AppResource.resx" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Resources\AppResource.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppResource.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\AppResource.es.Designer.cs">
 	    <DependentUpon>AppResource.es.resx</DependentUpon>
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	  </Compile>
-	  <Compile Update="Resources\AppResource.Designer.cs">
+	  <Compile Update="Resources\Raw\AppResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResource.resx</DependentUpon>

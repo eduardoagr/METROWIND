@@ -5,15 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ImageCustomControl">
 
-    <VerticalStackLayout>
+    <HorizontalStackLayout>
         <Border
+            Margin="10"
+            Padding="10"
+            HorizontalOptions="Start"
             Stroke="#1A75BE"
-            StrokeThickness="4">
+            StrokeThickness="2">
             <Image
-                Aspect="Fill"
-                HeightRequest="100"
+                Aspect="AspectFit"
+                HeightRequest="40"
                 Source="{Binding ImageName, Source={x:Reference ImageCustomControl}}"
-                WidthRequest="100" />
+                VerticalOptions="Center"
+                WidthRequest="40" />
             <Border.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding ClickCommand, Source={x:Reference ImageCustomControl}}"
@@ -22,10 +26,11 @@
         </Border>
 
         <Label
-            Margin="0,10,0,0"
+            Padding="10"
             HorizontalTextAlignment="Center"
             Text="{Binding Caption, Source={x:Reference ImageCustomControl}}"
-            TextColor="Black" />
+            TextColor="Black"
+            VerticalTextAlignment="Center" />
 
-    </VerticalStackLayout>
+    </HorizontalStackLayout>
 </ContentView>

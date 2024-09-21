@@ -27,8 +27,7 @@
 
     <Grid>
         <Border
-            Margin="{OnIdiom Phone=60 0 0 0,
-                             Desktop=20 0 0 0}"
+            Margin="20"
             BackgroundColor="White"
             HorizontalOptions="Center"
             Stroke="#CAC4D0"
@@ -89,7 +88,6 @@
 
         <maps:Map
             x:Name="ChargingStationMap"
-            IsShowingUser="True"
             ItemsSource="{Binding Pins}"
             VerticalOptions="FillAndExpand">
             <maps:Map.ItemTemplate>
@@ -97,15 +95,16 @@
                     <conntrols:CustomPin
                         Address="{Binding Address}"
                         ChartData="{Binding DataCollection}"
-                        TurbineImages="{Binding Images}"
                         Label="{Binding Label}"
                         Location="{Binding Location}"
-                        MarkerClickedCommand="{Binding MarkerClickedCommand}" />
+                        MarkerClickedCommand="{Binding MarkerClickedCommand}"
+                        TurbineImages="{Binding Images}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
         <Button
             x:Name="mapLayers"
+            CornerRadius="8"
             Margin="20"
             Command="{Binding OpenMenuCommand}"
             HorizontalOptions="Start"
@@ -119,6 +118,7 @@
         </Button>
         <popup:SfPopup
             AbsoluteY="-20"
+            AutoSizeMode="Both"
             IsOpen="{Binding IsOptionsOpen}"
             RelativePosition="AlignTop"
             RelativeView="{Binding Source={x:Reference mapLayers}}"
@@ -126,14 +126,11 @@
             ShowHeader="False"
             ShowOverlayAlways="False">
             <popup:SfPopup.PopupStyle>
-                <popup:PopupStyle CornerRadius="0" />
+                <popup:PopupStyle CornerRadius="8" />
             </popup:SfPopup.PopupStyle>
             <popup:SfPopup.ContentTemplate>
                 <DataTemplate>
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center"
-                        Spacing="40"
-                        VerticalOptions="Center">
+                    <VerticalStackLayout Spacing="10">
                         <conntrols:CustomImage
                             Caption="{x:Static rex:AppResource.Default}"
                             ClickCommand="{Binding ChangeMapTypeCommand}"
@@ -144,7 +141,7 @@
                             ClickCommand="{Binding ChangeMapTypeCommand}"
                             ImageName="satelite_layer.png"
                             Parameters="2" />
-                    </HorizontalStackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </popup:SfPopup.ContentTemplate>
         </popup:SfPopup>

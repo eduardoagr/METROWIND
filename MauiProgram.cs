@@ -1,4 +1,6 @@
-﻿namespace METROWIND {
+﻿
+
+namespace METROWIND {
 
     public static class MauiProgram {
 
@@ -37,7 +39,7 @@
             builder.Services.AddSingleton<ChargingStationsMapPage, ChargingStationsMapPageViewModel>();
             builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();
             builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
-            builder.Services.AddTransient<HomePage, HomePageViewModel>();
+            builder.Services.AddSingleton<HomePage, HomePageViewModel>();
 
             return builder.Build();
         }

@@ -147,6 +147,9 @@
   <data name="Stations" xml:space="preserve">
     <value>Estaciones de carga</value>
   </data>
+  <data name="TurbineDetails" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>Noricias</value>
   </data>

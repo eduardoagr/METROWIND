@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace METROWIND.Resources {
+namespace METROWIND.Resources.Raw {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace METROWIND.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("METROWIND.Resources.AppResource", typeof(AppResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("METROWIND.Resources.Raw.AppResource", typeof(AppResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

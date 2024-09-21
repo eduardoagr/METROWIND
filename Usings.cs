@@ -3,6 +3,7 @@ global using CommunityToolkit.Maui.Maps;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 
+global using METROWIND;
 global using METROWIND.Constants;
 global using METROWIND.Models;
 global using METROWIND.Services;

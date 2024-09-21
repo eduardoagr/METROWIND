@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
     xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
-    Title="Turbine details"
+    Title="{x:Static rex:AppResource.TurbineDetails}"
     x:DataType="vm:TurbineDetailPageViewModel">
 
     <ScrollView>
@@ -32,13 +33,6 @@
             </carousel:SfCarousel>
 
             <chart:SfCircularChart Margin="0,10,0,0">
-                <chart:SfCircularChart.Title>
-                    <Label
-                        FontSize="Large"
-                        HorizontalTextAlignment="Center"
-                        Text="Turbine details"
-                        TextColor="Red" />
-                </chart:SfCircularChart.Title>
                 <chart:SfCircularChart.Legend>
                     <chart:ChartLegend />
                 </chart:SfCircularChart.Legend>

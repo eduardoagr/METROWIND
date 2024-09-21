@@ -147,6 +147,9 @@
   <data name="Stations" xml:space="preserve">
     <value>Charging stations</value>
   </data>
+  <data name="TurbineDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>What's new</value>
   </data>
