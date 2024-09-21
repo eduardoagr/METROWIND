@@ -11,13 +11,12 @@
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="shelly"
     Title="METROWIND"
-    x:DataType="vm:AppShellViewModel"
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked,
                                    Phone=Disabled}"
     Shell.NavBarIsVisible="{OnIdiom Desktop=False,
                                     Phone=True}">
 
-    <Shell.Behaviors>
+    <!--<Shell.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
                                         CommandParameter="{Binding Source={x:Reference shelly}}"
                                         EventName="Appearing" />
@@ -68,7 +67,7 @@
                 </popup:SfPopup.ContentTemplate>
             </popup:SfPopup>
         </Grid>
-    </Shell.FlyoutHeader>
+    </Shell.FlyoutHeader>-->
 
     <ShellContent
         ContentTemplate="{DataTemplate views:StartupPage}"
