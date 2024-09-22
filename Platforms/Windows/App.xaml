@@ -7,6 +7,9 @@
 
     <maui:MauiWinUIApplication.Resources>
 
+        <Thickness x:Key="TextControlBorderThemeThickness">0</Thickness>
+        <Thickness x:Key="TextControlBorderThemeThicknessFocused">0</Thickness>
+        
         <DataTemplate x:Key="MauiAppTitleBarTemplate">
 
             <Grid>

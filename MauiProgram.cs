@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Maui.Handlers;
 
 namespace METROWIND {
 
@@ -21,7 +22,12 @@ namespace METROWIND {
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("fa-solid-900.ttf", "fa");
                     fonts.AddFont("MaterialIcons-Regular.ttf", "ma");
+                }).ConfigureMauiHandlers(handlers => {
+
+                    handlers.AddHandler<BorderlessEntry, EntryHandler>();
                 });
+
+            BorderlessEntryHandler.ApplyCustomHandler();
 
 #if DEBUG
             builder.Logging.AddDebug();
