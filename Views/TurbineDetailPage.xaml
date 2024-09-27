@@ -21,7 +21,7 @@
             <carousel:SfCarousel
                 ItemHeight="200"
                 ItemWidth="200"
-                ItemsSource="{Binding SelectedTurbine.TurbineImages}"
+                ItemsSource="{Binding SelectedTurbine.Images}"
                 SelectedItemOffset="40"
                 ViewMode="Linear"
                 Duration="1000">
@@ -41,7 +41,7 @@
                     EndAngle="360"
                     ExplodeOnTouch="True"
                     InnerRadius="0.7"
-                    ItemsSource="{Binding SelectedTurbine.ChartData}"
+                    ItemsSource="{Binding SelectedTurbine.DataCollection}"
                     Radius="0.9"
                     ShowDataLabels="True"
                     StartAngle="180"

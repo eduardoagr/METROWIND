@@ -3,7 +3,9 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:METROWIND.Controls">
+    xmlns:constant="clr-namespace:METROWIND.Constants"
+    xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core">
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
@@ -431,6 +433,35 @@
         <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource White}}" />
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+    <Style TargetType="inputLayout:SfTextInputLayout">
+        <Setter Property="IsHintAlwaysFloated" Value="True" />
+        <Setter Property="OutlineCornerRadius" Value="8" />
+        <Setter Property="ContainerType" Value="Outlined" />
+        <Setter Property="Stroke" Value="#0450c2" />
+        <Setter Property="HeightRequest" Value="80" />
+        <Setter Property="ContainerBackground" Value="White" />
+    </Style>
+
+    <Style
+        x:Key="AddTurbineForm"
+        TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="PlaceholderColor" Value="{x:DynamicResource Gray500}" />
+    </Style>
+
+    <Style
+        x:Key="CommonBorderStyle"
+        TargetType="Border">
+        <Setter Property="Background" Value="{AppThemeBinding Dark={x:StaticResource AndoidDark}, Light=White}" />
+    </Style>
+
+    <Style
+        x:Key="CommonLabelStyle"
+        TargetType="Label">
+        <Setter Property="Padding" Value="5" />
     </Style>
 
 

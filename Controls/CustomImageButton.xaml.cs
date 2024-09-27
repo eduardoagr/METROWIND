@@ -1,13 +1,13 @@
 namespace METROWIND.Controls;
 
-public partial class CustomImage : ContentView {
-    public CustomImage() {
+public partial class CustomImageButton : ContentView {
+    public CustomImageButton() {
         InitializeComponent();
     }
 
 
     public static readonly BindableProperty ImageNameProperty = BindableProperty.Create(
-        nameof(ImageName), typeof(ImageSource), typeof(CustomImage));
+        nameof(ImageName), typeof(ImageSource), typeof(CustomImageButton));
 
     public ImageSource ImageName {
         get => (ImageSource)GetValue(ImageNameProperty);
@@ -16,7 +16,7 @@ public partial class CustomImage : ContentView {
 
 
     public static readonly BindableProperty CaptionProperty = BindableProperty.Create(
-        nameof(Caption), typeof(string), typeof(CustomImage));
+        nameof(Caption), typeof(string), typeof(CustomImageButton));
 
     public string Caption {
         get => (string)GetValue(CaptionProperty);
@@ -25,7 +25,7 @@ public partial class CustomImage : ContentView {
 
 
     public static readonly BindableProperty ClickCommandProperty = BindableProperty.Create(
-        nameof(ClickCommand), typeof(ICommand), typeof(CustomImage));
+        nameof(ClickCommand), typeof(ICommand), typeof(CustomImageButton));
 
     public ICommand ClickCommand {
         get => (ICommand)GetValue(ClickCommandProperty);
@@ -34,7 +34,7 @@ public partial class CustomImage : ContentView {
 
 
     public static readonly BindableProperty ParametersProperty = BindableProperty.Create(
-        nameof(Parameters), typeof(int), typeof(CustomImage));
+        nameof(Parameters), typeof(int), typeof(CustomImageButton));
 
     public int Parameters {
         get => (int)GetValue(ParametersProperty);

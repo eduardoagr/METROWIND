@@ -3,15 +3,14 @@
     x:Class="METROWIND.Views.ChargingStationsMapPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:conntrols="clr-namespace:METROWIND.Controls"
     xmlns:constant="clr-namespace:METROWIND.Constants"
+    xmlns:controls="clr-namespace:METROWIND.Controls"
     xmlns:expander="clr-namespace:Syncfusion.Maui.Expander;assembly=Syncfusion.Maui.Expander"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:popup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
     xmlns:rex="clr-namespace:METROWIND.Resources"
-    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.RadialMenu;assembly=Syncfusion.Maui.RadialMenu"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="stationsMapPage"
     x:DataType="vm:ChargingStationsMapPageViewModel"
@@ -53,9 +52,9 @@
                     <Grid
                         Padding="10,0,0,0"
                         RowDefinitions="30">
-                        <CollectionView ItemsSource="{Binding Pins}">
+                        <CollectionView ItemsSource="{Binding Turbines}">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="model:PinModel">
+                                <DataTemplate x:DataType="model:TurbinePin">
                                     <Border Stroke="Transparent">
                                         <Grid ColumnDefinitions="Auto">
                                             <Label
@@ -66,14 +65,14 @@
                                             <Label
                                                 Grid.Column="1"
                                                 Padding="20,0,0,0"
-                                                Text="{Binding Address}"
+                                                Text="{Binding Turbine.Address}"
                                                 TextColor="Black"
                                                 VerticalTextAlignment="Center" />
                                         </Grid>
                                         <Border.Behaviors>
                                             <mct:TouchBehavior
                                                 Command="{Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
-                                                CommandParameter="{Binding .}"
+                                                CommandParameter="{Binding Turbine}"
                                                 DefaultBackgroundColor="White"
                                                 PressedBackgroundColor="CornflowerBlue" />
                                         </Border.Behaviors>
@@ -88,25 +87,26 @@
 
         <maps:Map
             x:Name="ChargingStationMap"
-            ItemsSource="{Binding Pins}"
+            ItemsSource="{Binding Turbines}"
             VerticalOptions="FillAndExpand">
             <maps:Map.ItemTemplate>
-                <DataTemplate x:DataType="model:PinModel">
-                    <conntrols:CustomPin
-                        Address="{Binding Address}"
-                        ChartData="{Binding DataCollection}"
-                        Label="{Binding Label}"
-                        Location="{Binding Location}"
-                        MarkerClickedCommand="{Binding MarkerClickedCommand}"
-                        TurbineImages="{Binding Images}" />
+                <DataTemplate x:DataType="model:TurbinePin">
+                    <controls:CustomMapPin
+                        Address="{Binding Turbine.Address}"
+                        ChartData="{Binding Turbine.DataCollection}"
+                        MarkerClickedCommandParameter="{Binding Turbine}"
+                        Label="{Binding Turbine.Label}"
+                        Location="{Binding Turbine.Location}"
+                        MarkerClickedCommand="{Binding PinClickedCommand}"
+                        TurbineImages="{Binding Turbine.Images}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
         <Button
             x:Name="mapLayers"
-            CornerRadius="8"
             Margin="20"
             Command="{Binding OpenMenuCommand}"
+            CornerRadius="8"
             HorizontalOptions="Start"
             Text="{x:Static rex:AppResource.MapTypes}"
             VerticalOptions="End">
@@ -131,12 +131,12 @@
             <popup:SfPopup.ContentTemplate>
                 <DataTemplate>
                     <VerticalStackLayout Spacing="10">
-                        <conntrols:CustomImage
+                        <controls:CustomImageButton
                             Caption="{x:Static rex:AppResource.Default}"
                             ClickCommand="{Binding ChangeMapTypeCommand}"
                             ImageName="default_layer.png"
                             Parameters="0" />
-                        <conntrols:CustomImage
+                        <controls:CustomImageButton
                             Caption="{x:Static rex:AppResource.Satelite}"
                             ClickCommand="{Binding ChangeMapTypeCommand}"
                             ImageName="satelite_layer.png"

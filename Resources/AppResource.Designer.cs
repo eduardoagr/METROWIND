@@ -61,6 +61,15 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t find the address.
+        /// </summary>
+        internal static string AddressFound {
+            get {
+                return ResourceManager.GetString("AddressFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a charging station.
         /// </summary>
         internal static string ChooseStation {
@@ -75,6 +84,33 @@ namespace METROWIND.Resources {
         internal static string CompactMode {
             get {
                 return ResourceManager.GetString("CompactMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string DateCancel {
+            get {
+                return ResourceManager.GetString("DateCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string DateConfirm {
+            get {
+                return ResourceManager.GetString("DateConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        internal static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
             }
         }
         
@@ -115,6 +151,15 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hour.
+        /// </summary>
+        internal static string Hour {
+            get {
+                return ResourceManager.GetString("Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading news.
         /// </summary>
         internal static string Loading {
@@ -133,11 +178,47 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minute.
+        /// </summary>
+        internal static string Minute {
+            get {
+                return ResourceManager.GetString("Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        internal static string Month {
+            get {
+                return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string NewTurbine {
+            get {
+                return ResourceManager.GetString("NewTurbine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Satelite.
         /// </summary>
         internal static string Satelite {
             get {
                 return ResourceManager.GetString("Satelite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seconds.
+        /// </summary>
+        internal static string Seconds {
+            get {
+                return ResourceManager.GetString("Seconds", resourceCulture);
             }
         }
         
@@ -151,11 +232,47 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details.
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string TurbineAddress {
+            get {
+                return ResourceManager.GetString("TurbineAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turbine details.
         /// </summary>
         internal static string TurbineDetails {
             get {
                 return ResourceManager.GetString("TurbineDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turbine intalation.
+        /// </summary>
+        internal static string TurbineInstalationDateTime {
+            get {
+                return ResourceManager.GetString("TurbineInstalationDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string TurbineName {
+            get {
+                return ResourceManager.GetString("TurbineName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turbines.
+        /// </summary>
+        internal static string TurbinesCollection {
+            get {
+                return ResourceManager.GetString("TurbinesCollection", resourceCulture);
             }
         }
         
@@ -165,6 +282,15 @@ namespace METROWIND.Resources {
         internal static string WhatsNew {
             get {
                 return ResourceManager.GetString("WhatsNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        internal static string Year {
+            get {
+                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

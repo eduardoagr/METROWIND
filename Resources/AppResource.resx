@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddressFound" xml:space="preserve">
+    <value>We couldn't find the address</value>
+  </data>
   <data name="ChooseStation" xml:space="preserve">
     <value>Choose a charging station</value>
   </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Compact mode</value>
+  </data>
+  <data name="DateCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DateConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
@@ -135,22 +147,52 @@
   <data name="HomePage" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading news</value>
   </data>
   <data name="MapTypes" xml:space="preserve">
     <value>Map types</value>
   </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="NewTurbine" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Satelite" xml:space="preserve">
     <value>Satelite</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>Seconds</value>
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Charging stations</value>
   </data>
+  <data name="TurbineAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="TurbineDetails" xml:space="preserve">
-    <value>Details</value>
+    <value>Turbine details</value>
+  </data>
+  <data name="TurbineInstalationDateTime" xml:space="preserve">
+    <value>Turbine intalation</value>
+  </data>
+  <data name="TurbineName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TurbinesCollection" xml:space="preserve">
+    <value>Turbines</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>What's new</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
   </data>
 </root>

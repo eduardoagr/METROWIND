@@ -4,9 +4,11 @@ namespace METROWIND.ViewModel {
 
     public partial class ChargingStationsMapPageViewModel : ObservableObject {
 
+        private readonly TurbinesService _turbinesService;
+
         private Microsoft.Maui.Controls.Maps.Map? MapView;
 
-        public ObservableCollection<PinModel>? Pins { get; set; }
+        public ObservableCollection<TurbinePin>? Turbines { get; set; }
 
         public ICommand? OnPinMarkerClickedCommand { get; }
 
@@ -16,11 +18,16 @@ namespace METROWIND.ViewModel {
         [ObservableProperty]
         bool isExpanded;
 
-        public ChargingStationsMapPageViewModel() {
+        public ChargingStationsMapPageViewModel(TurbinesService turbinesService) {
 
-            OnPinMarkerClickedCommand = new Command<Pin>(OnPinMarkerClicked);
+            OnPinMarkerClickedCommand = new Command<object>(OnPinMarkerClicked);
 
-            Pins = TurbinesService.GetPins(OnPinMarkerClickedCommand);
+            _turbinesService = turbinesService;
+
+            var SortedTurbinePins = _turbinesService.GetTurbinePins(OnPinMarkerClickedCommand)
+                .OrderBy(t => t.Turbine!.InstalationDateTime);
+
+            Turbines = new ObservableCollection<TurbinePin>(SortedTurbinePins);
         }
 
         [RelayCommand]
@@ -33,23 +40,23 @@ namespace METROWIND.ViewModel {
         }
 
         [RelayCommand]
-        void ItemSelected(PinModel pinModel) {
+        void ItemSelected(Turbine Turbine) {
 
             var mapSpan = MapSpan.FromCenterAndRadius(
-                pinModel.Location!,
-                Distance.FromKilometers(0.444));
+                Turbine.Location!,
+                Distance.FromKilometers(0.4));
 
             MapView!.MoveToRegion(mapSpan);
             IsExpanded = false;
         }
 
-        void OnPinMarkerClicked(Pin pin) {
-            if (pin != null) {
+        void OnPinMarkerClicked(object turbine) {
+            if (turbine != null) {
                 // Handle the pin click event
                 Shell.Current.GoToAsync($"{nameof(TurbineDetailPage)}",
                     true,
                     new Dictionary<string, object> {
-                    { "SelectedTurbine", pin }
+                    { "SelectedTurbine", turbine }
                 });
             };
         }

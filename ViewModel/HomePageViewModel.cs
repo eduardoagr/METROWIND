@@ -33,10 +33,6 @@
             var newsObj = await httpService.GetAsync<News>(newsUrl);
 
             foreach (var item in newsObj!.Articles!) {
-                if (string.IsNullOrWhiteSpace(item.Author)) {
-                    item.Author = "Uknown Author";
-                }
-
                 NewsList.Add(item);
             }
 

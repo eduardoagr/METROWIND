@@ -1,5 +1,5 @@
 ﻿namespace METROWIND.Models {
-    public class TrbineData(string product, double salesRate) {
+    public class TurbineData(string product, double salesRate) {
 
         public string Product { get; set; } = product;
 

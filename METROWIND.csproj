@@ -89,12 +89,13 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.90" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
-		<PackageReference Include="Syncfusion.Maui.Carousel" Version="27.1.48" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="27.1.48" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.48" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.48" />
-		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.48" />
-		<PackageReference Include="Syncfusion.Maui.RadialMenu" Version="27.1.48" />
+		<PackageReference Include="Syncfusion.Maui.Carousel" Version="27.1.50" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="27.1.50" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.50" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.50" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.50" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.50" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.50" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -106,6 +107,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\CustomImageButton.xaml.cs">
+	    <DependentUpon>CustomImageButton.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\AppResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -121,6 +125,9 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResource.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\PopUps\AddTurbnePopUp.xaml.cs">
+	    <DependentUpon>AddTurbnePopUp.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -135,10 +142,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\CustomImage.xaml">
+	  <MauiXaml Update="Controls\CustomImageButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopUps\AddTurbnePopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StartupPage.xaml">

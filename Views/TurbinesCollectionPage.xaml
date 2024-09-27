@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="METROWIND.Views.TurbinesCollectionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constant="clr-namespace:METROWIND.Constants"
+    xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:model="clr-namespace:METROWIND.Models"
+    xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:Name="TurbinesCollection"
+    x:DataType="vm:TurbinesCollectionPageViewModel">
+
+    <Grid>
+        <CollectionView
+            Margin="20"
+            HorizontalOptions="Center"
+            ItemsSource="{Binding Turbines}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:TurbinePin">
+                    <Grid>
+                        <SwipeView
+                            IsVisible="{OnIdiom Phone=True,
+                                                Desktop=False}"
+                            Threshold="300">
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem
+                                        BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
+                                                                          Light={x:StaticResource SwipeLight}}"
+                                        Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                        CommandParameter="{Binding .}">
+                                        <SwipeItem.IconImageSource>
+                                            <FontImageSource
+                                                FontFamily="ma"
+                                                Glyph="{x:Static constant:MaterialFonts.Delete}" />
+                                        </SwipeItem.IconImageSource>
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Border Style="{StaticResource CommonBorderStyle}">
+                                <Grid RowDefinitions="*,*,*">
+                                    <Label
+                                        Style="{StaticResource CommonLabelStyle}"
+                                        Text="{Binding Turbine.Name}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Style="{StaticResource CommonLabelStyle}"
+                                        Text="{Binding Turbine.Address}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Style="{StaticResource CommonLabelStyle}"
+                                        Text="{Binding Turbine.LocalizedInstalationDateTime}" />
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+
+                        <Border
+                            IsVisible="{OnIdiom Desktop=True,
+                                                Phone=False}"
+                            Style="{StaticResource CommonBorderStyle}">
+                            <Grid
+                                x:Name="GridContainer"
+                                ColumnDefinitions="*,*"
+                                RowDefinitions="*,*,*">
+                                <Label
+                                    Style="{StaticResource CommonLabelStyle}"
+                                    Text="{Binding Turbine.Name}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Style="{StaticResource CommonLabelStyle}"
+                                    Text="{Binding Turbine.Address}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Style="{StaticResource CommonLabelStyle}"
+                                    Text="{Binding Turbine.LocalizedInstalationDateTime}" />
+
+                                <Button
+                                    Grid.RowSpan="3"
+                                    Grid.Column="1"
+                                    BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
+                                                                      Light={x:StaticResource SwipeLight}}"
+                                    Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                    CommandParameter="{Binding .}"
+                                    HeightRequest="{Binding Height, Source={x:Reference GridContainer}}"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center">
+                                    <Button.ImageSource>
+                                        <FontImageSource
+                                            FontFamily="ma"
+                                            Glyph="{x:Static constant:MaterialFonts.Delete}" />
+                                    </Button.ImageSource>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Margin="20"
+            Command="{Binding AddNewTurbinePopUpCommand}"
+            CornerRadius="8"
+            FontFamily="ma"
+            FontSize="Large"
+            HeightRequest="40"
+            HorizontalOptions="End"
+            Text="{x:Static constant:MaterialFonts.Add}"
+            VerticalOptions="End"
+            WidthRequest="40" />
+    </Grid>
+</ContentPage>

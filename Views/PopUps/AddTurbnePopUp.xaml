@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup
+    x:Class="METROWIND.Views.PopUps.AddTurbnePopUp"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constant="clr-namespace:METROWIND.Constants"
+    xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:DataType="vm:AddTurbnePopUpViewModel"
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    Color="Transparent">
+
+    <Grid
+        HeightRequest="400"
+        WidthRequest="300">
+        <Border
+            x:Name="PopUp"
+            BackgroundColor="#f7f2fb"
+            Loaded="PopUp_Loaded"
+            StrokeShape="RoundRectangle 10">
+
+            <Grid
+                Padding="20"
+                RowDefinitions="60,60,60,*">
+
+                <Border
+                    BackgroundColor="White"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    StrokeShape="RoundRectangle 10"
+                    VerticalOptions="Center">
+                    <controls:BorderlessEntry
+                        Placeholder="{x:Static rex:AppResource.TurbineName}"
+                        Style="{x:DynamicResource AddTurbineForm}"
+                        Text="{Binding TurbinaName}" />
+                </Border>
+
+                <Border
+                    Grid.Row="2"
+                    BackgroundColor="White"
+                    HeightRequest="50"
+                    StrokeShape="RoundRectangle 10"
+                    VerticalOptions="Center">
+                    <controls:BorderlessEntry
+                        Placeholder="{x:Static rex:AppResource.TurbineAddress}"
+                        Style="{x:DynamicResource AddTurbineForm}"
+                        Text="{Binding TurbneAddres}" />
+                </Border>
+
+                <picker:SfDateTimePicker
+                    x:Name="picker"
+                    Grid.Row="3"
+                    BackgroundColor="Transparent"
+                    MinimumDate="{x:Static sys:DateTime.Now}"
+                    Mode="RelativeDialog"
+                    RelativePosition="AlignBottom">
+
+                    <picker:SfDateTimePicker.FooterView>
+                        <picker:PickerFooterView
+                            Height="40"
+                            CancelButtonText="{x:Static rex:AppResource.DateConfirm}"
+                            OkButtonText="{x:Static rex:AppResource.DateConfirm}"
+                            ShowOkButton="True" />
+                    </picker:SfDateTimePicker.FooterView>
+
+                    <picker:SfDateTimePicker.Behaviors>
+                        <mct:EventToCommandBehavior
+                            Command="{Binding ConfirmDateCommand}"
+                            CommandParameter="{Binding SelectedDate, Source={x:Reference picker}}"
+                            EventName="OkButtonClicked" />
+
+                        <mct:EventToCommandBehavior
+                            Command="{Binding CancelCommand}"
+                            CommandParameter="{Binding Source={x:Reference picker}}"
+                            EventName="CancelButtonClicked" />
+
+                    </picker:SfDateTimePicker.Behaviors>
+
+                    <picker:SfDateTimePicker.ColumnHeaderView>
+                        <picker:DateTimePickerColumnHeaderView
+                            DayHeaderText="{x:Static rex:AppResource.Day}"
+                            HourHeaderText="{x:Static rex:AppResource.Hour}"
+                            MinuteHeaderText="{x:Static rex:AppResource.Minute}"
+                            MonthHeaderText="{x:Static rex:AppResource.Month}"
+                            SecondHeaderText="{x:Static rex:AppResource.Seconds}"
+                            YearHeaderText="{x:Static rex:AppResource.Year}" />
+                    </picker:SfDateTimePicker.ColumnHeaderView>
+
+                </picker:SfDateTimePicker>
+
+                <Border
+                    Grid.Row="1"
+                    BackgroundColor="White"
+                    StrokeShape="RoundRectangle 10"
+                    VerticalOptions="Center">
+
+                    <Grid ColumnDefinitions="*,60">
+                        <Button
+                            Grid.Column="1"
+                            Background="Transparent"
+                            Command="{Binding OpenDatePickerCommand}"
+                            CommandParameter="{Binding Source={x:Reference picker}}"
+                            CornerRadius="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center">
+                            <Button.ImageSource>
+                                <FontImageSource
+                                    FontFamily="ma"
+                                    Glyph="{Static constant:MaterialFonts.Calendar_month}"
+                                    Color="Black" />
+                            </Button.ImageSource>
+                        </Button>
+                        <controls:BorderlessEntry
+                            IsReadOnly="True"
+                            Placeholder="{x:Static rex:AppResource.TurbineInstalationDateTime}"
+                            Style="{x:DynamicResource AddTurbineForm}"
+                            Text="{Binding TurbineFormatedDate}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Button Text="{x:Static rex:AppResource.NewTurbine}" Grid.Row="4" VerticalOptions="End" />
+            </Grid>
+        </Border>
+
+    </Grid>
+
+
+</mct:Popup>

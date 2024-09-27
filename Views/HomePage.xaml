@@ -95,7 +95,7 @@
                                 <Label
                                     Grid.Column="1"
                                     Margin="10,0,0,0"
-                                    Text="{Binding Author}" />
+                                    Text="{Binding Author, TargetNullValue='Author uknown'}" />
                                 <Label
                                     Grid.Column="2"
                                     Text="{Binding PublishedAt}" />
@@ -114,4 +114,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
+    
 </ContentPage>
+    

@@ -1,11 +1,12 @@
-﻿#if ANDROID  
+﻿#if ANDROID
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
-
 using Microsoft.Maui.Handlers;
 
 namespace METROWIND {
+
     public static class BorderlessEntryHandler {
+
         public static void ApplyCustomHandler() {
 
             EntryHandler.Mapper.AppendToMapping("Borderless", (handler, view) => {

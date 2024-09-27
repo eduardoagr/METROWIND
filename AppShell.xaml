@@ -11,55 +11,63 @@
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="shelly"
     Title="METROWIND"
+    x:DataType="vm:AppShellViewModel"
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked,
                                    Phone=Disabled}"
     Shell.NavBarIsVisible="{OnIdiom Desktop=False,
                                     Phone=True}">
 
-    <!--<Shell.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
-                                        CommandParameter="{Binding Source={x:Reference shelly}}"
-                                        EventName="Appearing" />
+    <Shell.Behaviors>
+        <toolkit:EventToCommandBehavior
+            Command="{Binding AppearingCommand}"
+            CommandParameter="{Binding Source={x:Reference shelly}}"
+            EventName="Appearing" />
     </Shell.Behaviors>
 
     <Shell.FlyoutHeader>
         <Grid>
-            <Image x:Name="ConfigMenu"
-                   Margin="10,0,0,15"
-                   HeightRequest="48"
-                   HorizontalOptions="Start"
-                   Source="windmill.png"
-                   WidthRequest="48">
+            <Image
+                x:Name="ConfigMenu"
+                Margin="10,0,0,15"
+                HeightRequest="48"
+                HorizontalOptions="Start"
+                Source="windmill.png"
+                WidthRequest="48">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OpenMenuCommand}" />
                 </Image.GestureRecognizers>
             </Image>
-            <popup:SfPopup Padding="20"
-                           AbsoluteY="10"
-                           AutoSizeMode="Both"
-                           IsOpen="{Binding IsMenuPopUpOen}"
-                           RelativePosition="AlignBottomLeft"
-                           RelativeView="{x:Reference ConfigMenu}"
-                           ShowHeader="False"
-                           ShowOverlayAlways="False">
+            <popup:SfPopup
+                Padding="20"
+                AbsoluteY="10"
+                AutoSizeMode="Both"
+                IsOpen="{Binding IsMenuPopUpOen}"
+                RelativePosition="AlignBottomLeft"
+                RelativeView="{x:Reference ConfigMenu}"
+                ShowHeader="False"
+                ShowOverlayAlways="False">
                 <popup:SfPopup.PopupStyle>
                     <popup:PopupStyle CornerRadius="0" />
                 </popup:SfPopup.PopupStyle>
                 <popup:SfPopup.ContentTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="#908686"
-                              ColumnDefinitions="*,*"
-                              HorizontalOptions="Fill">
-                            <Label Margin="10,0,0,0"
-                                   Text="{x:Static rex:AppResource.CompactMode}"
-                                   VerticalTextAlignment="Center" />
-                            <controls:CustomSwitch Grid.Column="1"
-                                                   IsToggled="{Binding IsCompactMode}"
-                                                   OnColor="Green">
+                        <Grid
+                            BackgroundColor="#908686"
+                            ColumnDefinitions="*,*"
+                            HorizontalOptions="Fill">
+                            <Label
+                                Margin="10,0,0,0"
+                                Text="{x:Static rex:AppResource.CompactMode}"
+                                VerticalTextAlignment="Center" />
+                            <controls:CustomSwitch
+                                Grid.Column="1"
+                                IsToggled="{Binding IsCompactMode}"
+                                OnColor="Green">
                                 <Switch.Behaviors>
-                                    <toolkit:EventToCommandBehavior Command="{Binding ToogleSwitchCommand}"
-                                                                    CommandParameter="{Binding IsCompactMode}"
-                                                                    EventName="Toggled" />
+                                    <toolkit:EventToCommandBehavior
+                                        Command="{Binding ToogleSwitchCommand}"
+                                        CommandParameter="{Binding IsCompactMode}"
+                                        EventName="Toggled" />
                                 </Switch.Behaviors>
                             </controls:CustomSwitch>
                         </Grid>
@@ -67,7 +75,7 @@
                 </popup:SfPopup.ContentTemplate>
             </popup:SfPopup>
         </Grid>
-    </Shell.FlyoutHeader>-->
+    </Shell.FlyoutHeader>
 
     <ShellContent
         ContentTemplate="{DataTemplate views:StartupPage}"
@@ -87,6 +95,8 @@
             Shell.NavBarIsVisible="False" />
     </FlyoutItem>
 
+
+
     <FlyoutItem
         Title="{x:Static rex:AppResource.Stations}"
         Icon="stations.png"
@@ -97,12 +107,24 @@
             Route="ChargingStationsMapPage" />
     </FlyoutItem>
 
+
+    <FlyoutItem
+        Title="{x:Static rex:AppResource.TurbinesCollection}"
+        Icon="turbines.png">
+
+        <ShellContent
+            ContentTemplate="{DataTemplate views:TurbinesCollectionPage}"
+            Route="TurbinesCollectionPage"
+            Shell.NavBarIsVisible="False" />
+    </FlyoutItem>
+
+
     <!--  TabBar for Phone  -->
     <TabBar IsVisible="{OnIdiom Desktop=False, Phone=True}">
         <Tab
             Title="{x:Static rex:AppResource.HomePage}"
             Icon="home_mobile.png">
-            
+
             <ShellContent
                 ContentTemplate="{DataTemplate views:HomePage}"
                 Route="HomePage"
@@ -111,10 +133,20 @@
         <Tab
             Title="{x:Static rex:AppResource.Stations}"
             Icon="station_mobile.png">
+
             <ShellContent
-                
                 ContentTemplate="{DataTemplate views:ChargingStationsMapPage}"
                 Route="ChargingStationsMapPage" />
+        </Tab>
+
+        <Tab
+            Title="{x:Static rex:AppResource.TurbinesCollection}"
+            Icon="turbines_mobile.png">
+
+            <ShellContent
+                ContentTemplate="{DataTemplate views:TurbinesCollectionPage}"
+                Route="TurbinesCollectionPage"
+                Shell.NavBarIsVisible="False" />
         </Tab>
     </TabBar>
 
