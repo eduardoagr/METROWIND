@@ -8,8 +8,6 @@ namespace METROWIND.ViewModel {
 
         private Microsoft.Maui.Controls.Maps.Map? MapView;
 
-        public ObservableCollection<TurbinePin>? Turbines { get; set; }
-
         public ICommand? OnPinMarkerClickedCommand { get; }
 
         [ObservableProperty]
@@ -18,16 +16,15 @@ namespace METROWIND.ViewModel {
         [ObservableProperty]
         bool isExpanded;
 
+        public ObservableCollection<TurbinePin> Turbines => _turbinesService._turbinePins;
+
         public ChargingStationsMapPageViewModel(TurbinesService turbinesService) {
 
             OnPinMarkerClickedCommand = new Command<object>(OnPinMarkerClicked);
 
             _turbinesService = turbinesService;
 
-            var SortedTurbinePins = _turbinesService.GetTurbinePins(OnPinMarkerClickedCommand)
-                .OrderBy(t => t.Turbine!.InstalationDateTime);
-
-            Turbines = new ObservableCollection<TurbinePin>(SortedTurbinePins);
+            _turbinesService.GetTurbinePinsForUI(OnPinMarkerClickedCommand);
         }
 
         [RelayCommand]

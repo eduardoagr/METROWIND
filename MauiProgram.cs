@@ -48,14 +48,16 @@ namespace METROWIND {
 
             //Pages and ViewModels
             builder.Services.AddTransientPopup<AddTurbnePopUp, AddTurbnePopUpViewModel>();
+            builder.Services.AddTransient<ChargingStationsMapPage, ChargingStationsMapPageViewModel>();
+            builder.Services.AddTransient<TurbinesCollectionPage, TurbinesCollectionPageViewModel>();
+            builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
+
+
             builder.Services.AddSingleton<AppShell, AppShellViewModel>();
             builder.Services.AddSingleton<StartupPage, StartupPageViewModel>();
-            builder.Services.AddSingleton<ChargingStationsMapPage, ChargingStationsMapPageViewModel>();
             builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();
-            builder.Services.AddSingleton<TurbinesCollectionPage, TurbinesCollectionPageViewModel>();
-            builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
             builder.Services.AddSingleton<HomePage, HomePageViewModel>();
-
+                                                                                                     
             return builder.Build();
         }
     }

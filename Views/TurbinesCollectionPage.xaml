@@ -9,12 +9,21 @@
     xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
     xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="TurbinesCollection"
     x:DataType="vm:TurbinesCollectionPageViewModel">
 
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            Command="{Binding PageEnterCommand}"
+            CommandParameter="{Binding Source={x:Reference TurbineCollection}}"
+            EventName="Appearing" />
+    </ContentPage.Behaviors>
+
     <Grid>
         <CollectionView
+            x:Name="TurbineCollection"
             Margin="20"
             HorizontalOptions="Center"
             ItemsSource="{Binding Turbines}">
@@ -31,7 +40,7 @@
                                         BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
                                                                           Light={x:StaticResource SwipeLight}}"
                                         Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                        CommandParameter="{Binding .}">
+                                        CommandParameter="{Binding Source={x:Reference borderContainer}}">
                                         <SwipeItem.IconImageSource>
                                             <FontImageSource
                                                 FontFamily="ma"
@@ -60,7 +69,11 @@
                         <Border
                             IsVisible="{OnIdiom Desktop=True,
                                                 Phone=False}"
+                            
+                            x:Name="borderContainer"
+                            
                             Style="{StaticResource CommonBorderStyle}">
+
                             <Grid
                                 x:Name="GridContainer"
                                 ColumnDefinitions="*,*"
@@ -80,20 +93,27 @@
                                 <Button
                                     Grid.RowSpan="3"
                                     Grid.Column="1"
-                                    BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
-                                                                      Light={x:StaticResource SwipeLight}}"
+                                    BackgroundColor="#fef2f3"
                                     Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                                     CommandParameter="{Binding .}"
+                                    CornerRadius="0"
                                     HeightRequest="{Binding Height, Source={x:Reference GridContainer}}"
                                     HorizontalOptions="End"
+                                    IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                                     VerticalOptions="Center">
                                     <Button.ImageSource>
                                         <FontImageSource
+
                                             FontFamily="ma"
                                             Glyph="{x:Static constant:MaterialFonts.Delete}" />
                                     </Button.ImageSource>
+
                                 </Button>
                             </Grid>
+                            <Border.GestureRecognizers>
+                                <PointerGestureRecognizer PointerEnteredCommand="{Binding MouseEnterCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
+                                <PointerGestureRecognizer PointerExitedCommand="{Binding MouseLeaveCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
+                            </Border.GestureRecognizers>
                         </Border>
                     </Grid>
                 </DataTemplate>
@@ -105,7 +125,7 @@
             Command="{Binding AddNewTurbinePopUpCommand}"
             CornerRadius="8"
             FontFamily="ma"
-            FontSize="Large"
+            FontSize="Medium"
             HeightRequest="40"
             HorizontalOptions="End"
             Text="{x:Static constant:MaterialFonts.Add}"

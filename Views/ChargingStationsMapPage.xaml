@@ -51,12 +51,14 @@
                 <expander:SfExpander.Content>
                     <Grid
                         Padding="10,0,0,0"
-                        RowDefinitions="30">
+                        RowDefinitions="Auto">
                         <CollectionView ItemsSource="{Binding Turbines}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:TurbinePin">
                                     <Border Stroke="Transparent">
-                                        <Grid ColumnDefinitions="Auto">
+                                        <Grid
+                                            Margin="0,10,0,10"
+                                            ColumnDefinitions="Auto">
                                             <Label
                                                 FontFamily="ma"
                                                 Text="{x:Static constant:MaterialFonts.Electric_bolt}"
@@ -94,10 +96,10 @@
                     <controls:CustomMapPin
                         Address="{Binding Turbine.Address}"
                         ChartData="{Binding Turbine.DataCollection}"
-                        MarkerClickedCommandParameter="{Binding Turbine}"
                         Label="{Binding Turbine.Label}"
                         Location="{Binding Turbine.Location}"
                         MarkerClickedCommand="{Binding PinClickedCommand}"
+                        MarkerClickedCommandParameter="{Binding Turbine}"
                         TurbineImages="{Binding Turbine.Images}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>

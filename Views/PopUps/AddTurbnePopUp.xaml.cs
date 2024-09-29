@@ -7,15 +7,15 @@ public partial class AddTurbnePopUp : Popup {
         BindingContext = addTurbnePopUpViewModel;
     }
 
-    private async void PopUp_Loaded(object sender, EventArgs e) {
+    private async void PopUpBorder_Loaded(object sender, EventArgs e) {
 
-        PopUp.Scale = 0.5;
-        PopUp.Opacity = 0;
+        PopUpBorder.Scale = 0.5;
+        PopUpBorder.Opacity = 0;
 
         await Task.WhenAll(new Task[]
         {
-             PopUp.ScaleTo(1, 500, Easing.CubicInOut), // Adjust the duration and easing as needed
-             PopUp.FadeTo(1, 500, Easing.CubicInOut)
+             PopUpBorder.ScaleTo(1, 500, Easing.CubicInOut),
+             PopUpBorder.FadeTo(1, 500, Easing.CubicInOut)
         });
 
     }

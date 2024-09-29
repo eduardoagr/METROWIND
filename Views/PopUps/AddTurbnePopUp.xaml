@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <mct:Popup
     x:Class="METROWIND.Views.PopUps.AddTurbnePopUp"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -10,103 +9,68 @@
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:sys="clr-namespace:System;assembly=netstandard"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:Name="TurbineAddPopUp"
     x:DataType="vm:AddTurbnePopUpViewModel"
     CanBeDismissedByTappingOutsideOfPopup="False"
     Color="Transparent">
 
     <Grid
-        HeightRequest="400"
-        WidthRequest="300">
+        Padding="20"
+        HeightRequest="500"
+        RowDefinitions="Auto"
+        WidthRequest="400">
+
         <Border
-            x:Name="PopUp"
-            BackgroundColor="#f7f2fb"
-            Loaded="PopUp_Loaded"
-            StrokeShape="RoundRectangle 10">
+            x:Name="PopUpBorder"
+            Grid.Row="0"
+            BackgroundColor="#0213A0"
+            Loaded="PopUpBorder_Loaded"
+            StrokeShape="RoundRectangle 10"
+            StrokeThickness="8">
 
             <Grid
                 Padding="20"
-                RowDefinitions="60,60,60,*">
+                ColumnDefinitions="*, Auto"
+                RowDefinitions="40, 60, 60, 60, 0, 60, *">
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{x:DynamicResource CloseLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding Source={x:Reference TurbineAddPopUp}}" />
+                    </Label.GestureRecognizers>
+                    <Label.Behaviors>
+                        <OnIdiom x:TypeArguments="Behavior">
+                            <OnIdiom.Desktop>
+                                <mct:TouchBehavior HoveredBackgroundColor="Red" />
+                            </OnIdiom.Desktop>
+                        </OnIdiom>
+                    </Label.Behaviors>
+                </Label>
 
                 <Border
-                    BackgroundColor="White"
-                    HeightRequest="50"
-                    HorizontalOptions="FillAndExpand"
-                    StrokeShape="RoundRectangle 10"
-                    VerticalOptions="Center">
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Style="{x:DynamicResource PopUpBorderStyle}">
                     <controls:BorderlessEntry
                         Placeholder="{x:Static rex:AppResource.TurbineName}"
                         Style="{x:DynamicResource AddTurbineForm}"
-                        Text="{Binding TurbinaName}" />
+                        Text="{Binding TurbineName}" />
                 </Border>
 
                 <Border
                     Grid.Row="2"
-                    BackgroundColor="White"
-                    HeightRequest="50"
-                    StrokeShape="RoundRectangle 10"
-                    VerticalOptions="Center">
-                    <controls:BorderlessEntry
-                        Placeholder="{x:Static rex:AppResource.TurbineAddress}"
-                        Style="{x:DynamicResource AddTurbineForm}"
-                        Text="{Binding TurbneAddres}" />
-                </Border>
-
-                <picker:SfDateTimePicker
-                    x:Name="picker"
-                    Grid.Row="3"
-                    BackgroundColor="Transparent"
-                    MinimumDate="{x:Static sys:DateTime.Now}"
-                    Mode="RelativeDialog"
-                    RelativePosition="AlignBottom">
-
-                    <picker:SfDateTimePicker.FooterView>
-                        <picker:PickerFooterView
-                            Height="40"
-                            CancelButtonText="{x:Static rex:AppResource.DateConfirm}"
-                            OkButtonText="{x:Static rex:AppResource.DateConfirm}"
-                            ShowOkButton="True" />
-                    </picker:SfDateTimePicker.FooterView>
-
-                    <picker:SfDateTimePicker.Behaviors>
-                        <mct:EventToCommandBehavior
-                            Command="{Binding ConfirmDateCommand}"
-                            CommandParameter="{Binding SelectedDate, Source={x:Reference picker}}"
-                            EventName="OkButtonClicked" />
-
-                        <mct:EventToCommandBehavior
-                            Command="{Binding CancelCommand}"
-                            CommandParameter="{Binding Source={x:Reference picker}}"
-                            EventName="CancelButtonClicked" />
-
-                    </picker:SfDateTimePicker.Behaviors>
-
-                    <picker:SfDateTimePicker.ColumnHeaderView>
-                        <picker:DateTimePickerColumnHeaderView
-                            DayHeaderText="{x:Static rex:AppResource.Day}"
-                            HourHeaderText="{x:Static rex:AppResource.Hour}"
-                            MinuteHeaderText="{x:Static rex:AppResource.Minute}"
-                            MonthHeaderText="{x:Static rex:AppResource.Month}"
-                            SecondHeaderText="{x:Static rex:AppResource.Seconds}"
-                            YearHeaderText="{x:Static rex:AppResource.Year}" />
-                    </picker:SfDateTimePicker.ColumnHeaderView>
-
-                </picker:SfDateTimePicker>
-
-                <Border
-                    Grid.Row="1"
-                    BackgroundColor="White"
-                    StrokeShape="RoundRectangle 10"
-                    VerticalOptions="Center">
-
+                    Grid.ColumnSpan="2"
+                    Style="{x:DynamicResource PopUpBorderStyle}">
                     <Grid ColumnDefinitions="*,60">
                         <Button
                             Grid.Column="1"
-                            Background="Transparent"
                             Command="{Binding OpenDatePickerCommand}"
                             CommandParameter="{Binding Source={x:Reference picker}}"
-                            CornerRadius="0"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center">
+                            Style="{x:DynamicResource PopUpIconStyle}">
                             <Button.ImageSource>
                                 <FontImageSource
                                     FontFamily="ma"
@@ -115,19 +79,51 @@
                             </Button.ImageSource>
                         </Button>
                         <controls:BorderlessEntry
+                            Grid.Column="0"
                             IsReadOnly="True"
                             Placeholder="{x:Static rex:AppResource.TurbineInstalationDateTime}"
                             Style="{x:DynamicResource AddTurbineForm}"
-                            Text="{Binding TurbineFormatedDate}"
+                            Text="{Binding TurbineFormattedDate}"
                             VerticalOptions="Center" />
                     </Grid>
                 </Border>
 
-                <Button Text="{x:Static rex:AppResource.NewTurbine}" Grid.Row="4" VerticalOptions="End" />
+                <Border
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Style="{x:DynamicResource PopUpBorderStyle}">
+                    <controls:BorderlessEntry
+                        Placeholder="{x:Static rex:AppResource.TurbineAddress}"
+                        Style="{x:DynamicResource AddTurbineForm}"
+                        Text="{Binding TurbneAddress}" />
+                </Border>
+
+                <picker:SfDateTimePicker
+                    x:Name="picker"
+                    Grid.Row="4"
+                    BackgroundColor="Transparent"
+                    Style="{x:DynamicResource DateTimePickerStyle}">
+                    <picker:SfDateTimePicker.Behaviors>
+                        <mct:EventToCommandBehavior
+                            Command="{Binding ConfirmDateCommand}"
+                            CommandParameter="{Binding SelectedDate, Source={x:Reference picker}}"
+                            EventName="OkButtonClicked" />
+                        <mct:EventToCommandBehavior
+                            Command="{Binding CancelCommand}"
+                            CommandParameter="{Binding Source={x:Reference picker}}"
+                            EventName="CancelButtonClicked" />
+                    </picker:SfDateTimePicker.Behaviors>
+                </picker:SfDateTimePicker>
+
+                <Button
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding Source={x:Reference TurbineAddPopUp}}"
+                    IsEnabled="{Binding IsSaveEnable}"
+                    Text="{x:Static rex:AppResource.NewTurbine}"
+                    VerticalOptions="End" />
             </Grid>
         </Border>
-
     </Grid>
-
-
 </mct:Popup>

@@ -14,9 +14,9 @@
 
         public DateTime? InstalationDateTime { get; set; }
 
-        public ObservableCollection<string>? Images { get; set; }
+        public List<string>? Images { get; set; }
 
-        public ObservableCollection<TurbineData>? DataCollection { get; set; }
+        public List<TurbineData>? DataCollection { get; set; }
 
         public string LocalizedInstalationDateTime {
             get {

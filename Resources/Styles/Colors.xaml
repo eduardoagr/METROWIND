@@ -29,7 +29,7 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
     <Color x:Key="AndoidDark">#1c1c1c</Color>
-    <Color x:Key="SwipeLight">#fad9d5</Color>
+    <Color x:Key="SwipeLight">#AB5D54</Color>
     <Color x:Key="SwipeDark">Red</Color>
 
     <SolidColorBrush
