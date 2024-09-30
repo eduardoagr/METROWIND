@@ -1,9 +1,4 @@
-﻿using METROWIND.Controls;
-using METROWIND.Views.PopUps;
-
-using Microsoft.Maui.Handlers;
-
-namespace METROWIND {
+﻿namespace METROWIND {
 
     public static class MauiProgram {
 
@@ -24,13 +19,7 @@ namespace METROWIND {
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("fa-solid-900.ttf", "fa");
                     fonts.AddFont("MaterialIcons-Regular.ttf", "ma");
-                }).ConfigureMauiHandlers(handlers => {
-
-                    handlers.AddHandler<BorderlessEntry, EntryHandler>();
                 });
-
-            BorderlessEntryHandler.ApplyCustomHandler();
-
 
 
 #if DEBUG
@@ -40,14 +29,11 @@ namespace METROWIND {
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<HttpService>();
             builder.Services.AddSingleton<TurbinesService>();
-            builder.Services.AddSingleton<GeoapifyService>();
             builder.Services.AddSingleton(Connectivity.Current);
             builder.Services.AddSingleton<DeviceLanguageService>();
 
 
-
             //Pages and ViewModels
-            builder.Services.AddTransientPopup<AddTurbnePopUp, AddTurbnePopUpViewModel>();
             builder.Services.AddSingleton<AppShell, AppShellViewModel>();
             builder.Services.AddSingleton<StartupPage, StartupPageViewModel>();
             builder.Services.AddSingleton<ChargingStationsMapPage, ChargingStationsMapPageViewModel>();

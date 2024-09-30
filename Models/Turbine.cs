@@ -12,21 +12,20 @@
 
         public Location? Location { get; set; }
 
-        public DateTime? InstalationDateTime { get; set; }
+        public DateTime InstalationDateTime { get; set; }
+
+        public double TurbinePower { get; set; } = 0.37;
+
+        public double TurbineCapacityFactor { get; set; } = 0.25;
+
+        public double TutbineEmissionOffset { get; set; } = 0.45;
 
         public ObservableCollection<string>? Images { get; set; }
 
-        public ObservableCollection<TurbineData>? DataCollection { get; set; }
-
         public string LocalizedInstalationDateTime {
             get {
-                if (InstalationDateTime.HasValue) {
-
                     var currentCulture = new CultureInfo(deviceLanguageService.GetDeviceLanguage());
-                    return InstalationDateTime.Value.ToString("D", currentCulture);
-                }
-
-                return string.Empty;
+                    return InstalationDateTime.ToString("D", currentCulture);
             }
         }
 

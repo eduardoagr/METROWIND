@@ -5,10 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
     xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     Title="{x:Static rex:AppResource.TurbineDetails}"
     x:DataType="vm:TurbineDetailPageViewModel">
+
+    <ContentPage.Behaviors>
+        <mct:EventToCommandBehavior
+            Command="{Binding AppearCommand}"
+            EventName="Appearing" />
+    </ContentPage.Behaviors>
 
     <ScrollView>
         <VerticalStackLayout>
@@ -41,7 +48,6 @@
                     EndAngle="360"
                     ExplodeOnTouch="True"
                     InnerRadius="0.7"
-                    ItemsSource="{Binding SelectedTurbine.DataCollection}"
                     Radius="0.9"
                     ShowDataLabels="True"
                     StartAngle="180"

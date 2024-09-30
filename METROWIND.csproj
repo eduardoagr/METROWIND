@@ -107,9 +107,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Controls\CustomImageButton.xaml.cs">
-	    <DependentUpon>CustomImageButton.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Resources\AppResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -125,9 +122,6 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResource.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\PopUps\AddTurbnePopUp.xaml.cs">
-	    <DependentUpon>AddTurbnePopUp.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -142,13 +136,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\CustomImageButton.xaml">
+	  <MauiXaml Update="Controls\CustomImageLabelView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\PopUps\AddTurbnePopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StartupPage.xaml">

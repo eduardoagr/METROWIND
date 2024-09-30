@@ -93,15 +93,15 @@
                 <DataTemplate x:DataType="model:TurbinePin">
                     <controls:CustomMapPin
                         Address="{Binding Turbine.Address}"
-                        ChartData="{Binding Turbine.DataCollection}"
-                        MarkerClickedCommandParameter="{Binding Turbine}"
                         Label="{Binding Turbine.Label}"
                         Location="{Binding Turbine.Location}"
                         MarkerClickedCommand="{Binding PinClickedCommand}"
+                        MarkerClickedCommandParameter="{Binding Turbine}"
                         TurbineImages="{Binding Turbine.Images}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
+
         <Button
             x:Name="mapLayers"
             Margin="20"
@@ -116,6 +116,7 @@
                     Glyph="{x:Static constant:MaterialFonts.Layers}" />
             </Button.ImageSource>
         </Button>
+
         <popup:SfPopup
             AbsoluteY="-20"
             AutoSizeMode="Both"
@@ -130,18 +131,28 @@
             </popup:SfPopup.PopupStyle>
             <popup:SfPopup.ContentTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout Spacing="10">
-                        <controls:CustomImageButton
-                            Caption="{x:Static rex:AppResource.Default}"
+                    <Grid
+                        Padding="20"
+                        RowDefinitions="*,*"
+                        RowSpacing="20">
+
+                        <!--  First instance of the custom control  -->
+                        <controls:CustomImageLabelView
                             ClickCommand="{Binding ChangeMapTypeCommand}"
-                            ImageName="default_layer.png"
-                            Parameters="0" />
-                        <controls:CustomImageButton
-                            Caption="{x:Static rex:AppResource.Satelite}"
+                            ClickParameter="1"
+                            HorizontalOptions="Start"
+                            ImageSource="satelite_layer.png"
+                            LabelText="{x:Static rex:AppResource.Satelite}" />
+
+                        <!--  Second instance of the custom control  -->
+                        <controls:CustomImageLabelView
+                            Grid.Row="1"
                             ClickCommand="{Binding ChangeMapTypeCommand}"
-                            ImageName="satelite_layer.png"
-                            Parameters="2" />
-                    </VerticalStackLayout>
+                            ClickParameter="0"
+                            HorizontalOptions="Start"
+                            ImageSource="default_layer.png"
+                            LabelText="{x:Static rex:AppResource.Default}" />
+                    </Grid>
                 </DataTemplate>
             </popup:SfPopup.ContentTemplate>
         </popup:SfPopup>
