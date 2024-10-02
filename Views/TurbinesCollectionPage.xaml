@@ -21,26 +21,44 @@
             ItemsSource="{Binding Turbines}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:TurbinePin">
-                    <Grid>
-                        <Border Style="{StaticResource CommonBorderStyle}">
-                            <Grid RowDefinitions="*,*,*">
+                    <Grid
+                        Margin="5"
+                        Padding="10">
+                        <Border
+                            BackgroundColor="#f7f7f7"
+                            Stroke="#e0e0e0"
+                            Style="{StaticResource CommonBorderStyle}">
+                            <Grid RowDefinitions="Auto,Auto,Auto,*">
+
                                 <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
                                     Style="{StaticResource CommonLabelStyle}"
-                                    Text="{Binding Turbine.Name}" />
+                                    Text="{Binding Turbine.Name}"
+                                    TextColor="#333333" />
+
                                 <Label
                                     Grid.Row="1"
+                                    FontSize="14"
                                     Style="{StaticResource CommonLabelStyle}"
-                                    Text="{Binding Turbine.Address}" />
+                                    Text="{Binding Turbine.Address}"
+                                    TextColor="#666666" />
+
                                 <Label
                                     Grid.Row="2"
+                                    FontSize="12"
                                     Style="{StaticResource CommonLabelStyle}"
-                                    Text="{Binding Turbine.LocalizedInstalationDateTime}" />
+                                    Text="{Binding Turbine.LocalizedInstalationDateTime}"
+                                    TextColor="#999999" />
+
+                                <Label
+                                    Grid.RowSpan="3"
+                                    Grid.Row="4"
+                                    FontSize="16"
+                                    Padding="5"
+                                    Text="{Binding Turbine.RemovedCo2Kilograms, StringFormat='{0} kg Co2/kWh '}"
+                                    TextColor="#4CAF50" />
                             </Grid>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding OnPinMarkerClickedCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                    CommandParameter="{Binding Turbine}" />
-                            </Border.GestureRecognizers>
                         </Border>
                     </Grid>
                 </DataTemplate>

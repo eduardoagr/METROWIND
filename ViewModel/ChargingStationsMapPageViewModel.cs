@@ -12,6 +12,8 @@ namespace METROWIND.ViewModel {
 
         public ICommand? OnPinMarkerClickedCommand { get; }
 
+        public double RemovedCo2Kilograms { get; set; }
+
         [ObservableProperty]
         bool isOptionsOpen;
 

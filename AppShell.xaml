@@ -12,8 +12,10 @@
     x:Name="shelly"
     Title="METROWIND"
     x:DataType="vm:AppShellViewModel"
+    
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked,
                                    Phone=Disabled}"
+    
     Shell.NavBarIsVisible="{OnIdiom Desktop=False,
                                     Phone=True}">
 
@@ -86,9 +88,8 @@
     <!--  Flyout for Desktop  -->
     <FlyoutItem
         Title="{x:Static rex:AppResource.HomePage}"
-        Icon="home.png"
-        IsVisible="{OnIdiom Desktop=True,
-                            Phone=False}">
+        Icon="home.png">
+        
         <ShellContent
             ContentTemplate="{DataTemplate views:HomePage}"
             Route="HomePage"
@@ -100,8 +101,7 @@
     <FlyoutItem
         Title="{x:Static rex:AppResource.Stations}"
         Icon="stations.png"
-        IsVisible="{OnIdiom Desktop=True,
-                            Phone=False}">
+        >
         <ShellContent
             ContentTemplate="{DataTemplate views:ChargingStationsMapPage}"
             Route="ChargingStationsMapPage" />
@@ -120,7 +120,7 @@
 
 
     <!--  TabBar for Phone  -->
-    <TabBar IsVisible="{OnIdiom Desktop=False, Phone=True}">
+    <TabBar>
         <Tab
             Title="{x:Static rex:AppResource.HomePage}"
             Icon="home_mobile.png">

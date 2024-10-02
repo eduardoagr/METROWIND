@@ -464,5 +464,10 @@
         <Setter Property="Padding" Value="5" />
     </Style>
 
+    <Style TargetType="HorizontalStackLayout">
+        <Setter Property="Spacing" Value="20" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
 
 </ResourceDictionary>

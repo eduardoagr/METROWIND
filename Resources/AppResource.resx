@@ -174,11 +174,23 @@
   <data name="Stations" xml:space="preserve">
     <value>Charging stations</value>
   </data>
+  <data name="TubinePower" xml:space="preserve">
+    <value>Turbine power</value>
+  </data>
   <data name="TurbineAddress" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="TurbineCapacity" xml:space="preserve">
+    <value>Capaity factor</value>
+  </data>
+  <data name="TurbineCarbonRemoval" xml:space="preserve">
+    <value>Current carbon removal</value>
+  </data>
   <data name="TurbineDetails" xml:space="preserve">
     <value>Turbine details</value>
+  </data>
+  <data name="TurbineEmission" xml:space="preserve">
+    <value>CO₂ emissions offset</value>
   </data>
   <data name="TurbineInstalationDateTime" xml:space="preserve">
     <value>Turbine intalation</value>

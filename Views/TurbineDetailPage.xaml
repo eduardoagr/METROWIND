@@ -3,8 +3,6 @@
     x:Class="METROWIND.Views.TurbineDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:carousel="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
-    xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
@@ -12,56 +10,166 @@
     x:DataType="vm:TurbineDetailPageViewModel">
 
     <ContentPage.Behaviors>
-        <mct:EventToCommandBehavior
-            Command="{Binding AppearCommand}"
-            EventName="Appearing" />
+        <mct:EventToCommandBehavior Command="{Binding AppearCommand}"
+                                    EventName="Appearing" />
     </ContentPage.Behaviors>
-
+    
     <ScrollView>
-        <VerticalStackLayout>
+        <Grid RowDefinitions="80,*,*">
+
             <Label
                 Margin="20"
                 HorizontalOptions="Center"
                 Text="{Binding SelectedTurbine.Address}"
                 VerticalOptions="Center" />
 
-            <carousel:SfCarousel
-                ItemHeight="200"
-                ItemWidth="200"
+            <CollectionView
+                Grid.Row="2"
+                HorizontalOptions="Center"
                 ItemsSource="{Binding SelectedTurbine.Images}"
-                SelectedItemOffset="40"
-                ViewMode="Linear"
-                Duration="1000">
-                <carousel:SfCarousel.ItemTemplate>
+                VerticalOptions="Center">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding .}" />
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="200"
+                            Source="{Binding .}"
+                            WidthRequest="200" />
                     </DataTemplate>
-                </carousel:SfCarousel.ItemTemplate>
-            </carousel:SfCarousel>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-            <chart:SfCircularChart Margin="0,10,0,0">
-                <chart:SfCircularChart.Legend>
-                    <chart:ChartLegend />
-                </chart:SfCircularChart.Legend>
-                <chart:DoughnutSeries
-                    EnableAnimation="True"
-                    EndAngle="360"
-                    ExplodeOnTouch="True"
-                    InnerRadius="0.7"
-                    Radius="0.9"
-                    ShowDataLabels="True"
-                    StartAngle="180"
-                    XBindingPath="Product"
-                    YBindingPath="SalesRate">
-                    <chart:DoughnutSeries.CenterView>
-                        <VerticalStackLayout>
-                            <Label Text="Total: 50 %" />
-                        </VerticalStackLayout>
-                    </chart:DoughnutSeries.CenterView>
-                </chart:DoughnutSeries>
-            </chart:SfCircularChart>
+            <VerticalStackLayout
+                Grid.Row="1"
+                Padding="10"
+                VerticalOptions="Center">
 
-        </VerticalStackLayout>
+                <Border HorizontalOptions="CenterAndExpand">
+
+                    <Grid
+                        BackgroundColor="#284927"
+                        ColumnDefinitions="Auto, Auto"
+                        ColumnSpacing="10"
+                        RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                        RowSpacing="10">
+
+                        <!--  Row 1  -->
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rex:AppResource.TurbineInstalationDateTime}" />
+                        </Border>
+                        <Border
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedTurbine.InstalationDateTime, StringFormat='{}{0:MM/dd/yyyy}'}" />
+                        </Border>
+
+                        <!--  Row 2  -->
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rex:AppResource.TubinePower}" />
+                        </Border>
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedTurbine.TurbinePower, StringFormat='{0} kW'}" />
+                        </Border>
+
+                        <!--  Row 3  -->
+                        <Border
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rex:AppResource.TurbineCapacity}" />
+                        </Border>
+                        <Border
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedTurbine.TurbineCapacityFactor}" />
+                        </Border>
+
+                        <!--  Row 4  -->
+                        <Border
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rex:AppResource.TurbineEmission}" />
+                        </Border>
+                        <Border
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedTurbine.TurbineEmissionOffset, StringFormat='{0} kg Co2/kWh '}" />
+                        </Border>
+
+                        <!--  Row 5  -->
+                        <Border
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="DarkGray"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rex:AppResource.TurbineCarbonRemoval}" />
+                        </Border>
+                        <Border
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Padding="5">
+                            <Label
+                                BackgroundColor="Yellow"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedTurbine.RemovedCo2Kilograms, StringFormat='{0} kg Co2'}" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 
 

@@ -1,6 +1,5 @@
 ﻿global using CommunityToolkit.Maui;
 global using CommunityToolkit.Maui.Maps;
-global using CommunityToolkit.Maui.Views;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 
@@ -16,11 +15,11 @@ global using Microsoft.Maui.Controls.Maps;
 global using SkiaSharp.Views.Maui.Controls.Hosting;
 
 global using Syncfusion.Maui.Core.Hosting;
-global using Syncfusion.Maui.Picker;
 
 global using System.Collections.ObjectModel;
 global using System.Diagnostics;
 global using System.Globalization;
 global using System.Net.Http.Json;
 global using System.Text.Json.Serialization;
+global using System.Timers;
 global using System.Windows.Input;
