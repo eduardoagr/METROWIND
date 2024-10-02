@@ -10,10 +10,11 @@
     x:DataType="vm:TurbineDetailPageViewModel">
 
     <ContentPage.Behaviors>
-        <mct:EventToCommandBehavior Command="{Binding AppearCommand}"
-                                    EventName="Appearing" />
+        <mct:EventToCommandBehavior
+            Command="{Binding AppearCommand}"
+            EventName="Appearing" />
     </ContentPage.Behaviors>
-    
+
     <ScrollView>
         <Grid RowDefinitions="80,*,*">
 
@@ -87,6 +88,7 @@
                             <Label
                                 BackgroundColor="DarkGray"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{x:Static rex:AppResource.TubinePower}" />
                         </Border>
@@ -97,6 +99,7 @@
                             <Label
                                 BackgroundColor="DarkGray"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding SelectedTurbine.TurbinePower, StringFormat='{0} kW'}" />
                         </Border>
@@ -109,6 +112,7 @@
                             <Label
                                 BackgroundColor="DarkGray"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{x:Static rex:AppResource.TurbineCapacity}" />
                         </Border>
@@ -119,6 +123,7 @@
                             <Label
                                 BackgroundColor="DarkGray"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding SelectedTurbine.TurbineCapacityFactor}" />
                         </Border>
@@ -131,6 +136,7 @@
                             <Label
                                 BackgroundColor="DarkGray"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{x:Static rex:AppResource.TurbineEmission}" />
                         </Border>
@@ -141,6 +147,7 @@
                             <Label
                                 BackgroundColor="DarkGray"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding SelectedTurbine.TurbineEmissionOffset, StringFormat='{0} kg Co2/kWh '}" />
                         </Border>
@@ -153,6 +160,7 @@
                             <Label
                                 BackgroundColor="DarkGray"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{x:Static rex:AppResource.TurbineCarbonRemoval}" />
                         </Border>
@@ -163,6 +171,7 @@
                             <Label
                                 BackgroundColor="Yellow"
                                 FontAttributes="Bold"
+                                FontSize="Medium"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding SelectedTurbine.RemovedCo2Kilograms, StringFormat='{0} kg Co2'}" />
                         </Border>

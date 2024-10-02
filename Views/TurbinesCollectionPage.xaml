@@ -47,12 +47,17 @@
                                     Grid.RowSpan="3"
                                     Padding="5"
                                     FontAttributes="Bold"
-                                    HorizontalTextAlignment="End"
-                                    HorizontalOptions="End"
                                     FontSize="Large"
+                                    HorizontalOptions="End"
+                                    HorizontalTextAlignment="End"
                                     Text="{Binding Turbine.RemovedCo2Kilograms, StringFormat='{0} kg Co2/kWh '}"
                                     TextColor="#4CAF50" />
                             </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding OnPinMarkerClickedCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                    CommandParameter="{Binding Turbine}" />
+                            </Border.GestureRecognizers>
                         </Border>
                     </Grid>
                 </DataTemplate>
