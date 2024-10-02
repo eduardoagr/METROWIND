@@ -14,6 +14,7 @@
 
         [RelayCommand]
         void Appearing(AppShell appShell) {
+            LoadConfigurations();
             _shell = appShell;
         }
 
@@ -31,7 +32,19 @@
                 _shell!.FlyoutWidth = 300;
             }
 
+            SaveConfigurations();
+
             IsMenuPopUpOen = false;
+        }
+
+        private void SaveConfigurations() {
+            Preferences.Set(FLYOUT_KEY, _shell!.FlyoutWidth);
+            Preferences.Set(SWITCH_KEY, IsCompactMode);
+        }
+
+        private void LoadConfigurations() {
+            _shell!.FlyoutWidth = Preferences.Get(FLYOUT_KEY, 320.0);
+            IsCompactMode = Preferences.Get(SWITCH_KEY, false);
         }
     }
 }
