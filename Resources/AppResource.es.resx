@@ -193,7 +193,7 @@
     <value>Compensación de CO₂</value>
   </data>
   <data name="TurbineInstalationDateTime" xml:space="preserve">
-    <value>Instalación de turbina</value>
+    <value>Fecha Instalación </value>
   </data>
   <data name="TurbineName" xml:space="preserve">
     <value>Nombre</value>
@@ -202,7 +202,7 @@
     <value>Turbinas</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
-    <value>Noricias</value>
+    <value>Noticias</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Año</value>

@@ -25,11 +25,12 @@
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<HttpService>();
             builder.Services.AddSingleton<DeviceLanguageService>();
-            builder.Services.AddSingleton(Dispatcher.GetForCurrentThread()!); 
-            builder.Services.AddSingleton<TurbinesService>(); 
+            builder.Services.AddSingleton(Dispatcher.GetForCurrentThread()!);
+            builder.Services.AddSingleton<TurbinesService>();
             builder.Services.AddSingleton(Connectivity.Current);
 
 

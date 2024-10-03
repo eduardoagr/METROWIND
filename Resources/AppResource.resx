@@ -193,7 +193,7 @@
     <value>CO₂ emissions offset</value>
   </data>
   <data name="TurbineInstalationDateTime" xml:space="preserve">
-    <value>Turbine intalation</value>
+    <value>Installation date</value>
   </data>
   <data name="TurbineName" xml:space="preserve">
     <value>Name</value>

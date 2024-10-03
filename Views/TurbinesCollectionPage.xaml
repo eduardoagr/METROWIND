@@ -50,7 +50,7 @@
                                     FontSize="Large"
                                     HorizontalOptions="End"
                                     HorizontalTextAlignment="End"
-                                    Text="{Binding Turbine.RemovedCo2Kilograms, StringFormat='{0} kg Co2/kWh '}"
+                                    Text="{Binding Turbine.RemovedCo2Kilograms, StringFormat='{0} kg CO₂ '}"
                                     TextColor="#4CAF50" />
                             </Grid>
                             <Border.GestureRecognizers>

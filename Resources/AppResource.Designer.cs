@@ -286,7 +286,7 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turbine intalation.
+        ///   Looks up a localized string similar to Installation date.
         /// </summary>
         internal static string TurbineInstalationDateTime {
             get {

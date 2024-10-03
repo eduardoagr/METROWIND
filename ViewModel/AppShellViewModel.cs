@@ -14,8 +14,10 @@
 
         [RelayCommand]
         void Appearing(AppShell appShell) {
-            LoadConfigurations();
+
             _shell = appShell;
+
+            LoadConfigurations();
         }
 
         [RelayCommand]

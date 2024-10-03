@@ -1,5 +1,6 @@
 ﻿global using CommunityToolkit.Maui;
 global using CommunityToolkit.Maui.Maps;
+global using CommunityToolkit.Maui.Views;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 
@@ -21,5 +22,4 @@ global using System.Diagnostics;
 global using System.Globalization;
 global using System.Net.Http.Json;
 global using System.Text.Json.Serialization;
-global using System.Timers;
 global using System.Windows.Input;

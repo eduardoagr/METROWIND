@@ -469,5 +469,16 @@
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
 
+    <Style
+        x:Key="DataiLabelStyle"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource White}}" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="BackgroundColor" Value="DarkGray" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
 
 </ResourceDictionary>
