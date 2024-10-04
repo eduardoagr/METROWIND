@@ -1,19 +1,17 @@
-﻿using CommunityToolkit.Maui.Core;
-
-using Syncfusion.Maui.Popup;
+﻿using Syncfusion.Maui.Popup;
 
 namespace METROWIND.ViewModel {
 
     [QueryProperty(nameof(SelectedTurbine), "SelectedTurbine")]
-    public partial class TurbineDetailPageViewModel(IPopupService popupService) : ObservableObject {
+    public partial class TurbineDetailPageViewModel : ObservableObject {
 
         [ObservableProperty]
         Turbine? selectedTurbine;
 
         [ObservableProperty]
-        ImageSource imageSource;
+        ImageSource? imageSource;
 
-        SfPopup popUp;
+        SfPopup? popUp;
 
 
         [RelayCommand]
@@ -28,7 +26,7 @@ namespace METROWIND.ViewModel {
 
             ImageSource = image;
 
-            popUp.IsOpen = true;
+            popUp!.IsOpen = true;
         }
     }
 }

@@ -175,7 +175,7 @@
     <value>Estaciones de carga</value>
   </data>
   <data name="TubinePower" xml:space="preserve">
-    <value>Potencia  de la turbina</value>
+    <value>Potencia de la turbina</value>
   </data>
   <data name="TurbineAddress" xml:space="preserve">
     <value>Dirección</value>

@@ -5,28 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ImageLabelView">
 
-    <HorizontalStackLayout>
-        <Image
-            Aspect="AspectFit"
-            HeightRequest="40"
-            HorizontalOptions="Center"
-            Source="{Binding ImageSource, Source={x:Reference ImageLabelView}}"
-            VerticalOptions="Center"
-            WidthRequest="40">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding ClickCommand, Source={x:Reference ImageLabelView}}"
-                    CommandParameter="{Binding ClickParameter, Source={x:Reference ImageLabelView}}" />
-            </Image.GestureRecognizers>
-        </Image>
+    <Border
+        Stroke="Black"
+        StrokeThickness="2">
+        <Grid ColumnDefinitions="Auto,*">
+            <Image
+                HeightRequest="30"
+                Source="{Binding ImageSource, Source={x:Reference ImageLabelView}}"
+                WidthRequest="30" />
 
-        <!--  Bind LabelText to the ContentView's properties  -->
-        <Label
-            Margin="10,0,0,0"
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            Text="{Binding LabelText, Source={x:Reference ImageLabelView}}"
-            TextColor="Black"
-            VerticalTextAlignment="Center" />
-    </HorizontalStackLayout>
+
+            <Label
+                Grid.Column="1"
+                Text="{Binding LabelText, Source={x:Reference ImageLabelView}}"
+                TextColor="Black"
+                VerticalTextAlignment="Center" />
+        </Grid>
+
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer
+                Command="{Binding ClickCommand, Source={x:Reference ImageLabelView}}"
+                CommandParameter="{Binding ClickParameter, Source={x:Reference ImageLabelView}}" />
+        </Border.GestureRecognizers>
+    </Border>
+
 </ContentView>

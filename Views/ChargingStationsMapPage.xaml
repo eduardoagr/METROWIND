@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿
 <ContentPage
     x:Class="METROWIND.Views.ChargingStationsMapPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -119,13 +119,13 @@
 
         <popup:SfPopup
             AbsoluteY="-20"
-            AutoSizeMode="Both"
             IsOpen="{Binding IsOptionsOpen}"
             RelativePosition="AlignTop"
             RelativeView="{Binding Source={x:Reference mapLayers}}"
             ShowCloseButton="False"
             ShowHeader="False"
-            ShowOverlayAlways="False">
+            ShowOverlayAlways="False"
+            WidthRequest="200">
             <popup:SfPopup.PopupStyle>
                 <popup:PopupStyle CornerRadius="8" />
             </popup:SfPopup.PopupStyle>
@@ -140,7 +140,6 @@
                         <controls:CustomImageLabelView
                             ClickCommand="{Binding ChangeMapTypeCommand}"
                             ClickParameter="1"
-                            HorizontalOptions="Start"
                             ImageSource="satelite_layer.png"
                             LabelText="{x:Static rex:AppResource.Satelite}" />
 
@@ -149,7 +148,6 @@
                             Grid.Row="1"
                             ClickCommand="{Binding ChangeMapTypeCommand}"
                             ClickParameter="0"
-                            HorizontalOptions="Start"
                             ImageSource="default_layer.png"
                             LabelText="{x:Static rex:AppResource.Default}" />
                     </Grid>
