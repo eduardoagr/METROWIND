@@ -42,6 +42,9 @@
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
 		<!-- Images -->	
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\charge_station.png">
@@ -72,34 +75,28 @@
 	  <None Remove="Resources\Images\default_layer.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\icon_win.png" />
+	  <None Remove="Resources\Images\metrowind.gif" />
 	  <None Remove="Resources\Images\metro_wind_200.png" />
 	  <None Remove="Resources\Images\no_image.png" />
 	  <None Remove="Resources\Images\satelite_layer.png" />
 	  <None Remove="Resources\Images\share.png" />
 	  <None Remove="Resources\Images\stations.png" />
 	  <None Remove="Resources\Images\wind_turbine.png" />
-	  <None Remove="Resources\Raw\metrowind.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.90" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.90" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
-		<PackageReference Include="Syncfusion.Maui.Carousel" Version="27.1.50" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="27.1.50" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.50" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.50" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.50" />
-		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.50" />
-		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.50" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Resources\Splash\" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.91" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="27.1.52" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.52" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.52" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.52" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.52" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.52" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -125,9 +122,6 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResource.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\PopUps\AddTurbnePopUp.xaml.cs">
-	    <DependentUpon>AddTurbnePopUp.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -145,15 +139,19 @@
 	  <MauiXaml Update="Controls\CustomImageButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">
+	  <MauiXaml Update="Controls\TurbineData.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\PopUps\AddTurbnePopUp.xaml">
+	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StartupPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Views\PopUps\" />
 	</ItemGroup>
 
 </Project>

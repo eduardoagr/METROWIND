@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
     x:Class="METROWIND.Controls.CustomImageButton"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ImageButton">
 
-    <HorizontalStackLayout>
+    <HorizontalStackLayout BindingContext="{Binding Source={x:Reference ImageButton}}">
         <Border
             Margin="10"
             Padding="10"
@@ -15,20 +14,19 @@
             <Image
                 Aspect="AspectFit"
                 HeightRequest="40"
-                Source="{Binding ImageName, Source={x:Reference ImageButton}}"
+                Source="{Binding ImageName}"
                 VerticalOptions="Center"
                 WidthRequest="40" />
             <Border.GestureRecognizers>
                 <TapGestureRecognizer
-                    Command="{Binding ClickCommand, Source={x:Reference ImageButton}}"
-                    CommandParameter="{Binding Parameters, Source={x:Reference ImageButton}}" />
+                    Command="{Binding ClickCommand}"
+                    CommandParameter="{Binding Parameters}" />
             </Border.GestureRecognizers>
         </Border>
 
         <Label
-            Padding="10"
-            HorizontalTextAlignment="Center"
-            Text="{Binding Caption, Source={x:Reference ImageCustomControl}}"
+            Padding="0,0,10,0"
+            Text="{Binding Caption}"
             TextColor="Black"
             VerticalTextAlignment="Center" />
 

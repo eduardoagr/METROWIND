@@ -9,10 +9,10 @@
             Routing.RegisterRoute(nameof(TurbineDetailPage), typeof(TurbineDetailPage));
             Routing.RegisterRoute(nameof(ArticleDetailsPage), typeof(ArticleDetailsPage));
 
-            CleanUp(DeviceInfo.Idiom);
+            RenderBasedOnDevice(DeviceInfo.Idiom);
         }
 
-        public void CleanUp(DeviceIdiom idiom) {
+        public void RenderBasedOnDevice(DeviceIdiom idiom) {
 
             var itemsToRemove = new List<ShellItem>();
 

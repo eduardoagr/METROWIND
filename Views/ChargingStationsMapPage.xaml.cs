@@ -6,9 +6,5 @@
             InitializeComponent();
             BindingContext = chargingStationsMapPageViewModel;
         }
-
-        private void ChargingStationMap_MapClicked(object sender, MapClickedEventArgs e) {
-
-        }
     }
 }

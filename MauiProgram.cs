@@ -1,9 +1,4 @@
-﻿using METROWIND.Controls;
-using METROWIND.Views.PopUps;
-
-using Microsoft.Maui.Handlers;
-
-namespace METROWIND {
+﻿namespace METROWIND {
 
     public static class MauiProgram {
 
@@ -12,11 +7,10 @@ namespace METROWIND {
             builder
                 .UseMauiApp<App>()
 #if WINDOWS
-                .UseMauiCommunityToolkitMaps("AlKrbMWDZLkrL510ErB0LyjdmGrPsKiDayOH6V8tSBmlJYdQufZFtTnY_DEZG2xf")
+                .UseMauiCommunityToolkitMaps("AgBzQYlsJtPLozd-PF0dTvW2ig_LNNTff7QfuEN2p4wWgV_hWoMtGvzl98jNkUva")
 #elif ANDROID || IOS
            .UseMauiMaps()
 #endif
-                .UseSkiaSharp()
                 .UseMauiCommunityToolkit()
                 .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts => {
@@ -47,7 +41,7 @@ namespace METROWIND {
 
 
             //Pages and ViewModels
-            builder.Services.AddTransientPopup<AddTurbnePopUp, AddTurbnePopUpViewModel>();
+
             builder.Services.AddTransient<ChargingStationsMapPage, ChargingStationsMapPageViewModel>();
             builder.Services.AddTransient<TurbinesCollectionPage, TurbinesCollectionPageViewModel>();
             builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
@@ -57,7 +51,7 @@ namespace METROWIND {
             builder.Services.AddSingleton<StartupPage, StartupPageViewModel>();
             builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();
             builder.Services.AddSingleton<HomePage, HomePageViewModel>();
-                                                                                                     
+
             return builder.Build();
         }
     }

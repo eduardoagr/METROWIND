@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="METROWIND.Views.ArticleDetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -13,14 +12,7 @@
         <Grid ColumnDefinitions="*,*">
             <Label
                 Grid.Column="1"
-                Padding="0,0,20,0"
-                FontAttributes="Bold"
-                FontFamily="ma"
-                FontSize="18"
-                HorizontalOptions="End"
-                Text="{x:Static constant:MaterialFonts.Share}"
-                TextColor="White"
-                VerticalTextAlignment="Center">
+                Style="{x:StaticResource ShareLabelStyle}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding OpenShareMenuCommand}"
@@ -28,13 +20,7 @@
                 </Label.GestureRecognizers>
             </Label>
 
-            <Label
-                Margin="20,0,0,0"
-                FontAttributes="Bold"
-                FontSize="18"
-                Text="{x:Static rex:AppResource.Detail}"
-                TextColor="White"
-                VerticalTextAlignment="Center" />
+            <Label Style="{x:StaticResource ArticleDetailLabelStyle}" />
 
         </Grid>
 

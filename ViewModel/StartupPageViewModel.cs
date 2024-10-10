@@ -3,8 +3,13 @@
     public partial class StartupPageViewModel : ObservableObject {
 
         [RelayCommand]
-        void GotoHome() {
-            Shell.Current.GoToAsync($"//{nameof(HomePage)}", true);
+        async Task Appearing() {
+
+            // Wait for 2 seconds
+            await Task.Delay(2500);
+
+            // Then navigate to HomePage
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}", true);
         }
     }
 }

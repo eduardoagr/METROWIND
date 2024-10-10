@@ -1,4 +1,6 @@
-﻿namespace METROWIND.Services {
+﻿using TurbineData = METROWIND.Models.TurbineData;
+
+namespace METROWIND.Services {
     public class TurbinesService {
 
         public ObservableCollection<TurbinePin> _turbinePins = [];
@@ -20,7 +22,7 @@
                     InstalationDateTime = new DateTime(2024, 1, 1, 13, 00, 00),
                     Images = [
                     "charge_station.png",
-                        "wind_turbine.png"
+                    "wind_turbine.png"
                 ],
                     DataCollection = [
                     new TurbineData("Ipad", 10),

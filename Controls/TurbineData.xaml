@@ -1,0 +1,30 @@
+<ContentView
+    x:Class="METROWIND.Controls.TurbineData"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="TurbineInfo">
+
+    <VerticalStackLayout
+        BindingContext="{x:Reference TurbineInfo}">
+
+        <Label
+            FontAttributes="Bold"
+            Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+            Text="{Binding TurbineName}" />
+
+        <Label
+            Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+            Text="{Binding TurbineAddres}" />
+
+        <Label
+            Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+            Text="{Binding TurbineCreationDate}" />
+
+        <Label
+            Style="{x:StaticResource C02LaelStyle}"
+            Text="1.2343 kg CO₂" />
+
+    </VerticalStackLayout>
+
+
+</ContentView>

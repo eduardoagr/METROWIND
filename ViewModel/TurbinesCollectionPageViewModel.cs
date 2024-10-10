@@ -20,10 +20,7 @@ namespace METROWIND.ViewModel {
 
                 TurbineCollectionView = collectionView;
 
-                Console.WriteLine(Turbines.Count);
             }
-
-
         }
 
         [RelayCommand]
@@ -31,33 +28,23 @@ namespace METROWIND.ViewModel {
 
             if (parameter is Border border) {
 
-                var animationTasks = new List<Task>
-                {
-                     border.ScaleYTo(0, 500, Easing.Linear),
+                // Shrink animation
+                await border.ScaleTo(1, 0, Easing.CubicOut); // 300ms for the animation duration
 
-                };
 
-                // Wait for all animations to complete
-                await Task.WhenAll(animationTasks);
+                var turbine = (TurbinePin)border.BindingContext;
+                Turbines.Remove(turbine);
 
-                // Perform the deletion logic here
-                if (border.BindingContext is TurbinePin turbine) {
-                    Turbines.Remove(turbine);
-                }
-
-                // Optionally, you can add a delay to ensure the animation completes before layout updates
-                await Task.Delay(300);
-
-                // Reset the border properties
-                border.ScaleY = 1;
             }
 
         }
 
+
+
         [RelayCommand]
         async Task AddNewTurbinePopUp() {
 
-            await _popupService.ShowPopupAsync<AddTurbnePopUpViewModel>();
+            //await _popupService.ShowPopupAsync<AddTurbnePopUpViewModel>();
         }
 
         [RelayCommand]

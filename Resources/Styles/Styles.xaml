@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:METROWIND.Controls"
     xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    xmlns:popup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:sys="clr-namespace:System;assembly=netstandard">
 
@@ -464,7 +465,7 @@
     </Style>
 
     <Style
-        x:Key="CommonLabelStyle"
+        x:Key="TurbineDataLabelStyleStyle"
         TargetType="Label">
         <Setter Property="Padding" Value="5" />
     </Style>
@@ -504,6 +505,7 @@
         TargetType="Label">
         <Setter Property="FontFamily" Value="ma" />
         <Setter Property="FontSize" Value="Large" />
+        <Setter Property="Margin" Value="0,0,0,10" />
         <Setter Property="HorizontalOptions" Value="End" />
         <Setter Property="HorizontalTextAlignment" Value="End" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -524,9 +526,131 @@
         x:Key="PopUpIconStyle"
         TargetType="Button">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="CornerRadius" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="OpenPopUpButtonStyle"
+        TargetType="Button">
+        <Setter Property="Margin" Value="20" />
+        <Setter Property="CornerRadius" Value="40" />
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="FontSize" Value="{OnIdiom Phone=30, Desktop=20}" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone=60, Desktop=40}" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Add}" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=60, Desktop=40}" />
+    </Style>
+
+    <Style
+        x:Key="C02LaelStyle"
+        BasedOn="{x:StaticResource TurbineDataLabelStyleStyle}"
+        TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="TextColor" Value="#4CAF50" />
+        <Setter Property="Margin" Value="{OnIdiom Desktop=0 60 0 0, Phone=0 0 0 0}" />
+    </Style>
+
+    <Style
+        x:Key="ShareLabelStyle"
+        TargetType="Label">
+        <Setter Property="Padding" Value="0,0,20,0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="ArticleDetailLabelStyle"
+        TargetType="Label">
+        <Setter Property="Margin" Value="20,0,0,0" />
+        <Setter Property="Text" Value="{x:Static rex:AppResource.Detail}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="DeleteButtonStyle"
+        TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#fef2f3" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Delete}" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="ChargeStationPopupStyle"
+        TargetType="popup:SfPopup">
+        <Setter Property="AbsoluteY" Value="-20" />
+        <Setter Property="AutoSizeMode" Value="Both" />
+        <Setter Property="RelativePosition" Value="AlignTop" />
+        <Setter Property="ShowCloseButton" Value="False" />
+        <Setter Property="ShowHeader" Value="False" />
+        <Setter Property="ShowOverlayAlways" Value="False" />
+    </Style>
+
+    <Style
+        x:Key="ChargeStationBorderStyle"
+        TargetType="Border">
+        <Setter Property="Margin" Value="20" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Stroke" Value="#CAC4D0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 20,20,20,20" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="WidthRequest" Value="400" />
+        <Setter Property="ZIndex" Value="1" />
+    </Style>
+
+    <Style
+        x:Key="ChooseStationLabelStyle"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="Text" Value="{x:Static rex:AppResource.ChooseStation}" />
+    </Style>
+
+    <Style
+        x:Key="ElectricBoltLabelStyle"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Electric_bolt}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="AddressLabelStyle"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="MapButtonStyle"
+        TargetType="Button">
+        <Setter Property="Margin" Value="20" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="BackgroundColor" Value="#3B20D6" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="Text" Value="{x:Static rex:AppResource.MapTypes}" />
+        <Setter Property="FontSize" Value="16" />
     </Style>
 
 

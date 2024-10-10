@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+﻿<ContentPage
     x:Class="METROWIND.Views.ChargingStationsMapPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -25,15 +24,7 @@
     </ContentPage.Behaviors>
 
     <Grid>
-        <Border
-            Margin="20"
-            BackgroundColor="White"
-            HorizontalOptions="Center"
-            Stroke="#CAC4D0"
-            StrokeShape="RoundRectangle 20,20,20,20"
-            VerticalOptions="Start"
-            WidthRequest="400"
-            ZIndex="1">
+        <Border Style="{x:StaticResource ChargeStationBorderStyle}">
             <expander:SfExpander
                 AnimationDuration="200"
                 IsExpanded="{Binding IsExpanded}">
@@ -41,11 +32,7 @@
                     <Grid
                         Padding="20,0,0,0"
                         RowDefinitions="48">
-                        <Label
-                            FontSize="14"
-                            Text="{x:Static rex:AppResource.ChooseStation}"
-                            TextColor="Black"
-                            VerticalOptions="CenterAndExpand" />
+                        <Label Style="{x:StaticResource ChooseStationLabelStyle}" />
                     </Grid>
                 </expander:SfExpander.Header>
                 <expander:SfExpander.Content>
@@ -56,21 +43,12 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:TurbinePin">
                                     <Border Stroke="Transparent">
-                                        <Grid
-                                            Margin="0,10,0,10"
-                                            ColumnDefinitions="Auto">
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Label Style="{x:StaticResource ElectricBoltLabelStyle}" />
                                             <Label
-                                                FontFamily="ma"
-                                                Text="{x:Static constant:MaterialFonts.Electric_bolt}"
-                                                TextColor="Black"
-                                                VerticalTextAlignment="Center" />
-                                            <Label
-                                                Grid.Column="1"
-                                                Padding="20,0,0,0"
-                                                Text="{Binding Turbine.Address}"
-                                                TextColor="Black"
-                                                VerticalTextAlignment="Center" />
-                                        </Grid>
+                                                Style="{x:StaticResource AddressLabelStyle}"
+                                                Text="{Binding Turbine.Address}" />
+                                        </HorizontalStackLayout>
                                         <Border.Behaviors>
                                             <mct:TouchBehavior
                                                 Command="{Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
@@ -104,29 +82,22 @@
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
+
         <Button
             x:Name="mapLayers"
-            Margin="20"
             Command="{Binding OpenMenuCommand}"
-            CornerRadius="8"
-            HorizontalOptions="Start"
-            Text="{x:Static rex:AppResource.MapTypes}"
-            VerticalOptions="End">
+            Style="{x:StaticResource MapButtonStyle}">
             <Button.ImageSource>
                 <FontImageSource
                     FontFamily="ma"
                     Glyph="{x:Static constant:MaterialFonts.Layers}" />
             </Button.ImageSource>
         </Button>
+
         <popup:SfPopup
-            AbsoluteY="-20"
-            AutoSizeMode="Both"
             IsOpen="{Binding IsOptionsOpen}"
-            RelativePosition="AlignTop"
             RelativeView="{Binding Source={x:Reference mapLayers}}"
-            ShowCloseButton="False"
-            ShowHeader="False"
-            ShowOverlayAlways="False">
+            Style="{x:StaticResource ChargeStationPopupStyle}">
             <popup:SfPopup.PopupStyle>
                 <popup:PopupStyle CornerRadius="8" />
             </popup:SfPopup.PopupStyle>

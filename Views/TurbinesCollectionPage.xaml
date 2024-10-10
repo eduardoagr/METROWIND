@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="METROWIND.Views.TurbinesCollectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:constant="clr-namespace:METROWIND.Constants"
     xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:local="clr-namespace:METROWIND"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
@@ -21,115 +21,85 @@
             EventName="Appearing" />
     </ContentPage.Behaviors>
 
+    <ContentPage.Resources>
+        <DataTemplate
+            x:Key="PhoneTemplate"
+            x:DataType="{x:Null}">
+            <SwipeView Threshold="300">
+                <SwipeView.RightItems>
+                    <SwipeItems Mode="Execute">
+                        <SwipeItem
+                            BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
+                                                              Light={x:StaticResource SwipeLight}}"
+                            Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                            CommandParameter="{Binding Source={x:Reference BorderContaier}}">
+                            <SwipeItem.IconImageSource>
+                                <FontImageSource
+                                    FontFamily="ma"
+                                    Glyph="{x:Static constant:MaterialFonts.Delete}" />
+                            </SwipeItem.IconImageSource>
+                        </SwipeItem>
+                    </SwipeItems>
+                </SwipeView.RightItems>
+                <Border
+                    x:Name="BorderContaier"
+                    Style="{StaticResource CommonBorderStyle}">
+                    <controls:TurbineData
+                        TurbineAddres="{Binding Turbine.Address}"
+                        TurbineCreationDate="{Binding Turbine.LocalizedInstalationDateTime}"
+                        TurbineName="{Binding Turbine.Name}" />
+                </Border>
+            </SwipeView>
+        </DataTemplate>
+        <DataTemplate
+            x:Key="DeskTopTemplate"
+            x:DataType="{x:Null}">
+            <Border
+                x:Name="borderContainer"
+                Style="{StaticResource CommonBorderStyle}">
+
+                <Grid
+                    x:Name="GridContainer"
+                    ColumnDefinitions="*,*">
+
+                    <controls:TurbineData
+                        Grid.ColumnSpan="2"
+                        TurbineAddres="{Binding Turbine.Address}"
+                        TurbineCreationDate="{Binding Turbine.LocalizedInstalationDateTime}"
+                        TurbineName="{Binding Turbine.Name}" />
+
+                    <Button
+                        Grid.RowSpan="3"
+                        Grid.Column="1"
+                        Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        HeightRequest="{Binding Height, Source={x:Reference GridContainer}}"
+                        IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                        Style="{x:StaticResource DeleteButtonStyle}"
+                        Text="{x:Static constant:MaterialFonts.Delete}" />
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <PointerGestureRecognizer PointerEnteredCommand="{Binding MouseEnterCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
+                    <PointerGestureRecognizer PointerExitedCommand="{Binding MouseLeaveCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
+                </Border.GestureRecognizers>
+            </Border>
+        </DataTemplate>
+        <local:DeviceDataTemplateSelector
+            x:Key="SelectDataTemplateSelector"
+            DeskTopTemplate="{StaticResource DeskTopTemplate}"
+            PhoneTemplate="{StaticResource PhoneTemplate}" />
+    </ContentPage.Resources>
+
     <Grid>
         <CollectionView
             x:Name="TurbineCollection"
             Margin="20"
-            HorizontalOptions="Center"
-            ItemsSource="{Binding Turbines}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:TurbinePin">
-                    <Grid>
-                        <SwipeView
-                            IsVisible="{OnIdiom Phone=True,
-                                                Desktop=False}"
-                            Threshold="300">
-                            <SwipeView.RightItems>
-                                <SwipeItems Mode="Execute">
-                                    <SwipeItem
-                                        BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
-                                                                          Light={x:StaticResource SwipeLight}}"
-                                        Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                        CommandParameter="{Binding Source={x:Reference borderContainer}}">
-                                        <SwipeItem.IconImageSource>
-                                            <FontImageSource
-                                                FontFamily="ma"
-                                                Glyph="{x:Static constant:MaterialFonts.Delete}" />
-                                        </SwipeItem.IconImageSource>
-                                    </SwipeItem>
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                            <Border Style="{StaticResource CommonBorderStyle}">
-                                <Grid RowDefinitions="*,*,*">
-                                    <Label
-                                        Style="{StaticResource CommonLabelStyle}"
-                                        Text="{Binding Turbine.Name}" />
-                                    <Label
-                                        Grid.Row="1"
-                                        Style="{StaticResource CommonLabelStyle}"
-                                        Text="{Binding Turbine.Address}" />
-                                    <Label
-                                        Grid.Row="2"
-                                        Style="{StaticResource CommonLabelStyle}"
-                                        Text="{Binding Turbine.LocalizedInstalationDateTime}" />
-                                </Grid>
-                            </Border>
-                        </SwipeView>
-
-                        <Border
-                            IsVisible="{OnIdiom Desktop=True,
-                                                Phone=False}"
-                            
-                            x:Name="borderContainer"
-                            
-                            Style="{StaticResource CommonBorderStyle}">
-
-                            <Grid
-                                x:Name="GridContainer"
-                                ColumnDefinitions="*,*"
-                                RowDefinitions="*,*,*">
-                                <Label
-                                    Style="{StaticResource CommonLabelStyle}"
-                                    Text="{Binding Turbine.Name}" />
-                                <Label
-                                    Grid.Row="1"
-                                    Style="{StaticResource CommonLabelStyle}"
-                                    Text="{Binding Turbine.Address}" />
-                                <Label
-                                    Grid.Row="2"
-                                    Style="{StaticResource CommonLabelStyle}"
-                                    Text="{Binding Turbine.LocalizedInstalationDateTime}" />
-
-                                <Button
-                                    Grid.RowSpan="3"
-                                    Grid.Column="1"
-                                    BackgroundColor="#fef2f3"
-                                    Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                    CommandParameter="{Binding .}"
-                                    CornerRadius="0"
-                                    HeightRequest="{Binding Height, Source={x:Reference GridContainer}}"
-                                    HorizontalOptions="End"
-                                    IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                    VerticalOptions="Center">
-                                    <Button.ImageSource>
-                                        <FontImageSource
-
-                                            FontFamily="ma"
-                                            Glyph="{x:Static constant:MaterialFonts.Delete}" />
-                                    </Button.ImageSource>
-
-                                </Button>
-                            </Grid>
-                            <Border.GestureRecognizers>
-                                <PointerGestureRecognizer PointerEnteredCommand="{Binding MouseEnterCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
-                                <PointerGestureRecognizer PointerExitedCommand="{Binding MouseLeaveCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
-                            </Border.GestureRecognizers>
-                        </Border>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            ItemTemplate="{StaticResource SelectDataTemplateSelector}"
+            ItemsSource="{Binding Turbines}" />
 
         <Button
-            Margin="20"
             Command="{Binding AddNewTurbinePopUpCommand}"
-            CornerRadius="8"
-            FontFamily="ma"
-            FontSize="Medium"
-            HeightRequest="40"
-            HorizontalOptions="End"
-            Text="{x:Static constant:MaterialFonts.Add}"
-            VerticalOptions="End"
-            WidthRequest="40" />
+            Style="{x:StaticResource OpenPopUpButtonStyle}" />
     </Grid>
 </ContentPage>
