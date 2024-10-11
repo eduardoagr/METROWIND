@@ -134,37 +134,42 @@ namespace METROWIND.ViewModel {
         [RelayCommand]
         async Task SaveAndClose(SfPopup popUp) {
 
-            var Turbinelocation = await GetLocation(TurbineAddress!);
+            try {
 
-            if (Turbinelocation != null) {
+                var turbineLocation = await GetLocation(TurbineAddress!);
 
-                turbinesService.AddTurbinePin(new TurbinePin {
-                    Turbine = new Turbine(deviceLanguageService) {
-                        Name = TurbineName,
-                        Address = TurbineAddress,
-                        Label = "My new trbine",
-                        InstalationDateTime = TurbineInstalation,
-                        Location = Turbinelocation
-                    }
+                if (turbineLocation != null) {
 
-                });
+                    turbinesService.AddTurbinePin(new TurbinePin {
+
+                        Turbine = new Turbine(deviceLanguageService) {
+                            Name = TurbineName,
+                            Address = TurbineAddress,
+                            Label = "My new turbine",
+                            InstalationDateTime = TurbineInstalation,
+                            Location = turbineLocation
+                        }
+                    });
+                }
+                popUp.IsOpen = false;
             }
-
-            popUp.IsOpen = false;
+            catch (Exception ex) {
+                // Handle the exception (e.g., log it or show an error message to the user)
+                Console.WriteLine($"Error adding turbine: {ex.Message}");
+            }
         }
 
         public async Task<Location?> GetLocation(string address) {
 
-            IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
-
-            Location? location = locations?.FirstOrDefault();
-
-            if (location != null) {
-
-                return location;
+            try {
+                IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
+                return locations?.FirstOrDefault();
             }
-
-            return null;
+            catch (Exception ex) {
+                // Handle the exception (e.g., log it or show an error message to the user)
+                Console.WriteLine($"Error getting location: {ex.Message}");
+                return null;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@
             builder
                 .UseMauiApp<App>()
 #if WINDOWS
-                .UseMauiCommunityToolkitMaps("AgBzQYlsJtPLozd-PF0dTvW2ig_LNNTff7QfuEN2p4wWgV_hWoMtGvzl98jNkUva")
+                .UseMauiCommunityToolkitMaps(AppConstants.BINGMAPS_APIKEY)
 #elif ANDROID || IOS
            .UseMauiMaps()
 #endif
@@ -21,6 +21,11 @@
                 }).ConfigureMauiHandlers(handlers => {
 
                     handlers.AddHandler<BorderlessEntry, EntryHandler>();
+
+                }).ConfigureEssentials(essentials => {
+
+                    essentials.UseMapServiceToken(AppConstants.BINGMAPS_APIKEY);
+
                 });
 
             BorderlessEntryHandler.ApplyCustomHandler();
