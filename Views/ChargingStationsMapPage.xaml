@@ -73,7 +73,6 @@
                 <DataTemplate x:DataType="model:TurbinePin">
                     <controls:CustomMapPin
                         Address="{Binding Turbine.Address}"
-                        ChartData="{Binding Turbine.DataCollection}"
                         Label="{Binding Turbine.Label}"
                         Location="{Binding Turbine.Location}"
                         MarkerClickedCommand="{Binding PinClickedCommand}"

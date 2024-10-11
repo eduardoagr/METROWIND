@@ -26,6 +26,7 @@
 
         <Image
             Grid.Row="1"
+            Margin="20"
             Aspect="AspectFit"
             HorizontalOptions="Center"
             IsAnimationPlaying="True"

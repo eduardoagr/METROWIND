@@ -16,8 +16,6 @@
 
         public List<string>? Images { get; set; }
 
-        public List<TurbineData>? DataCollection { get; set; }
-
         public string LocalizedInstalationDateTime {
             get {
                 if (InstalationDateTime.HasValue) {

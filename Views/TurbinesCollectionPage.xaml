@@ -9,17 +9,19 @@
     xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
     xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:sfPopup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="TurbinesCollection"
     x:DataType="vm:TurbinesCollectionPageViewModel">
 
-    <ContentPage.Behaviors>
+    <!--<ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
             Command="{Binding PageEnterCommand}"
             CommandParameter="{Binding Source={x:Reference TurbineCollection}}"
             EventName="Appearing" />
-    </ContentPage.Behaviors>
+    </ContentPage.Behaviors>-->
 
     <ContentPage.Resources>
         <DataTemplate
@@ -100,6 +102,109 @@
 
         <Button
             Command="{Binding AddNewTurbinePopUpCommand}"
+            CommandParameter="{Binding Source={x:Reference TurbinePopUp}}"
             Style="{x:StaticResource OpenPopUpButtonStyle}" />
+
+        <sfPopup:SfPopup
+            x:Name="TurbinePopUp"
+            AnimationMode="Zoom"
+            AutoSizeMode="Height"
+            ShowCloseButton="True"
+            StaysOpen="True">
+            <sfPopup:SfPopup.ContentTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="10"
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="*,*,*,*"
+                        RowSpacing="20">
+
+                        <Border Grid.ColumnSpan="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8" />
+                            </Border.StrokeShape>
+                            <Grid Padding="0">
+                                <Entry
+                                    Text="{Binding TurbineName}"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+                        </Border>
+
+                        <Border
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8" />
+                            </Border.StrokeShape>
+                            <Grid
+                                Padding="0"
+                                ColumnDefinitions="*,60">
+                                <Entry
+                                    Text="{Binding TurbineFormattedDate}"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Padding="5"
+                                    FontFamily="ma"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="End"
+                                    Text="{x:Static constant:MaterialFonts.Calendar_month}"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding OpenDatePickerCommand}"
+                                            CommandParameter="{Binding Source={x:Reference picker}}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Border>
+
+                        <picker:SfDateTimePicker
+                            x:Name="picker"
+                            BackgroundColor="Transparent"
+                            RelativePosition="AlignBottom"
+                            Style="{x:DynamicResource DateTimePickerStyle}">
+                            <picker:SfDateTimePicker.Behaviors>
+                                <mct:EventToCommandBehavior
+                                    Command="{Binding ConfirmDateCommand}"
+                                    CommandParameter="{Binding SelectedDate, Source={x:Reference picker}}"
+                                    EventName="OkButtonClicked" />
+                                <mct:EventToCommandBehavior
+                                    Command="{Binding CancelCommand}"
+                                    CommandParameter="{Binding Source={x:Reference picker}}"
+                                    EventName="CancelButtonClicked" />
+                            </picker:SfDateTimePicker.Behaviors>
+                        </picker:SfDateTimePicker>
+
+                        <Border
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8" />
+                            </Border.StrokeShape>
+
+                            <Entry
+                                Text="{Binding TurbineAddress}"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                        </Border>
+
+                        <Button
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            Command="{Binding SaveAndCloseCommand}"
+                            CommandParameter="{Binding Source={x:Reference TurbinePopUp}}"
+                            CornerRadius="8"
+                            VerticalOptions="End" />
+                    </Grid>
+
+                </DataTemplate>
+            </sfPopup:SfPopup.ContentTemplate>
+        </sfPopup:SfPopup>
+
     </Grid>
 </ContentPage>

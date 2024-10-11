@@ -1,27 +1,53 @@
-﻿using CommunityToolkit.Maui.Core;
+﻿using Syncfusion.Maui.Picker;
+using Syncfusion.Maui.Popup;
 
 namespace METROWIND.ViewModel {
 
-    public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService, IPopupService popupService) : ChargingStationsMapPageViewModel(turbinesService) {
+    public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService, DeviceLanguageService deviceLanguageService) :
+        ChargingStationsMapPageViewModel(turbinesService) {
 
-        CollectionView? TurbineCollectionView;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
+        string? turbineName;
 
-        private readonly IPopupService _popupService = popupService;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
+        string? turbineAddress = "Calle de Américo Castro, 28050 Madrid, Spain";
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
+        DateTime? turbineInstalation;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
+        string? turbineFormattedDate;
+
+        [ObservableProperty]
+        bool isDatePickerOpen;
+
+        SfDateTimePicker? DateTimePicker;
+
+        public bool IsSaveEnable => !string.IsNullOrEmpty(TurbineName) &&
+                                    !string.IsNullOrEmpty(TurbineAddress) &&
+                                    !string.IsNullOrEmpty(TurbineFormattedDate);
+
+        CultureInfo? currentCulture;
 
         [ObservableProperty]
         bool isDeleteButtonVisible;
 
-        public ObservableCollection<GeoapifyResult> Suggestions { get; private set; } = [];
-
         [RelayCommand]
-        void PageEnter(CollectionView collectionView) {
+        void OpenDatePicker(SfDateTimePicker views) {
 
-            if (collectionView != null) {
+            if (views != null) {
 
-                TurbineCollectionView = collectionView;
+                DateTimePicker = views;
 
+                views.IsOpen = true;
             }
         }
+
+        public ObservableCollection<GeoapifyResult> Suggestions { get; private set; } = [];
 
         [RelayCommand]
         async Task DeleteTurbine(object parameter) {
@@ -39,12 +65,39 @@ namespace METROWIND.ViewModel {
 
         }
 
+        [RelayCommand]
+        void ConfirmDate(DateTime dateTime) {
+
+            if (DateTimePicker != null) {
+
+                currentCulture = new CultureInfo(deviceLanguageService.GetDeviceLanguage());
+
+                TurbineInstalation = dateTime;
+
+                DateTimePicker.IsOpen = false;
+
+                TurbineFormattedDate = TurbineInstalation?.ToString("D", currentCulture)!;
+
+            }
+        }
+
+        [RelayCommand]
+        void Cancel(SfDateTimePicker views) {
+
+            if (views != null) {
+
+                views.IsOpen = false;
+            }
+        }
 
 
         [RelayCommand]
-        async Task AddNewTurbinePopUp() {
+        void AddNewTurbinePopUp(SfPopup popUp) {
 
-            //await _popupService.ShowPopupAsync<AddTurbnePopUpViewModel>();
+            if (popUp != null) {
+
+                popUp.IsOpen = true;
+            }
         }
 
         [RelayCommand]
@@ -77,7 +130,42 @@ namespace METROWIND.ViewModel {
             //Suggestions.Add(item);
 
         }
-    }
 
+        [RelayCommand]
+        async Task SaveAndClose(SfPopup popUp) {
+
+            var Turbinelocation = await GetLocation(TurbineAddress!);
+
+            if (Turbinelocation != null) {
+
+                turbinesService.AddTurbinePin(new TurbinePin {
+                    Turbine = new Turbine(deviceLanguageService) {
+                        Name = TurbineName,
+                        Address = TurbineAddress,
+                        Label = "My new trbine",
+                        InstalationDateTime = TurbineInstalation,
+                        Location = Turbinelocation
+                    }
+
+                });
+            }
+
+            popUp.IsOpen = false;
+        }
+
+        public async Task<Location?> GetLocation(string address) {
+
+            IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
+
+            Location? location = locations?.FirstOrDefault();
+
+            if (location != null) {
+
+                return location;
+            }
+
+            return null;
+        }
+    }
 }
 

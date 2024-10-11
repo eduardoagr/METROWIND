@@ -150,8 +150,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Views\PopUps\" />
-	</ItemGroup>
-
 </Project>
