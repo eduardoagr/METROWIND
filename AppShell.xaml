@@ -14,6 +14,7 @@
     
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked,
                                    Phone=Disabled}"
+    
     Shell.NavBarIsVisible="{OnIdiom Desktop=False,
                                     Phone=True}">
 
@@ -93,8 +94,6 @@
             Shell.NavBarIsVisible="False" />
     </FlyoutItem>
 
-
-
     <FlyoutItem
         Title="{x:Static rex:AppResource.Stations}"
         Icon="stations.png">
@@ -102,7 +101,6 @@
             ContentTemplate="{DataTemplate views:ChargingStationsMapPage}"
             Route="ChargingStationsMapPage" />
     </FlyoutItem>
-
 
     <FlyoutItem
         Title="{x:Static rex:AppResource.TurbinesCollection}"
@@ -113,7 +111,6 @@
             Route="TurbinesCollectionPage"
             Shell.NavBarIsVisible="False" />
     </FlyoutItem>
-
 
     <!--  TabBar for Phone  -->
     <TabBar>

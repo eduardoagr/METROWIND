@@ -1,4 +1,5 @@
 ﻿namespace METROWIND.ViewModel {
+
     public partial class AppShellViewModel : ObservableObject {
 
         public const string FLYOUT_KEY = "flyouy_key";
@@ -15,7 +16,6 @@
         [RelayCommand]
         void Appearing(AppShell appShell) {
             _shell = appShell;
-            LoadConfigurations();
         }
 
         [RelayCommand]
@@ -28,26 +28,13 @@
 
             if (IsCompactMode) {
                 _shell!.FlyoutWidth = 65;
-            } else {
+            }
+            else {
                 _shell!.FlyoutWidth = 300;
             }
 
             IsMenuPopUpOen = false;
 
-            SaveConfigurations();
-
-            
-
-        }
-
-        private void SaveConfigurations() {
-            Preferences.Set(FLYOUT_KEY, _shell!.FlyoutWidth);
-            Preferences.Set(SWITCH_KEY, IsCompactMode);
-        }
-
-        private void LoadConfigurations() {
-            _shell!.FlyoutWidth = Preferences.Get(FLYOUT_KEY, 320.0);
-            IsCompactMode = Preferences.Get(SWITCH_KEY, false);
         }
     }
 }

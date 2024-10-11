@@ -75,7 +75,7 @@
                         Grid.RowSpan="3"
                         Grid.Column="1"
                         Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                        CommandParameter="{Binding .}"
+                        CommandParameter="{Binding Source={x:Reference borderContainer}}"
                         HeightRequest="{Binding Height, Source={x:Reference GridContainer}}"
                         IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                         Style="{x:StaticResource DeleteButtonStyle}"

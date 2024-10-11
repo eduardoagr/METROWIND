@@ -54,16 +54,22 @@ namespace METROWIND.ViewModel {
 
             if (parameter is Border border) {
 
-                // Shrink animation
-                await border.ScaleTo(1, 0, Easing.CubicOut); // 300ms for the animation duration
-
+                await border.TranslateTo(0, -border.Height, 400, Easing.CubicIn);// Move up by its height
 
                 var turbine = (TurbinePin)border.BindingContext;
+
+                // Remove the turbine from the collection
                 Turbines.Remove(turbine);
 
+                await Task.Delay(300);
+
+                border.Scale = 1; // Ensure scale is reset
+                border.TranslationY = 0;
             }
 
         }
+
+
 
         [RelayCommand]
         void ConfirmDate(DateTime dateTime) {
