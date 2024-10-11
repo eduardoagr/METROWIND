@@ -44,6 +44,7 @@
                     </SwipeItems>
                 </SwipeView.RightItems>
                 <Border
+
                     x:Name="BorderContaier"
                     Style="{StaticResource CommonBorderStyle}">
                     <controls:TurbineData
@@ -197,6 +198,7 @@
                             Grid.Row="3"
                             Grid.ColumnSpan="2"
                             Command="{Binding SaveAndCloseCommand}"
+                            IsEnabled="{Binding IsSaveEnable}"
                             CommandParameter="{Binding Source={x:Reference TurbinePopUp}}"
                             CornerRadius="8"
                             VerticalOptions="End" />
