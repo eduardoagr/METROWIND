@@ -26,8 +26,9 @@
             });
         }
 
-        public void AddTurbinePin(TurbinePin turbinePin) {
+        public void AddTurbinePin(TurbinePin turbinePin, ICommand pinClickedCommand) {
             if (turbinePin != null) {
+                turbinePin.PinClickedCommand = pinClickedCommand;
                 _turbinePins.Add(turbinePin);
             }
         }

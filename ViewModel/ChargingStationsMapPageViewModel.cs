@@ -71,7 +71,8 @@ namespace METROWIND.ViewModel {
 
                 MapView!.MapType = MapType.Street;
 
-            } else {
+            }
+            else {
 
                 MapView!.MapType = MapType.Satellite;
             }

@@ -461,6 +461,7 @@
     <Style
         x:Key="CommonBorderStyle"
         TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
         <Setter Property="Margin" Value="0,10,0,0" />
         <Setter Property="Background" Value="{AppThemeBinding Dark={x:StaticResource AndoidDark}, Light=White}" />
     </Style>
@@ -546,11 +547,11 @@
     </Style>
 
     <Style
-        x:Key="C02LaelStyle"
+        x:Key="C02LabelStyle"
         BasedOn="{x:StaticResource TurbineDataLabelStyleStyle}"
         TargetType="Label">
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="FontSize" Value="Medium" />
         <Setter Property="HorizontalOptions" Value="End" />
         <Setter Property="HorizontalTextAlignment" Value="End" />
         <Setter Property="TextColor" Value="#4CAF50" />

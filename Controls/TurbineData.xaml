@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="TurbineInfo">
 
-    <VerticalStackLayout
-        BindingContext="{x:Reference TurbineInfo}">
+    <VerticalStackLayout BindingContext="{x:Reference TurbineInfo}">
 
         <Label
             FontAttributes="Bold"
@@ -21,7 +20,7 @@
             Text="{Binding TurbineCreationDate}" />
 
         <Label
-            Style="{x:StaticResource C02LaelStyle}"
+            Style="{x:StaticResource C02LabelStyle}"
             Text="1.2343 kg CO₂" />
 
     </VerticalStackLayout>

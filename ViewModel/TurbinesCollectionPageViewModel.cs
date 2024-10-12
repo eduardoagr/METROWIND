@@ -154,8 +154,8 @@ namespace METROWIND.ViewModel {
                             Label = "My new turbine",
                             InstalationDateTime = TurbineInstalation,
                             Location = turbineLocation
-                        }
-                    });
+                        },
+                    }, OnPinMarkerClickedCommand!);
                 }
                 popUp.IsOpen = false;
             }

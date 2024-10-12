@@ -44,9 +44,9 @@
                     </SwipeItems>
                 </SwipeView.RightItems>
                 <Border
-
                     x:Name="BorderContaier"
-                    Style="{StaticResource CommonBorderStyle}">
+                    Style="{x:StaticResource CommonBorderStyle}">
+
                     <controls:TurbineData
                         TurbineAddres="{Binding Turbine.Address}"
                         TurbineCreationDate="{Binding Turbine.LocalizedInstalationDateTime}"
@@ -54,12 +54,14 @@
                 </Border>
             </SwipeView>
         </DataTemplate>
+
         <DataTemplate
             x:Key="DeskTopTemplate"
             x:DataType="{x:Null}">
+
             <Border
                 x:Name="borderContainer"
-                Style="{StaticResource CommonBorderStyle}">
+                Style="{x:StaticResource CommonBorderStyle}">
 
                 <Grid
                     x:Name="GridContainer"
@@ -80,6 +82,7 @@
                         IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                         Style="{x:StaticResource DeleteButtonStyle}"
                         Text="{x:Static constant:MaterialFonts.Delete}" />
+
                 </Grid>
 
                 <Border.GestureRecognizers>
@@ -87,6 +90,7 @@
                     <PointerGestureRecognizer PointerExitedCommand="{Binding MouseLeaveCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
                 </Border.GestureRecognizers>
             </Border>
+
         </DataTemplate>
         <local:DeviceDataTemplateSelector
             x:Key="SelectDataTemplateSelector"
@@ -97,7 +101,7 @@
     <Grid>
         <CollectionView
             x:Name="TurbineCollection"
-            Margin="20"
+            Margin="10"
             ItemTemplate="{StaticResource SelectDataTemplateSelector}"
             ItemsSource="{Binding Turbines}" />
 
@@ -127,8 +131,7 @@
                             <Grid Padding="0">
                                 <Entry
                                     Text="{Binding TurbineName}"
-                                    TextColor="Black"
-                                    VerticalTextAlignment="Center" />
+                                    TextColor="Black" />
                             </Grid>
                         </Border>
 
@@ -142,9 +145,9 @@
                                 Padding="0"
                                 ColumnDefinitions="*,60">
                                 <Entry
+                                    IsReadOnly="True"
                                     Text="{Binding TurbineFormattedDate}"
-                                    TextColor="Black"
-                                    VerticalTextAlignment="Center" />
+                                    TextColor="Black" />
 
                                 <Label
                                     Grid.Column="1"
@@ -198,9 +201,9 @@
                             Grid.Row="3"
                             Grid.ColumnSpan="2"
                             Command="{Binding SaveAndCloseCommand}"
-                            IsEnabled="{Binding IsSaveEnable}"
                             CommandParameter="{Binding Source={x:Reference TurbinePopUp}}"
                             CornerRadius="8"
+                            IsEnabled="{Binding IsSaveEnable}"
                             VerticalOptions="End" />
                     </Grid>
 
