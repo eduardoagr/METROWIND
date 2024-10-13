@@ -4,7 +4,7 @@ namespace METROWIND.ViewModel {
 
     public partial class ChargingStationsMapPageViewModel : ObservableObject {
 
-        private readonly TurbinesService _turbinesService;
+        protected readonly TurbinesService _turbinesService;
 
         private Microsoft.Maui.Controls.Maps.Map? MapView;
 
@@ -67,16 +67,11 @@ namespace METROWIND.ViewModel {
         [RelayCommand]
         void ChangeMapType(int mapType) {
 
-            if (mapType == 0) {
-
-                MapView!.MapType = MapType.Street;
-
-            }
-            else {
-
-                MapView!.MapType = MapType.Satellite;
-            }
-
+            MapView!.MapType = mapType switch {
+                0 => MapType.Street,
+                1 => MapType.Satellite,
+                _ => throw new ArgumentOutOfRangeException(nameof(mapType), mapType, null),
+            };
             IsOptionsOpen = false;
         }
     }

@@ -26,19 +26,10 @@
 
         <Image
             Grid.Row="1"
-            Margin="20"
-            Aspect="AspectFit"
-            HorizontalOptions="Center"
-            IsAnimationPlaying="True"
-            Source="metrowind.gif"
-            VerticalOptions="Center" />
+            Style="{x:StaticResource StartupScreen}" />
 
         <Label
             Grid.Row="2"
-            FontAttributes="Bold"
-            FontSize="18"
-            HorizontalOptions="Center"
-            Text="{x:Static rex:AppResource.Energy}"
-            VerticalOptions="Start" />
+            Style="{x:StaticResource startupScreenSubtitle}"/>
     </Grid>
 </ContentPage>

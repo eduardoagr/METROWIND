@@ -1,10 +1,11 @@
-﻿using Syncfusion.Maui.Picker;
+﻿
+using Syncfusion.Maui.Picker;
 using Syncfusion.Maui.Popup;
 
 namespace METROWIND.ViewModel {
 
-    public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService, DeviceLanguageService deviceLanguageService) :
-        ChargingStationsMapPageViewModel(turbinesService) {
+    public partial class TurbinesCollectionPageViewModel :
+        ChargingStationsMapPageViewModel {
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
@@ -35,6 +36,16 @@ namespace METROWIND.ViewModel {
 
         [ObservableProperty]
         bool isDeleteButtonVisible;
+
+        private readonly DeviceLanguageService deviceLanguageService;
+
+        public TurbinesCollectionPageViewModel(TurbinesService turbinesService,
+            DeviceLanguageService languageService)
+              : base(turbinesService) {
+
+            deviceLanguageService = languageService;
+
+        }
 
         [RelayCommand]
         void OpenDatePicker(SfDateTimePicker views) {
@@ -146,7 +157,7 @@ namespace METROWIND.ViewModel {
 
                 if (turbineLocation != null) {
 
-                    turbinesService.AddTurbinePin(new TurbinePin {
+                    _turbinesService.AddTurbinePin(new TurbinePin {
 
                         Turbine = new Turbine(deviceLanguageService) {
                             Name = TurbineName,

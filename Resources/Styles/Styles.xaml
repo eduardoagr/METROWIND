@@ -655,6 +655,28 @@
         <Setter Property="FontSize" Value="16" />
     </Style>
 
+    <Style
+        x:Key="StartupScreen"
+        TargetType="Image">
+        <Setter Property="Margin" Value="20" />
+        <Setter Property="Aspect" Value="AspectFit" />
+        <Setter Property="IsAnimationPlaying" Value="True" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Source" Value="metrowind.gif" />
+    </Style>
+
+    <Style
+        x:Key="startupScreenSubtitle"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Text" Value="{x:Static rex:AppResource.Energy}" />
+        <Setter Property="TextColor" Value="Gray" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Margin" Value="10" />
+    </Style>
+
 
 
 </ResourceDictionary>

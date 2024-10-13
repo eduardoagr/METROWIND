@@ -101,7 +101,7 @@
     <Grid>
         <CollectionView
             x:Name="TurbineCollection"
-            Margin="10"
+            Margin="5"
             ItemTemplate="{StaticResource SelectDataTemplateSelector}"
             ItemsSource="{Binding Turbines}" />
 
