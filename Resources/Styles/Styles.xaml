@@ -461,8 +461,7 @@
     <Style
         x:Key="CommonBorderStyle"
         TargetType="Border">
-        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
-        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 18" />
         <Setter Property="Background" Value="{AppThemeBinding Dark={x:StaticResource AndoidDark}, Light=White}" />
     </Style>
 

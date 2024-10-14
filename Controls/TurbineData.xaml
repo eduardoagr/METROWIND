@@ -6,7 +6,7 @@
 
     <VerticalStackLayout
         BindingContext="{x:Reference TurbineInfo}"
-        Spacing="-8">
+        Spacing="-10">
 
         <Label
             FontAttributes="Bold"

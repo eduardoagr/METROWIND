@@ -27,6 +27,7 @@
         <DataTemplate
             x:Key="PhoneTemplate"
             x:DataType="{x:Null}">
+
             <SwipeView Threshold="300">
                 <SwipeView.RightItems>
                     <SwipeItems Mode="Execute">
@@ -63,6 +64,7 @@
                 x:Name="borderContainer"
                 Style="{x:StaticResource CommonBorderStyle}">
 
+
                 <Grid
                     x:Name="GridContainer"
                     ColumnDefinitions="*,*">
@@ -82,7 +84,6 @@
                         IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                         Style="{x:StaticResource DeleteButtonStyle}"
                         Text="{x:Static constant:MaterialFonts.Delete}" />
-
                 </Grid>
 
                 <Border.GestureRecognizers>
@@ -103,7 +104,13 @@
             x:Name="TurbineCollection"
             Margin="5"
             ItemTemplate="{StaticResource SelectDataTemplateSelector}"
-            ItemsSource="{Binding Turbines}" />
+            ItemsSource="{Binding Turbines}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="10"
+                    Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
 
         <Button
             Command="{Binding AddNewTurbinePopUpCommand}"
