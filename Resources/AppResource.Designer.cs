@@ -214,6 +214,15 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search for a turbine .
+        /// </summary>
+        internal static string SearchTurbine {
+            get {
+                return ResourceManager.GetString("SearchTurbine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seconds.
         /// </summary>
         internal static string Seconds {

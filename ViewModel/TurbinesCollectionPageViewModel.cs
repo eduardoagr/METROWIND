@@ -4,8 +4,9 @@ using Syncfusion.Maui.Popup;
 
 namespace METROWIND.ViewModel {
 
-    public partial class TurbinesCollectionPageViewModel :
-        ChargingStationsMapPageViewModel {
+    public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService,
+        DeviceLanguageService languageService) :
+        ChargingStationsMapPageViewModel(turbinesService) {
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
@@ -37,15 +38,7 @@ namespace METROWIND.ViewModel {
         [ObservableProperty]
         bool isDeleteButtonVisible;
 
-        private readonly DeviceLanguageService deviceLanguageService;
-
-        public TurbinesCollectionPageViewModel(TurbinesService turbinesService,
-            DeviceLanguageService languageService)
-              : base(turbinesService) {
-
-            deviceLanguageService = languageService;
-
-        }
+        private readonly DeviceLanguageService deviceLanguageService = languageService;
 
         [RelayCommand]
         void OpenDatePicker(SfDateTimePicker views) {
@@ -176,7 +169,7 @@ namespace METROWIND.ViewModel {
             }
         }
 
-        public async Task<Location?> GetLocation(string address) {
+        async Task<Location?> GetLocation(string address) {
 
             try {
                 IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
@@ -188,6 +181,6 @@ namespace METROWIND.ViewModel {
                 return null;
             }
         }
+
     }
 }
-

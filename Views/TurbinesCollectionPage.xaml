@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:constant="clr-namespace:METROWIND.Constants"
     xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:local="clr-namespace:METROWIND"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:model="clr-namespace:METROWIND.Models"
@@ -11,13 +12,12 @@
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:sfPopup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
     xmlns:sys="clr-namespace:System;assembly=netstandard"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="TurbinesCollection"
     x:DataType="vm:TurbinesCollectionPageViewModel">
 
     <!--<ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior
+        <mct:EventToCommandBehavior
             Command="{Binding PageEnterCommand}"
             CommandParameter="{Binding Source={x:Reference TurbineCollection}}"
             EventName="Appearing" />
@@ -99,10 +99,24 @@
             PhoneTemplate="{StaticResource PhoneTemplate}" />
     </ContentPage.Resources>
 
-    <Grid>
+    <Grid RowDefinitions="Auto,*">
+        <editors:SfComboBox
+            x:Name="combobox"
+            Margin="10"
+            DisplayMemberPath="Name"
+            DropDownIconColor="Red"
+            HorizontalOptions="Center"
+            IsEnabled="True"
+            IsFilteringEnabled="True"
+            ItemsSource="{Binding Turbines}"
+            Stroke="Transparent"
+            TextMemberPath="Name"
+            WidthRequest="250" />
+        
         <CollectionView
             x:Name="TurbineCollection"
-            Margin="5"
+            Grid.Row="1"
+            Margin="10"
             ItemTemplate="{StaticResource SelectDataTemplateSelector}"
             ItemsSource="{Binding Turbines}">
             <CollectionView.ItemsLayout>
@@ -113,6 +127,7 @@
         </CollectionView>
 
         <Button
+            Grid.Row="1"
             Command="{Binding AddNewTurbinePopUpCommand}"
             CommandParameter="{Binding Source={x:Reference TurbinePopUp}}"
             Style="{x:StaticResource OpenPopUpButtonStyle}" />

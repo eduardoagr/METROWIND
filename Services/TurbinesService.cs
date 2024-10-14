@@ -44,5 +44,6 @@
 
             return new ObservableCollection<TurbinePin>(sortedPins);
         }
+
     }
 }

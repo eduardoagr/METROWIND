@@ -1,4 +1,6 @@
-﻿namespace METROWIND {
+﻿using METROWIND.Handlers;
+
+namespace METROWIND {
 
     public static class MauiProgram {
 
@@ -22,13 +24,19 @@
 
                     handlers.AddHandler<BorderlessEntry, EntryHandler>();
 
+                    handlers.AddHandler<BorderlessSearchBar, SearchBarHandler>();
+
                 }).ConfigureEssentials(essentials => {
 
                     essentials.UseMapServiceToken(AppConstants.BINGMAPS_APIKEY);
 
                 });
 
+
+
             BorderlessEntryHandler.ApplyCustomHandler();
+
+            BorderlessSearchBarHandler.ApplyCustomHandler();
 
 
 

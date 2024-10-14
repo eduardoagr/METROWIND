@@ -5,6 +5,7 @@ global using CommunityToolkit.Mvvm.Input;
 
 global using METROWIND.Constants;
 global using METROWIND.Controls;
+global using METROWIND.Handlers;
 global using METROWIND.Models;
 global using METROWIND.Services;
 global using METROWIND.ViewModel;
@@ -22,4 +23,3 @@ global using System.Globalization;
 global using System.Net.Http.Json;
 global using System.Text.Json.Serialization;
 global using System.Windows.Input;
-

@@ -11,12 +11,9 @@
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="shelly"
     x:DataType="vm:AppShellViewModel"
-    
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked,
-                                   Phone=Disabled}"
-    
-    Shell.NavBarIsVisible="{OnIdiom Desktop=False,
-                                    Phone=True}">
+                                   Phone=Disabled}">
+
 
     <Shell.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -108,8 +105,7 @@
 
         <ShellContent
             ContentTemplate="{DataTemplate views:TurbinesCollectionPage}"
-            Route="TurbinesCollectionPage"
-            Shell.NavBarIsVisible="False" />
+            Route="TurbinesCollectionPage" />
     </FlyoutItem>
 
     <!--  TabBar for Phone  -->
@@ -138,8 +134,7 @@
 
             <ShellContent
                 ContentTemplate="{DataTemplate views:TurbinesCollectionPage}"
-                Route="TurbinesCollectionPage"
-                Shell.NavBarIsVisible="False" />
+                Route="TurbinesCollectionPage" />
         </Tab>
     </TabBar>
 

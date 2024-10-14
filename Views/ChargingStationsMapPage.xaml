@@ -12,8 +12,7 @@
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="stationsMapPage"
-    x:DataType="vm:ChargingStationsMapPageViewModel"
-    Shell.NavBarIsVisible="False">
+    x:DataType="vm:ChargingStationsMapPageViewModel">
 
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior

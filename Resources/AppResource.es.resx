@@ -168,6 +168,9 @@
   <data name="Satelite" xml:space="preserve">
     <value>Satélite</value>
   </data>
+  <data name="SearchTurbine" xml:space="preserve">
+    <value>Búsqueda de una turbina</value>
+  </data>
   <data name="Seconds" xml:space="preserve">
     <value>Segundos</value>
   </data>

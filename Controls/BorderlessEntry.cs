@@ -1,4 +1,3 @@
 ﻿namespace METROWIND.Controls {
-    public class BorderlessEntry : Entry {
-    }
+    public class BorderlessEntry : Entry {}
 }

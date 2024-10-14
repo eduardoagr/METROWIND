@@ -1,9 +1,8 @@
 ﻿#if ANDROID
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
-using Microsoft.Maui.Handlers;
 
-namespace METROWIND {
+namespace METROWIND.Handlers {
 
     public static class BorderlessEntryHandler {
 
