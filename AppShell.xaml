@@ -11,6 +11,7 @@
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="shelly"
     x:DataType="vm:AppShellViewModel"
+    
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked,
                                    Phone=Disabled}">
 
@@ -87,8 +88,7 @@
         Icon="home.png">
         <ShellContent
             ContentTemplate="{DataTemplate views:HomePage}"
-            Route="HomePage"
-            Shell.NavBarIsVisible="False" />
+            Route="HomePage" />
     </FlyoutItem>
 
     <FlyoutItem

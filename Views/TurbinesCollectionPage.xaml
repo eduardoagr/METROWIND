@@ -24,95 +24,40 @@
     </ContentPage.Behaviors>-->
 
     <ContentPage.Resources>
-        <DataTemplate
-            x:Key="PhoneTemplate"
-            x:DataType="{x:Null}">
-
-            <SwipeView Threshold="300">
-                <SwipeView.RightItems>
-                    <SwipeItems Mode="Execute">
-                        <SwipeItem
-                            BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
-                                                              Light={x:StaticResource SwipeLight}}"
-                            Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                            CommandParameter="{Binding Source={x:Reference BorderContaier}}">
-                            <SwipeItem.IconImageSource>
-                                <FontImageSource
-                                    FontFamily="ma"
-                                    Glyph="{x:Static constant:MaterialFonts.Delete}" />
-                            </SwipeItem.IconImageSource>
-                        </SwipeItem>
-                    </SwipeItems>
-                </SwipeView.RightItems>
-                <Border
-                    x:Name="BorderContaier"
-                    Style="{x:StaticResource CommonBorderStyle}">
-
-                    <controls:TurbineData
-                        TurbineAddres="{Binding Turbine.Address}"
-                        TurbineCreationDate="{Binding Turbine.LocalizedInstalationDateTime}"
-                        TurbineName="{Binding Turbine.Name}" />
-                </Border>
-            </SwipeView>
-        </DataTemplate>
-
-        <DataTemplate
-            x:Key="DeskTopTemplate"
-            x:DataType="{x:Null}">
-
-            <Border
-                x:Name="borderContainer"
-                Style="{x:StaticResource CommonBorderStyle}">
-
-
-                <Grid
-                    x:Name="GridContainer"
-                    ColumnDefinitions="*,*">
-
-                    <controls:TurbineData
-                        Grid.ColumnSpan="2"
-                        TurbineAddres="{Binding Turbine.Address}"
-                        TurbineCreationDate="{Binding Turbine.LocalizedInstalationDateTime}"
-                        TurbineName="{Binding Turbine.Name}" />
-
-                    <Button
-                        Grid.RowSpan="3"
-                        Grid.Column="1"
-                        Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                        CommandParameter="{Binding Source={x:Reference borderContainer}}"
-                        HeightRequest="{Binding Height, Source={x:Reference GridContainer}}"
-                        IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                        Style="{x:StaticResource DeleteButtonStyle}"
-                        Text="{x:Static constant:MaterialFonts.Delete}" />
-                </Grid>
-
-                <Border.GestureRecognizers>
-                    <PointerGestureRecognizer PointerEnteredCommand="{Binding MouseEnterCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
-                    <PointerGestureRecognizer PointerExitedCommand="{Binding MouseLeaveCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
-                </Border.GestureRecognizers>
-            </Border>
-
-        </DataTemplate>
-        <local:DeviceDataTemplateSelector
-            x:Key="SelectDataTemplateSelector"
-            DeskTopTemplate="{StaticResource DeskTopTemplate}"
-            PhoneTemplate="{StaticResource PhoneTemplate}" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <rex:TurbineTemplates />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto,*">
         <editors:SfComboBox
             x:Name="combobox"
-            Margin="10"
             DisplayMemberPath="Name"
-            DropDownIconColor="Red"
-            HorizontalOptions="Center"
-            IsEnabled="True"
-            IsFilteringEnabled="True"
-            ItemsSource="{Binding Turbines}"
-            Stroke="Transparent"
-            TextMemberPath="Name"
-            WidthRequest="250" />
-        
+            SelectedItem="{Binding SelectedItem}"
+            Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
+            <editors:SfComboBox.Behaviors>
+                <mct:EventToCommandBehavior
+                    Command="{Binding SelectedItemChangeCommand}"
+                    CommandParameter="{Binding SelectedItem, Source={x:Reference combobox}}"
+                    EventName="SelectionChanged" />
+            </editors:SfComboBox.Behaviors>
+            <editors:SfComboBox.ItemTemplate>
+                <DataTemplate x:DataType="model:TurbinePin">
+                    <ViewCell>
+                        <VerticalStackLayout
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                            <Label
+                                Text="{Binding Turbine.Name}"
+                                TextColor="Black" />
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </editors:SfComboBox.ItemTemplate>
+        </editors:SfComboBox>
+
         <CollectionView
             x:Name="TurbineCollection"
             Grid.Row="1"
@@ -150,11 +95,9 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="8" />
                             </Border.StrokeShape>
-                            <Grid Padding="0">
-                                <Entry
-                                    Text="{Binding TurbineName}"
-                                    TextColor="Black" />
-                            </Grid>
+                            <Entry
+                                Text="{Binding TurbineName}"
+                                TextColor="Black" />
                         </Border>
 
                         <Border
@@ -163,9 +106,7 @@
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="8" />
                             </Border.StrokeShape>
-                            <Grid
-                                Padding="0"
-                                ColumnDefinitions="*,60">
+                            <Grid ColumnDefinitions="*,60">
                                 <Entry
                                     IsReadOnly="True"
                                     Text="{Binding TurbineFormattedDate}"
@@ -200,7 +141,7 @@
                                     CommandParameter="{Binding SelectedDate, Source={x:Reference picker}}"
                                     EventName="OkButtonClicked" />
                                 <mct:EventToCommandBehavior
-                                    Command="{Binding CancelCommand}"
+                                    Command="{Binding CancelDateCommand}"
                                     CommandParameter="{Binding Source={x:Reference picker}}"
                                     EventName="CancelButtonClicked" />
                             </picker:SfDateTimePicker.Behaviors>

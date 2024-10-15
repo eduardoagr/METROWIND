@@ -1,10 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<?xaml-comp compile="true" ?>
-<ResourceDictionary
+﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:constant="clr-namespace:METROWIND.Constants"
     xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
     xmlns:popup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
@@ -586,6 +585,7 @@
         <Setter Property="BackgroundColor" Value="#fef2f3" />
         <Setter Property="CornerRadius" Value="0" />
         <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="FontSize" Value="Medium" />
         <Setter Property="HorizontalOptions" Value="End" />
         <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Delete}" />
         <Setter Property="TextColor" Value="Black" />
@@ -675,6 +675,29 @@
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="Margin" Value="10" />
+    </Style>
+
+    <Style
+        x:Key="TurbinesCollectionComboBoxStyle"
+        TargetType="editors:SfComboBox">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="DropDownIconColor" Value="Red" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="IsEditable" Value="True" />
+        <Setter Property="IsFilteringEnabled" Value="True" />
+        <Setter Property="Placeholder" Value="{x:Static rex:AppResource.SearchTurbine}" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Stroke" Value="Transparent" />
+        <Setter Property="TextSearchMode" Value="Contains" />
+        <Setter Property="WidthRequest" Value="250" />
+        <Setter Property="ClearButtonPath">
+            <Setter.Value>
+                <Path
+                    Data="M1.70711 0.292893C1.31658 -0.097631 0.683417 -0.097631 0.292893 0.292893C-0.097631 0.683417 -0.097631 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.097631 12.6834 -0.097631 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.097631 12.6834 -0.097631 12.2929 0.292893L7 5.58579L1.70711 0.292893Z"
+                    Fill="Black"
+                    Stroke="Black" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
 

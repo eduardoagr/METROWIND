@@ -15,9 +15,6 @@
                 HorizontalOptions="Center"
                 Text="{Binding SelectedTurbine.Address}"
                 VerticalOptions="Center" />
-
-            
-
         </VerticalStackLayout>
     </ScrollView>
 

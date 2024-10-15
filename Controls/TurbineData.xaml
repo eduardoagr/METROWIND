@@ -5,6 +5,7 @@
     x:Name="TurbineInfo">
 
     <VerticalStackLayout
+        Padding="2"
         BindingContext="{x:Reference TurbineInfo}"
         Spacing="-10">
 

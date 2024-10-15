@@ -36,6 +36,9 @@ namespace METROWIND.ViewModel {
         CultureInfo? currentCulture;
 
         [ObservableProperty]
+        object selectedItem;
+
+        [ObservableProperty]
         bool isDeleteButtonVisible;
 
         private readonly DeviceLanguageService deviceLanguageService = languageService;
@@ -73,8 +76,6 @@ namespace METROWIND.ViewModel {
 
         }
 
-
-
         [RelayCommand]
         void ConfirmDate(DateTime dateTime) {
 
@@ -92,7 +93,7 @@ namespace METROWIND.ViewModel {
         }
 
         [RelayCommand]
-        void Cancel(SfDateTimePicker views) {
+        void CancelDate(SfDateTimePicker views) {
 
             if (views != null) {
 
@@ -182,5 +183,10 @@ namespace METROWIND.ViewModel {
             }
         }
 
+        [RelayCommand]
+        void SelectedItemChange(object o) {
+
+            SelectedItem = o;
+        }
     }
 }

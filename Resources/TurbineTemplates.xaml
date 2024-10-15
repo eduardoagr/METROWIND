@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="METROWIND.Resources.TurbineTemplates"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constant="clr-namespace:METROWIND.Constants"
+    xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:local="clr-namespace:METROWIND"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel">
+
+    <DataTemplate
+        x:Key="PhoneTemplate"
+        x:DataType="{x:Null}">
+
+        <SwipeView Threshold="300">
+            <SwipeView.RightItems>
+                <SwipeItems Mode="Execute">
+                    <SwipeItem
+                        BackgroundColor="{AppThemeBinding Dark={x:StaticResource SwipeDark},
+                                                          Light={x:StaticResource SwipeLight}}"
+                        Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                        CommandParameter="{Binding Source={x:Reference BorderContaier}}">
+                        <SwipeItem.IconImageSource>
+                            <FontImageSource
+                                FontFamily="ma"
+                                Glyph="{x:Static constant:MaterialFonts.Delete}" />
+                        </SwipeItem.IconImageSource>
+                    </SwipeItem>
+                </SwipeItems>
+            </SwipeView.RightItems>
+            <Border
+                x:Name="BorderContaier"
+                Style="{x:StaticResource CommonBorderStyle}">
+
+                <controls:TurbineData
+                    TurbineAddres="{Binding Turbine.Address}"
+                    TurbineCreationDate="{Binding Turbine.LocalizedInstalationDateTime}"
+                    TurbineName="{Binding Turbine.Name}" />
+            </Border>
+        </SwipeView>
+    </DataTemplate>
+
+    <DataTemplate
+        x:Key="DeskTopTemplate"
+        x:DataType="{x:Null}">
+
+        <Border
+            x:Name="borderContainer"
+            Style="{x:StaticResource CommonBorderStyle}">
+            
+            <Grid
+                x:Name="GridContainer"
+                ColumnDefinitions="*,*">
+
+                <controls:TurbineData
+                    Grid.ColumnSpan="2"
+                    TurbineAddres="{Binding Turbine.Address}"
+                    TurbineCreationDate="{Binding Turbine.LocalizedInstalationDateTime}"
+                    TurbineName="{Binding Turbine.Name}" />
+
+                <Button
+                    Grid.RowSpan="3"
+                    Grid.Column="1"
+                    Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                    CommandParameter="{Binding Source={x:Reference borderContainer}}"
+                    HeightRequest="{Binding Height, Source={x:Reference GridContainer}}"
+                    IsVisible="{Binding IsDeleteButtonVisible, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                    Style="{x:StaticResource DeleteButtonStyle}"
+                    Text="{x:Static constant:MaterialFonts.Delete}" />
+            </Grid>
+
+            <Border.GestureRecognizers>
+                <PointerGestureRecognizer PointerEnteredCommand="{Binding MouseEnterCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
+                <PointerGestureRecognizer PointerExitedCommand="{Binding MouseLeaveCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}" />
+            </Border.GestureRecognizers>
+        </Border>
+
+    </DataTemplate>
+    <local:DeviceDataTemplateSelector
+        x:Key="SelectDataTemplateSelector"
+        DeskTopTemplate="{StaticResource DeskTopTemplate}"
+        PhoneTemplate="{StaticResource PhoneTemplate}" />
+
+</ResourceDictionary>
