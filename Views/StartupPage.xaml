@@ -9,7 +9,7 @@
 
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior
-            Command="{x:Binding AppearingCommand}"
+            Command="{Binding AppearingCommand}"
             EventName="Appearing" />
 
     </ContentPage.Behaviors>
@@ -30,6 +30,6 @@
 
         <Label
             Grid.Row="2"
-            Style="{x:StaticResource startupScreenSubtitle}" />
+            Style="{x:StaticResource startupScreenSubtitle}"/>
     </Grid>
 </ContentPage>

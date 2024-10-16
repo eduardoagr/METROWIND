@@ -15,8 +15,8 @@
                 Style="{x:StaticResource ShareLabelStyle}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
-                        Command="{x:Binding OpenShareMenuCommand}"
-                        CommandParameter="{x:Binding ArticleObj}" />
+                        Command="{Binding OpenShareMenuCommand}"
+                        CommandParameter="{Binding ArticleObj}" />
                 </Label.GestureRecognizers>
             </Label>
 

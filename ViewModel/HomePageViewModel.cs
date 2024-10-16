@@ -3,6 +3,10 @@
     public partial class HomePageViewModel(HttpService httpService,
         DeviceLanguageService deviceLanguageService) : ObservableObject {
 
+        private CollectionView? NewsCollectionView;
+
+        private int scrollToPosition;
+
         [ObservableProperty]
         bool isLoading;
 
@@ -10,9 +14,11 @@
             [];
 
         [RelayCommand]
-        void Appearing() {
+        void Appearing(CollectionView collectionView) {
 
             IsLoading = true;
+
+            NewsCollectionView = collectionView;
 
             LoadNews();
         }
@@ -31,12 +37,21 @@
             }
 
             IsLoading = false;
+
+            if (scrollToPosition > 0) {
+
+                NewsCollectionView!.ScrollTo(scrollToPosition,
+                    -1, ScrollToPosition.Center,
+                    false);
+            }
         }
 
 
         [RelayCommand]
         protected void ShowNewsDetail(Article article) {
             if (article != null) {
+
+                scrollToPosition = NewsList!.IndexOf(article);
 
                 Shell.Current.GoToAsync($"{nameof(ArticleDetailsPage)}",
                     true,

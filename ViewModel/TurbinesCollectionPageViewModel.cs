@@ -4,8 +4,6 @@
         DeviceLanguageService languageService) :
         ChargingStationsMapPageViewModel(turbinesService) {
 
-        CollectionView? TurbinesCollection;
-
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
         string? turbineName;
@@ -34,18 +32,12 @@
         CultureInfo? currentCulture;
 
         [ObservableProperty]
+        object selectedItem;
+
+        [ObservableProperty]
         bool isDeleteButtonVisible;
 
         private readonly DeviceLanguageService deviceLanguageService = languageService;
-
-        [RelayCommand]
-        void PageEnter(CollectionView collectionView) {
-
-            if (collectionView != null) {
-
-                TurbinesCollection = collectionView;
-            }
-        }
 
         [RelayCommand]
         void OpenDatePicker(SfDateTimePicker views) {
@@ -146,66 +138,33 @@
 
         }
 
-        //[RelayCommand]
-        //async Task SaveAndClose(SfPopup popUp) {
-
-        //    try {
-
-        //        var turbineLocation = await GetLocation(TurbineAddress!);
-
-        //        if (turbineLocation != null) {
-
-        //            _turbinesService.AddTurbinePin(new TurbinePin {
-
-        //                Turbine = new Turbine(deviceLanguageService) {
-        //                    Name = TurbineName,
-        //                    Address = TurbineAddress,
-        //                    Label = "My new turbine",
-        //                    InstalationDateTime = TurbineInstalation,
-        //                    Location = turbineLocation
-        //                },
-        //            }, OnPinMarkerClickedCommand!);
-        //        }
-        //        popUp.IsOpen = false;
-        //    }
-        //    catch (Exception ex) {
-        //        // Handle the exception (e.g., log it or show an error message to the user)
-        //        Console.WriteLine($"Error adding turbine: {ex.Message}");
-        //    }
-        //}
-
-
-        //Just for testing
         [RelayCommand]
         async Task SaveAndClose(SfPopup popUp) {
-            try {
-                // Dummy location
-                var dummyLocation = new Location {
-                    Latitude = 37.7749, // Example latitude
-                    Longitude = -122.4194 // Example longitude
-                };
 
-                for (int i = 0; i < 20; i++) {
-                    var turbineName = $"Turbine {i + 1}"; // Unique name for each turbine
+            try {
+
+                var turbineLocation = await GetLocation(TurbineAddress!);
+
+                if (turbineLocation != null) {
 
                     _turbinesService.AddTurbinePin(new TurbinePin {
+
                         Turbine = new Turbine(deviceLanguageService) {
-                            Name = turbineName,
-                            Address = TurbineAddress, // Assuming you have a common address for all
+                            Name = TurbineName,
+                            Address = TurbineAddress,
                             Label = "My new turbine",
                             InstalationDateTime = TurbineInstalation,
-                            Location = dummyLocation
+                            Location = turbineLocation
                         },
                     }, OnPinMarkerClickedCommand!);
                 }
-
                 popUp.IsOpen = false;
             }
             catch (Exception ex) {
-                Console.WriteLine($"Error adding turbines: {ex.Message}");
+                // Handle the exception (e.g., log it or show an error message to the user)
+                Console.WriteLine($"Error adding turbine: {ex.Message}");
             }
         }
-
 
         async Task<Location?> GetLocation(string address) {
 
@@ -221,9 +180,9 @@
         }
 
         [RelayCommand]
-        void SelectedItemChange(int index) {
+        void SelectedItemChange(object o) {
 
-            TurbinesCollection?.ScrollTo(index, -1, ScrollToPosition.Center);
+            SelectedItem = o;
         }
     }
 }
