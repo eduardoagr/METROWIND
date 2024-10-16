@@ -13,7 +13,7 @@
             <Label
                 Margin="20"
                 HorizontalOptions="Center"
-                Text="{Binding SelectedTurbine.Address}"
+                Text="{x:Binding SelectedTurbine.Address}"
                 VerticalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>

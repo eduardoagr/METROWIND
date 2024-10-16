@@ -16,8 +16,8 @@
 
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior
-            Command="{Binding AppearingCommand}"
-            CommandParameter="{Binding Source={x:Reference ChargingStationMap}}"
+            Command="{x:Binding AppearingCommand}"
+            CommandParameter="{x:Binding Source={x:Reference ChargingStationMap}}"
             EventName="Appearing" />
 
     </ContentPage.Behaviors>
@@ -26,7 +26,7 @@
         <Border Style="{x:StaticResource ChargeStationBorderStyle}">
             <expander:SfExpander
                 AnimationDuration="200"
-                IsExpanded="{Binding IsExpanded}">
+                IsExpanded="{x:Binding IsExpanded}">
                 <expander:SfExpander.Header>
                     <Grid
                         Padding="20,0,0,0"
@@ -38,7 +38,7 @@
                     <Grid
                         Padding="10,0,0,0"
                         RowDefinitions="Auto">
-                        <CollectionView ItemsSource="{Binding Turbines}">
+                        <CollectionView ItemsSource="{x:Binding Turbines}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:TurbinePin">
                                     <Border
@@ -48,7 +48,7 @@
                                             <Label Style="{x:StaticResource ElectricBoltLabelStyle}" />
                                             <Label
                                                 Style="{x:StaticResource AddressLabelStyle}"
-                                                Text="{Binding Turbine.Address}" />
+                                                Text="{x:Binding Turbine.Address}" />
                                         </HorizontalStackLayout>
                                         <Border.Behaviors>
                                             <mct:TouchBehavior
@@ -57,8 +57,8 @@
                                         </Border.Behaviors>
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer
-                                                Command="{Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
-                                                CommandParameter="{Binding Turbine}" />
+                                                Command="{x:Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
+                                                CommandParameter="{x:Binding Turbine}" />
                                         </Border.GestureRecognizers>
 
                                     </Border>
@@ -72,24 +72,24 @@
 
         <maps:Map
             x:Name="ChargingStationMap"
-            ItemsSource="{Binding Turbines}"
+            ItemsSource="{x:Binding Turbines}"
             VerticalOptions="FillAndExpand">
             <maps:Map.ItemTemplate>
                 <DataTemplate x:DataType="model:TurbinePin">
                     <controls:CustomMapPin
-                        Address="{Binding Turbine.Address}"
-                        Label="{Binding Turbine.Label}"
-                        Location="{Binding Turbine.Location}"
-                        MarkerClickedCommand="{Binding PinClickedCommand}"
-                        MarkerClickedCommandParameter="{Binding Turbine}"
-                        TurbineImages="{Binding Turbine.Images}" />
+                        Address="{x:Binding Turbine.Address}"
+                        Label="{x:Binding Turbine.Label}"
+                        Location="{x:Binding Turbine.Location}"
+                        MarkerClickedCommand="{x:Binding PinClickedCommand}"
+                        MarkerClickedCommandParameter="{x:Binding Turbine}"
+                        TurbineImages="{x:Binding Turbine.Images}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
 
         <Button
             x:Name="mapLayers"
-            Command="{Binding OpenMenuCommand}"
+            Command="{x:Binding OpenMenuCommand}"
             Style="{x:StaticResource MapButtonStyle}">
             <Button.ImageSource>
                 <FontImageSource
@@ -99,8 +99,8 @@
         </Button>
 
         <popup:SfPopup
-            IsOpen="{Binding IsOptionsOpen}"
-            RelativeView="{Binding Source={x:Reference mapLayers}}"
+            IsOpen="{x:Binding IsOptionsOpen}"
+            RelativeView="{x:Binding Source={x:Reference mapLayers}}"
             Style="{x:StaticResource ChargeStationPopupStyle}">
             <popup:SfPopup.PopupStyle>
                 <popup:PopupStyle CornerRadius="8" />
@@ -110,12 +110,12 @@
                     <VerticalStackLayout Spacing="10">
                         <controls:CustomImageButton
                             Caption="{x:Static rex:AppResource.Default}"
-                            ClickCommand="{Binding ChangeMapTypeCommand}"
+                            ClickCommand="{x:Binding ChangeMapTypeCommand}"
                             ImageName="default_layer.png"
                             Parameters="0" />
                         <controls:CustomImageButton
                             Caption="{x:Static rex:AppResource.Satelite}"
-                            ClickCommand="{Binding ChangeMapTypeCommand}"
+                            ClickCommand="{x:Binding ChangeMapTypeCommand}"
                             ImageName="satelite_layer.png"
                             Parameters="2" />
                     </VerticalStackLayout>

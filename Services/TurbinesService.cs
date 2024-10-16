@@ -1,26 +1,24 @@
 ﻿namespace METROWIND.Services {
+
     public class TurbinesService {
-
-        public ObservableCollection<TurbinePin> _turbinePins = [];
-
+        public ObservableCollection<TurbinePin> TurbinePins { get; private set; } = [];
         private readonly DeviceLanguageService _deviceLanguageService;
 
         public TurbinesService(DeviceLanguageService deviceLanguageService) {
-
             _deviceLanguageService = deviceLanguageService;
+            InitializeTurbinePins();
+        }
 
-            // Initialize the collection with default turbine pins
-            _turbinePins.Add(new TurbinePin {
-                Turbine = new Turbine(deviceLanguageService) {
+        private void InitializeTurbinePins() {
+            TurbinePins.Add(new TurbinePin {
+                Turbine = new Turbine(_deviceLanguageService) {
                     Id = 1,
                     Name = "My first turbine",
                     Label = "Charge station",
                     Address = "Av. de las Américas, Guayaquil 090513, Ecuador",
                     Location = new Location(-2.151993, -79.886109),
                     InstalationDateTime = new DateTime(2024, 1, 1, 13, 00, 00),
-                    Images = [
-                    "charge_station.png",
-                    "wind_turbine.png"]
+                    Images = ["charge_station.png", "wind_turbine.png"]
                 },
                 PinClickedCommand = null // Set this dynamically later
             });
@@ -29,21 +27,15 @@
         public void AddTurbinePin(TurbinePin turbinePin, ICommand pinClickedCommand) {
             if (turbinePin != null) {
                 turbinePin.PinClickedCommand = pinClickedCommand;
-                _turbinePins.Add(turbinePin);
+                TurbinePins.Add(turbinePin);
             }
         }
 
         public ObservableCollection<TurbinePin> GetTurbinePinsForUI(ICommand pinClickedCommand) {
-            var sortedPins = _turbinePins
-                 .OrderBy(t => t.Turbine?.InstalationDateTime)
-                 .ToList(); // Materialize the ordered collection
-
-            foreach (var pin in sortedPins) {
+            foreach (var pin in TurbinePins.OrderBy(t => t.Turbine?.InstalationDateTime)) {
                 pin.PinClickedCommand = pinClickedCommand;
             }
-
-            return new ObservableCollection<TurbinePin>(sortedPins);
+            return TurbinePins;
         }
-
     }
 }

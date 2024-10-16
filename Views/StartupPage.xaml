@@ -9,7 +9,7 @@
 
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior
-            Command="{Binding AppearingCommand}"
+            Command="{x:Binding AppearingCommand}"
             EventName="Appearing" />
 
     </ContentPage.Behaviors>

@@ -691,7 +691,7 @@
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="TextSearchMode" Value="Contains" />
-        <Setter Property="WidthRequest" Value="250" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone=250, Desktop=450}" />
         <Setter Property="ClearButtonPath">
             <Setter.Value>
                 <Path

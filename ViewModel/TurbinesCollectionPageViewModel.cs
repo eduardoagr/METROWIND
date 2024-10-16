@@ -4,6 +4,8 @@
         DeviceLanguageService languageService) :
         ChargingStationsMapPageViewModel(turbinesService) {
 
+        CollectionView TurbinesCollection;
+
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
         string? turbineName;
@@ -32,12 +34,18 @@
         CultureInfo? currentCulture;
 
         [ObservableProperty]
-        object selectedItem;
-
-        [ObservableProperty]
         bool isDeleteButtonVisible;
 
         private readonly DeviceLanguageService deviceLanguageService = languageService;
+
+        [RelayCommand]
+        void PageEnter(CollectionView collectionView) {
+
+            if (collectionView != null) {
+
+                TurbinesCollection = collectionView;
+            }
+        }
 
         [RelayCommand]
         void OpenDatePicker(SfDateTimePicker views) {
@@ -140,31 +148,65 @@
 
         [RelayCommand]
         async Task SaveAndClose(SfPopup popUp) {
-
             try {
+                var random = new Random();
 
-                var turbineLocation = await GetLocation(TurbineAddress!);
+                for (int i = 0; i < 30; i++) {
+                    // Generate random latitude and longitude for the turbine's location
+                    var randomLatitude = random.NextDouble() * 180 - 90; // Latitude between -90 and 90
+                    var randomLongitude = random.NextDouble() * 360 - 180; // Longitude between -180 and 180
+                    var randomLocation = new Location(randomLatitude, randomLongitude); // Assuming you have a Location class for latitude and longitude
 
-                if (turbineLocation != null) {
+                    // You can also randomize turbine details or keep them constant
+                    string randomTurbineName = $"Turbine {i + 1}";
+                    string randomTurbineAddress = $"Address {i + 1}";
 
                     _turbinesService.AddTurbinePin(new TurbinePin {
-
                         Turbine = new Turbine(deviceLanguageService) {
-                            Name = TurbineName,
-                            Address = TurbineAddress,
-                            Label = "My new turbine",
-                            InstalationDateTime = TurbineInstalation,
-                            Location = turbineLocation
-                        },
+                            Name = randomTurbineName,
+                            Address = randomTurbineAddress,
+                            Label = $"Turbine {i + 1}",
+                            InstalationDateTime = DateTime.Now.AddDays(-i), // For variety in installation dates
+                            Location = randomLocation
+                        }
                     }, OnPinMarkerClickedCommand!);
                 }
                 popUp.IsOpen = false;
             }
             catch (Exception ex) {
                 // Handle the exception (e.g., log it or show an error message to the user)
-                Console.WriteLine($"Error adding turbine: {ex.Message}");
+                Console.WriteLine($"Error adding turbines: {ex.Message}");
             }
         }
+
+
+        //[RelayCommand]
+        //async Task SaveAndClose(SfPopup popUp) {
+
+        //    try {
+
+        //        var turbineLocation = await GetLocation(TurbineAddress!);
+
+        //        if (turbineLocation != null) {
+
+        //            _turbinesService.AddTurbinePin(new TurbinePin {
+
+        //                Turbine = new Turbine(deviceLanguageService) {
+        //                    Name = TurbineName,
+        //                    Address = TurbineAddress,
+        //                    Label = "My new turbine",
+        //                    InstalationDateTime = TurbineInstalation,
+        //                    Location = turbineLocation
+        //                },
+        //            }, OnPinMarkerClickedCommand!);
+        //        }
+        //        popUp.IsOpen = false;
+        //    }
+        //    catch (Exception ex) {
+        //        Handle the exception(e.g., log it or show an error message to the user)
+        //        Console.WriteLine($"Error adding turbine: {ex.Message}");
+        //    }
+        //}
 
         async Task<Location?> GetLocation(string address) {
 
@@ -180,9 +222,13 @@
         }
 
         [RelayCommand]
-        void SelectedItemChange(object o) {
+        void SelectedItemChange(int selectedIndex) {
 
-            SelectedItem = o;
+            TurbinesCollection.ScrollTo(selectedIndex, -1, ScrollToPosition.Center);
         }
     }
 }
+
+
+
+
