@@ -16,31 +16,23 @@
     x:Name="TurbinesCollection"
     x:DataType="vm:TurbinesCollectionPageViewModel">
 
-    <!--<ContentPage.Behaviors>
+    <ContentPage.Behaviors>
         <mct:EventToCommandBehavior
             Command="{Binding PageEnterCommand}"
             CommandParameter="{Binding Source={x:Reference TurbineCollection}}"
             EventName="Appearing" />
-    </ContentPage.Behaviors>-->
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <rex:TurbineTemplates />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Behaviors>
 
     <Grid RowDefinitions="Auto,*">
         <editors:SfComboBox
             x:Name="combobox"
-            DisplayMemberPath="Name"
-            SelectedItem="{Binding SelectedItem}"
+            DisplayMemberPath="Turbine.Name"
+            ItemsSource="{x:Binding Turbines}"
             Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
             <editors:SfComboBox.Behaviors>
                 <mct:EventToCommandBehavior
                     Command="{Binding SelectedItemChangeCommand}"
-                    CommandParameter="{Binding SelectedItem, Source={x:Reference combobox}}"
+                    CommandParameter="{Binding SelectedIndex, Source={x:Reference combobox}}"
                     EventName="SelectionChanged" />
             </editors:SfComboBox.Behaviors>
             <editors:SfComboBox.ItemTemplate>
@@ -62,8 +54,8 @@
             x:Name="TurbineCollection"
             Grid.Row="1"
             Margin="10"
-            ItemTemplate="{StaticResource SelectDataTemplateSelector}"
-            ItemsSource="{Binding Turbines}">
+            ItemTemplate="{x:StaticResource SelectDataTemplateSelector}"
+            ItemsSource="{x:Binding Turbines}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout
                     ItemSpacing="10"

@@ -15,8 +15,7 @@
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
-            Command="{Binding AppearingCommand}"
-            CommandParameter="{Binding Source={x:Reference NewsCollectionView}}"
+            Command="{x:Binding AppearingCommand}"
             EventName="Appearing" />
     </ContentPage.Behaviors>
 
@@ -34,13 +33,15 @@
         <core:SfBusyIndicator
             Title="{x:Static rex:AppResource.WhatsNew}"
             Grid.Row="1"
-            IsRunning="{Binding IsLoading}"
-            IsVisible="{Binding IsLoading}" />
+            IsRunning="{x:Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
+            TextColor="{AppThemeBinding Dark={x:StaticResource White},
+                                        Light={StaticResource Black}}" />
 
         <CollectionView
             x:Name="NewsCollectionView"
             Grid.Row="1"
-            ItemsSource="{Binding NewsList}"
+            ItemsSource="{x:Binding NewsList}"
             SelectionMode="None">
 
             <CollectionView.ItemsLayout>
@@ -59,7 +60,8 @@
                             <Image
                                 Aspect="AspectFill"
                                 HeightRequest="250"
-                                Source="{Binding UrlToImage, TargetNullValue=no_image.png}"
+                                Source="{x:Binding UrlToImage,
+                                                   TargetNullValue=no_image.png}"
                                 VerticalOptions="Center" />
 
                             <Label
@@ -67,7 +69,7 @@
                                 Margin="0,10,0,0"
                                 FontAttributes="Bold"
                                 FontSize="Large"
-                                Text="{Binding Title}" />
+                                Text="{x:Binding Title}" />
 
                             <HorizontalStackLayout
                                 Grid.Row="2"
@@ -79,7 +81,7 @@
                                     VerticalTextAlignment="Center" />
                                 <Label
                                     Margin="10,0,0,0"
-                                    Text="{Binding Source.Name}"
+                                    Text="{x:Binding Source.Name}"
                                     VerticalTextAlignment="Center" />
                             </HorizontalStackLayout>
 
@@ -94,10 +96,11 @@
                                 <Label
                                     Grid.Column="1"
                                     Margin="10,0,0,0"
-                                    Text="{Binding Author, TargetNullValue='Author uknown'}" />
+                                    Text="{x:Binding Author,
+                                                     TargetNullValue='Author uknown'}" />
                                 <Label
                                     Grid.Column="2"
-                                    Text="{Binding PublishedAt}" />
+                                    Text="{x:Binding PublishedAt}" />
                             </Grid>
                         </Grid>
                         <Border.StrokeShape>
@@ -105,14 +108,15 @@
                         </Border.StrokeShape>
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:HomePageViewModel}}, Path=ShowNewsDetailCommand}"
-                                CommandParameter="{Binding .}" />
+                                Command="{x:Binding Source={x:RelativeSource AncestorType={x:Type vm:HomePageViewModel}},
+                                                    Path=ShowNewsDetailCommand}"
+                                CommandParameter="{x:Binding .}" />
                         </Border.GestureRecognizers>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            
         </CollectionView>
     </Grid>
-    
+
 </ContentPage>
-    

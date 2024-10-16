@@ -2,21 +2,18 @@
     x:Class="METROWIND.Views.TurbineDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     Title="{x:Static rex:AppResource.TurbineDetails}"
     x:DataType="vm:TurbineDetailPageViewModel">
 
-    <ScrollView>
-        <VerticalStackLayout>
-            <Label
-                Margin="20"
-                HorizontalOptions="Center"
-                Text="{Binding SelectedTurbine.Address}"
-                VerticalOptions="Center" />
-        </VerticalStackLayout>
-    </ScrollView>
+    <VerticalStackLayout>
+        <Label
+            Margin="20"
+            HorizontalOptions="Center"
+            Text="{x:Binding SelectedTurbine.Address}"
+            VerticalOptions="Center" />
+    </VerticalStackLayout>
 
 
 </ContentPage>

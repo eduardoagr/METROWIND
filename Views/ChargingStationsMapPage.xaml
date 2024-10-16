@@ -16,8 +16,8 @@
 
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior
-            Command="{Binding AppearingCommand}"
-            CommandParameter="{Binding Source={x:Reference ChargingStationMap}}"
+            Command="{x:Binding AppearingCommand}"
+            CommandParameter="{x:Binding Source={x:Reference ChargingStationMap}}"
             EventName="Appearing" />
 
     </ContentPage.Behaviors>
@@ -26,7 +26,7 @@
         <Border Style="{x:StaticResource ChargeStationBorderStyle}">
             <expander:SfExpander
                 AnimationDuration="200"
-                IsExpanded="{Binding IsExpanded}">
+                IsExpanded="{x:Binding IsExpanded}">
                 <expander:SfExpander.Header>
                     <Grid
                         Padding="20,0,0,0"
@@ -38,7 +38,7 @@
                     <Grid
                         Padding="10,0,0,0"
                         RowDefinitions="Auto">
-                        <CollectionView ItemsSource="{Binding Turbines}">
+                        <CollectionView ItemsSource="{x:Binding Turbines}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:TurbinePin">
                                     <Border
@@ -48,7 +48,7 @@
                                             <Label Style="{x:StaticResource ElectricBoltLabelStyle}" />
                                             <Label
                                                 Style="{x:StaticResource AddressLabelStyle}"
-                                                Text="{Binding Turbine.Address}" />
+                                                Text="{x:Binding Turbine.Address}" />
                                         </HorizontalStackLayout>
                                         <Border.Behaviors>
                                             <mct:TouchBehavior
@@ -57,8 +57,8 @@
                                         </Border.Behaviors>
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer
-                                                Command="{Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
-                                                CommandParameter="{Binding Turbine}" />
+                                                Command="{x:Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
+                                                CommandParameter="{x:Binding Turbine}" />
                                         </Border.GestureRecognizers>
 
                                     </Border>
