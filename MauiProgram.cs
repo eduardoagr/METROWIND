@@ -1,6 +1,4 @@
-﻿using METROWIND.Handlers;
-
-namespace METROWIND {
+﻿namespace METROWIND {
 
     public static class MauiProgram {
 

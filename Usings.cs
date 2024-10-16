@@ -16,6 +16,8 @@ global using Microsoft.Maui.Controls.Maps;
 global using Microsoft.Maui.Handlers;
 
 global using Syncfusion.Maui.Core.Hosting;
+global using Syncfusion.Maui.Picker;
+global using Syncfusion.Maui.Popup;
 
 global using System.Collections.ObjectModel;
 global using System.Diagnostics;
@@ -23,3 +25,4 @@ global using System.Globalization;
 global using System.Net.Http.Json;
 global using System.Text.Json.Serialization;
 global using System.Windows.Input;
+    

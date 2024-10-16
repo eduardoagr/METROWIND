@@ -1,8 +1,4 @@
-﻿
-using Syncfusion.Maui.Picker;
-using Syncfusion.Maui.Popup;
-
-namespace METROWIND.ViewModel {
+﻿namespace METROWIND.ViewModel {
 
     public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService,
         DeviceLanguageService languageService) :

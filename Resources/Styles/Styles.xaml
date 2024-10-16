@@ -682,8 +682,10 @@
         x:Key="TurbinesCollectionComboBoxStyle"
         TargetType="editors:SfComboBox">
         <Setter Property="Margin" Value="10" />
-        <Setter Property="DropDownIconColor" Value="Red" />
+        <Setter Property="TextHighlightMode" Value="MultipleOccurrence" />
         <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="HighlightedTextColor" Value="Red" />
+        <Setter Property="HighlightedTextFontAttributes" Value="Bold" />
         <Setter Property="IsEditable" Value="True" />
         <Setter Property="IsFilteringEnabled" Value="True" />
         <Setter Property="Placeholder" Value="{x:Static rex:AppResource.SearchTurbine}" />

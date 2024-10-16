@@ -35,19 +35,6 @@
                     CommandParameter="{Binding SelectedIndex, Source={x:Reference combobox}}"
                     EventName="SelectionChanged" />
             </editors:SfComboBox.Behaviors>
-            <editors:SfComboBox.ItemTemplate>
-                <DataTemplate x:DataType="model:TurbinePin">
-                    <ViewCell>
-                        <VerticalStackLayout
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center">
-                            <Label
-                                Text="{Binding Turbine.Name}"
-                                TextColor="Black" />
-                        </VerticalStackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </editors:SfComboBox.ItemTemplate>
         </editors:SfComboBox>
 
         <CollectionView
