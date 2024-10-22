@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Maps;
+﻿using Map = Microsoft.Maui.Controls.Maps.Map;
 
 namespace METROWIND.ViewModel {
 
@@ -6,7 +6,7 @@ namespace METROWIND.ViewModel {
 
         protected readonly TurbinesService _turbinesService;
 
-        private Microsoft.Maui.Controls.Maps.Map? MapView;
+        private Map? MapView;
 
         public ICommand? OnPinMarkerClickedCommand { get; }
 
@@ -16,7 +16,7 @@ namespace METROWIND.ViewModel {
         [ObservableProperty]
         bool isExpanded;
 
-        public ObservableCollection<TurbinePin> Turbines => _turbinesService._turbinePins;
+        public ObservableCollection<TurbinePin> Turbines => _turbinesService.TurbinePins;
 
         public ChargingStationsMapPageViewModel(TurbinesService turbinesService) {
 
@@ -28,7 +28,7 @@ namespace METROWIND.ViewModel {
         }
 
         [RelayCommand]
-        private void Appearing(Microsoft.Maui.Controls.Maps.Map map) {
+        private void Appearing(Map map) {
 
             if (map != null) {
 

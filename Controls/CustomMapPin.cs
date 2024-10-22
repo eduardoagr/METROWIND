@@ -51,15 +51,6 @@ namespace METROWIND.Controls {
             set => SetValue(TurbineImagesProperty, value);
         }
 
-        public static readonly BindableProperty ChartDataProperty = BindableProperty.Create(
-            nameof(ChartData), typeof(IEnumerable),
-            typeof(CustomMapPin));
-
-        public IEnumerable ChartData {
-            get => (IEnumerable)GetValue(ChartDataProperty);
-            set => SetValue(ChartDataProperty, value);
-        }
-
 
         public CustomMapPin() {
             MarkerClicked += CustomPin_MarkerClicked;

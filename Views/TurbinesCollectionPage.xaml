@@ -5,6 +5,7 @@
     xmlns:constant="clr-namespace:METROWIND.Constants"
     xmlns:controls="clr-namespace:METROWIND.Controls"
     xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:local="clr-namespace:METROWIND"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:model="clr-namespace:METROWIND.Models"
@@ -26,37 +27,41 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <rex:TurbineTemplates />
+                <rex:TurbineTemplate />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <Grid RowDefinitions="Auto,*">
-        <editors:SfComboBox
-            x:Name="combobox"
-            DisplayMemberPath="Turbine.Name"
-            ItemsSource="{x:Binding Turbines}"
-            Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
-            <editors:SfComboBox.Behaviors>
-                <mct:EventToCommandBehavior
-                    Command="{x:Binding SelectedItemChangeCommand}"
-                    CommandParameter="{x:Binding SelectedIndex, Source={x:Reference combobox}}"
-                    EventName="SelectionChanged" />
-            </editors:SfComboBox.Behaviors>
-        </editors:SfComboBox>
+        <inputLayout:SfTextInputLayout
+            Margin="10"
+            ContainerType="Outlined"
+            OutlineCornerRadius="8"
+            WidthRequest="{OnIdiom Desktop=450,
+                                   Phone=250}">
+            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                <inputLayout:LabelStyle TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
+            </inputLayout:SfTextInputLayout.HintLabelStyle>
+            <editors:SfComboBox
+                x:Name="combobox"
+                DisplayMemberPath="Turbine.Name"
+                ItemsSource="{x:Binding Turbines}"
+                Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
+                <editors:SfComboBox.Behaviors>
+                    <mct:EventToCommandBehavior
+                        Command="{x:Binding SelectedItemChangeCommand}"
+                        CommandParameter="{x:Binding Source={x:Reference combobox}}"
+                        EventName="SelectionChanged" />
+                </editors:SfComboBox.Behaviors>
+            </editors:SfComboBox>
+        </inputLayout:SfTextInputLayout>
 
         <CollectionView
             x:Name="TurbineCollection"
             Grid.Row="1"
-            Margin="10"
             ItemTemplate="{x:StaticResource SelectDataTemplateSelector}"
-            ItemsSource="{x:Binding Turbines}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout
-                    ItemSpacing="10"
-                    Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-        </CollectionView>
+            ItemsSource="{x:Binding Turbines}"
+            Style="{x:StaticResource TurbineCollectionViewStyle}" />
 
         <Button
             Grid.Row="1"
@@ -64,12 +69,7 @@
             CommandParameter="{x:Binding Source={x:Reference TurbinePopUp}}"
             Style="{x:StaticResource OpenPopUpButtonStyle}" />
 
-        <sfPopup:SfPopup
-            x:Name="TurbinePopUp"
-            AnimationMode="Zoom"
-            AutoSizeMode="Height"
-            ShowCloseButton="True"
-            StaysOpen="True">
+        <sfPopup:SfPopup x:Name="TurbinePopUp">
             <sfPopup:SfPopup.ContentTemplate>
                 <DataTemplate>
                     <Grid
@@ -78,39 +78,29 @@
                         RowDefinitions="*,*,*,*"
                         RowSpacing="20">
 
-                        <Border Grid.ColumnSpan="2">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="8" />
-                            </Border.StrokeShape>
+                        <Border
+                            Grid.ColumnSpan="2"
+                            Style="{x:StaticResource CommonBorderStyle}">
                             <Entry
-                                Text="{x:Binding TurbineName}"
+                                Text="{x:Binding Turbine.Name}"
                                 TextColor="Black" />
                         </Border>
 
                         <Border
                             Grid.Row="1"
-                            Grid.ColumnSpan="2">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="8" />
-                            </Border.StrokeShape>
+                            Grid.ColumnSpan="2"
+                            Style="{x:StaticResource CommonBorderStyle}">
+
                             <Grid ColumnDefinitions="*,60">
                                 <Entry
                                     IsReadOnly="True"
-                                    Text="{x:Binding TurbineFormattedDate}"
+                                    Text="{x:Binding Turbine.StringifyInstalationDate}"
                                     TextColor="Black" />
 
-                                <Label
-                                    Grid.Column="1"
-                                    Padding="5"
-                                    FontFamily="ma"
-                                    FontSize="Large"
-                                    HorizontalTextAlignment="End"
-                                    Text="{x:Static constant:MaterialFonts.Calendar_month}"
-                                    TextColor="Black"
-                                    VerticalTextAlignment="Center">
+                                <Label Grid.Column="1">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer
-                                            Command="{x:Binding OpenDatePickerCommand}"
+                                            Command="{Binding OpenDatePickerCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                                             CommandParameter="{x:Binding Source={x:Reference picker}}" />
                                     </Label.GestureRecognizers>
                                 </Label>
@@ -120,16 +110,16 @@
                         <picker:SfDateTimePicker
                             x:Name="picker"
                             Grid.Row="4"
-                            BackgroundColor="Transparent"
-                            RelativePosition="AlignBottom"
                             Style="{x:DynamicResource DateTimePickerStyle}">
                             <picker:SfDateTimePicker.Behaviors>
                                 <mct:EventToCommandBehavior
-                                    Command="{x:Binding ConfirmDateCommand}"
-                                    CommandParameter="{x:Binding SelectedDate, Source={x:Reference picker}}"
+                                    Command="{x:Binding ConfirmDateCommand,
+                                                        Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                    CommandParameter="{x:Binding SelectedDate,
+                                                                 Source={x:Reference picker}}"
                                     EventName="OkButtonClicked" />
                                 <mct:EventToCommandBehavior
-                                    Command="{x:Binding CancelDateCommand}"
+                                    Command="{Binding CancelDateCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                                     CommandParameter="{x:Binding Source={x:Reference picker}}"
                                     EventName="CancelButtonClicked" />
                             </picker:SfDateTimePicker.Behaviors>
@@ -137,13 +127,10 @@
 
                         <Border
                             Grid.Row="2"
-                            Grid.ColumnSpan="2">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="8" />
-                            </Border.StrokeShape>
-
+                            Grid.ColumnSpan="2"
+                            Style="{x:StaticResource CommonBorderStyle}">
                             <Entry
-                                Text="{x:Binding TurbineAddress}"
+                                Text="{x:Binding Turbine.Address}"
                                 TextColor="Black"
                                 VerticalTextAlignment="Center" />
                         </Border>
@@ -151,7 +138,7 @@
                         <Button
                             Grid.Row="3"
                             Grid.ColumnSpan="2"
-                            Command="{x:Binding SaveAndCloseCommand}"
+                            Command="{Binding SaveAndCloseCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                             CommandParameter="{x:Binding Source={x:Reference TurbinePopUp}}"
                             CornerRadius="8"
                             IsEnabled="{x:Binding IsSaveEnable}"

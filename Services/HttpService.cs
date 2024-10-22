@@ -28,7 +28,8 @@
                 var data = await response.Content.ReadFromJsonAsync<T>();
                 return data;
 
-            } else {
+            }
+            else {
 
                 await Shell.Current.DisplayAlert("Error",
                     "We could not connect to the server", "OK");

@@ -7,6 +7,6 @@ public partial class TurbinesCollectionPage : ContentPage {
 
         BindingContext = turbinesCollectionPageViewModel;
 
-        
+
     }
 }

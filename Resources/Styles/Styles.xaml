@@ -1,4 +1,5 @@
-﻿<ResourceDictionary
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:constant="clr-namespace:METROWIND.Constants"
@@ -438,15 +439,6 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
-    <Style TargetType="inputLayout:SfTextInputLayout">
-        <Setter Property="IsHintAlwaysFloated" Value="True" />
-        <Setter Property="OutlineCornerRadius" Value="8" />
-        <Setter Property="ContainerType" Value="Outlined" />
-        <Setter Property="Stroke" Value="#0450c2" />
-        <Setter Property="HeightRequest" Value="80" />
-        <Setter Property="ContainerBackground" Value="White" />
-    </Style>
-
     <Style
         x:Key="AddTurbineForm"
         TargetType="Entry">
@@ -460,13 +452,22 @@
     <Style
         x:Key="CommonBorderStyle"
         TargetType="Border">
-        <Setter Property="StrokeShape" Value="RoundRectangle 18" />
-        <Setter Property="Background" Value="{AppThemeBinding Dark={x:StaticResource AndoidDark}, Light=White}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 8" />
     </Style>
+
+    <Style
+        x:Key="DeleteBtonBorderStyle"
+        BasedOn="{x:StaticResource CommonBorderStyle}"
+        TargetType="Border">
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="IsVisible" Value=" False" />
+    </Style>
+
 
     <Style
         x:Key="TurbineDataLabelStyleStyle"
         TargetType="Label">
+        <Setter Property="TextColor" Value="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}" />
         <Setter Property="Padding" Value="5" />
     </Style>
 
@@ -550,10 +551,8 @@
         TargetType="Label">
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontSize" Value="Medium" />
-        <Setter Property="HorizontalOptions" Value="End" />
-        <Setter Property="HorizontalTextAlignment" Value="End" />
-        <Setter Property="TextColor" Value="#4CAF50" />
-        <Setter Property="Margin" Value="{OnIdiom Desktop=0 60 0 0, Phone=0 0 0 0}" />
+        <Setter Property="TextColor" Value="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}" />
+
     </Style>
 
     <Style
@@ -562,6 +561,7 @@
         <Setter Property="Padding" Value="0,0,20,0" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Share}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalOptions" Value="End" />
         <Setter Property="TextColor" Value="White" />
@@ -588,7 +588,6 @@
         <Setter Property="FontSize" Value="Medium" />
         <Setter Property="HorizontalOptions" Value="End" />
         <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Delete}" />
-        <Setter Property="TextColor" Value="Black" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
@@ -680,18 +679,16 @@
     <Style
         x:Key="TurbinesCollectionComboBoxStyle"
         TargetType="editors:SfComboBox">
-        <Setter Property="Margin" Value="10" />
         <Setter Property="TextHighlightMode" Value="MultipleOccurrence" />
-        <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="HighlightedTextColor" Value="Red" />
         <Setter Property="HighlightedTextFontAttributes" Value="Bold" />
         <Setter Property="IsEditable" Value="True" />
         <Setter Property="IsFilteringEnabled" Value="True" />
-        <Setter Property="Placeholder" Value="{x:Static rex:AppResource.SearchTurbine}" />
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="TextSearchMode" Value="Contains" />
-        <Setter Property="WidthRequest" Value="{OnIdiom Phone=250, Desktop=450}" />
+        <Setter Property="PlaceholderColor" Value="Black" />
+        <Setter Property="Placeholder" Value="{x:Static rex:AppResource.SearchTurbine}" />
         <Setter Property="ClearButtonPath">
             <Setter.Value>
                 <Path
@@ -702,6 +699,64 @@
         </Setter>
     </Style>
 
+    <Style
+        x:Key="TurbineCollectionViewStyle"
+        TargetType="CollectionView">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+        <Setter Property="ItemsLayout">
+            <Setter.Value>
+                <LinearItemsLayout
+                    ItemSpacing="10"
+                    Orientation="Vertical" />
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+    <Style
+        x:Key="CollectionPageTurbinePopupStyle"
+        TargetType="popup:SfPopup">
+        <Setter Property="AnimationMode" Value="Zoom" />
+        <Setter Property="AutoSizeMode" Value="Height" />
+        <Setter Property="ShowCloseButton" Value="True" />
+        <Setter Property="StaysOpen" Value="True" />
+    </Style>
 
+    <Style
+        x:Key="CalendarStyle"
+        TargetType="Label">
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Calendar_month}" />
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="DeleteLabelStyleDesktop"
+        TargetType="Label">
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Delete_outline}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="DeleteStyleForMobile"
+        TargetType="Label">
+        <Setter Property="BackgroundColor" Value="Red" />
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Delete_outline}" />
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="HeightRequest" Value="98" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
 </ResourceDictionary>

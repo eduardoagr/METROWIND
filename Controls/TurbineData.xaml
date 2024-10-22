@@ -4,29 +4,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="TurbineInfo">
 
-    <VerticalStackLayout
-        Padding="2"
-        BindingContext="{x:Reference TurbineInfo}"
-        Spacing="-10">
+    <Border Style="{x:StaticResource CommonBorderStyle}">
+        <VerticalStackLayout
+            BackgroundColor="#4D9B9B"
+            BindingContext="{x:Reference TurbineInfo}"
+            Spacing="-10">
 
-        <Label
-            FontAttributes="Bold"
-            Style="{x:StaticResource TurbineDataLabelStyleStyle}"
-            Text="{Binding TurbineName}" />
+            <Label
+                FontAttributes="Bold"
+                Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+                Text="{Binding TurbineName}" />
 
-        <Label
-            Style="{x:StaticResource TurbineDataLabelStyleStyle}"
-            Text="{Binding TurbineAddres}" />
+            <Label
+                Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+                Text="{Binding TurbineAddres}" />
 
-        <Label
-            Style="{x:StaticResource TurbineDataLabelStyleStyle}"
-            Text="{Binding TurbineCreationDate}" />
+            <Label
+                Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+                Text="{Binding TurbineCreationDate}" />
 
-        <Label
-            Style="{x:StaticResource C02LabelStyle}"
-            Text="1.2343 kg CO₂" />
+            <Label
+                Style="{x:StaticResource C02LabelStyle}"
+                Text="112.2343 kg CO₂" />
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Border>
 
 
 </ContentView>

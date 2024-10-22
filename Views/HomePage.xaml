@@ -16,7 +16,6 @@
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
             Command="{x:Binding AppearingCommand}"
-            CommandParameter="{x:Binding Source={x:Reference NewsCollectionView}}"
             EventName="Appearing" />
     </ContentPage.Behaviors>
 

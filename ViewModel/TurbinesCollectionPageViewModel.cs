@@ -4,37 +4,22 @@
         DeviceLanguageService languageService) :
         ChargingStationsMapPageViewModel(turbinesService) {
 
-        CollectionView TurbinesCollection;
+        CollectionView? TurbinesCollection;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
-        string? turbineName;
-
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
-        string? turbineAddress = "Calle de Américo Castro, 28050 Madrid, Spain";
-
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
-        DateTime? turbineInstalation;
-
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsSaveEnable))]
-        string? turbineFormattedDate;
+        private Turbine? turbine = new();
 
         [ObservableProperty]
         bool isDatePickerOpen;
 
         SfDateTimePicker? DateTimePicker;
 
-        public bool IsSaveEnable => !string.IsNullOrEmpty(TurbineName) &&
-                                    !string.IsNullOrEmpty(TurbineAddress) &&
-                                    !string.IsNullOrEmpty(TurbineFormattedDate);
+        public bool IsSaveEnable => !string.IsNullOrEmpty(Turbine!.Name) &&
+                                    !string.IsNullOrEmpty(Turbine.Address) &&
+                                    Turbine.InstalationDateTime != null;
 
         CultureInfo? currentCulture;
-
-        [ObservableProperty]
-        bool isDeleteButtonVisible;
 
         private readonly DeviceLanguageService deviceLanguageService = languageService;
 
@@ -61,22 +46,10 @@
         public ObservableCollection<GeoapifyResult> Suggestions { get; private set; } = [];
 
         [RelayCommand]
-        async Task DeleteTurbine(object parameter) {
+        async Task DeleteTurbine(TurbinePin turbine) {
 
-            if (parameter is Border border) {
-
-                await border.TranslateTo(0, -border.Height, 400, Easing.CubicIn);// Move up by its height
-
-                var turbine = (TurbinePin)border.BindingContext;
-
-                // Remove the turbine from the collection
-                Turbines.Remove(turbine);
-
-                await Task.Delay(300);
-
-                border.Scale = 1; // Ensure scale is reset
-                border.TranslationY = 0;
-            }
+            await Task.Delay(300);
+            Turbines.Remove(turbine);
 
         }
 
@@ -87,11 +60,11 @@
 
                 currentCulture = new CultureInfo(deviceLanguageService.GetDeviceLanguage());
 
-                TurbineInstalation = dateTime;
+                Turbine!.InstalationDateTime = dateTime;
 
                 DateTimePicker.IsOpen = false;
 
-                TurbineFormattedDate = TurbineInstalation?.ToString("D", currentCulture)!;
+                Turbine.StringifyInstalationDate = Turbine.InstalationDateTime?.ToString("D", currentCulture)!;
 
             }
         }
@@ -122,16 +95,17 @@
         }
 
         [RelayCommand]
-        void MouseEnter() {
-
-            IsDeleteButtonVisible = true;
-
+        void MouseEnter(Grid g) {
+            if (g.Children[1] is Border border) {
+                border.IsVisible = true;
+            }
         }
 
         [RelayCommand]
-        void MouseLeave() {
-
-            IsDeleteButtonVisible = false;
+        void MouseLeave(Grid g) {
+            if (g.Children[1] is Border border) {
+                border.IsVisible = false;
+            }
 
         }
 
@@ -162,10 +136,9 @@
                     string randomTurbineAddress = $"Address {i + 1}";
 
                     _turbinesService.AddTurbinePin(new TurbinePin {
-                        Turbine = new Turbine(deviceLanguageService) {
+                        Turbine = new Turbine {
                             Name = randomTurbineName,
                             Address = randomTurbineAddress,
-                            Label = $"Turbine {i + 1}",
                             InstalationDateTime = DateTime.Now.AddDays(-i), // For variety in installation dates
                             Location = randomLocation
                         }
@@ -222,13 +195,24 @@
         }
 
         [RelayCommand]
-        void SelectedItemChange(int selectedIndex) {
+        async Task SelectedItemChange(SfComboBox combo) {
+            if (combo.SelectedIndex < 0) {
+                return;
+            }
 
-            TurbinesCollection.ScrollTo(selectedIndex, -1, ScrollToPosition.Center);
+            var item = Turbines.ElementAt(combo.SelectedIndex);
+            TurbinesCollection?.ScrollTo(combo.SelectedIndex, -1, ScrollToPosition.Center);
+            var inputView = combo.Children[1] as Entry;
+
+#if ANDROID || IOS
+            if (KeyboardExtensions.IsSoftKeyboardShowing(inputView!)) {
+                await Task.Delay(200);
+                await inputView!.HideKeyboardAsync(default);
+            }
+#else
+            await Task.CompletedTask;
+#endif
         }
     }
 }
-
-
-
 

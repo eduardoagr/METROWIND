@@ -36,6 +36,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -87,16 +88,15 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.3" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.91" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.91" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="27.1.52" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.52" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.52" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.52" />
-		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.52" />
-		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.52" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.55" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.55" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.55" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.55" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.55" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -122,6 +122,9 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResource.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\TurbineTemplate.xaml.cs">
+	    <DependentUpon>TurbineTemplate.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -142,7 +145,7 @@
 	  <MauiXaml Update="Controls\TurbineData.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Resources\TurbineTemplates.xaml">
+	  <MauiXaml Update="Resources\TurbineTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">

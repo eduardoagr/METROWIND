@@ -9,10 +9,10 @@ namespace METROWIND.Handlers {
             SearchBarHandler.Mapper.AppendToMapping("BorderlessSearchBar", (handler, view) => {
                 if (view is BorderlessSearchBar) {
 #if ANDROID
-                LinearLayout? linearLayout = handler.PlatformView.GetChildAt(0) as LinearLayout;
-                linearLayout = linearLayout?.GetChildAt(2) as LinearLayout;
-                linearLayout = linearLayout?.GetChildAt(1) as LinearLayout;
-                linearLayout!.Background = null;
+                    LinearLayout? linearLayout = handler.PlatformView.GetChildAt(0) as LinearLayout;
+                    linearLayout = linearLayout?.GetChildAt(2) as LinearLayout;
+                    linearLayout = linearLayout?.GetChildAt(1) as LinearLayout;
+                    linearLayout!.Background = null;
 
 #elif WINDOWS
                     handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);

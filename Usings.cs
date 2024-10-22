@@ -14,6 +14,7 @@ global using METROWIND.Views;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Maui.Controls.Maps;
 global using Microsoft.Maui.Handlers;
+global using Microsoft.Maui.Maps;
 
 global using Syncfusion.Maui.Core.Hosting;
 global using Syncfusion.Maui.Picker;
@@ -25,4 +26,7 @@ global using System.Globalization;
 global using System.Net.Http.Json;
 global using System.Text.Json.Serialization;
 global using System.Windows.Input;
-    
+
+global using CommunityToolkit.Maui.Core.Platform;
+
+global using Syncfusion.Maui.Inputs;
