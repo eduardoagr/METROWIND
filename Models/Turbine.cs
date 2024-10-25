@@ -2,20 +2,32 @@
 
     public partial class Turbine : ObservableObject {
 
-        public int Id { get; set; }
+        [ObservableProperty]
+        int id;
 
-        public string? Name { get; set; }
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
+        string? name;
 
-        public string? Label => Name;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
+        string? address;
 
-        public string? Address { get; set; }
+        [ObservableProperty]
+        Location? location;
 
-        public Location? Location { get; set; }
+        [ObservableProperty]
+        DateTime? instalationDateTime;
 
-        public DateTime? InstalationDateTime { get; set; }
+        [ObservableProperty]
+        List<string>? images;
 
-        public List<string>? Images { get; set; }
+        [ObservableProperty]
+        string? stringifyInstalationDate;
 
-        public string? StringifyInstalationDate { get; set; }
+        string? Label => Name;
+
+        public bool IsValid => !string.IsNullOrEmpty(Name) &&
+                               !string.IsNullOrEmpty(Address);
     }
 }

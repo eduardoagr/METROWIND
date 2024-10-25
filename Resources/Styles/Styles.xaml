@@ -476,8 +476,8 @@
         TargetType="picker:SfDateTimePicker">
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="MinimumDate" Value="{x:Static sys:DateTime.Now}" />
-        <Setter Property="Mode" Value="RelativeDialog" />
-        <Setter Property="RelativePosition" Value="AlignBottom" />
+        <Setter Property="Mode" Value="Dialog" />
+        <Setter Property="TextDisplayMode" Value="FadeAndShrink"/>
         <Setter Property="FooterView">
             <Setter.Value>
                 <picker:PickerFooterView
@@ -611,13 +611,13 @@
         <Setter Property="Stroke" Value="#CAC4D0" />
         <Setter Property="StrokeShape" Value="RoundRectangle 20,20,20,20" />
         <Setter Property="VerticalOptions" Value="Start" />
-        <Setter Property="WidthRequest" Value="400" />
         <Setter Property="ZIndex" Value="1" />
     </Style>
 
     <Style
         x:Key="ChooseStationLabelStyle"
         TargetType="Label">
+        <Setter Property="Padding" Value="20,0,0,0" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="TextColor" Value="Black" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
@@ -688,7 +688,6 @@
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="TextSearchMode" Value="Contains" />
         <Setter Property="PlaceholderColor" Value="Black" />
-        <Setter Property="Placeholder" Value="{x:Static rex:AppResource.SearchTurbine}" />
         <Setter Property="ClearButtonPath">
             <Setter.Value>
                 <Path
@@ -717,22 +716,10 @@
     <Style
         x:Key="CollectionPageTurbinePopupStyle"
         TargetType="popup:SfPopup">
+        <Setter Property="IsFullScreen" Value="True" />
         <Setter Property="AnimationMode" Value="Zoom" />
-        <Setter Property="AutoSizeMode" Value="Height" />
         <Setter Property="ShowCloseButton" Value="True" />
         <Setter Property="StaysOpen" Value="True" />
-    </Style>
-
-    <Style
-        x:Key="CalendarStyle"
-        TargetType="Label">
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="FontFamily" Value="ma" />
-        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Calendar_month}" />
-        <Setter Property="FontSize" Value="Large" />
-        <Setter Property="HorizontalTextAlignment" Value="End" />
-        <Setter Property="TextColor" Value="Black" />
-        <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
 
     <Style
@@ -759,4 +746,21 @@
         <Setter Property="TextColor" Value="White" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
+
+    <Style
+        x:Key="TurbineCollectionComboBoxStyle"
+        TargetType="inputLayout:SfTextInputLayout">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Hint" Value="{x:Static rex:AppResource.SearchTurbine}" />
+        <Setter Property="ContainerType" Value="Outlined" />
+        <Setter Property="OutlineCornerRadius" Value="8" />
+        <Setter Property="IsHintAlwaysFloated" Value="True" />
+        <Setter Property="HintLabelStyle">
+            <Setter.Value>
+                <inputLayout:LabelStyle TextColor="{AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>

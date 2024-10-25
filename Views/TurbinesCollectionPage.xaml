@@ -32,16 +32,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="Auto,*">
-        <inputLayout:SfTextInputLayout
-            Margin="10"
-            ContainerType="Outlined"
-            OutlineCornerRadius="8"
-            WidthRequest="{OnIdiom Desktop=450,
-                                   Phone=250}">
-            <inputLayout:SfTextInputLayout.HintLabelStyle>
-                <inputLayout:LabelStyle TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
-            </inputLayout:SfTextInputLayout.HintLabelStyle>
+    <Grid
+        RowDefinitions="Auto,*"
+        RowSpacing="-30">
+        <inputLayout:SfTextInputLayout Style="{x:StaticResource TurbineCollectionComboBoxStyle}">
             <editors:SfComboBox
                 x:Name="combobox"
                 DisplayMemberPath="Turbine.Name"
@@ -69,65 +63,43 @@
             CommandParameter="{x:Binding Source={x:Reference TurbinePopUp}}"
             Style="{x:StaticResource OpenPopUpButtonStyle}" />
 
-        <sfPopup:SfPopup x:Name="TurbinePopUp">
+        <sfPopup:SfPopup
+            x:Name="TurbinePopUp"
+            Style="{x:StaticResource CollectionPageTurbinePopupStyle}">
             <sfPopup:SfPopup.ContentTemplate>
                 <DataTemplate>
+
                     <Grid
                         Padding="10"
-                        ColumnDefinitions="*,*"
-                        RowDefinitions="*,*,*,*"
-                        RowSpacing="20">
+                        RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, *"
+                        RowSpacing="10">
 
+                        <!--  Installation Date Entry  -->
                         <Border
-                            Grid.ColumnSpan="2"
+                            Grid.Row="0"
+                            Style="{x:StaticResource CommonBorderStyle}">
+                            <Label HeightRequest="{Binding Height, Source={x:Reference TurbineNameEntry}}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding OpenDatePickerCommand}"
+                                        CommandParameter="{Binding Source={x:Reference picker}}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Border>
+
+                        <!--  Turbine Name Entry  -->
+                        <Border
+                            Grid.Row="1"
                             Style="{x:StaticResource CommonBorderStyle}">
                             <Entry
+                                x:Name="TurbineNameEntry"
                                 Text="{x:Binding Turbine.Name}"
                                 TextColor="Black" />
                         </Border>
 
-                        <Border
-                            Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            Style="{x:StaticResource CommonBorderStyle}">
-
-                            <Grid ColumnDefinitions="*,60">
-                                <Entry
-                                    IsReadOnly="True"
-                                    Text="{x:Binding Turbine.StringifyInstalationDate}"
-                                    TextColor="Black" />
-
-                                <Label Grid.Column="1">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding OpenDatePickerCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                            CommandParameter="{x:Binding Source={x:Reference picker}}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </Grid>
-                        </Border>
-
-                        <picker:SfDateTimePicker
-                            x:Name="picker"
-                            Grid.Row="4"
-                            Style="{x:DynamicResource DateTimePickerStyle}">
-                            <picker:SfDateTimePicker.Behaviors>
-                                <mct:EventToCommandBehavior
-                                    Command="{x:Binding ConfirmDateCommand,
-                                                        Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                    CommandParameter="{x:Binding SelectedDate,
-                                                                 Source={x:Reference picker}}"
-                                    EventName="OkButtonClicked" />
-                                <mct:EventToCommandBehavior
-                                    Command="{Binding CancelDateCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                                    CommandParameter="{x:Binding Source={x:Reference picker}}"
-                                    EventName="CancelButtonClicked" />
-                            </picker:SfDateTimePicker.Behaviors>
-                        </picker:SfDateTimePicker>
-
+                        <!--  Turbine Address Entry  -->
                         <Border
                             Grid.Row="2"
-                            Grid.ColumnSpan="2"
                             Style="{x:StaticResource CommonBorderStyle}">
                             <Entry
                                 Text="{x:Binding Turbine.Address}"
@@ -135,13 +107,64 @@
                                 VerticalTextAlignment="Center" />
                         </Border>
 
-                        <Button
+                        <!--  Turbine Power  -->
+                        <Border
                             Grid.Row="3"
-                            Grid.ColumnSpan="2"
+                            Style="{x:StaticResource CommonBorderStyle}">
+                            <Entry
+                                FontAttributes="Bold"
+                                Text="Turbine Power:"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </Border>
+
+                        <!--  Capacity Factor  -->
+                        <Border
+                            Grid.Row="4"
+                            Style="{x:StaticResource CommonBorderStyle}">
+                            <Entry
+                                FontAttributes="Bold"
+                                Text="Capacity factor:"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </Border>
+
+                        <!--  CO2 Emission Offset  -->
+                        <Border
+                            Grid.Row="5"
+                            Style="{x:StaticResource CommonBorderStyle}">
+                            <Entry
+                                FontAttributes="Bold"
+                                Text="CO2 emission offset:"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </Border>
+
+                        <!--  Hidden Date Picker  -->
+                        <picker:SfDateTimePicker
+                            x:Name="picker"
+                            Grid.Row="6"
+                            Style="{x:DynamicResource DateTimePickerStyle}">
+                            <picker:SfDateTimePicker.Behaviors>
+                                <mct:EventToCommandBehavior
+                                    Command="{Binding BindingContext.CancelDateCommand, Source={x:Reference TurbinesCollection}}"
+                                    CommandParameter="{x:Binding Source={x:Reference picker}}"
+                                    EventName="CancelButtonClicked" />
+                                <mct:EventToCommandBehavior
+                                    Command="{Binding BindingContext.ConfirmDateCommand, Source={x:Reference TurbinesCollection}}"
+                                    CommandParameter="{x:Binding Source={x:Reference picker},
+                                                                 Path=SelectedDate}"
+                                    EventName="OkButtonClicked" />
+                            </picker:SfDateTimePicker.Behaviors>
+                        </picker:SfDateTimePicker>
+
+                        <!--  Save Button  -->
+                        <Button
+                            Grid.Row="7"
                             Command="{Binding SaveAndCloseCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                             CommandParameter="{x:Binding Source={x:Reference TurbinePopUp}}"
                             CornerRadius="8"
-                            IsEnabled="{x:Binding IsSaveEnable}"
+                            IsEnabled="{Binding Turbine.IsValid}"
                             VerticalOptions="End" />
                     </Grid>
 

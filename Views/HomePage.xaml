@@ -108,8 +108,8 @@
                         </Border.StrokeShape>
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{x:Binding Source={x:RelativeSource AncestorType={x:Type vm:HomePageViewModel}},
-                                                    Path=ShowNewsDetailCommand}"
+                                Command="{x:Binding ShowNewsDetailCommand,
+                                                    Source={x:RelativeSource AncestorType={x:Type vm:HomePageViewModel}}}"
                                 CommandParameter="{x:Binding .}" />
                         </Border.GestureRecognizers>
                     </Border>

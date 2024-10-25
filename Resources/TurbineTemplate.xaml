@@ -73,6 +73,8 @@
 
 
     </DataTemplate>
+
+
     <local:DeviceDataTemplateSelector
         x:Key="SelectDataTemplateSelector"
         DeskTopTemplate="{StaticResource DeskTopTemplate}"

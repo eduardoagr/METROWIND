@@ -28,9 +28,7 @@
                 AnimationDuration="200"
                 IsExpanded="{x:Binding IsExpanded}">
                 <expander:SfExpander.Header>
-                    <Grid
-                        Padding="20,0,0,0"
-                        RowDefinitions="48">
+                    <Grid RowDefinitions="48">
                         <Label Style="{x:StaticResource ChooseStationLabelStyle}" />
                     </Grid>
                 </expander:SfExpander.Header>
@@ -48,7 +46,7 @@
                                             <Label Style="{x:StaticResource ElectricBoltLabelStyle}" />
                                             <Label
                                                 Style="{x:StaticResource AddressLabelStyle}"
-                                                Text="{x:Binding Turbine.Address}" />
+                                                Text="{x:Binding Turbine.Name}" />
                                         </HorizontalStackLayout>
                                         <Border.Behaviors>
                                             <mct:TouchBehavior
@@ -57,7 +55,8 @@
                                         </Border.Behaviors>
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer
-                                                Command="{x:Binding Source={x:Reference stationsMapPage}, Path=BindingContext.ItemSelectedCommand}"
+                                                Command="{x:Binding Source={x:Reference stationsMapPage},
+                                                                    Path=BindingContext.ItemSelectedCommand}"
                                                 CommandParameter="{x:Binding Turbine}" />
                                         </Border.GestureRecognizers>
 
@@ -78,7 +77,6 @@
                 <DataTemplate x:DataType="model:TurbinePin">
                     <controls:CustomMapPin
                         Address="{x:Binding Turbine.Address}"
-                        Label="{x:Binding Turbine.Label}"
                         Location="{x:Binding Turbine.Location}"
                         MarkerClickedCommand="{x:Binding PinClickedCommand}"
                         MarkerClickedCommandParameter="{x:Binding Turbine}"

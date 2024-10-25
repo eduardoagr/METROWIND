@@ -92,11 +92,11 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.55" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.55" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.55" />
-		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.55" />
-		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.55" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.56" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.56" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.56" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.56" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.56" />
 	</ItemGroup>
 
 	<ItemGroup>
