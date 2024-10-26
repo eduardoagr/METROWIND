@@ -1,7 +1,7 @@
 ﻿namespace METROWIND.ViewModel {
 
     public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService,
-        DeviceLanguageService languageService) :
+        DeviceLanguageService languageService, IFilePicker filePicker) :
         ChargingStationsMapPageViewModel(turbinesService) {
 
         CollectionView? TurbinesCollection;
@@ -109,9 +109,6 @@
 
         }
 
-
-
-
         [RelayCommand]
         async Task SaveAndClose(SfPopup popUp) {
 
@@ -126,6 +123,7 @@
                         Name = Turbine.Name,
                         Address = Turbine.Address,
                         StringifyInstalationDate = Turbine.StringifyInstalationDate,
+                        Images = Turbine.Images,
                         Location = turbineLocation
                     },
                 }, OnPinMarkerClickedCommand!);
@@ -174,6 +172,39 @@
 #else
             await Task.CompletedTask;
 #endif
+        }
+
+        [RelayCommand]
+        async Task PickImages(object o) {
+
+#if ANDROID || IOS
+
+            if (o is Grid g) {
+
+                foreach (var item in g.Children.OfType<Border>()) {
+
+                    if (item.Content is Entry e) {
+
+                        await e.HideKeyboardAsync();
+                    }
+
+                }
+            }
+
+#endif
+
+            var results = await filePicker.PickMultipleAsync(new PickOptions {
+
+                FileTypes = FilePickerFileType.Images,
+            });
+
+            foreach (var result in results) {
+                if (!Turbine!.Images!.Contains(result.FullPath)) {
+
+                    Turbine.Images.Add(result.FullPath);
+                }
+
+            }
         }
     }
 }

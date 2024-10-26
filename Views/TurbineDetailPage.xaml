@@ -12,7 +12,7 @@
             <Label
                 Margin="20"
                 HorizontalOptions="Center"
-                Text="{x:Binding SelectedTurbine.Address}"
+                Text="{x:Binding SelectedTurbine.Images.Count}"
                 VerticalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>

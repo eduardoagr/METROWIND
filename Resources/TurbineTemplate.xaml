@@ -27,9 +27,9 @@
 
             <controls:TurbineData
                 x:Name="TirbineDataControl"
-                TurbineAddres="{Binding Turbine.Address}"
-                TurbineCreationDate="{Binding Turbine.StringifyInstalationDate}"
-                TurbineName="{Binding Turbine.Name}" />
+                TurbineAddres="{x:Binding Turbine.Address}"
+                TurbineCreationDate="{x:Binding Turbine.StringifyInstalationDate}"
+                TurbineName="{x:Binding Turbine.Name}" />
 
         </SwipeView>
     </DataTemplate>
@@ -42,9 +42,9 @@
 
             <controls:TurbineData
                 Grid.ColumnSpan="2"
-                TurbineAddres="{Binding Turbine.Address}"
-                TurbineCreationDate="{Binding Turbine.StringifyInstalationDate}"
-                TurbineName="{Binding Turbine.Name}" />
+                TurbineAddres="{x:Binding Turbine.Address}"
+                TurbineCreationDate="{x:Binding Turbine.StringifyInstalationDate}"
+                TurbineName="{x:Binding Turbine.Name}" />
 
             <Border
                 BackgroundColor="#C62B26"
@@ -55,19 +55,22 @@
                     Style="{x:StaticResource DeleteLabelStyleDesktop}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer
-                            Command="{Binding DeleteTurbineCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                            CommandParameter="{Binding .}" />
+                            Command="{x:Binding DeleteTurbineCommand,
+                                                Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                            CommandParameter="{x:Binding .}" />
                     </Label.GestureRecognizers>
                 </Label>
             </Border>
 
             <Grid.GestureRecognizers>
                 <PointerGestureRecognizer
-                    PointerEnteredCommand="{Binding MouseEnterCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                    PointerEnteredCommandParameter="{Binding Source={x:Reference GridContainer}}" />
+                    PointerEnteredCommand="{x:Binding MouseEnterCommand,
+                                                      Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                    PointerEnteredCommandParameter="{x:Binding Source={x:Reference GridContainer}}" />
                 <PointerGestureRecognizer
-                    PointerExitedCommand="{Binding MouseLeaveCommand, Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                    PointerExitedCommandParameter="{Binding Source={x:Reference GridContainer}}" />
+                    PointerExitedCommand="{x:Binding MouseLeaveCommand,
+                                                     Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                    PointerExitedCommandParameter="{x:Binding Source={x:Reference GridContainer}}" />
             </Grid.GestureRecognizers>
         </Grid>
 
@@ -77,7 +80,7 @@
 
     <local:DeviceDataTemplateSelector
         x:Key="SelectDataTemplateSelector"
-        DeskTopTemplate="{StaticResource DeskTopTemplate}"
-        PhoneTemplate="{StaticResource PhoneTemplate}" />
+        DeskTopTemplate="{x:StaticResource DeskTopTemplate}"
+        PhoneTemplate="{x:StaticResource PhoneTemplate}" />
 
 </ResourceDictionary>

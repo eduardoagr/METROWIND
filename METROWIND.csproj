@@ -44,7 +44,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#17241b" BaseSize="256,258" />
 
 		<!-- Images -->	
 		<MauiImage Include="Resources\Images\*" />
@@ -112,15 +112,15 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResource.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\AppResource.es.Designer.cs">
-	    <DependentUpon>AppResource.es.resx</DependentUpon>
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	  </Compile>
 	  <Compile Update="Resources\Raw\AppResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResource.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\AppResource.es.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppResource.es.resx</DependentUpon>
 	  </Compile>
 	  <Compile Update="Resources\TurbineTemplate.xaml.cs">
 	    <DependentUpon>TurbineTemplate.xaml</DependentUpon>
@@ -128,13 +128,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\AppResource.es.resx">
-	    <LastGenOutput>AppResource.es.Designer.cs</LastGenOutput>
-	    <Generator>ResXFileCodeGenerator</Generator>
-	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\AppResource.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\AppResource.es.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>AppResource.es.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 

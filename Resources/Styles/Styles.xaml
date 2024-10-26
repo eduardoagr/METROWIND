@@ -477,7 +477,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="MinimumDate" Value="{x:Static sys:DateTime.Now}" />
         <Setter Property="Mode" Value="Dialog" />
-        <Setter Property="TextDisplayMode" Value="FadeAndShrink"/>
+        <Setter Property="TextDisplayMode" Value="FadeAndShrink" />
         <Setter Property="FooterView">
             <Setter.Value>
                 <picker:PickerFooterView
@@ -751,7 +751,7 @@
         x:Key="TurbineCollectionComboBoxStyle"
         TargetType="inputLayout:SfTextInputLayout">
         <Setter Property="Margin" Value="10" />
-        <Setter Property="Hint" Value="{x:Static rex:AppResource.SearchTurbine}" />
+        <Setter Property="Hint" Value="{x:Static rex:AppResource.TurbineSearch}" />
         <Setter Property="ContainerType" Value="Outlined" />
         <Setter Property="OutlineCornerRadius" Value="8" />
         <Setter Property="IsHintAlwaysFloated" Value="True" />

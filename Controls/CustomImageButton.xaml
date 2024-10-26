@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ImageButton">
 
-    <HorizontalStackLayout BindingContext="{Binding Source={x:Reference ImageButton}}">
+    <HorizontalStackLayout BindingContext="{x:Binding Source={x:Reference ImageButton}}">
         <Border
             Margin="10"
             Padding="10"
@@ -14,19 +14,19 @@
             <Image
                 Aspect="AspectFit"
                 HeightRequest="40"
-                Source="{Binding ImageName}"
+                Source="{x:Binding ImageName}"
                 VerticalOptions="Center"
                 WidthRequest="40" />
             <Border.GestureRecognizers>
                 <TapGestureRecognizer
-                    Command="{Binding ClickCommand}"
-                    CommandParameter="{Binding Parameters}" />
+                    Command="{x:Binding ClickCommand}"
+                    CommandParameter="{x:Binding Parameters}" />
             </Border.GestureRecognizers>
         </Border>
 
         <Label
             Padding="0,0,10,0"
-            Text="{Binding Caption}"
+            Text="{x:Binding Caption}"
             TextColor="Black"
             VerticalTextAlignment="Center" />
 

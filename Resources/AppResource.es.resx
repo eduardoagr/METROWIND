@@ -168,23 +168,35 @@
   <data name="Satelite" xml:space="preserve">
     <value>Satélite</value>
   </data>
-  <data name="SearchTurbine" xml:space="preserve">
-    <value>Búsqueda de una turbina</value>
-  </data>
   <data name="Seconds" xml:space="preserve">
     <value>Segundos</value>
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Estaciones de carga</value>
   </data>
+  <data name="TubinePower" xml:space="preserve">
+    <value>Potencia de la turbina</value>
+  </data>
   <data name="TurbineAddress" xml:space="preserve">
     <value>Dirección</value>
+  </data>
+  <data name="TurbineCapacity" xml:space="preserve">
+    <value>Factor de capacidad</value>
+  </data>
+  <data name="TurbineCarbonRemoval" xml:space="preserve">
+    <value>Eliminación de CO₂ actual</value>
   </data>
   <data name="TurbineDetails" xml:space="preserve">
     <value>Detalles de la turbina</value>
   </data>
+  <data name="TurbineEmission" xml:space="preserve">
+    <value>Compensación de CO₂</value>
+  </data>
+  <data name="TurbineImages" xml:space="preserve">
+    <value>Imagenes de la turbina</value>
+  </data>
   <data name="TurbineInstalationDateTime" xml:space="preserve">
-    <value>Instalación de turbina</value>
+    <value>Fecha Instalación </value>
   </data>
   <data name="TurbineName" xml:space="preserve">
     <value>Nombre</value>
@@ -193,7 +205,7 @@
     <value>Turbinas</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
-    <value>Noricias</value>
+    <value>Noticias</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Año</value>

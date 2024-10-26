@@ -214,15 +214,6 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search for a turbine .
-        /// </summary>
-        internal static string SearchTurbine {
-            get {
-                return ResourceManager.GetString("SearchTurbine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Seconds.
         /// </summary>
         internal static string Seconds {
@@ -241,11 +232,38 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turbine power.
+        /// </summary>
+        internal static string TubinePower {
+            get {
+                return ResourceManager.GetString("TubinePower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string TurbineAddress {
             get {
                 return ResourceManager.GetString("TurbineAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capaity factor.
+        /// </summary>
+        internal static string TurbineCapacity {
+            get {
+                return ResourceManager.GetString("TurbineCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current carbon removal.
+        /// </summary>
+        internal static string TurbineCarbonRemoval {
+            get {
+                return ResourceManager.GetString("TurbineCarbonRemoval", resourceCulture);
             }
         }
         
@@ -259,7 +277,25 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turbine intalation.
+        ///   Looks up a localized string similar to CO₂ emissions offset.
+        /// </summary>
+        internal static string TurbineEmission {
+            get {
+                return ResourceManager.GetString("TurbineEmission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turbine images.
+        /// </summary>
+        internal static string TurbineImages {
+            get {
+                return ResourceManager.GetString("TurbineImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation date.
         /// </summary>
         internal static string TurbineInstalationDateTime {
             get {
@@ -282,6 +318,15 @@ namespace METROWIND.Resources {
         internal static string TurbinesCollection {
             get {
                 return ResourceManager.GetString("TurbinesCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string TurbineSearch {
+            get {
+                return ResourceManager.GetString("TurbineSearch", resourceCulture);
             }
         }
         

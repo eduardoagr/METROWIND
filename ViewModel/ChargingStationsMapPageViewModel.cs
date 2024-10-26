@@ -66,11 +66,11 @@ namespace METROWIND.ViewModel {
 
         [RelayCommand]
         void ChangeMapType(int mapType) {
-
             MapView!.MapType = mapType switch {
                 0 => MapType.Street,
                 1 => MapType.Satellite,
-                _ => throw new ArgumentOutOfRangeException(nameof(mapType), mapType, null),
+                2 => MapType.Hybrid, // Example: Handle mapType 2
+                _ => throw new ArgumentOutOfRangeException(nameof(mapType), mapType, "Invalid map type"),
             };
             IsOptionsOpen = false;
         }

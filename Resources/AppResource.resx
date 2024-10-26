@@ -168,29 +168,44 @@
   <data name="Satelite" xml:space="preserve">
     <value>Satelite</value>
   </data>
-  <data name="SearchTurbine" xml:space="preserve">
-    <value>Search for a turbine </value>
-  </data>
   <data name="Seconds" xml:space="preserve">
     <value>Seconds</value>
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Charging stations</value>
   </data>
+  <data name="TubinePower" xml:space="preserve">
+    <value>Turbine power</value>
+  </data>
   <data name="TurbineAddress" xml:space="preserve">
     <value>Address</value>
+  </data>
+  <data name="TurbineCapacity" xml:space="preserve">
+    <value>Capaity factor</value>
+  </data>
+  <data name="TurbineCarbonRemoval" xml:space="preserve">
+    <value>Current carbon removal</value>
   </data>
   <data name="TurbineDetails" xml:space="preserve">
     <value>Turbine details</value>
   </data>
+  <data name="TurbineEmission" xml:space="preserve">
+    <value>CO₂ emissions offset</value>
+  </data>
+  <data name="TurbineImages" xml:space="preserve">
+    <value>Turbine images</value>
+  </data>
   <data name="TurbineInstalationDateTime" xml:space="preserve">
-    <value>Turbine intalation</value>
+    <value>Installation date</value>
   </data>
   <data name="TurbineName" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="TurbinesCollection" xml:space="preserve">
     <value>Turbines</value>
+  </data>
+  <data name="TurbineSearch" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>What's new</value>

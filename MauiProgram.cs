@@ -22,8 +22,6 @@
 
                     handlers.AddHandler<BorderlessEntry, EntryHandler>();
 
-                    handlers.AddHandler<BorderlessSearchBar, SearchBarHandler>();
-
                 }).ConfigureEssentials(essentials => {
 
                     essentials.UseMapServiceToken(AppConstants.BINGMAPS_APIKEY);
@@ -33,8 +31,6 @@
 
 
             BorderlessEntryHandler.ApplyCustomHandler();
-
-            BorderlessSearchBarHandler.ApplyCustomHandler();
 
 
 
@@ -46,6 +42,7 @@
             builder.Services.AddSingleton<HttpService>();
             builder.Services.AddSingleton<TurbinesService>();
             builder.Services.AddSingleton<GeoapifyService>();
+            builder.Services.AddSingleton(FilePicker.Default);
             builder.Services.AddSingleton(Connectivity.Current);
             builder.Services.AddSingleton<DeviceLanguageService>();
 

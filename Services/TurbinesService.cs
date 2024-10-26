@@ -15,7 +15,7 @@
         private void InitializeTurbinePins() {
             TurbinePins.Add(new TurbinePin {
                 Turbine = new Turbine {
-                    Id = currentId,
+                    Username = currentId,
                     Name = "Estación Ciudadela Simón Bolívar",
                     Address = "Av. de las Américas, Guayaquil 090513, Ecuador",
                     Location = new Location(-2.151993, -79.886109),
@@ -29,7 +29,7 @@
             // New turbine
             TurbinePins.Add(new TurbinePin {
                 Turbine = new Turbine {
-                    Id = ++currentId, // Increment the ID for the new turbine
+                    Username = ++currentId, // Increment the ID for the new turbine
                     Name = "Estación La Libertad",
                     Address = "Calle 24 de Mayo, La Libertad 240204, Ecuador",
                     Location = new Location(-2.230234, -80.910807),
@@ -45,7 +45,7 @@
 
         public void AddTurbinePin(TurbinePin turbinePin, ICommand pinClickedCommand) {
             if (turbinePin != null) {
-                turbinePin.Turbine!.Id = currentId++;
+                turbinePin.Turbine!.Username = currentId++;
                 turbinePin.PinClickedCommand = pinClickedCommand;
                 TurbinePins.Add(turbinePin);
             }

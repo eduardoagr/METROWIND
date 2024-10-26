@@ -13,15 +13,15 @@
             <Label
                 FontAttributes="Bold"
                 Style="{x:StaticResource TurbineDataLabelStyleStyle}"
-                Text="{Binding TurbineName}" />
+                Text="{x:Binding TurbineName}" />
 
             <Label
                 Style="{x:StaticResource TurbineDataLabelStyleStyle}"
-                Text="{Binding TurbineAddres}" />
+                Text="{x:Binding TurbineAddres}" />
 
             <Label
                 Style="{x:StaticResource TurbineDataLabelStyleStyle}"
-                Text="{Binding TurbineCreationDate}" />
+                Text="{x:Binding TurbineCreationDate}" />
 
             <Label
                 Style="{x:StaticResource C02LabelStyle}"
