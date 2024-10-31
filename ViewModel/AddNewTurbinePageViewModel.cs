@@ -2,18 +2,31 @@
 
 public partial class AddNewTurbinePageViewModel(TurbinesService turbinesService,
     DeviceLanguageService deviceLanguageService, IFilePicker filePicker,
-    IMediaPicker mediaPicker, IGeolocation geolocation, FirebaseAuthClient authClient)
-    : ChargingStationsMapPageViewModel(turbinesService) {
+    IMediaPicker mediaPicker, IGeolocation geolocation, ILogger<AddNewTurbinePage> logger) :
+    ChargingStationsMapPageViewModel(turbinesService) {
 
     [ObservableProperty]
     Turbine turbine = new();
 
     CultureInfo? currentCulture;
 
-    [RelayCommand]
-    void NavigateBack() {
+    private FirestoreDb? firestoreDb;
 
-        Shell.Current.GoToAsync("..", true);
+    [RelayCommand]
+    void PageEnter() {
+
+        InitializeAsync();
+
+    }
+
+    private async void InitializeAsync() {
+
+    }
+
+    [RelayCommand]
+    async Task NavigateBack() {
+
+        await Shell.Current.GoToAsync("..", true);
     }
 
 
@@ -52,6 +65,7 @@ public partial class AddNewTurbinePageViewModel(TurbinesService turbinesService,
             views.IsOpen = false;
         }
     }
+
 
     async Task<Location?> GetLocation(string address) {
 

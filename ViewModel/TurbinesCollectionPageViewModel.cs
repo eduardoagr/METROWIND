@@ -1,8 +1,7 @@
 ﻿
 namespace METROWIND.ViewModel {
 
-    public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService,
-        ILogger<TurbinesCollectionPageViewModel> logger)
+    public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService)
         : ChargingStationsMapPageViewModel(turbinesService) {
         CollectionView? TurbinesCollection;
 
@@ -10,8 +9,6 @@ namespace METROWIND.ViewModel {
 
         [RelayCommand]
         void PageEnter(CollectionView collectionView) {
-
-            logger.LogInformation("Page loads correctly");
 
             if (collectionView != null) {
 
@@ -21,14 +18,7 @@ namespace METROWIND.ViewModel {
 
         [RelayCommand]
         void AddNewTurbinePopUp() {
-
-            try {
-                Shell.Current.GoToAsync($"{nameof(AddNewTurbinePage)}", true);
-            }
-            catch (Exception ex) {
-
-                Debug.WriteLine($"Navigation error: {ex.Message}");
-            }
+            Shell.Current.GoToAsync($"{nameof(AddNewTurbinePage)}", true);
         }
 
         [RelayCommand]

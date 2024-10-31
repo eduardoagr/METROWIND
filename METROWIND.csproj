@@ -86,6 +86,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.22.2" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
@@ -172,5 +173,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionMETROWINDHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -62,6 +62,9 @@ namespace METROWIND {
 
                 }));
 
+
+
+
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<HttpService>();
             builder.Services.AddSingleton<TurbinesService>();
