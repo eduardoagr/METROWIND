@@ -11,7 +11,6 @@
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="shelly"
     x:DataType="vm:AppShellViewModel"
-    
     Shell.FlyoutBehavior="{OnIdiom Desktop=Locked,
                                    Phone=Disabled}">
 
@@ -82,6 +81,13 @@
         Shell.FlyoutItemIsVisible="False"
         Shell.NavBarIsVisible="False" />
 
+    <ShellContent
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="LoginPage"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="False" />
+
     <!--  Flyout for Desktop  -->
     <FlyoutItem
         Title="{x:Static rex:AppResource.HomePage}"
@@ -106,6 +112,16 @@
         <ShellContent
             ContentTemplate="{DataTemplate views:TurbinesCollectionPage}"
             Route="TurbinesCollectionPage" />
+    </FlyoutItem>
+
+
+    <FlyoutItem
+        Title="{x:Static rex:AppResource.Support}"
+        Icon="help_desktop.png">
+
+        <ShellContent
+            ContentTemplate="{DataTemplate views:SupportPage}"
+            Route="SupportPage" />
     </FlyoutItem>
 
     <!--  TabBar for Phone  -->
@@ -136,6 +152,16 @@
                 ContentTemplate="{DataTemplate views:TurbinesCollectionPage}"
                 Route="TurbinesCollectionPage" />
         </Tab>
+
+        <Tab
+            Title="{x:Static rex:AppResource.Support}"
+            Icon="help_phone.png">
+
+            <ShellContent
+                ContentTemplate="{DataTemplate views:SupportPage}"
+                Route="SupportPage" />
+        </Tab>
+
     </TabBar>
 
 </Shell>

@@ -1,7 +1,10 @@
 ﻿global using CommunityToolkit.Maui;
+global using CommunityToolkit.Maui.Core.Platform;
 global using CommunityToolkit.Maui.Maps;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
+
+global using Firebase.Auth;
 
 global using METROWIND.Constants;
 global using METROWIND.Controls;
@@ -17,6 +20,7 @@ global using Microsoft.Maui.Handlers;
 global using Microsoft.Maui.Maps;
 
 global using Syncfusion.Maui.Core.Hosting;
+global using Syncfusion.Maui.Inputs;
 global using Syncfusion.Maui.Picker;
 global using Syncfusion.Maui.Popup;
 
@@ -27,6 +31,3 @@ global using System.Net.Http.Json;
 global using System.Text.Json.Serialization;
 global using System.Windows.Input;
 
-global using CommunityToolkit.Maui.Core.Platform;
-
-global using Syncfusion.Maui.Inputs;

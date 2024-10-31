@@ -1,6 +1,4 @@
-﻿using METROWIND.Resources;
-
-namespace METROWIND.Models {
+﻿namespace METROWIND.Models {
 
     public partial class Turbine : ObservableObject {
 
@@ -35,10 +33,10 @@ namespace METROWIND.Models {
         DateTime? instalationDateTime;
 
         [ObservableProperty]
-        ObservableCollection<string>? images = [];
+        ObservableCollection<FileData>? images = [];
 
         [ObservableProperty]
-        string? stringifyInstalationDate = AppResource.TurbineInstalationDateTime;
+        string? stringifyInstalationDate;
 
         string? Label => Name;
 

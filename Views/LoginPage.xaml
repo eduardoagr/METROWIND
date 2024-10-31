@@ -1,0 +1,182 @@
+<ContentPage
+    x:Class="METROWIND.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constants="clr-namespace:METROWIND.Constants"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    Title="LoginPage"
+    x:DataType="vm:LoginPageViewModel">
+
+    <VerticalStackLayout
+        Padding="20,0"
+        Spacing="20">
+
+        <Image
+            Margin="-15,0,0,0"
+            HeightRequest="120"
+            HorizontalOptions="Start"
+            Source="icon_win.png"
+            WidthRequest="120" />
+
+        <Label
+            FontAttributes="Bold"
+            FontSize="30"
+            Text="{x:Static rex:AppResource.Welcome}" />
+
+        <Label
+            Margin="0,-20,0,0"
+            FontSize="Medium"
+            Text="{x:Static rex:AppResource.WelcomeSubtitle}" />
+
+        <Border
+            Margin="0,40,0,0"
+            Style="{x:StaticResource CommonBorderStyle}">
+            <Grid ColumnDefinitions="Auto,*">
+                <Label
+                    Padding="5"
+                    FontFamily="ma"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static constants:MaterialFonts.Email}"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    Grid.Column="1"
+                    Placeholder="{x:Static rex:AppResource.Email}"
+                    Text="{x:Binding User.Email}" />
+            </Grid>
+        </Border>
+
+        <Border Style="{x:StaticResource CommonBorderStyle}">
+            <Grid ColumnDefinitions="Auto,*, Auto">
+                <Label
+                    Padding="5"
+                    FontFamily="ma"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static constants:MaterialFonts.Password}"
+                    VerticalTextAlignment="Center" />
+                <Entry
+                    Grid.Column="1"
+                    IsPassword="{x:Binding IsHidden}"
+                    Placeholder="{x:Static rex:AppResource.Password}"
+                    Text="{x:Binding User.Password}" />
+                <Label
+                    x:Name="PasswordVisibilityIcon"
+                    Grid.Column="2"
+                    Padding="5"
+                    FontFamily="ma"
+                    FontSize="Large"
+                    Text="{x:Static constants:MaterialFonts.Visibility_off}"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{x:Binding MakePasswordVisibleCommand}"
+                            CommandParameter="{x:Reference PasswordVisibilityIcon}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Border>
+
+        <Button
+            Command="{x:Binding LoginCommand}"
+            IsEnabled="{x:Binding User.IsValid}"
+            Text="{x:Static rex:AppResource.Login}" />
+
+        <Label
+            HorizontalTextAlignment="Center"
+            Text="{x:Static rex:AppResource.CreateAccount}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{x:Binding RegisterPopUpCommand}"
+                    CommandParameter="{x:Reference sfPopup}" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <syncfusion:SfPopup
+            x:Name="sfPopup"
+            AcceptButtonText="{x:Static rex:AppResource.Register}"
+            AcceptCommand="{x:Binding CreateAccountCommand}"
+            AnimationMode="Zoom"
+            AutoSizeMode="Height"
+            ShowFooter="True"
+            ShowHeader="False"
+            WidthRequest="{OnIdiom Desktop=420,
+                                   Phone=320}">
+            <syncfusion:SfPopup.ContentTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout
+                        Margin="20"
+                        Spacing="20">
+                        <Border
+                            Margin="0,40,0,0"
+                            Style="{x:StaticResource CommonBorderStyle}">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Label
+                                    Padding="5"
+                                    FontFamily="ma"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{x:Static constants:MaterialFonts.Email}"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center" />
+                                <Entry
+                                    Grid.Column="1"
+                                    Placeholder="{x:Static rex:AppResource.Email}"
+                                    Text="{x:Binding User.Email}"
+                                    TextColor="Black" />
+                            </Grid>
+                        </Border>
+
+                        <Border Style="{x:StaticResource CommonBorderStyle}">
+                            <Grid ColumnDefinitions="Auto,*, Auto">
+                                <Label
+                                    Padding="5"
+                                    FontFamily="ma"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{x:Static constants:MaterialFonts.Password}"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center" />
+                                <Entry
+                                    Grid.Column="1"
+                                    IsPassword="{x:Binding IsHidden}"
+                                    Placeholder="{x:Static rex:AppResource.Password}"
+                                    Text="{x:Binding User.Password}"
+                                    TextColor="Black" />
+                                <Label
+                                    x:Name="SignInPasswordIcon"
+                                    Grid.Column="2"
+                                    Padding="5"
+                                    FontFamily="ma"
+                                    FontSize="Large"
+                                    Text="{x:Static constants:MaterialFonts.Visibility_off}"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding MakePasswordVisibleCommand}"
+                                            CommandParameter="{x:Reference SignInPasswordIcon}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </syncfusion:SfPopup.ContentTemplate>
+            <syncfusion:SfPopup.FooterTemplate>
+                <DataTemplate>
+                    <Button
+                        Margin="20"
+                        Command="{x:Binding CreateAccountCommand}"
+                        CommandParameter="{x:Reference sfPopup}"
+                        HorizontalOptions="End"
+                        IsEnabled="{x:Binding User.IsValid}"
+                        Text="{x:Static rex:AppResource.CreateAccuntBton}" />
+                </DataTemplate>
+            </syncfusion:SfPopup.FooterTemplate>
+        </syncfusion:SfPopup>
+    </VerticalStackLayout>
+
+</ContentPage>

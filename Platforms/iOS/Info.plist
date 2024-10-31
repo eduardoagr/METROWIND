@@ -32,7 +32,6 @@
 	<string>Can we use your location at all times?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Can we use your location when your app is being used?</string>
-
 	<key>com.apple.security.assets.movies.read-only</key>
 	<true/>
 	<key>com.apple.security.assets.music.read-only</key>
@@ -45,5 +44,7 @@
 	<true/>
 	<key>com.apple.security.personal-information.photos-library</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>&gt;This app needs access to the camera to take photos.</string>
 </dict>
 </plist>

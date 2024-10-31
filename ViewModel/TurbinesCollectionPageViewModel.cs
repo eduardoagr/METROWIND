@@ -1,28 +1,17 @@
-﻿namespace METROWIND.ViewModel {
+﻿
+namespace METROWIND.ViewModel {
 
     public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService,
-        DeviceLanguageService languageService, IFilePicker filePicker) :
-        ChargingStationsMapPageViewModel(turbinesService) {
-
+        ILogger<TurbinesCollectionPageViewModel> logger)
+        : ChargingStationsMapPageViewModel(turbinesService) {
         CollectionView? TurbinesCollection;
-
-        [ObservableProperty]
-        public Turbine? turbine = new();
-
-
-        [ObservableProperty]
-        bool isDatePickerOpen;
-
-        SfDateTimePicker? DateTimePicker;
-
-        CultureInfo? currentCulture;
-
-        private readonly DeviceLanguageService deviceLanguageService = languageService;
 
         public ObservableCollection<GeoapifyResult> Suggestions { get; private set; } = [];
 
         [RelayCommand]
         void PageEnter(CollectionView collectionView) {
+
+            logger.LogInformation("Page loads correctly");
 
             if (collectionView != null) {
 
@@ -31,48 +20,14 @@
         }
 
         [RelayCommand]
-        void OpenDatePicker(SfDateTimePicker views) {
+        void AddNewTurbinePopUp() {
 
-            if (views != null) {
-
-                DateTimePicker = views;
-
-                views.IsOpen = true;
+            try {
+                Shell.Current.GoToAsync($"{nameof(AddNewTurbinePage)}", true);
             }
-        }
+            catch (Exception ex) {
 
-        [RelayCommand]
-        void ConfirmDate(DateTime dateTime) {
-
-            if (DateTimePicker != null) {
-
-                currentCulture = new CultureInfo(deviceLanguageService.GetDeviceLanguage());
-
-                Turbine!.InstalationDateTime = dateTime;
-
-                DateTimePicker.IsOpen = false;
-
-                Turbine.StringifyInstalationDate = Turbine.InstalationDateTime?.ToString("D", currentCulture)!;
-
-            }
-        }
-
-        [RelayCommand]
-        void CancelDate(SfDateTimePicker views) {
-
-            if (views != null) {
-
-                views.IsOpen = false;
-            }
-        }
-
-
-        [RelayCommand]
-        void AddNewTurbinePopUp(SfPopup popUp) {
-
-            if (popUp != null) {
-
-                popUp.IsOpen = true;
+                Debug.WriteLine($"Navigation error: {ex.Message}");
             }
         }
 
@@ -110,43 +65,6 @@
         }
 
         [RelayCommand]
-        async Task SaveAndClose(SfPopup popUp) {
-
-
-            var turbineLocation = await GetLocation(Turbine!.Address!);
-
-            if (turbineLocation != null) {
-
-                _turbinesService.AddTurbinePin(new TurbinePin {
-
-                    Turbine = new Turbine {
-                        Name = Turbine.Name,
-                        Address = Turbine.Address,
-                        StringifyInstalationDate = Turbine.StringifyInstalationDate,
-                        Images = Turbine.Images,
-                        Location = turbineLocation
-                    },
-                }, OnPinMarkerClickedCommand!);
-
-                popUp.IsOpen = false;
-
-            }
-        }
-
-        async Task<Location?> GetLocation(string address) {
-
-            try {
-                IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
-                return locations?.FirstOrDefault();
-            }
-            catch (Exception ex) {
-                // Handle the exception (e.g., log it or show an error message to the user)
-                Console.WriteLine($"Error getting location: {ex.Message}");
-                return null;
-            }
-        }
-
-        [RelayCommand]
         async Task DeleteTurbine(TurbinePin turbine) {
 
             await Task.Delay(300);
@@ -172,39 +90,6 @@
 #else
             await Task.CompletedTask;
 #endif
-        }
-
-        [RelayCommand]
-        async Task PickImages(object o) {
-
-#if ANDROID || IOS
-
-            if (o is Grid g) {
-
-                foreach (var item in g.Children.OfType<Border>()) {
-
-                    if (item.Content is Entry e) {
-
-                        await e.HideKeyboardAsync();
-                    }
-
-                }
-            }
-
-#endif
-
-            var results = await filePicker.PickMultipleAsync(new PickOptions {
-
-                FileTypes = FilePickerFileType.Images,
-            });
-
-            foreach (var result in results) {
-                if (!Turbine!.Images!.Contains(result.FullPath)) {
-
-                    Turbine.Images.Add(result.FullPath);
-                }
-
-            }
         }
     }
 }

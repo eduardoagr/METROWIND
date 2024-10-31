@@ -1,0 +1,220 @@
+﻿<ContentPage
+    x:Class="METROWIND.Views.AddNewTurbinePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constans="clr-namespace:METROWIND.Constants"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:model="clr-namespace:METROWIND.Models"
+    xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:sfPopup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:Name="NewTurbinePopUp"
+    x:DataType="vm:AddNewTurbinePageViewModel"
+    Shell.NavBarIsVisible="True">
+
+    <Shell.TitleView>
+        <Grid>
+            <Label
+                Margin="{OnIdiom Desktop='15,0,0,0',
+                                 Default=0}"
+                FontAttributes="Bold"
+                Text="{x:Static rex:AppResource.TurbineDetails}"
+                TextColor="White"
+                VerticalTextAlignment="Center" />
+            <Label Style="{x:StaticResource CameraLabelStyle}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{x:Binding TakePhotoCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </Shell.TitleView>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{x:Binding NavigateBackCommand}" />
+    </Shell.BackButtonBehavior>
+
+    <Grid
+        Padding="10"
+        RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, 20, *"
+        RowSpacing="10">
+        <!--  Installation Date Entry  -->
+        <Border Style="{x:StaticResource CommonBorderStyle}">
+            <Grid ColumnDefinitions="*,Auto">
+                <Button
+                    Grid.Column="1"
+                    Command="{x:Binding OpenDatePickerCommand}"
+                    CommandParameter="{x:Reference picker}"
+                    FontFamily="ma"
+                    Text="{x:Static constans:MaterialFonts.Calendar_month}" />
+                <Entry
+                    IsReadOnly="True"
+                    Placeholder="{x:Static rex:AppResource.TurbineInstalationDateTime}"
+                    Text="{x:Binding Turbine.StringifyInstalationDate}" />
+            </Grid>
+        </Border>
+        <!--  Turbine Name Entry  -->
+        <Border
+            Grid.Row="1"
+            Style="{x:StaticResource CommonBorderStyle}">
+            <Entry
+                Keyboard="Text"
+                Placeholder="{x:Static rex:AppResource.TurbineName}"
+                Text="{Binding Turbine.Name}" />
+        </Border>
+        <!--  Turbine Address Entry  -->
+        <Border
+            Grid.Row="2"
+            Style="{x:StaticResource CommonBorderStyle}">
+            <Grid ColumnDefinitions="*,Auto">
+                <Entry
+                    Keyboard="Text"
+                    Placeholder="{x:Static rex:AppResource.TurbineAddress}"
+                    Text="{x:Binding Turbine.Address}"
+                    VerticalTextAlignment="Center" />
+                <Button
+                    Grid.Column="1"
+                    Command="{x:Binding GetCurrentLocationCommand}"
+                    FontFamily="ma"
+                    Text="{x:Static constans:MaterialFonts.My_location}" />
+            </Grid>
+        </Border>
+        <!--  Turbine Power  -->
+        <Border
+            Grid.Row="3"
+            Style="{x:StaticResource CommonBorderStyle}">
+            <Entry
+                FontAttributes="Bold"
+                Keyboard="Numeric"
+                Placeholder="{x:Static rex:AppResource.TubinePower}"
+                Text="{Binding Turbine.Power}"
+                VerticalOptions="Center" />
+        </Border>
+        <!--  Capacity Factor  -->
+        <Border
+            Grid.Row="4"
+            Style="{x:StaticResource CommonBorderStyle}">
+            <Entry
+                FontAttributes="Bold"
+                Keyboard="Numeric"
+                Placeholder="{x:Static rex:AppResource.TurbineCapacity}"
+                Text="{Binding Turbine.CapacityFator}"
+                VerticalOptions="Center" />
+        </Border>
+        <!--  CO2 Emission Offset  -->
+        <Border
+            Grid.Row="5"
+            Style="{x:StaticResource CommonBorderStyle}">
+            <Entry
+                FontAttributes="Bold"
+                Keyboard="Numeric"
+                Placeholder="{x:Static rex:AppResource.TurbineEmission}"
+                Text="{Binding Turbine.Co2EmissionOffset}"
+                VerticalOptions="Center" />
+        </Border>
+        <!--  Hidden Date Picker  -->
+        <picker:SfDateTimePicker
+            x:Name="picker"
+            Grid.Row="7"
+            BackgroundColor="Transparent"
+            Style="{x:DynamicResource DateTimePickerStyle}">
+            <picker:SfDateTimePicker.Behaviors>
+                <mct:EventToCommandBehavior
+                    Command="{Binding CancelDateCommand}"
+                    CommandParameter="{Binding Source={x:Reference picker}}"
+                    EventName="CancelButtonClicked" />
+                <mct:EventToCommandBehavior
+                    Command="{Binding ConfirmDateCommand}"
+                    CommandParameter="{Binding Source={x:Reference picker}}"
+                    EventName="OkButtonClicked" />
+            </picker:SfDateTimePicker.Behaviors>
+        </picker:SfDateTimePicker>
+
+        <!--  Turbine Images Button  -->
+        <Button
+            Grid.Row="6"
+            Command="{x:Binding OpenPopUpCommand}"
+            CommandParameter="{x:Binding Source={x:Reference sfPopup}}"
+            Text="{x:Static rex:AppResource.TurbineImages}" />
+
+        <!--  Save Button  -->
+        <Button
+            Grid.Row="9"
+            BackgroundColor="{x:StaticResource Primary}"
+            Command="{x:Binding SaveAndCloseCommand}"
+            IsEnabled="{x:Binding Turbine.IsValid}"
+            Text="{x:Static rex:AppResource.NewTurbine}"
+            VerticalOptions="EndAndExpand" />
+
+        <!--  Images pop up  -->
+        <sfPopup:SfPopup
+            x:Name="sfPopup"
+            HeaderHeight="100"
+            Style="{x:StaticResource AddTurbineNewImagesPopUp}">
+            <sfPopup:SfPopup.HeaderTemplate>
+                <DataTemplate>
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="End"
+                        Text="{x:Static constans:MaterialFonts.Close}" />
+                </DataTemplate>
+            </sfPopup:SfPopup.HeaderTemplate>
+            <sfPopup:SfPopup.ContentTemplate>
+                <DataTemplate>
+                    <Grid
+                        Margin="20"
+                        RowDefinitions="Auto,*"
+                        RowSpacing="10">
+                        <Button
+                            Command="{x:Binding PickImagesCommand}"
+                            Text="{x:Static rex:AppResource.AddImages}" />
+                        <CollectionView
+                            Grid.Row="1"
+                            ItemsSource="{x:Binding Turbine.Images}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout
+                                    Orientation="Vertical"
+                                    Span="{OnIdiom Phone=1,
+                                                   Desktop=4}"
+                                    VerticalItemSpacing="10" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:FileData">
+                                    <Grid
+                                        Margin="0,10,0,0"
+                                        ColumnDefinitions="80,80"
+                                        ColumnSpacing="50">
+                                        <Image Source="{x:Binding FullPath}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Text="{x:Binding FileName}"
+                                            TextColor="Black"
+                                            VerticalTextAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </DataTemplate>
+            </sfPopup:SfPopup.ContentTemplate>
+            <sfPopup:SfPopup.FooterTemplate>
+                <DataTemplate>
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{x:Binding ClosePopUpCommand}"
+                        CommandParameter="{x:Binding Source={x:Reference sfPopup}}"
+                        HorizontalOptions="End"
+                        Text="{x:Static rex:AppResource.Close}"
+                        TextColor="Black"
+                        VerticalOptions="End" />
+                </DataTemplate>
+            </sfPopup:SfPopup.FooterTemplate>
+            <sfPopup:SfPopup.PopupStyle>
+                <sfPopup:PopupStyle CornerRadius="0" />
+            </sfPopup:SfPopup.PopupStyle>
+        </sfPopup:SfPopup>
+
+    </Grid>
+
+</ContentPage>

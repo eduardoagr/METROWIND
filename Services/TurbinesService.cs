@@ -21,7 +21,6 @@
                     Location = new Location(-2.151993, -79.886109),
                     InstalationDateTime = new DateTime(2024, 1, 1, 13, 00, 00),
                     StringifyInstalationDate = DateTime.Now.ToString("D"),
-                    Images = ["charge_station.png", "wind_turbine.png"]
                 },
                 PinClickedCommand = null // Set this dynamically later
             });
@@ -34,8 +33,7 @@
                     Address = "Calle 24 de Mayo, La Libertad 240204, Ecuador",
                     Location = new Location(-2.230234, -80.910807),
                     InstalationDateTime = new DateTime(2024, 3, 15, 10, 30, 00),
-                    StringifyInstalationDate = DateTime.Now.ToString("D"),
-                    Images = ["turbine_1.png", "wind_turbine_2.png"]
+                    StringifyInstalationDate = DateTime.Now.ToString("D")
                 },
                 PinClickedCommand = null // Set this dynamically later
             });

@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Tu cuenta ha sido creada exitosamente</value>
+  </data>
+  <data name="AddImages" xml:space="preserve">
+    <value>Añadir imagenes</value>
+  </data>
   <data name="AddressFound" xml:space="preserve">
     <value>No encontramos la dirección</value>
   </data>
   <data name="ChooseStation" xml:space="preserve">
     <value>Elija una estación de carga</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Modo compacto</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>¿Aún no tienes una cuenta? Registrate aqui</value>
+  </data>
+  <data name="CreateAccuntBton" xml:space="preserve">
+    <value>Crear cuenta</value>
   </data>
   <data name="DateCancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -141,6 +156,9 @@
   <data name="Detail" xml:space="preserve">
     <value>Artículo</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
   <data name="Energy" xml:space="preserve">
     <value>Tecnología para un Futuro Sostenible</value>
   </data>
@@ -150,8 +168,14 @@
   <data name="Hour" xml:space="preserve">
     <value>Hora</value>
   </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Este email no es valido</value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>Cargando noticias</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Iniciar sesión</value>
   </data>
   <data name="MapTypes" xml:space="preserve">
     <value>Tipos de mapa</value>
@@ -165,6 +189,15 @@
   <data name="NewTurbine" xml:space="preserve">
     <value>Guardar </value>
   </data>
+  <data name="NotExist" xml:space="preserve">
+    <value>El usuario no existe</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Crear cuenta</value>
+  </data>
   <data name="Satelite" xml:space="preserve">
     <value>Satélite</value>
   </data>
@@ -173,6 +206,12 @@
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Estaciones de carga</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Ayuda</value>
   </data>
   <data name="TubinePower" xml:space="preserve">
     <value>Potencia de la turbina</value>
@@ -203,6 +242,21 @@
   </data>
   <data name="TurbinesCollection" xml:space="preserve">
     <value>Turbinas</value>
+  </data>
+  <data name="Uknown" xml:space="preserve">
+    <value>Error desconocido</value>
+  </data>
+  <data name="UserExist" xml:space="preserve">
+    <value>El usuario ya existe</value>
+  </data>
+  <data name="WeekPassord" xml:space="preserve">
+    <value>La contraseña debe tener más de 6 caracteres</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenido de nuevo</value>
+  </data>
+  <data name="WelcomeSubtitle" xml:space="preserve">
+    <value>Inicia sesión para continuar</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>Noticias</value>

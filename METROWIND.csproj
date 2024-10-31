@@ -44,7 +44,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#17241b" BaseSize="256,258" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#2c0198" BaseSize="256,256" Resize="True" />
 
 		<!-- Images -->	
 		<MauiImage Include="Resources\Images\*" />
@@ -89,14 +89,19 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
+		<PackageReference Include="Google.Cloud.Firestore" Version="3.9.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.56" />
-		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.56" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.56" />
-		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.56" />
-		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.56" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.57" />
+		<PackageReference Include="Syncfusion.Maui.Expander" Version="27.1.57" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="27.1.57" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="27.1.57" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="27.1.57" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -125,6 +130,9 @@
 	  <Compile Update="Resources\TurbineTemplate.xaml.cs">
 	    <DependentUpon>TurbineTemplate.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\AddNewTurbinePage.xaml.cs">
+	    <DependentUpon>AddNewTurbinePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -151,7 +159,16 @@
 	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AddNewTurbinePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\StartupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SupportPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

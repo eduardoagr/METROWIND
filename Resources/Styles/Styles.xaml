@@ -569,6 +569,19 @@
     </Style>
 
     <Style
+        x:Key="CameraLabelStyle"
+        TargetType="Label">
+        <Setter Property="Padding" Value="0,0,20,0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="ma" />
+        <Setter Property="Text" Value="{x:Static constant:MaterialFonts.Photo_camera}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style
         x:Key="ArticleDetailLabelStyle"
         TargetType="Label">
         <Setter Property="Margin" Value="20,0,0,0" />
@@ -761,6 +774,19 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style
+        x:Key="AddTurbineNewImagesPopUp"
+        TargetType="popup:SfPopup">
+        <Setter Property="AnimationMode" Value="Zoom" />
+        <Setter Property="IsFullScreen" Value="True" />
+        <Setter Property="IsVisible" Value="False" />
+        <Setter Property="ShowCloseButton" Value="True" />
+        <Setter Property="ShowFooter" Value="True" />
+        <Setter Property="ShowHeader" Value="False" />
+        <Setter Property="StaysOpen" Value="True" />
+    </Style>
+
 
 
 </ResourceDictionary>
