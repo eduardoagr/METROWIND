@@ -8,7 +8,6 @@
 
             Routing.RegisterRoute(nameof(TurbineDetailPage), typeof(TurbineDetailPage));
             Routing.RegisterRoute(nameof(ArticleDetailsPage), typeof(ArticleDetailsPage));
-            Routing.RegisterRoute(nameof(AddNewTurbinePage), typeof(AddNewTurbinePage));
 
             RenderBasedOnDevice(DeviceInfo.Idiom);
         }

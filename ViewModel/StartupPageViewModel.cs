@@ -9,7 +9,7 @@
             await Task.Delay(2500);
 
             // Then navigate to HomePage
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}", true);
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}", true);
         }
     }
 }

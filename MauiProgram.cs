@@ -82,9 +82,6 @@ namespace METROWIND {
             builder.Services.AddTransient<TurbinesCollectionPage, TurbinesCollectionPageViewModel>();
             builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
 
-            builder.Services.AddTransient<AddNewTurbinePage, AddNewTurbinePageViewModel>();
-            builder.Services.AddSingleton<LoginPage, LoginPageViewModel>();
-
             builder.Services.AddSingleton<AppShell, AppShellViewModel>();
             builder.Services.AddSingleton<StartupPage, StartupPageViewModel>();
             builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();

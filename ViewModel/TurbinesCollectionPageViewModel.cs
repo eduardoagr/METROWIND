@@ -17,17 +17,6 @@ namespace METROWIND.ViewModel {
         }
 
         [RelayCommand]
-        void AddNewTurbinePopUp() {
-            Shell.Current.GoToAsync($"{nameof(AddNewTurbinePage)}", true);
-        }
-
-        [RelayCommand]
-        async Task AutocompleteSuggestion(string val) {
-
-            await GetSugestions(val);
-        }
-
-        [RelayCommand]
         void MouseEnter(Grid g) {
             if (g.Children[1] is Border border) {
                 border.IsVisible = true;
@@ -39,18 +28,6 @@ namespace METROWIND.ViewModel {
             if (g.Children[1] is Border border) {
                 border.IsVisible = false;
             }
-
-        }
-
-
-        async Task GetSugestions(string val) {
-
-            //var results = await geoapifyService.GetAutocompleteResunt(val);
-
-            Suggestions.Clear();
-            //foreach (var item in results.Results) {
-
-            //Suggestions.Add(item);
 
         }
 

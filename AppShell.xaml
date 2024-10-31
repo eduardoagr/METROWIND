@@ -81,13 +81,6 @@
         Shell.FlyoutItemIsVisible="False"
         Shell.NavBarIsVisible="False" />
 
-    <ShellContent
-        ContentTemplate="{DataTemplate views:LoginPage}"
-        Route="LoginPage"
-        Shell.FlyoutBehavior="Disabled"
-        Shell.FlyoutItemIsVisible="False"
-        Shell.NavBarIsVisible="False" />
-
     <!--  Flyout for Desktop  -->
     <FlyoutItem
         Title="{x:Static rex:AppResource.HomePage}"

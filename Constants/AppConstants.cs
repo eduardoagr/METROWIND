@@ -25,5 +25,7 @@
 
         public const string FIREBASEAUTHKEY = "AIzaSyCjgpfcOrD_mQSm1lwY7gwffY74pEDj3Zw";
         public const string FIREBASEDOMAIN = "metrowind-2e473.firebaseapp.com";
+
+        public const string FIREBASE_PROJECT_ID = "metrowind-2e473";
     }
 }

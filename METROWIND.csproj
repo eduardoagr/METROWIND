@@ -131,9 +131,6 @@
 	  <Compile Update="Resources\TurbineTemplate.xaml.cs">
 	    <DependentUpon>TurbineTemplate.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\AddNewTurbinePage.xaml.cs">
-	    <DependentUpon>AddNewTurbinePage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -155,15 +152,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\TurbineTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ArticleDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AddNewTurbinePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StartupPage.xaml">

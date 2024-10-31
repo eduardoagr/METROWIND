@@ -9,78 +9,14 @@
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:METROWIND.ViewModel">
 
-    <DataTemplate
-        x:Key="PhoneTemplate"
-        x:DataType="{x:Null}">
 
-        <SwipeView Threshold="200">
-            <SwipeView.RightItems>
-                <SwipeItems Mode="Execute">
-                    <SwipeItemView
-                        Command="{x:Binding DeleteTurbineCommand,
-                                            Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                        CommandParameter="{x:Binding .}">
-                        <Label Style="{x:StaticResource DeleteStyleForMobile}" />
-                    </SwipeItemView>
-                </SwipeItems>
-            </SwipeView.RightItems>
+    <DataTemplate x:Key="turbineTemplte">
 
-            <controls:TurbineData
-                x:Name="TirbineDataControl"
-                TurbineAddres="{x:Binding Turbine.Address}"
-                TurbineCreationDate="{x:Binding Turbine.StringifyInstalationDate}"
-                TurbineName="{x:Binding Turbine.Name}" />
-
-        </SwipeView>
+        <controls:TurbineData
+            Grid.ColumnSpan="2"
+            TurbineAddres="{x:Binding Turbine.Address}"
+            TurbineCreationDate="{x:Binding Turbine.StringifyInstalationDate}"
+            TurbineName="{x:Binding Turbine.Name}" />
     </DataTemplate>
-
-    <DataTemplate x:Key="DeskTopTemplate">
-
-        <Grid
-            x:Name="GridContainer"
-            ColumnDefinitions="*">
-
-            <controls:TurbineData
-                Grid.ColumnSpan="2"
-                TurbineAddres="{x:Binding Turbine.Address}"
-                TurbineCreationDate="{x:Binding Turbine.StringifyInstalationDate}"
-                TurbineName="{x:Binding Turbine.Name}" />
-
-            <Border
-                BackgroundColor="#C62B26"
-                Style="{x:StaticResource DeleteBtonBorderStyle}">
-                <Label
-                    Grid.RowSpan="3"
-                    Grid.Column="1"
-                    Style="{x:StaticResource DeleteLabelStyleDesktop}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{x:Binding DeleteTurbineCommand,
-                                                Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                            CommandParameter="{x:Binding .}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </Border>
-
-            <Grid.GestureRecognizers>
-                <PointerGestureRecognizer
-                    PointerEnteredCommand="{x:Binding MouseEnterCommand,
-                                                      Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                    PointerEnteredCommandParameter="{x:Binding Source={x:Reference GridContainer}}" />
-                <PointerGestureRecognizer
-                    PointerExitedCommand="{x:Binding MouseLeaveCommand,
-                                                     Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
-                    PointerExitedCommandParameter="{x:Binding Source={x:Reference GridContainer}}" />
-            </Grid.GestureRecognizers>
-        </Grid>
-
-
-    </DataTemplate>
-
-
-    <local:DeviceDataTemplateSelector
-        x:Key="SelectDataTemplateSelector"
-        DeskTopTemplate="{x:StaticResource DeskTopTemplate}"
-        PhoneTemplate="{x:StaticResource PhoneTemplate}" />
 
 </ResourceDictionary>
