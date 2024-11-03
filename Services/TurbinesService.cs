@@ -1,52 +1,81 @@
 ﻿namespace METROWIND.Services {
-
     public class TurbinesService {
-        int currentId = 0;
+        private const string collectionName = "turbines";
+        private readonly DeviceLanguageService _deviceLanguageService;
+        private readonly FirestoreService _firestoreService;
+        private readonly BlobServiceClient _blobServiceClient;
+        private static System.Timers.Timer? _timer;
+        private FirestoreDb? _firestoreDb;
 
-        private readonly DeviceLanguageService deviceLanguageService;
-        public ObservableCollection<TurbinePin> TurbinePins { get; private set; } = [];
+        public ObservableCollection<TurbinePin> TurbinePins { get; set; } = [];
 
-        public TurbinesService(DeviceLanguageService deviceLanguageService) {
-            InitializeTurbinePins();
-
-            this.deviceLanguageService = deviceLanguageService;
+        public TurbinesService(DeviceLanguageService deviceLanguageService,
+            FirestoreService firestoreService, BlobServiceClient blobServiceClient) {
+            _deviceLanguageService = deviceLanguageService;
+            _firestoreService = firestoreService;
+            _blobServiceClient = blobServiceClient;
+            InitializeAsync();
         }
 
-        private void InitializeTurbinePins() {
-            TurbinePins.Add(new TurbinePin {
-                Turbine = new Turbine {
-                    Username = currentId,
+        private async void InitializeAsync() {
+            await _firestoreService.InitializeFirestoreAsync();
+            _firestoreDb = _firestoreService.GetFirestoreDb();
+            if (_firestoreDb != null) {
+                await LoadOrInitializeTurbineAsync();
+                InitializeTimer();
+            }
+        }
+
+        async Task LoadOrInitializeTurbineAsync() {
+            var turbinesRef = _firestoreDb!.Collection(collectionName);
+            var snapshot = await turbinesRef.GetSnapshotAsync();
+
+            if (snapshot.Count == 0) {
+                var turbine = new Turbine {
+                    Id = "EC-G-SB",
+                    Country = "Ecuador",
                     Name = "Estación Ciudadela Simón Bolívar",
                     Address = "Av. de las Américas, Guayaquil 090513, Ecuador",
-                    Location = new Location(-2.151993, -79.886109),
-                    InstalationDateTime = new DateTime(2024, 1, 1, 13, 00, 00),
-                    StringifyInstalationDate = DateTime.Now.ToString("D"),
-                },
-                PinClickedCommand = null // Set this dynamically later
-            });
+                    Latitude = -2.151993,
+                    Longitude = -79.886109,
+                    InstalationDateTime = new DateTime(2024, 8, 2, 0, 0, 0, DateTimeKind.Utc),
+                    StringifyInstalationDate = DateTime.UtcNow.ToString("D"),
+                    ImagesURL = [],
+                };
 
-            // New turbine
-            TurbinePins.Add(new TurbinePin {
-                Turbine = new Turbine {
-                    Username = ++currentId, // Increment the ID for the new turbine
-                    Name = "Estación La Libertad",
-                    Address = "Calle 24 de Mayo, La Libertad 240204, Ecuador",
-                    Location = new Location(-2.230234, -80.910807),
-                    InstalationDateTime = new DateTime(2024, 3, 15, 10, 30, 00),
-                    StringifyInstalationDate = DateTime.Now.ToString("D")
-                },
-                PinClickedCommand = null // Set this dynamically later
-            });
+                turbine.RemovedCo2Kilograms = Math.Round(turbine.EnergyProduced * turbine.Co2EmissionOffset, 5);
 
+                await AddTurbineImages(turbine);
 
+                var turbineDocRef = turbinesRef.Document(turbine.Id);
+
+                await turbineDocRef.SetAsync(turbine);
+                // Add to observable collection if necessary
+                AddToObservable(turbine);
+            }
+            else {
+                foreach (var document in snapshot.Documents) {
+                    var turbine = document.ConvertTo<Turbine>();
+                    turbine.Id = document.Id;
+                    await AddTurbineImages(turbine);
+                    AddToObservable(turbine);
+                }
+            }
         }
 
-        public void AddTurbinePin(TurbinePin turbinePin, ICommand pinClickedCommand) {
-            if (turbinePin != null) {
-                turbinePin.Turbine!.Username = currentId++;
-                turbinePin.PinClickedCommand = pinClickedCommand;
-                TurbinePins.Add(turbinePin);
+        private async Task AddTurbineImages(Turbine turbine) {
+
+            turbine.ImagesURL!.Clear();
+
+            var containerClient = _blobServiceClient.GetBlobContainerClient(turbine.Country!.ToLower());
+            await foreach (var item in containerClient.GetBlobsAsync()) {
+                var blobClient = containerClient.GetBlobClient(item.Name);
+                turbine.ImagesURL!.Add(blobClient.Uri.ToString());
             }
+        }
+
+        private void AddToObservable(Turbine turbine) {
+            TurbinePins.Add(new TurbinePin { Turbine = turbine });
         }
 
         public ObservableCollection<TurbinePin> GetTurbinePinsForUI(ICommand pinClickedCommand) {
@@ -54,6 +83,32 @@
                 pin.PinClickedCommand = pinClickedCommand;
             }
             return TurbinePins;
+        }
+
+        private void InitializeTimer() {
+            _timer = new System.Timers.Timer(1000); // 1000 milliseconds = 1 second
+            _timer.Elapsed += async (sender, e) => await UpdateCO2ValueAsync();
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
+        }
+
+        private async Task UpdateCO2ValueAsync() {
+            var turbineRef = _firestoreDb!.Collection("turbines").Document("EC-G-SB");
+            var snapshot = await turbineRef.GetSnapshotAsync();
+            var turbine = snapshot.ConvertTo<Turbine>();
+
+            // Check initial value before update
+            var beforeUpdate = turbine.RemovedCo2Kilograms;
+
+            // Increment and round
+            turbine.RemovedCo2Kilograms = Math.Round(beforeUpdate + 0.0007, 5);
+
+            turbine.FinalCo2Removed = turbine.RemovedCo2Kilograms;
+
+            // Debug the values
+            Debug.WriteLine($"Before Update: {beforeUpdate}, After Update: {turbine.RemovedCo2Kilograms}");
+
+            await turbineRef.SetAsync(turbine, SetOptions.Overwrite);
         }
     }
 }

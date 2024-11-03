@@ -13,11 +13,6 @@
     x:Name="homePage"
     x:DataType="vm:HomePageViewModel">
 
-    <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior
-            Command="{x:Binding AppearingCommand}"
-            EventName="Appearing" />
-    </ContentPage.Behaviors>
 
     <Grid
         Padding="16,0,16,0"
@@ -39,7 +34,6 @@
                                           Light={x:StaticResource Black}}" />
 
         <CollectionView
-            x:Name="NewsCollectionView"
             Grid.Row="1"
             ItemsSource="{x:Binding NewsList}"
             SelectionMode="None">

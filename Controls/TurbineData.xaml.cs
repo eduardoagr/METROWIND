@@ -33,30 +33,12 @@ public partial class TurbineData : ContentView {
     }
 
 
-    public static readonly BindableProperty PointerEnterCommandProperty = BindableProperty.Create(
-        nameof(PointerEnterCommand), typeof(ICommand), typeof(TurbineData));
+    public static readonly BindableProperty Co2KgRemovedProperty = BindableProperty.Create(
+        nameof(Co2KgRemoved), typeof(string), typeof(TurbineData));
 
-    public ICommand PointerEnterCommand {
-        get => (ICommand)GetValue(PointerEnterCommandProperty);
-        set => SetValue(PointerEnterCommandProperty, value);
-    }
-
-
-    public static readonly BindableProperty PointerLeaveCommandProperty = BindableProperty.Create(
-        nameof(PointerLeaveCommand), typeof(ICommand), typeof(TurbineData));
-
-    public ICommand PointerLeaveCommand {
-        get => (ICommand)GetValue(PointerLeaveCommandProperty);
-        set => SetValue(PointerLeaveCommandProperty, value);
-    }
-
-
-    public static readonly BindableProperty IsDeleteVisibleProperty = BindableProperty.Create(
-        nameof(IsDeleteVisible), typeof(bool), typeof(TurbineData));
-
-    public bool IsDeleteVisible {
-        get => (bool)GetValue(IsDeleteVisibleProperty);
-        set => SetValue(IsDeleteVisibleProperty, value);
+    public string Co2KgRemoved {
+        get => (string)GetValue(Co2KgRemovedProperty);
+        set => SetValue(Co2KgRemovedProperty, value);
     }
 
 
@@ -68,5 +50,11 @@ public partial class TurbineData : ContentView {
         set => SetValue(TapCommandProperty, value);
     }
 
+    public static readonly BindableProperty TapCommandParameterProperty = BindableProperty.Create(
+           nameof(TapCommandParameter), typeof(object), typeof(TurbineData));
 
+    public object TapCommandParameter {
+        get => GetValue(TapCommandParameterProperty);
+        set => SetValue(TapCommandParameterProperty, value);
+    }
 }

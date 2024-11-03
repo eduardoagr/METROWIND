@@ -1,10 +1,15 @@
-﻿global using CommunityToolkit.Maui;
+﻿global using Azure.Storage.Blobs;
+
+global using CommunityToolkit.Maui;
 global using CommunityToolkit.Maui.Core.Platform;
 global using CommunityToolkit.Maui.Maps;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 
-global using Firebase.Auth;
+global using Google.Apis.Auth.OAuth2;
+global using Google.Cloud.Firestore;
+
+global using Grpc.Auth;
 
 global using METROWIND.Constants;
 global using METROWIND.Controls;
@@ -19,10 +24,10 @@ global using Microsoft.Maui.Controls.Maps;
 global using Microsoft.Maui.Handlers;
 global using Microsoft.Maui.Maps;
 
+global using Serilog;
+
 global using Syncfusion.Maui.Core.Hosting;
 global using Syncfusion.Maui.Inputs;
-global using Syncfusion.Maui.Picker;
-global using Syncfusion.Maui.Popup;
 
 global using System.Collections.ObjectModel;
 global using System.Diagnostics;

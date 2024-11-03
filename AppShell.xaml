@@ -107,14 +107,14 @@
             Route="TurbinesCollectionPage" />
     </FlyoutItem>
 
-
     <FlyoutItem
         Title="{x:Static rex:AppResource.Support}"
         Icon="help_desktop.png">
 
         <ShellContent
             ContentTemplate="{DataTemplate views:SupportPage}"
-            Route="SupportPage" />
+            Route="SupportPage"
+            Shell.NavBarIsVisible="False" />
     </FlyoutItem>
 
     <!--  TabBar for Phone  -->

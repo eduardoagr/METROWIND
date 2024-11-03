@@ -1,11 +1,13 @@
 ﻿
 namespace METROWIND.ViewModel {
 
-    public partial class TurbinesCollectionPageViewModel(TurbinesService turbinesService)
-        : ChargingStationsMapPageViewModel(turbinesService) {
+    public partial class TurbinesCollectionPageViewModel(HttpService service, DeviceLanguageService deviceLanguage,
+        TurbinesService turbinesService) : HomePageViewModel(service, deviceLanguage, turbinesService) {
+
         CollectionView? TurbinesCollection;
 
-        public ObservableCollection<GeoapifyResult> Suggestions { get; private set; } = [];
+        [ObservableProperty]
+        Turbine? turbine;
 
         [RelayCommand]
         void PageEnter(CollectionView collectionView) {
@@ -17,30 +19,8 @@ namespace METROWIND.ViewModel {
         }
 
         [RelayCommand]
-        void MouseEnter(Grid g) {
-            if (g.Children[1] is Border border) {
-                border.IsVisible = true;
-            }
-        }
-
-        [RelayCommand]
-        void MouseLeave(Grid g) {
-            if (g.Children[1] is Border border) {
-                border.IsVisible = false;
-            }
-
-        }
-
-        [RelayCommand]
-        async Task DeleteTurbine(TurbinePin turbine) {
-
-            await Task.Delay(300);
-            Turbines.Remove(turbine);
-
-        }
-
-        [RelayCommand]
         async Task SelectedItemChange(SfComboBox combo) {
+
             if (combo.SelectedIndex < 0) {
                 return;
             }

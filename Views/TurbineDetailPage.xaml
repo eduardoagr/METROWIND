@@ -7,15 +7,33 @@
     Title="{x:Static rex:AppResource.TurbineDetails}"
     x:DataType="vm:TurbineDetailPageViewModel">
 
-    <ScrollView>
-        <VerticalStackLayout>
-            <Label
-                Margin="20"
-                HorizontalOptions="Center"
-                Text="{x:Binding SelectedTurbine.Address}"
-                VerticalOptions="Center" />
-        </VerticalStackLayout>
-    </ScrollView>
+    <Grid RowDefinitions="*,*,*">
+        <CollectionView
+            Grid.Row="2"
+            Margin="5"
+            HorizontalOptions="CenterAndExpand"
+            ItemsSource="{x:Binding SelectedTurbine.ImagesURL}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="5"
+                    Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Image>
+                        <Image.Source>
+                            <UriImageSource
+                                CacheValidity="1"
+                                CachingEnabled="True"
+                                Uri="{x:Binding .}" />
+                        </Image.Source>
+                    </Image>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
 
 
 </ContentPage>

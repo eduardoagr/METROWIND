@@ -1,31 +1,19 @@
-﻿using Map = Microsoft.Maui.Controls.Maps.Map;
+﻿
+using Map = Microsoft.Maui.Controls.Maps.Map;
 
 namespace METROWIND.ViewModel {
 
-    public partial class ChargingStationsMapPageViewModel : ObservableObject {
-
-        protected readonly TurbinesService _turbinesService;
+    public partial class ChargingStationsMapPageViewModel(
+        HttpService service, DeviceLanguageService deviceLanguage, TurbinesService turbinesService) :
+        HomePageViewModel(service, deviceLanguage, turbinesService) {
 
         private Map? MapView;
-
-        public ICommand? OnPinMarkerClickedCommand { get; }
 
         [ObservableProperty]
         bool isOptionsOpen;
 
         [ObservableProperty]
         bool isExpanded;
-
-        public ObservableCollection<TurbinePin> Turbines => _turbinesService.TurbinePins;
-
-        public ChargingStationsMapPageViewModel(TurbinesService turbinesService) {
-
-            OnPinMarkerClickedCommand = new Command<object>(OnPinMarkerClicked);
-
-            _turbinesService = turbinesService;
-
-            _turbinesService.GetTurbinePinsForUI(OnPinMarkerClickedCommand);
-        }
 
         [RelayCommand]
         private void Appearing(Map map) {
@@ -39,23 +27,11 @@ namespace METROWIND.ViewModel {
         [RelayCommand]
         void ItemSelected(Turbine Turbine) {
 
-            var mapSpan = MapSpan.FromCenterAndRadius(
-                Turbine.Location!,
+            var mapSpan = MapSpan.FromCenterAndRadius(Turbine.Location,
                 Distance.FromKilometers(0.4));
 
             MapView!.MoveToRegion(mapSpan);
             IsExpanded = false;
-        }
-
-        void OnPinMarkerClicked(object turbine) {
-            if (turbine != null) {
-                // Handle the pin click event
-                Shell.Current.GoToAsync($"{nameof(TurbineDetailPage)}",
-                    true,
-                    new Dictionary<string, object> {
-                    { "SelectedTurbine", turbine }
-                });
-            };
         }
 
         [RelayCommand]

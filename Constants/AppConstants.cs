@@ -12,11 +12,6 @@
         public const string
             SYNCFUSION_KEY = "MzQ4NTkxM0AzMjM3MmUzMDJlMzBsT1g5a3FQb1VvamorSzR3ZTVFVGpUcE5JYzh3SjJFazU4Ung5VjF2UXZnPQ==";
 
-        //Address atcomplete 
-
-        public const string GEOAPIFY_APIKEY = "d129ff64ae9a40c981d54d00d2d8a17e";
-        public const string GEOAPIFY_API = "https://api.geoapify.com/v1/geocode/autocomplete";
-
         //Bing Maps
 
         public const string BINGMAPS_APIKEY = "2MJcwb3sDhOi7KnZYZFz~kBuOXKu5oDgZhJzhgiR6Tg~Akm14AZMJcKfXhu0JgJPCOuYTWsnRF3VWJ91UX0_nHRYa4zl082ffWsy7DV-id6a";
@@ -27,5 +22,10 @@
         public const string FIREBASEDOMAIN = "metrowind-2e473.firebaseapp.com";
 
         public const string FIREBASE_PROJECT_ID = "metrowind-2e473";
+
+        //Azure connection string
+
+        public const string AZURE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=metrowindstorage;AccountKey=ZmY3ys1l0YjKBm1cTRfo4CI6Xg8xuYfCQaitnmQcey1+nIQzZf3B7Jl27ubQcyrTMhbdSVeOYpwH+ASt6ShJNA==;EndpointSuffix=core.windows.net";
+
     }
 }

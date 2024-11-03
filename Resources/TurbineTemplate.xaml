@@ -1,22 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ResourceDictionary
+﻿<ResourceDictionary
     x:Class="METROWIND.Resources.TurbineTemplate"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:constant="clr-namespace:METROWIND.Constants"
     xmlns:controls="clr-namespace:METROWIND.Controls"
     xmlns:local="clr-namespace:METROWIND"
+    xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:METROWIND.ViewModel">
 
 
-    <DataTemplate x:Key="turbineTemplte">
+    <DataTemplate x:Key="turbineTemplte" x:DataType="model:TurbinePin">
 
         <controls:TurbineData
             Grid.ColumnSpan="2"
+            TapCommand="{x:Binding OnPinMarkerClickedCommand,
+                                   Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+            TapCommandParameter="{x:Binding Turbine}"
             TurbineAddres="{x:Binding Turbine.Address}"
+            Co2KgRemoved="{x:Binding Turbine.FinalCo2Removed}"
             TurbineCreationDate="{x:Binding Turbine.StringifyInstalationDate}"
             TurbineName="{x:Binding Turbine.Name}" />
+        
     </DataTemplate>
 
 </ResourceDictionary>

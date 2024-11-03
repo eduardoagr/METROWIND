@@ -38,17 +38,16 @@ namespace METROWIND.Controls {
         public string CustomPinAddress {
             get => (string)GetValue(CustomPinAddressProperty);
             set => SetValue(CustomPinAddressProperty, value);
+
         }
 
-        public static readonly BindableProperty TurbineImagesProperty = BindableProperty.Create(
-            nameof(TurbineImages),
-            typeof(IEnumerable),
-            typeof(CustomMapPin));
 
+        public static readonly BindableProperty ImagesProperty = BindableProperty.Create(
+            nameof(Images), typeof(IEnumerable), typeof(CustomMapPin));
 
-        public IEnumerable TurbineImages {
-            get => (IEnumerable)GetValue(TurbineImagesProperty);
-            set => SetValue(TurbineImagesProperty, value);
+        public string Images {
+            get => (string)GetValue(ImagesProperty);
+            set => SetValue(ImagesProperty, value);
         }
 
 

@@ -1,22 +1,42 @@
 ﻿namespace METROWIND.ViewModel {
 
-    public partial class HomePageViewModel(HttpService httpService,
-        DeviceLanguageService deviceLanguageService) : ObservableObject {
+    public partial class HomePageViewModel : ObservableObject {
 
+        private readonly DeviceLanguageService deviceLanguageService;
+
+        private readonly HttpService httpService;
+
+        public Command<object> OnPinMarkerClickedCommand { get; set; }
+
+        protected readonly TurbinesService _turbinesService;
+
+        public ObservableCollection<TurbinePin> Turbines => _turbinesService.TurbinePins;
 
         [ObservableProperty]
         bool isLoading;
 
-        public ObservableCollection<Article>? NewsList { get; set; } =
-            [];
-
-        [RelayCommand]
-        void Appearing(CollectionView collectionView) {
+        public HomePageViewModel(HttpService service, DeviceLanguageService deviceLanguage, TurbinesService turbinesService) {
 
             IsLoading = true;
 
+            deviceLanguageService = deviceLanguage;
+
+            _turbinesService = turbinesService;
+
+            httpService = service;
+
+            OnPinMarkerClickedCommand = new Command<object>(OnPinMarkerClicked);
+
+            _turbinesService = turbinesService;
+
+            _turbinesService.GetTurbinePinsForUI(OnPinMarkerClickedCommand);
+
             LoadNews();
+
         }
+
+        public ObservableCollection<Article>? NewsList { get; set; } =
+            [];
         async void LoadNews() {
 
             var language = deviceLanguageService.GetDeviceLanguage();
@@ -46,6 +66,17 @@
                         { "articleObj", article }
                     });
             }
+        }
+
+        void OnPinMarkerClicked(object turbine) {
+            if (turbine != null) {
+                // Handle the pin click event
+                Shell.Current.GoToAsync($"{nameof(TurbineDetailPage)}",
+                    true,
+                    new Dictionary<string, object> {
+                    { "SelectedTurbine", turbine }
+                });
+            };
         }
     }
 }

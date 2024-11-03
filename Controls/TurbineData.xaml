@@ -5,6 +5,7 @@
     x:Name="TurbineInfo">
 
     <Border Style="{x:StaticResource CommonBorderStyle}">
+
         <VerticalStackLayout
             BackgroundColor="#4D9B9B"
             BindingContext="{x:Reference TurbineInfo}"
@@ -25,9 +26,17 @@
 
             <Label
                 Style="{x:StaticResource C02LabelStyle}"
-                Text="112.2343 kg CO₂" />
+                Text="{x:Binding Co2KgRemoved, StringFormat='{0:F5} kg CO₂'}" />
 
         </VerticalStackLayout>
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer
+                Command="{x:Binding TapCommand,
+                                    Source={x:Reference TurbineInfo}}"
+                CommandParameter="{x:Binding TapCommandParameter,
+                                             Source={x:Reference TurbineInfo}}" />
+        </Border.GestureRecognizers>
+
     </Border>
 
 

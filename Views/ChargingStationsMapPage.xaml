@@ -77,11 +77,11 @@
                 <DataTemplate x:DataType="model:TurbinePin">
                     <controls:CustomMapPin
                         Address="{x:Binding Turbine.Address}"
+                        Images="{x:Binding Turbine.ImagesURL}"
                         Label="{x:Binding Turbine.Name}"
                         Location="{x:Binding Turbine.Location}"
                         MarkerClickedCommand="{x:Binding PinClickedCommand}"
-                        MarkerClickedCommandParameter="{x:Binding Turbine}"
-                        TurbineImages="{x:Binding Turbine.Images}" />
+                        MarkerClickedCommandParameter="{x:Binding Turbine}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
