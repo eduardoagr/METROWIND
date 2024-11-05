@@ -1,12 +1,35 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="METROWIND.Views.SupportPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:METROWIND.Controls"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:rex="clr-namespace:METROWIND.Resources"
+    xmlns:vm="clr-namespace:METROWIND.ViewModel"
+    x:DataType="vm:SupportPageViewModel"
+    HideSoftInputOnTapped="True">
+
+    <Grid
+        Padding="10"
+        RowDefinitions="250,*"
+        RowSpacing="20">
+
+        <Border>
+            <controls:BorderlessEditor
+                Margin="5"
+                AutoSize="TextChanges"
+                IsSpellCheckEnabled="True"
+                Placeholder="{x:Static rex:AppResource.AppSuport}"
+                Text="{Binding TextToSend}" />
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8" />
+            </Border.StrokeShape>
+        </Border>
+
+        <Button
+            Grid.Row="2"
+            Command="{x:Binding SendEmailCommand}"
+            Text="{x:Static rex:AppResource.AppSend}"
+            VerticalOptions="EndAndExpand" />
+    </Grid>
 </ContentPage>

@@ -38,6 +38,12 @@ namespace METROWIND.ViewModel {
             await Task.CompletedTask;
 #endif
         }
+
+        partial void OnTurbineChanged(Turbine? value) {
+
+            Debug.WriteLine($"Turbine changed to: {value?.FinalCo2Removed}");
+            // Implementation of the method Debug.WriteLine($"Turbine changed to: {value?.Name}"); }
+        }
     }
 }
 

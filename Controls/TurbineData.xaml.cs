@@ -34,7 +34,7 @@ public partial class TurbineData : ContentView {
 
 
     public static readonly BindableProperty Co2KgRemovedProperty = BindableProperty.Create(
-        nameof(Co2KgRemoved), typeof(string), typeof(TurbineData));
+        nameof(Co2KgRemoved), typeof(string), typeof(TurbineData), null, BindingMode.TwoWay);
 
     public string Co2KgRemoved {
         get => (string)GetValue(Co2KgRemovedProperty);

@@ -36,8 +36,7 @@
         [FirestoreProperty]
         public List<string>? ImagesURL { get; set; }
 
-        [FirestoreProperty]
-        public string? StringifyInstalationDate { get; set; }
+        public string? StringifyInstalationDate => InstalationDateTime.ToString("D", CultureInfo.CurrentCulture);
 
         public string? Label => Name; // Keeps the display label for the map
 
@@ -66,6 +65,7 @@
 
         [ObservableProperty]
         public double finalCo2Removed;
+
 
         private static double RoundToDecimals(double value, int decimals = 2) {
             return Math.Round(value, decimals);

@@ -26,9 +26,13 @@ public static class MauiProgram {
 
                 essentials.UseMapServiceToken(AppConstants.BINGMAPS_APIKEY);
 
+            }).ConfigureMauiHandlers(handler => {
+
+                handler.AddHandler<BorderlessEditor, EditorHandler>();
             });
 
         BorderlessEntryHandler.ApplyCustomHandler();
+        BorderlesEditorHandler.ApplyCustomHandler();
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -49,6 +53,7 @@ public static class MauiProgram {
         builder.Services.AddSingleton(FilePicker.Default);
         builder.Services.AddSingleton(MediaPicker.Default);
         builder.Services.AddSingleton(Connectivity.Current);
+        builder.Services.AddSingleton(Email.Default);
         builder.Services.AddSingleton<DeviceLanguageService>();
 
 
@@ -62,6 +67,7 @@ public static class MauiProgram {
         builder.Services.AddSingleton<StartupPage, StartupPageViewModel>();
         builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();
         builder.Services.AddSingleton<HomePage, HomePageViewModel>();
+        builder.Services.AddTransient<SupportPage, SupportPageViewModel>();
 
         return builder.Build();
     }

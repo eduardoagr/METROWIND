@@ -39,9 +39,9 @@
             [];
         async void LoadNews() {
 
-            var language = deviceLanguageService.GetDeviceLanguage();
+            var language = deviceLanguageService.GetDeviceCultureInfo();
 
-            var newsUrl = AppConstants.GetNewsUrl(language);
+            var newsUrl = AppConstants.GetNewsUrl(language.TwoLetterISOLanguageName);
 
             NewsList!.Clear();
 

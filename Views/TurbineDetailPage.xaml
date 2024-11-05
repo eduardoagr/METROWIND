@@ -1,4 +1,4 @@
-<ContentPage
+﻿<ContentPage
     x:Class="METROWIND.Views.TurbineDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,10 +7,132 @@
     Title="{x:Static rex:AppResource.TurbineDetails}"
     x:DataType="vm:TurbineDetailPageViewModel">
 
-    <Grid RowDefinitions="*,*,*">
+    <Grid
+        RowDefinitions="Auto,*,*"
+        RowSpacing="20">
+
+        <Label
+            Padding="0,30,0,0"
+            HorizontalTextAlignment="Center"
+            Text="{x:Binding SelectedTurbine.Address}"
+            VerticalOptions="Center" />
+
+        <Grid
+            Grid.Row="1"
+            Margin="2"
+            Padding="10"
+            ColumnSpacing="2"
+            HorizontalOptions="Center"
+            RowSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border>
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Static rex:AppResource.TurbineInstalationDateTime}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border Grid.Row="1">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Static rex:AppResource.TubinePower}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border Grid.Row="2">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Static rex:AppResource.TurbineCapacity}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border Grid.Row="3">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Static rex:AppResource.TurbineEmission}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border Grid.Row="4">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Static rex:AppResource.TurbineCarbonRemoval}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border Grid.Column="1">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Binding SelectedTurbine.StringifyInstalationDate}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border
+                Grid.Row="1"
+                Grid.Column="1">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Binding SelectedTurbine.Power,
+                                     StringFormat='{0} kW'}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border
+                Grid.Row="2"
+                Grid.Column="1">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Binding SelectedTurbine.CapacityFactor}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border
+                Grid.Row="3"
+                Grid.Column="1">
+                <Label
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{x:Binding SelectedTurbine.Co2EmissionOffset,
+                                     StringFormat='{0} kg CO₂/kWh'}"
+                    VerticalOptions="Center" />
+            </Border>
+
+            <Border
+                Grid.Row="4"
+                Grid.Column="1">
+                <Label
+                    Padding="10,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{x:Binding SelectedTurbine.FinalCo2Removed,
+                                     StringFormat='{0} kg CO₂'}"
+                    VerticalOptions="Center" />
+            </Border>
+
+        </Grid>
+
         <CollectionView
             Grid.Row="2"
-            Margin="5"
+            Margin="20"
             HorizontalOptions="CenterAndExpand"
             ItemsSource="{x:Binding SelectedTurbine.ImagesURL}">
             <CollectionView.ItemsLayout>

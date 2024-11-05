@@ -88,6 +88,24 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        internal static string AppSend {
+            get {
+                return ResourceManager.GetString("AppSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How may we assist you?.
+        /// </summary>
+        internal static string AppSuport {
+            get {
+                return ResourceManager.GetString("AppSuport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a charging station.
         /// </summary>
         internal static string ChooseStation {

@@ -39,7 +39,6 @@
                     Latitude = -2.151993,
                     Longitude = -79.886109,
                     InstalationDateTime = new DateTime(2024, 8, 2, 0, 0, 0, DateTimeKind.Utc),
-                    StringifyInstalationDate = DateTime.UtcNow.ToString("D"),
                     ImagesURL = [],
                 };
 
@@ -93,22 +92,33 @@
         }
 
         private async Task UpdateCO2ValueAsync() {
-            var turbineRef = _firestoreDb!.Collection("turbines").Document("EC-G-SB");
+            var turbineRef = _firestoreDb!.Collection(collectionName).Document("EC-G-SB");
             var snapshot = await turbineRef.GetSnapshotAsync();
             var turbine = snapshot.ConvertTo<Turbine>();
 
             // Check initial value before update
             var beforeUpdate = turbine.RemovedCo2Kilograms;
 
+            turbine.FinalCo2Removed = beforeUpdate;
+
             // Increment and round
             turbine.RemovedCo2Kilograms = Math.Round(beforeUpdate + 0.0007, 5);
 
-            turbine.FinalCo2Removed = turbine.RemovedCo2Kilograms;
-
-            // Debug the values
-            Debug.WriteLine($"Before Update: {beforeUpdate}, After Update: {turbine.RemovedCo2Kilograms}");
-
             await turbineRef.SetAsync(turbine, SetOptions.Overwrite);
+
+            UpdateTurbineInCollection(turbine);
+        }
+
+        private void UpdateTurbineInCollection(Turbine updatedTurbine) {
+
+            var existingTurbinePin = TurbinePins.FirstOrDefault(tp => tp.Turbine!.Id == updatedTurbine.Id);
+
+            if (existingTurbinePin != null) {
+
+                existingTurbinePin.Turbine!.RemovedCo2Kilograms = updatedTurbine.RemovedCo2Kilograms;
+
+                existingTurbinePin.Turbine!.FinalCo2Removed = updatedTurbine.RemovedCo2Kilograms;
+            }
         }
     }
 }

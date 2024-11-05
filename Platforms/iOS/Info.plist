@@ -45,6 +45,10 @@
 	<key>com.apple.security.personal-information.photos-library</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>&gt;This app needs access to the camera to take photos.</string>
+	<string>This app needs access to the camera to take photos.</string>
+	<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>mailto</string>
+</array>
 </dict>
 </plist>

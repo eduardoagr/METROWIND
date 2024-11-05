@@ -3,12 +3,10 @@ using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
 
 namespace METROWIND.Handlers {
-
-    public static class BorderlessEntryHandler {
-
+    public static class BorderlesEditorHandler {
         public static void ApplyCustomHandler() {
 
-            EditorHandler.Mapper.AppendToMapping("Borderless", (handler, view) => {
+            EntryHandler.Mapper.AppendToMapping("Borderless", (handler, view) => {
 #if ANDROID
                 handler.PlatformView.Background = null;
                 handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
@@ -16,9 +14,11 @@ namespace METROWIND.Handlers {
 #elif IOS
                 handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
                 handler.PlatformView.Layer.BorderWidth = 0;
+                handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif MACCATALYST
                 handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
                 handler.PlatformView.Layer.BorderWidth = 0;
+                handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
                 handler.PlatformView.Background = null;
                 handler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
@@ -27,3 +27,4 @@ namespace METROWIND.Handlers {
         }
     }
 }
+

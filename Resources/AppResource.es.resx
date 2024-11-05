@@ -126,6 +126,12 @@
   <data name="AddressFound" xml:space="preserve">
     <value>No encontramos la dirección</value>
   </data>
+  <data name="AppSend" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="AppSuport" xml:space="preserve">
+    <value>¿Cómo podemos asistirle?</value>
+  </data>
   <data name="ChooseStation" xml:space="preserve">
     <value>Elija una estación de carga</value>
   </data>

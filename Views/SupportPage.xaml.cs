@@ -1,9 +1,8 @@
 namespace METROWIND.Views;
 
-public partial class SupportPage : ContentPage
-{
-	public SupportPage()
-	{
-		InitializeComponent();
-	}
+public partial class SupportPage : ContentPage {
+    public SupportPage(SupportPageViewModel supportPageViewModel) {
+        InitializeComponent();
+        BindingContext = supportPageViewModel;
+    }
 }
