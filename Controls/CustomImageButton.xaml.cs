@@ -1,7 +1,9 @@
 namespace METROWIND.Controls;
 
-public partial class CustomImageButton : ContentView {
-    public CustomImageButton() {
+public partial class CustomImageButton : ContentView
+{
+    public CustomImageButton()
+    {
         InitializeComponent();
     }
 
@@ -9,7 +11,8 @@ public partial class CustomImageButton : ContentView {
     public static readonly BindableProperty ImageNameProperty = BindableProperty.Create(
         nameof(ImageName), typeof(ImageSource), typeof(CustomImageButton));
 
-    public ImageSource ImageName {
+    public ImageSource ImageName
+    {
         get => (ImageSource)GetValue(ImageNameProperty);
         set => SetValue(ImageNameProperty, value);
     }
@@ -18,7 +21,8 @@ public partial class CustomImageButton : ContentView {
     public static readonly BindableProperty CaptionProperty = BindableProperty.Create(
         nameof(Caption), typeof(string), typeof(CustomImageButton));
 
-    public string Caption {
+    public string Caption
+    {
         get => (string)GetValue(CaptionProperty);
         set => SetValue(CaptionProperty, value);
     }
@@ -27,7 +31,8 @@ public partial class CustomImageButton : ContentView {
     public static readonly BindableProperty ClickCommandProperty = BindableProperty.Create(
         nameof(ClickCommand), typeof(ICommand), typeof(CustomImageButton));
 
-    public ICommand ClickCommand {
+    public ICommand ClickCommand
+    {
         get => (ICommand)GetValue(ClickCommandProperty);
         set => SetValue(ClickCommandProperty, value);
     }
@@ -36,10 +41,20 @@ public partial class CustomImageButton : ContentView {
     public static readonly BindableProperty ParametersProperty = BindableProperty.Create(
         nameof(Parameters), typeof(int), typeof(CustomImageButton));
 
-    public int Parameters {
+    public int Parameters
+    {
         get => (int)GetValue(ParametersProperty);
         set => SetValue(ParametersProperty, value);
     }
 
 
+    public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
+        nameof(BorderColor), typeof(Brush), typeof(CustomImageButton));
+
+    public Brush BorderColor
+    {
+        get => (Brush)GetValue(BorderColorProperty);
+        set => SetValue(BorderColorProperty, value);
+
+    }
 }

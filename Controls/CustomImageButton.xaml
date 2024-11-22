@@ -4,19 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ImageButton">
 
-    <HorizontalStackLayout BindingContext="{x:Binding Source={x:Reference ImageButton}}">
+    <VerticalStackLayout BindingContext="{x:Binding Source={x:Reference ImageButton}}">
         <Border
             Margin="10"
             Padding="10"
             HorizontalOptions="Start"
-            Stroke="#1A75BE"
+            Stroke="{x:Binding BorderColor}"
             StrokeThickness="2">
-            <Image
-                Aspect="AspectFit"
-                HeightRequest="40"
-                Source="{x:Binding ImageName}"
-                VerticalOptions="Center"
-                WidthRequest="40" />
+            <Label
+                FontFamily="fa"
+                FontSize="Large"
+                Text="{x:Binding ImageName}"
+                TextColor="Black"
+                VerticalOptions="Center" />
             <Border.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{x:Binding ClickCommand}"
@@ -25,10 +25,9 @@
         </Border>
 
         <Label
-            Padding="0,0,10,0"
+            HorizontalTextAlignment="Center"
             Text="{x:Binding Caption}"
-            TextColor="Black"
-            VerticalTextAlignment="Center" />
+            TextColor="Black" />
 
-    </HorizontalStackLayout>
+    </VerticalStackLayout>
 </ContentView>

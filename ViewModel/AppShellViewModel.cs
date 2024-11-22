@@ -1,6 +1,8 @@
-﻿namespace METROWIND.ViewModel {
+﻿namespace METROWIND.ViewModel
+{
 
-    public partial class AppShellViewModel : ObservableObject {
+    public partial class AppShellViewModel : ObservableObject
+    {
 
         public const string FLYOUT_KEY = "flyouy_key";
         public const string SWITCH_KEY = "switch_key";
@@ -14,22 +16,27 @@
         bool isMenuPopUpOen;
 
         [RelayCommand]
-        void Appearing(AppShell appShell) {
+        void Appearing(AppShell appShell)
+        {
             _shell = appShell;
         }
 
         [RelayCommand]
-        void OpenMenu() {
+        void OpenMenu()
+        {
             IsMenuPopUpOen = true;
         }
 
         [RelayCommand]
-        void ToogleSwitch() {
+        void ToogleSwitch()
+        {
 
-            if (IsCompactMode) {
+            if (IsCompactMode)
+            {
                 _shell!.FlyoutWidth = 65;
             }
-            else {
+            else
+            {
                 _shell!.FlyoutWidth = 300;
             }
 

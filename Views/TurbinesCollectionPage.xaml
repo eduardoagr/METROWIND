@@ -1,14 +1,17 @@
-<ContentPage
+﻿<ContentPage
     x:Class="METROWIND.Views.TurbinesCollectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:fonts="clr-namespace:METROWIND.Constants"
     xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     x:Name="TurbinesCollection"
-    x:DataType="vm:TurbinesCollectionPageViewModel">
+    x:DataType="vm:TurbinesCollectionPageViewModel"
+    HideSoftInputOnTapped="True">
 
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior
@@ -17,20 +20,12 @@
             EventName="Appearing" />
     </ContentPage.Behaviors>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <rex:TurbineTemplate />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <Grid
-        RowDefinitions="Auto,*"
-        RowSpacing="-30">
-        <inputLayout:SfTextInputLayout Style="{x:StaticResource TurbineCollectionComboBoxStyle}">
+    <VerticalStackLayout
+        Spacing="-20">
+        <inputLayout:SfTextInputLayout
+            x:Name="MobileContent"
+            Style="{x:StaticResource TurbineCollectionComboBoxStyle}">
             <editors:SfComboBox
-                x:Name="combobox"
                 DisplayMemberPath="Turbine.Name"
                 ItemsSource="{x:Binding Turbines}"
                 Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
@@ -46,9 +41,53 @@
         <CollectionView
             x:Name="TurbineCollection"
             Grid.Row="1"
-            ItemTemplate="{x:StaticResource turbineTemplte}"
             ItemsSource="{x:Binding Turbines}"
-            Style="{x:StaticResource TurbineCollectionViewStyle}" />
+            SelectionMode="None"
+            Style="{x:StaticResource TurbineCollectionViewStyle}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:TurbinePin">
+                    <Border BackgroundColor="#578D57">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8" />
+                        </Border.StrokeShape>
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            RowDefinitions="Auto,Auto,Auto">
+                            <Label
+                                Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+                                Text="{x:Binding Turbine.Name}" />
+                            <Label
+                                Grid.Row="1"
+                                Style="{x:StaticResource TurbineDataLabelStyleStyle}"
+                                Text="{x:Binding Turbine.Address}" />
+                            <Label
+                                Grid.Row="2"
+                                Style="{x:StaticResource C02LabelStyle}"
+                                Text="{x:Binding Turbine.FinalCo2Removed,
+                                                 StringFormat='{0:F5} kg CO₂'}" />
 
-    </Grid>
+                            <Button
+                                Grid.RowSpan="3"
+                                Grid.Column="1"
+                                BackgroundColor="#63B62B"
+                                Command="{x:Binding GotoLocationCommand,
+                                                    Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                CommandParameter="{x:Binding}"
+                                FontFamily="ma"
+                                FontSize="Large"
+                                Text="{x:Static fonts:MaterialFonts.Directions}" />
+                        </Grid>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{x:Binding OnPinMarkerClickedCommand,
+                                                    Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                CommandParameter="{x:Binding}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
 </ContentPage>

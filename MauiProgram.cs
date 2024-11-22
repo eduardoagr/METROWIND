@@ -1,8 +1,12 @@
-﻿namespace METROWIND;
+﻿using Map = Microsoft.Maui.ApplicationModel.Map;
 
-public static class MauiProgram {
+namespace METROWIND;
 
-    public static MauiApp CreateMauiApp() {
+public static class MauiProgram
+{
+
+    public static MauiApp CreateMauiApp()
+    {
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -13,20 +17,22 @@ public static class MauiProgram {
 #endif
             .UseMauiCommunityToolkit()
             .ConfigureSyncfusionCore()
-            .ConfigureFonts(fonts => {
+            .ConfigureFonts(fonts =>
+            {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("fa-solid-900.ttf", "fa");
                 fonts.AddFont("MaterialIcons-Regular.ttf", "ma");
-            }).ConfigureMauiHandlers(handlers => {
-
+            }).ConfigureMauiHandlers(handlers =>
+            {
                 handlers.AddHandler<BorderlessEntry, EntryHandler>();
 
-            }).ConfigureEssentials(essentials => {
-
+            }).ConfigureEssentials(essentials =>
+            {
                 essentials.UseMapServiceToken(AppConstants.BINGMAPS_APIKEY);
 
-            }).ConfigureMauiHandlers(handler => {
+            }).ConfigureMauiHandlers(handler =>
+            {
 
                 handler.AddHandler<BorderlessEditor, EditorHandler>();
             });
@@ -49,6 +55,7 @@ public static class MauiProgram {
         builder.Services.AddSingleton<HttpService>();
         services.AddSingleton(new BlobServiceClient(AppConstants.AZURE_CONNECTION_STRING));
         builder.Services.AddSingleton<TurbinesService>();
+        builder.Services.AddSingleton(Map.Default);
         builder.Services.AddSingleton(Geolocation.Default);
         builder.Services.AddSingleton(FilePicker.Default);
         builder.Services.AddSingleton(MediaPicker.Default);
@@ -64,7 +71,6 @@ public static class MauiProgram {
         builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
 
         builder.Services.AddSingleton<AppShell, AppShellViewModel>();
-        builder.Services.AddSingleton<StartupPage, StartupPageViewModel>();
         builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();
         builder.Services.AddSingleton<HomePage, HomePageViewModel>();
         builder.Services.AddTransient<SupportPage, SupportPageViewModel>();

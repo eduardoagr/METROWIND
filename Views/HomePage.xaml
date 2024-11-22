@@ -13,7 +13,6 @@
     x:Name="homePage"
     x:DataType="vm:HomePageViewModel">
 
-
     <Grid
         Padding="16,0,16,0"
         RowDefinitions="Auto,*">
@@ -25,13 +24,6 @@
             Text="{x:Static rex:AppResource.WhatsNew}"
             VerticalTextAlignment="Center" />
 
-        <core:SfBusyIndicator
-            Title="{x:Static rex:AppResource.WhatsNew}"
-            Grid.Row="1"
-            IsRunning="{x:Binding IsLoading}"
-            IsVisible="{x:Binding IsLoading}"
-            TextColor="{x:AppThemeBinding Dark={x:StaticResource White},
-                                          Light={x:StaticResource Black}}" />
 
         <CollectionView
             Grid.Row="1"
@@ -43,6 +35,19 @@
                     ItemSpacing="10"
                     Orientation="Vertical" />
             </CollectionView.ItemsLayout>
+
+            <CollectionView.EmptyViewTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                        <ActivityIndicator IsRunning="True" />
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="{x:Static rex:AppResource.Loading}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.EmptyViewTemplate>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Article">

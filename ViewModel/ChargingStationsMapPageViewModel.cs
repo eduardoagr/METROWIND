@@ -1,11 +1,14 @@
-﻿
-using Map = Microsoft.Maui.Controls.Maps.Map;
+﻿using Map = Microsoft.Maui.Controls.Maps.Map;
 
-namespace METROWIND.ViewModel {
-
+namespace METROWIND.ViewModel
+{
     public partial class ChargingStationsMapPageViewModel(
         HttpService service, DeviceLanguageService deviceLanguage, TurbinesService turbinesService) :
-        HomePageViewModel(service, deviceLanguage, turbinesService) {
+        HomePageViewModel(service, deviceLanguage, turbinesService)
+    {
+
+        [ObservableProperty]
+        Brush borderColor = Colors.Black;
 
         private Map? MapView;
 
@@ -16,16 +19,14 @@ namespace METROWIND.ViewModel {
         bool isExpanded;
 
         [RelayCommand]
-        private void Appearing(Map map) {
-
-            if (map != null) {
-
-                MapView = map;
-            }
+        private void Appearing(Map map)
+        {
+            MapView = map;
         }
 
         [RelayCommand]
-        void ItemSelected(Turbine Turbine) {
+        void ItemSelected(Turbine Turbine)
+        {
 
             var mapSpan = MapSpan.FromCenterAndRadius(Turbine.Location,
                 Distance.FromKilometers(0.4));
@@ -35,14 +36,16 @@ namespace METROWIND.ViewModel {
         }
 
         [RelayCommand]
-        void OpenMenu() {
-
+        void OpenMenu()
+        {
             IsOptionsOpen = true;
         }
 
         [RelayCommand]
-        void ChangeMapType(int mapType) {
-            MapView!.MapType = mapType switch {
+        void ChangeMapType(int mapType)
+        {
+            MapView!.MapType = mapType switch
+            {
                 0 => MapType.Street,
                 1 => MapType.Satellite,
                 2 => MapType.Hybrid, // Example: Handle mapType 2

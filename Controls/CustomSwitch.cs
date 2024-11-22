@@ -1,10 +1,14 @@
-﻿
-namespace METROWIND.Controls {
-    public class CustomSwitch : Microsoft.Maui.Controls.Switch {
+﻿using Switch = Microsoft.Maui.Controls.Switch;
 
-        public CustomSwitch() {
-            this.OnColor = Colors.Green;
-            this.ThumbColor = Colors.White;
+namespace METROWIND.Controls
+{
+    public partial class CustomSwitch : Switch
+    {
+
+        public CustomSwitch()
+        {
+            OnColor = Colors.Green;
+            ThumbColor = Colors.White;
         }
     }
 }

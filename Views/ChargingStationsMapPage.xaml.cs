@@ -1,10 +1,15 @@
-﻿namespace METROWIND.Views {
+﻿namespace METROWIND.Views
+{
 
-    public partial class ChargingStationsMapPage : ContentPage {
+    public partial class ChargingStationsMapPage : ContentPage
+    {
 
-        public ChargingStationsMapPage(ChargingStationsMapPageViewModel chargingStationsMapPageViewModel) {
+        public ChargingStationsMapPage(ChargingStationsMapPageViewModel chargingStationsMapPageViewModel)
+        {
             InitializeComponent();
             BindingContext = chargingStationsMapPageViewModel;
+
+            DeviceHelper.AddOrRemoveContentBasedOnDevice(MobileContent);
         }
     }
 }

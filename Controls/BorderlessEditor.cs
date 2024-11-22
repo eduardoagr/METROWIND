@@ -1,5 +1,7 @@
-﻿namespace METROWIND.Controls {
-    public class BorderlessEditor : Editor {
+﻿namespace METROWIND.Controls
+{
+    public partial class BorderlessEditor : Editor
+    {
 
     }
 }

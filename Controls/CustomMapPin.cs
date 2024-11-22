@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 
-namespace METROWIND.Controls {
+namespace METROWIND.Controls
+{
 
-    public class CustomMapPin : Pin {
+    public class CustomMapPin : Pin
+    {
 
         public static readonly BindableProperty MarkerClickedCommandProperty =
             BindableProperty.Create(
@@ -11,7 +13,8 @@ namespace METROWIND.Controls {
                 typeof(CustomMapPin),
                 null);
 
-        public ICommand? MarkerClickedCommand {
+        public ICommand? MarkerClickedCommand
+        {
             get => (ICommand)GetValue(MarkerClickedCommandProperty);
             set => SetValue(MarkerClickedCommandProperty, value);
         }
@@ -19,7 +22,8 @@ namespace METROWIND.Controls {
         public static readonly BindableProperty MarkerClickedCommandParameterProperty = BindableProperty.Create(
             nameof(MarkerClickedCommandParameter), typeof(Turbine), typeof(CustomMapPin));
 
-        public Turbine MarkerClickedCommandParameter {
+        public Turbine MarkerClickedCommandParameter
+        {
             get => (Turbine)GetValue(MarkerClickedCommandParameterProperty);
             set => SetValue(MarkerClickedCommandParameterProperty, value);
         }
@@ -27,7 +31,8 @@ namespace METROWIND.Controls {
         public static readonly BindableProperty CustomPinLabelProperty = BindableProperty.Create(
             nameof(CustomPinLabel), typeof(string), typeof(CustomMapPin));
 
-        public string CustomPinLabel {
+        public string CustomPinLabel
+        {
             get => (string)GetValue(CustomPinLabelProperty);
             set => SetValue(CustomPinLabelProperty, value);
         }
@@ -35,7 +40,8 @@ namespace METROWIND.Controls {
         public static readonly BindableProperty CustomPinAddressProperty = BindableProperty.Create(
             nameof(CustomPinAddress), typeof(string), typeof(CustomMapPin));
 
-        public string CustomPinAddress {
+        public string CustomPinAddress
+        {
             get => (string)GetValue(CustomPinAddressProperty);
             set => SetValue(CustomPinAddressProperty, value);
 
@@ -45,22 +51,26 @@ namespace METROWIND.Controls {
         public static readonly BindableProperty ImagesProperty = BindableProperty.Create(
             nameof(Images), typeof(IEnumerable), typeof(CustomMapPin));
 
-        public string Images {
+        public string Images
+        {
             get => (string)GetValue(ImagesProperty);
             set => SetValue(ImagesProperty, value);
         }
 
 
-        public CustomMapPin() {
+        public CustomMapPin()
+        {
             MarkerClicked += CustomPin_MarkerClicked;
         }
 
-        private void CustomPin_MarkerClicked(object? sender, PinClickedEventArgs e) {
+        private void CustomPin_MarkerClicked(object? sender, PinClickedEventArgs e)
+        {
             // Ensure info window is shown
             e.HideInfoWindow = true;
 
             // Execute command if any
-            if (MarkerClickedCommand?.CanExecute(MarkerClickedCommandParameter) == true) {
+            if (MarkerClickedCommand?.CanExecute(MarkerClickedCommandParameter) == true)
+            {
                 MarkerClickedCommand.Execute(MarkerClickedCommandParameter);
             }
         }

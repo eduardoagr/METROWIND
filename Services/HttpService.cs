@@ -1,10 +1,13 @@
-﻿namespace METROWIND.Services {
+﻿namespace METROWIND.Services
+{
 
-    public class HttpService(HttpClient httpClient, IConnectivity connectivity, ILogger<HttpService> logger) {
+    public class HttpService(HttpClient httpClient, IConnectivity connectivity, ILogger<HttpService> logger)
+    {
+        public async Task<T?> GetAsync<T>(string url)
+        {
 
-        public async Task<T?> GetAsync<T>(string url) {
-
-            if (connectivity.NetworkAccess != NetworkAccess.Internet) {
+            if (connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
 
                 await Shell.Current.DisplayAlert("Error",
                     "No internet connectivity"
@@ -19,11 +22,13 @@
                 ("User-Agent",
                 "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
 
-            try {
+            try
+            {
                 var response =
                         await httpClient.GetAsync(url);
 
-                if (response.IsSuccessStatusCode) {
+                if (response.IsSuccessStatusCode)
+                {
                     var jsonData = await response.Content.ReadAsStringAsync();
 
                     var data = await response.Content.ReadFromJsonAsync<T>();
@@ -31,7 +36,8 @@
 
                 }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
 
                 logger.LogError($"Http Service: {e.Message}");
             }

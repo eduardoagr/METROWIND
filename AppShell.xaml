@@ -26,7 +26,7 @@
         <Grid>
             <Image
                 x:Name="ConfigMenu"
-                Margin="10,0,0,15"
+                Margin="10,10,0,15"
                 HeightRequest="48"
                 HorizontalOptions="Start"
                 Source="windmill.png"
@@ -74,12 +74,6 @@
             </popup:SfPopup>
         </Grid>
     </Shell.FlyoutHeader>
-
-    <ShellContent
-        ContentTemplate="{DataTemplate views:StartupPage}"
-        Shell.FlyoutBehavior="Disabled"
-        Shell.FlyoutItemIsVisible="False"
-        Shell.NavBarIsVisible="False" />
 
     <!--  Flyout for Desktop  -->
     <FlyoutItem

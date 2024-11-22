@@ -1,8 +1,11 @@
-﻿
-namespace METROWIND.ViewModel {
+﻿using IMap = Microsoft.Maui.ApplicationModel.IMap;
+
+namespace METROWIND.ViewModel
+{
 
     public partial class TurbinesCollectionPageViewModel(HttpService service, DeviceLanguageService deviceLanguage,
-        TurbinesService turbinesService) : HomePageViewModel(service, deviceLanguage, turbinesService) {
+        TurbinesService turbinesService, IMap map) : HomePageViewModel(service, deviceLanguage, turbinesService)
+    {
 
         CollectionView? TurbinesCollection;
 
@@ -10,18 +13,22 @@ namespace METROWIND.ViewModel {
         Turbine? turbine;
 
         [RelayCommand]
-        void PageEnter(CollectionView collectionView) {
+        void PageEnter(CollectionView collectionView)
+        {
 
-            if (collectionView != null) {
+            if (collectionView != null)
+            {
 
                 TurbinesCollection = collectionView;
             }
         }
 
         [RelayCommand]
-        async Task SelectedItemChange(SfComboBox combo) {
+        async Task SelectedItemChange(SfComboBox combo)
+        {
 
-            if (combo.SelectedIndex < 0) {
+            if (combo.SelectedIndex < 0)
+            {
                 return;
             }
 
@@ -30,7 +37,8 @@ namespace METROWIND.ViewModel {
             var inputView = combo.Children[1] as Entry;
 
 #if ANDROID || IOS
-            if (KeyboardExtensions.IsSoftKeyboardShowing(inputView!)) {
+            if (KeyboardExtensions.IsSoftKeyboardShowing(inputView!))
+            {
                 await Task.Delay(200);
                 await inputView!.HideKeyboardAsync(default);
             }
@@ -39,10 +47,29 @@ namespace METROWIND.ViewModel {
 #endif
         }
 
-        partial void OnTurbineChanged(Turbine? value) {
+        [RelayCommand]
+        async Task GotoLocation(TurbinePin turbinePin)
+        {
+            await Navigate(turbinePin);
+        }
 
-            Debug.WriteLine($"Turbine changed to: {value?.FinalCo2Removed}");
-            // Implementation of the method Debug.WriteLine($"Turbine changed to: {value?.Name}"); }
+        public async Task Navigate(TurbinePin turbinePin)
+        {
+            var location = new Location(turbinePin.Turbine!.Latitude, turbinePin.Turbine.Longitude);
+            var options = new MapLaunchOptions
+            {
+                Name = turbinePin.Turbine.Name,
+                NavigationMode = NavigationMode.Driving
+            };
+
+            try
+            {
+                await map.OpenAsync(location, options);
+            }
+            catch (Exception)
+            {
+                // No map application available to open
+            }
         }
     }
 }

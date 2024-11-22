@@ -26,6 +26,7 @@ global using Microsoft.Maui.Maps;
 
 global using Serilog;
 
+global using Syncfusion.Licensing;
 global using Syncfusion.Maui.Core.Hosting;
 global using Syncfusion.Maui.Inputs;
 

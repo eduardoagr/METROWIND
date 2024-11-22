@@ -1,40 +1,39 @@
-﻿<ContentPage
+<ContentPage
     x:Class="METROWIND.Views.TurbineDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
     Title="{x:Static rex:AppResource.TurbineDetails}"
     x:DataType="vm:TurbineDetailPageViewModel">
 
     <Grid
-        RowDefinitions="Auto,*,*"
-        RowSpacing="20">
+        RowDefinitions="Auto,Auto,*,*"
+        RowSpacing="5">
 
         <Label
-            Padding="0,30,0,0"
+            Padding="0,5,0,0"
+            FontAttributes="Bold"
             HorizontalTextAlignment="Center"
-            Text="{x:Binding SelectedTurbine.Address}"
+            Text="{x:Binding SelectedTurbine.Turbine.Name}"
+            VerticalOptions="Center" />
+
+        <Label
+            Grid.Row="1"
+            HorizontalTextAlignment="Center"
+            Text="{x:Binding SelectedTurbine.Turbine.Address}"
             VerticalOptions="Center" />
 
         <Grid
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="2"
             Padding="10"
+            ColumnDefinitions="*,*"
             ColumnSpacing="2"
             HorizontalOptions="Center"
+            RowDefinitions="*,*,*,*,*"
             RowSpacing="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
 
             <Border>
                 <Label
@@ -80,7 +79,7 @@
                 <Label
                     Padding="10"
                     FontAttributes="Bold"
-                    Text="{x:Binding SelectedTurbine.StringifyInstalationDate}"
+                    Text="{x:Binding SelectedTurbine.Turbine.StringifyInstalationDate}"
                     VerticalOptions="Center" />
             </Border>
 
@@ -90,7 +89,7 @@
                 <Label
                     Padding="10"
                     FontAttributes="Bold"
-                    Text="{x:Binding SelectedTurbine.Power,
+                    Text="{x:Binding SelectedTurbine.Turbine.Power,
                                      StringFormat='{0} kW'}"
                     VerticalOptions="Center" />
             </Border>
@@ -101,7 +100,7 @@
                 <Label
                     Padding="10"
                     FontAttributes="Bold"
-                    Text="{x:Binding SelectedTurbine.CapacityFactor}"
+                    Text="{x:Binding SelectedTurbine.Turbine.CapacityFactor}"
                     VerticalOptions="Center" />
             </Border>
 
@@ -111,7 +110,7 @@
                 <Label
                     Padding="10"
                     FontAttributes="Bold"
-                    Text="{x:Binding SelectedTurbine.Co2EmissionOffset,
+                    Text="{x:Binding SelectedTurbine.Turbine.Co2EmissionOffset,
                                      StringFormat='{0} kg CO₂/kWh'}"
                     VerticalOptions="Center" />
             </Border>
@@ -123,18 +122,17 @@
                     Padding="10,0,0,0"
                     FontAttributes="Bold"
                     FontSize="Medium"
-                    Text="{x:Binding SelectedTurbine.FinalCo2Removed,
+                    Text="{x:Binding SelectedTurbine.Turbine.FinalCo2Removed,
                                      StringFormat='{0} kg CO₂'}"
                     VerticalOptions="Center" />
             </Border>
-
         </Grid>
 
         <CollectionView
-            Grid.Row="2"
-            Margin="20"
+            Grid.Row="3"
+            Margin="0,0,0,20"
             HorizontalOptions="CenterAndExpand"
-            ItemsSource="{x:Binding SelectedTurbine.ImagesURL}">
+            ItemsSource="{x:Binding SelectedTurbine.Turbine.ImagesURLs}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout
                     ItemSpacing="5"
@@ -142,15 +140,10 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Image>
-                        <Image.Source>
-                            <UriImageSource
-                                CacheValidity="1"
-                                CachingEnabled="True"
-                                Uri="{x:Binding .}" />
-                        </Image.Source>
-                    </Image>
+                <DataTemplate x:DataType="x:String">
+                    <Image
+                        Source="{Binding}"
+                        VerticalOptions="Center" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 

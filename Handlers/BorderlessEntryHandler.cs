@@ -1,14 +1,19 @@
 ﻿#if ANDROID
+using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
 
-namespace METROWIND.Handlers {
+namespace METROWIND.Handlers
+{
 
-    public static class BorderlessEntryHandler {
+    public static class BorderlessEntryHandler
+    {
 
-        public static void ApplyCustomHandler() {
+        public static void ApplyCustomHandler()
+        {
 
-            EditorHandler.Mapper.AppendToMapping("Borderless", (handler, view) => {
+            EntryHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
+            {
 #if ANDROID
                 handler.PlatformView.Background = null;
                 handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);

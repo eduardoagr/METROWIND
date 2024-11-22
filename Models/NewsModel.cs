@@ -1,7 +1,9 @@
-﻿namespace METROWIND.Models {
+﻿namespace METROWIND.Models
+{
 
 
-    public class Source {
+    public class Source
+    {
 
         [JsonPropertyName("id")]
         public string? Id { get; set; }
@@ -11,7 +13,8 @@
     }
 
 
-    public class Article {
+    public class Article
+    {
 
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -42,7 +45,8 @@
     }
 
 
-    public class News {
+    public class News
+    {
 
         [JsonPropertyName("status")]
         public string? Status { get; set; }

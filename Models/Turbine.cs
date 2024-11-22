@@ -1,8 +1,9 @@
-﻿namespace METROWIND.Models {
+﻿namespace METROWIND.Models
+{
 
     [FirestoreData]
-    public partial class Turbine : ObservableObject {
-
+    public partial class Turbine : ObservableObject
+    {
         [FirestoreProperty]
         public string? Id { get; set; }
 
@@ -34,7 +35,7 @@
         public DateTime InstalationDateTime { get; set; }
 
         [FirestoreProperty]
-        public List<string>? ImagesURL { get; set; }
+        public List<string>? ImagesURLs { get; set; } = [];
 
         public string? StringifyInstalationDate => InstalationDateTime.ToString("D", CultureInfo.CurrentCulture);
 
@@ -67,7 +68,8 @@
         public double finalCo2Removed;
 
 
-        private static double RoundToDecimals(double value, int decimals = 2) {
+        private static double RoundToDecimals(double value, int decimals = 2)
+        {
             return Math.Round(value, decimals);
         }
 
