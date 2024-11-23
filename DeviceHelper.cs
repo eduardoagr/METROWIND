@@ -24,14 +24,27 @@
 
         private static Layout? FindParentLayout(View view)
         {
+            // Return null immediately if the view is null
+            if (view == null)
+            {
+                return null;
+            }
+
+            // Start traversing the parent chain
             var parent = view.Parent;
 
-            while (parent != null && parent is not Layout)
+            // Traverse up the visual tree until we find a Layout or reach the root
+            while (parent != null)
             {
+                if (parent is Layout layout)
+                {
+                    return layout; // Return the first Layout parent found
+                }
+
                 parent = parent.Parent;
             }
 
-            return parent as Layout;
+            return null; // No Layout found, return null
         }
     }
 }

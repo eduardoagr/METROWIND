@@ -3,8 +3,9 @@
 namespace METROWIND.ViewModel
 {
     public partial class ChargingStationsMapPageViewModel(
-        HttpService service, DeviceLanguageService deviceLanguage, TurbinesService turbinesService) :
-        HomePageViewModel(service, deviceLanguage, turbinesService)
+        HttpService service, DeviceLanguageService deviceLanguage, TurbinesService turbinesService,
+        IServiceProvider serviceProvider) :
+        HomePageViewModel(service, deviceLanguage, turbinesService, serviceProvider)
     {
 
         [ObservableProperty]

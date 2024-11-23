@@ -4,7 +4,8 @@ namespace METROWIND.ViewModel
 {
 
     public partial class TurbinesCollectionPageViewModel(HttpService service, DeviceLanguageService deviceLanguage,
-        TurbinesService turbinesService, IMap map) : HomePageViewModel(service, deviceLanguage, turbinesService)
+        TurbinesService turbinesService, IMap map, IServiceProvider serviceProvider) :
+        HomePageViewModel(service, deviceLanguage, turbinesService, serviceProvider)
     {
 
         CollectionView? TurbinesCollection;

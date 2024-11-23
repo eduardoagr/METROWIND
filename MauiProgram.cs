@@ -71,7 +71,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ArticleDetailsPage, ArticleDetailsPageViewModel>();
 
         builder.Services.AddSingleton<AppShell, AppShellViewModel>();
-        builder.Services.AddSingleton<TurbineDetailPage, TurbineDetailPageViewModel>();
+        builder.Services.AddTransient<TurbineDetailPage, TurbineDetailPageViewModel>();
         builder.Services.AddSingleton<HomePage, HomePageViewModel>();
         builder.Services.AddTransient<SupportPage, SupportPageViewModel>();
 

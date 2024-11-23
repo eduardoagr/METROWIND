@@ -26,13 +26,14 @@
             x:Name="MobileContent"
             Style="{x:StaticResource TurbineCollectionComboBoxStyle}">
             <editors:SfComboBox
+                x:Name="combobox"
                 DisplayMemberPath="Turbine.Name"
                 ItemsSource="{x:Binding Turbines}"
                 Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
                 <editors:SfComboBox.Behaviors>
                     <mct:EventToCommandBehavior
                         Command="{x:Binding SelectedItemChangeCommand}"
-                        CommandParameter="{x:Binding Source={x:Reference combobox}}"
+                        CommandParameter="{x:Reference combobox}}"
                         EventName="SelectionChanged" />
                 </editors:SfComboBox.Behaviors>
             </editors:SfComboBox>

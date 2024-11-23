@@ -142,6 +142,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <Image
+                        Aspect="AspectFit"
                         Source="{Binding}"
                         VerticalOptions="Center" />
                 </DataTemplate>
