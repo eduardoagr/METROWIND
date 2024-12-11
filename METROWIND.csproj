@@ -54,13 +54,10 @@
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Resources\Fonts\fa-solid-900.ttf" />
     <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
-    <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\icon_win.png" />
     <None Remove="Resources\Images\metro_wind_200.png" />
     <None Remove="Resources\Images\no_image.png" />
-    <None Remove="Resources\Images\share.png" />
     <None Remove="Resources\Images\stations.png" />
   </ItemGroup>
   <ItemGroup>
@@ -69,19 +66,19 @@
     <PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.4" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
-    <PackageReference Include="Goldie.MauiPlugins.PageResolver" Version="2.5.2" />
     <PackageReference Include="Google.Cloud.Firestore" Version="3.9.0" />
-    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.10" />
-    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.12" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.12" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
     <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-    <PackageReference Include="Syncfusion.Maui.Core" Version="27.2.3" />
-    <PackageReference Include="Syncfusion.Maui.Expander" Version="27.2.3" />
-    <PackageReference Include="Syncfusion.Maui.Inputs" Version="27.2.3" />
-    <PackageReference Include="Syncfusion.Maui.Picker" Version="27.2.3" />
-    <PackageReference Include="Syncfusion.Maui.Popup" Version="27.2.3" />
+    <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
+    <PackageReference Include="Syncfusion.Maui.Core" Version="27.2.5" />
+    <PackageReference Include="Syncfusion.Maui.Expander" Version="27.2.5" />
+    <PackageReference Include="Syncfusion.Maui.Inputs" Version="27.2.5" />
+    <PackageReference Include="Syncfusion.Maui.Picker" Version="27.2.5" />
+    <PackageReference Include="Syncfusion.Maui.Popup" Version="27.2.5" />
   </ItemGroup>
   <ItemGroup>
     <MauiAsset Include="Resources\AppResource.resx" />
@@ -108,6 +105,9 @@
     <Compile Update="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\AppResource.resx">
@@ -124,6 +124,12 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\NewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\NoInternetPopUp.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\SupportPage.xaml">

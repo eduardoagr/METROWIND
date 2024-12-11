@@ -1,9 +1,10 @@
 ﻿namespace METROWIND.Services
 {
-    public class DeviceLanguageService
+    public class DeviceLanguageService: IDeviceLanguageService
     {
-
-        public CultureInfo GetDeviceCultureInfo() { return CultureInfo.CurrentCulture; }
-
+        public CultureInfo GetDeviceCultureInfo()
+        {
+            return CultureInfo.CurrentCulture;
+        }
     }
 }

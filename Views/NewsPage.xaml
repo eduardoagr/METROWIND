@@ -1,21 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="METROWIND.Views.HomePage"
+    x:Class="METROWIND.Views.NewsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:constant="clr-namespace:METROWIND.Constants"
-    xmlns:controls="clr-namespace:METROWIND.Controls"
-    xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:constants="clr-namespace:METROWIND.Constants"
+    xmlns:converters="clr-namespace:METROWIND.Converters"
     xmlns:models="clr-namespace:METROWIND.Models"
     xmlns:rex="clr-namespace:METROWIND.Resources"
-    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
-    x:Name="homePage"
-    x:DataType="vm:HomePageViewModel">
+    x:DataType="vm:NewsPageViewModel">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImgSourceConverter x:Key="ImgSourceConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <Grid
         Padding="16,0,16,0"
         RowDefinitions="Auto,*">
+
         <Label
             Margin="20"
             FontAttributes="Bold"
@@ -27,7 +31,7 @@
 
         <CollectionView
             Grid.Row="1"
-            ItemsSource="{x:Binding NewsList}"
+            ItemsSource="{x:Binding ArticleList}"
             SelectionMode="None">
 
             <CollectionView.ItemsLayout>
@@ -39,8 +43,8 @@
             <CollectionView.EmptyViewTemplate>
                 <DataTemplate>
                     <VerticalStackLayout
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center">
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand">
                         <ActivityIndicator IsRunning="True" />
                         <Label
                             HorizontalOptions="Center"
@@ -59,8 +63,7 @@
                             <Image
                                 Aspect="AspectFill"
                                 HeightRequest="250"
-                                Source="{x:Binding UrlToImage,
-                                                   TargetNullValue=no_image.png}"
+                                Source="{x:Binding UrlToImage}"
                                 VerticalOptions="Center" />
 
                             <Label
@@ -76,7 +79,7 @@
                                 <Label
                                     FontFamily="ma"
                                     FontSize="Large"
-                                    Text="{x:Static constant:MaterialFonts.Newspaper}"
+                                    Text="{x:Static constants:MaterialFonts.Newspaper}"
                                     VerticalTextAlignment="Center" />
                                 <Label
                                     Margin="10,0,0,0"
@@ -91,7 +94,7 @@
                                 <Label
                                     FontFamily="ma"
                                     FontSize="Large"
-                                    Text="{x:Static constant:MaterialFonts.Person}" />
+                                    Text="{x:Static constants:MaterialFonts.Person}" />
                                 <Label
                                     Grid.Column="1"
                                     Margin="10,0,0,0"
@@ -108,7 +111,7 @@
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
                                 Command="{x:Binding ShowNewsDetailCommand,
-                                                    Source={x:RelativeSource AncestorType={x:Type vm:HomePageViewModel}}}"
+                                                    Source={x:RelativeSource AncestorType={x:Type vm:NewsPageViewModel}}}"
                                 CommandParameter="{x:Binding .}" />
                         </Border.GestureRecognizers>
                     </Border>
@@ -116,5 +119,4 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
-
 </ContentPage>

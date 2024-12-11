@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccountCreated" xml:space="preserve">
-    <value>Tu cuenta ha sido creada exitosamente</value>
-  </data>
-  <data name="AddImages" xml:space="preserve">
-    <value>Añadir imagenes</value>
-  </data>
-  <data name="AddressFound" xml:space="preserve">
-    <value>No encontramos la dirección</value>
-  </data>
   <data name="AppSend" xml:space="preserve">
     <value>Enviar</value>
+  </data>
+  <data name="AppSub" xml:space="preserve">
+    <value>Tecnologia para un futuro sostenible</value>
   </data>
   <data name="AppSuport" xml:space="preserve">
     <value>¿Cómo podemos asistirle?</value>
@@ -138,44 +132,17 @@
   <data name="Close" xml:space="preserve">
     <value>Cerrar</value>
   </data>
-  <data name="CompactMode" xml:space="preserve">
-    <value>Modo compacto</value>
-  </data>
-  <data name="CreateAccount" xml:space="preserve">
-    <value>¿Aún no tienes una cuenta? Registrate aqui</value>
-  </data>
-  <data name="CreateAccuntBton" xml:space="preserve">
-    <value>Crear cuenta</value>
-  </data>
-  <data name="DateCancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="DateConfirm" xml:space="preserve">
-    <value>Confirmar</value>
-  </data>
-  <data name="Day" xml:space="preserve">
-    <value>Dia</value>
-  </data>
   <data name="Default" xml:space="preserve">
     <value>Predeterminado</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Artículo</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Correo electrónico</value>
-  </data>
-  <data name="Energy" xml:space="preserve">
-    <value>Tecnología para un Futuro Sostenible</value>
-  </data>
   <data name="HomePage" xml:space="preserve">
     <value>Inicio</value>
   </data>
-  <data name="Hour" xml:space="preserve">
-    <value>Hora</value>
-  </data>
-  <data name="InvalidEmail" xml:space="preserve">
-    <value>Este email no es valido</value>
+  <data name="Internet" xml:space="preserve">
+    <value>Sin acceso a internet</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Cargando noticias</value>
@@ -186,35 +153,17 @@
   <data name="MapTypes" xml:space="preserve">
     <value>Tipos de mapa</value>
   </data>
-  <data name="Minute" xml:space="preserve">
-    <value>Minuto</value>
-  </data>
-  <data name="Month" xml:space="preserve">
-    <value>Mes</value>
-  </data>
-  <data name="NewTurbine" xml:space="preserve">
-    <value>Guardar </value>
-  </data>
-  <data name="NotExist" xml:space="preserve">
-    <value>El usuario no existe</value>
+  <data name="News" xml:space="preserve">
+    <value>Noticias</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Contraseña</value>
   </data>
-  <data name="Register" xml:space="preserve">
-    <value>Crear cuenta</value>
-  </data>
   <data name="Satelite" xml:space="preserve">
     <value>Satélite</value>
   </data>
-  <data name="Seconds" xml:space="preserve">
-    <value>Segundos</value>
-  </data>
   <data name="Stations" xml:space="preserve">
-    <value>Estaciones de carga</value>
-  </data>
-  <data name="Success" xml:space="preserve">
-    <value>Éxito</value>
+    <value>Estaciones</value>
   </data>
   <data name="Support" xml:space="preserve">
     <value>Ayuda</value>
@@ -249,25 +198,7 @@
   <data name="TurbinesCollection" xml:space="preserve">
     <value>Turbinas</value>
   </data>
-  <data name="Uknown" xml:space="preserve">
-    <value>Error desconocido</value>
-  </data>
-  <data name="UserExist" xml:space="preserve">
-    <value>El usuario ya existe</value>
-  </data>
-  <data name="WeekPassord" xml:space="preserve">
-    <value>La contraseña debe tener más de 6 caracteres</value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Bienvenido de nuevo</value>
-  </data>
-  <data name="WelcomeSubtitle" xml:space="preserve">
-    <value>Inicia sesión para continuar</value>
-  </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>Noticias</value>
-  </data>
-  <data name="Year" xml:space="preserve">
-    <value>Año</value>
   </data>
 </root>

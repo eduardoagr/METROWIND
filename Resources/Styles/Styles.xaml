@@ -454,36 +454,6 @@
     </Style>
 
     <Style
-        x:Key="DateTimePickerStyle"
-        TargetType="picker:SfDateTimePicker">
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="MinimumDate" Value="{x:Static sys:DateTime.Now}" />
-        <Setter Property="Mode" Value="Dialog" />
-        <Setter Property="TextDisplayMode" Value="FadeAndShrink" />
-        <Setter Property="FooterView">
-            <Setter.Value>
-                <picker:PickerFooterView
-                    Height="40"
-                    CancelButtonText="{x:Static rex:AppResource.DateCancel}"
-                    OkButtonText="{x:Static rex:AppResource.DateConfirm}"
-                    ShowOkButton="True" />
-            </Setter.Value>
-        </Setter>
-
-        <Setter Property="ColumnHeaderView">
-            <Setter.Value>
-                <picker:DateTimePickerColumnHeaderView
-                    DayHeaderText="{x:Static rex:AppResource.Day}"
-                    HourHeaderText="{x:Static rex:AppResource.Hour}"
-                    MinuteHeaderText="{x:Static rex:AppResource.Minute}"
-                    MonthHeaderText="{x:Static rex:AppResource.Month}"
-                    SecondHeaderText="{x:Static rex:AppResource.Seconds}"
-                    YearHeaderText="{x:Static rex:AppResource.Year}" />
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style
         x:Key="PopUpBorderStyle"
         TargetType="Border">
         <Setter Property="BackgroundColor" Value="White" />

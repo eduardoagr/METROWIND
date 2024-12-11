@@ -1,41 +1,38 @@
-﻿using IMap = Microsoft.Maui.ApplicationModel.IMap;
+﻿using Map = Microsoft.Maui.ApplicationModel.Map;
 
 namespace METROWIND.ViewModel
 {
-
-    public partial class TurbinesCollectionPageViewModel(HttpService service, DeviceLanguageService deviceLanguage,
-        TurbinesService turbinesService, IMap map, IServiceProvider serviceProvider) :
-        HomePageViewModel(service, deviceLanguage, turbinesService, serviceProvider)
+    public partial class TurbinesCollectionPageViewModel(
+        ITurbineService turbineService,
+        IAppService appService,
+        IServiceProvider serviceProvider,
+        ICommandHandler commandHandler,
+        IConnectivity connectivity,
+        NoInternetPopUp noInternetPopUp):
+        AppShellViewModel(turbineService, appService, serviceProvider,
+            commandHandler, connectivity, noInternetPopUp)
     {
-
-        CollectionView? TurbinesCollection;
+        public CollectionView? TurbinesCollection;
+        public SfComboBox? ColletionComboBox;
 
         [ObservableProperty]
         Turbine? turbine;
 
         [RelayCommand]
-        void PageEnter(CollectionView collectionView)
+        async Task SelectedItemChange()
         {
-
-            if (collectionView != null)
-            {
-
-                TurbinesCollection = collectionView;
-            }
-        }
-
-        [RelayCommand]
-        async Task SelectedItemChange(SfComboBox combo)
-        {
-
-            if (combo.SelectedIndex < 0)
+            if (ColletionComboBox!.SelectedIndex == -1)
             {
                 return;
             }
 
-            var item = Turbines.ElementAt(combo.SelectedIndex);
-            TurbinesCollection?.ScrollTo(combo.SelectedIndex, -1, ScrollToPosition.Center);
-            var inputView = combo.Children[1] as Entry;
+            var item = TurbinePins.ElementAt(
+                ColletionComboBox.SelectedIndex);
+
+            TurbinesCollection?.ScrollTo(ColletionComboBox.SelectedIndex,
+                -1, ScrollToPosition.Center);
+
+            var inputView = ColletionComboBox.Children[1] as Entry;
 
 #if ANDROID || IOS
             if (KeyboardExtensions.IsSoftKeyboardShowing(inputView!))
@@ -65,7 +62,7 @@ namespace METROWIND.ViewModel
 
             try
             {
-                await map.OpenAsync(location, options);
+                await Map.OpenAsync(location, options);
             }
             catch (Exception)
             {

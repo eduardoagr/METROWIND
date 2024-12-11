@@ -12,22 +12,22 @@
             Stroke="{x:Binding BorderColor}"
             StrokeThickness="2">
             <Label
-                FontFamily="fa"
+                FontFamily="ma"
                 FontSize="Large"
                 Text="{x:Binding ImageName}"
                 TextColor="Black"
                 VerticalOptions="Center" />
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{x:Binding ClickCommand}"
-                    CommandParameter="{x:Binding Parameters}" />
-            </Border.GestureRecognizers>
         </Border>
 
         <Label
+            Margin="0,-10,0,0"
             HorizontalTextAlignment="Center"
             Text="{x:Binding Caption}"
             TextColor="Black" />
-
+        <VerticalStackLayout.GestureRecognizers>
+            <TapGestureRecognizer
+                Command="{x:Binding ClickCommand}"
+                CommandParameter="{x:Binding Parameter}" />
+        </VerticalStackLayout.GestureRecognizers>
     </VerticalStackLayout>
 </ContentView>

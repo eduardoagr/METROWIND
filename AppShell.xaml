@@ -76,13 +76,6 @@
     </Shell.FlyoutHeader>
 
     <!--  Flyout for Desktop  -->
-    <FlyoutItem
-        Title="{x:Static rex:AppResource.HomePage}"
-        Icon="home.png">
-        <ShellContent
-            ContentTemplate="{DataTemplate views:HomePage}"
-            Route="HomePage" />
-    </FlyoutItem>
 
     <FlyoutItem
         Title="{x:Static rex:AppResource.Stations}"
@@ -103,7 +96,7 @@
 
     <FlyoutItem
         Title="{x:Static rex:AppResource.Support}"
-        Icon="help_desktop.png">
+        Icon="help.png">
 
         <ShellContent
             ContentTemplate="{DataTemplate views:SupportPage}"
@@ -111,17 +104,18 @@
             Shell.NavBarIsVisible="False" />
     </FlyoutItem>
 
+    <FlyoutItem
+        Title="{x:Static rex:AppResource.News}"
+        Icon="news.png">
+
+        <ShellContent
+            ContentTemplate="{DataTemplate views:NewsPage}"
+            Route="NewsPage"
+            Shell.NavBarIsVisible="False" />
+    </FlyoutItem>
+
     <!--  TabBar for Phone  -->
     <TabBar>
-        <Tab
-            Title="{x:Static rex:AppResource.HomePage}"
-            Icon="home_mobile.png">
-
-            <ShellContent
-                ContentTemplate="{DataTemplate views:HomePage}"
-                Route="HomePage"
-                Shell.NavBarIsVisible="False" />
-        </Tab>
         <Tab
             Title="{x:Static rex:AppResource.Stations}"
             Icon="station_mobile.png">
@@ -142,11 +136,20 @@
 
         <Tab
             Title="{x:Static rex:AppResource.Support}"
-            Icon="help_phone.png">
+            Icon="help_mobile.png">
 
             <ShellContent
                 ContentTemplate="{DataTemplate views:SupportPage}"
                 Route="SupportPage" />
+        </Tab>
+
+        <Tab
+            Title="{x:Static rex:AppResource.News}"
+            Icon="news_mobile.png">
+
+            <ShellContent
+                ContentTemplate="{DataTemplate views:NewsPage}"
+                Route="NewsPage" />
         </Tab>
 
     </TabBar>

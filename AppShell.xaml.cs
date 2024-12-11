@@ -1,9 +1,7 @@
 ﻿namespace METROWIND
 {
-
-    public partial class AppShell : Shell
+    public partial class AppShell: Shell
     {
-
         public AppShell(AppShellViewModel appShellViewModel)
         {
             InitializeComponent();
@@ -14,10 +12,8 @@
 
             RenderBasedOnDevice(DeviceInfo.Idiom);
         }
-
         public void RenderBasedOnDevice(DeviceIdiom idiom)
         {
-
             var itemsToRemove = new List<ShellItem>();
 
             foreach (var item in Items)

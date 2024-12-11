@@ -1,6 +1,8 @@
+
+
 namespace METROWIND.Controls;
 
-public partial class CustomImageButton : ContentView
+public partial class CustomImageButton: ContentView
 {
     public CustomImageButton()
     {
@@ -38,18 +40,20 @@ public partial class CustomImageButton : ContentView
     }
 
 
-    public static readonly BindableProperty ParametersProperty = BindableProperty.Create(
-        nameof(Parameters), typeof(int), typeof(CustomImageButton));
+    public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
+        nameof(Parameter), typeof(object), typeof(CustomImageButton));
 
-    public int Parameters
+
+    public object Parameter
     {
-        get => (int)GetValue(ParametersProperty);
-        set => SetValue(ParametersProperty, value);
+        get => GetValue(ParameterProperty);
+        set => SetValue(ParameterProperty, value);
     }
 
 
     public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
-        nameof(BorderColor), typeof(Brush), typeof(CustomImageButton));
+        nameof(BorderColor), typeof(Brush), typeof(CustomImageButton),
+        Brush.Black);
 
     public Brush BorderColor
     {
@@ -57,4 +61,15 @@ public partial class CustomImageButton : ContentView
         set => SetValue(BorderColorProperty, value);
 
     }
+
+
+    public static readonly BindableProperty MapNumberProperty = BindableProperty.Create(
+        nameof(MapNumber), typeof(int), typeof(CustomImageButton));
+
+    public int MapNumber
+    {
+        get => (int)GetValue(MapNumberProperty);
+        set => SetValue(MapNumberProperty, value);
+    }
+
 }

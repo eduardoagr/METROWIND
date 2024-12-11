@@ -1,6 +1,7 @@
 ﻿global using Azure.Storage.Blobs;
 
 global using CommunityToolkit.Maui;
+global using CommunityToolkit.Maui.Core;
 global using CommunityToolkit.Maui.Core.Platform;
 global using CommunityToolkit.Maui.Maps;
 global using CommunityToolkit.Mvvm.ComponentModel;
@@ -14,7 +15,9 @@ global using Grpc.Auth;
 global using METROWIND.Constants;
 global using METROWIND.Controls;
 global using METROWIND.Handlers;
+global using METROWIND.Interfaces;
 global using METROWIND.Models;
+global using METROWIND.Resources;
 global using METROWIND.Services;
 global using METROWIND.ViewModel;
 global using METROWIND.Views;
@@ -29,7 +32,9 @@ global using Serilog;
 global using Syncfusion.Licensing;
 global using Syncfusion.Maui.Core.Hosting;
 global using Syncfusion.Maui.Inputs;
+global using Syncfusion.Maui.Popup;
 
+global using System.Collections.Immutable;
 global using System.Collections.ObjectModel;
 global using System.Diagnostics;
 global using System.Globalization;

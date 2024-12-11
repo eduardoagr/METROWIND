@@ -14,14 +14,6 @@
     x:Name="stationsMapPage"
     x:DataType="vm:ChargingStationsMapPageViewModel">
 
-    <ContentPage.Behaviors>
-        <mct:EventToCommandBehavior
-            Command="{x:Binding AppearingCommand}"
-            CommandParameter="{x:Reference ChargingStationMap}"
-            EventName="Appearing" />
-
-    </ContentPage.Behaviors>
-
     <Grid>
         <Border
             x:Name="MobileContent"
@@ -38,7 +30,7 @@
                     <Grid
                         Padding="10,0,0,0"
                         RowDefinitions="Auto">
-                        <CollectionView ItemsSource="{x:Binding Turbines}">
+                        <CollectionView ItemsSource="{x:Binding TurbinePins}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:TurbinePin">
                                     <Border Stroke="Transparent">
@@ -71,7 +63,7 @@
 
         <maps:Map
             x:Name="ChargingStationMap"
-            ItemsSource="{x:Binding Turbines}"
+            ItemsSource="{x:Binding TurbinePins}"
             VerticalOptions="FillAndExpand">
             <maps:Map.ItemTemplate>
                 <DataTemplate x:DataType="model:TurbinePin">
@@ -81,14 +73,14 @@
                         Label="{x:Binding Turbine.Name}"
                         Location="{x:Binding Turbine.Location}"
                         MarkerClickedCommand="{x:Binding PinClickedCommand}"
-                        MarkerClickedCommandParameter="{x:Binding Turbine}" />
+                        MarkerClickedCommandParameter="{x:Binding}" />
                 </DataTemplate>
             </maps:Map.ItemTemplate>
         </maps:Map>
 
         <Button
             x:Name="mapLayers"
-            Command="{x:Binding OpenMenuCommand}"
+            Command="{x:Binding OpenMapLayerOptionsCommand}"
             Style="{x:StaticResource MapButtonStyle}">
             <Button.ImageSource>
                 <FontImageSource
@@ -98,8 +90,8 @@
         </Button>
 
         <popup:SfPopup
-            IsOpen="{x:Binding IsOptionsOpen}"
-            RelativeView="{x:Binding Source={x:Reference mapLayers}}"
+            x:Name="MapChangeTypuPopUp"
+            RelativeView="{x:Reference mapLayers}"
             Style="{x:StaticResource ChargeStationPopupStyle}">
             <popup:SfPopup.PopupStyle>
                 <popup:PopupStyle CornerRadius="8" />
@@ -107,18 +99,20 @@
             <popup:SfPopup.ContentTemplate>
                 <DataTemplate>
                     <VerticalStackLayout Spacing="10">
-                        <controls:CustomImageButton
-                            BorderColor="{x:Binding BorderColor}"
-                            Caption="{x:Static rex:AppResource.Default}"
-                            ClickCommand="{x:Binding ChangeMapTypeCommand}"
-                            ImageName="{x:Static constant:FontAwesome.Road}"
-                            Parameters="0" />
-                        <controls:CustomImageButton
-                            BorderColor="{x:Binding BorderColor}"
-                            Caption="{x:Static rex:AppResource.Satelite}"
-                            ClickCommand="{x:Binding ChangeMapTypeCommand}"
-                            ImageName="{x:Static constant:FontAwesome.StreetView}"
-                            Parameters="2" />
+                        <VerticalStackLayout BindableLayout.ItemsSource="{x:Binding MapTypeButtons}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="model:MapTypeButton">
+                                    <controls:CustomImageButton
+                                        BorderColor="{Binding SelectedColor}"
+                                        Caption="{Binding Caption}"
+                                        ClickCommand="{x:Binding ChangeMapTypeCommand,
+                                                                 Source={x:RelativeSource AncestorType={x:Type vm:ChargingStationsMapPageViewModel}}}"
+                                        ImageName="{Binding ImageName}"
+                                        MapNumber="{x:Binding MapNumber}"
+                                        Parameter="{Binding}" />
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
                 </DataTemplate>
             </popup:SfPopup.ContentTemplate>

@@ -13,7 +13,7 @@
         }
 
         public const string
-            SYNCFUSION_KEY = "MzQ4NTkxM0AzMjM3MmUzMDJlMzBsT1g5a3FQb1VvamorSzR3ZTVFVGpUcE5JYzh3SjJFazU4Ung5VjF2UXZnPQ==";
+            SYNCFUSION_KEY = "MzU5ODkxOEAzMjM3MmUzMDJlMzBpNDFKeDlWQ0lqK3N0MWZ6eXkwNDFCc2JFU2RtMjAvKzQ2VnpGQjJ3SW1vPQ==";
 
         //Bing Maps
 

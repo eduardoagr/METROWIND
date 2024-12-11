@@ -61,38 +61,20 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account has been created succesfully.
-        /// </summary>
-        internal static string AccountCreated {
-            get {
-                return ResourceManager.GetString("AccountCreated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add images.
-        /// </summary>
-        internal static string AddImages {
-            get {
-                return ResourceManager.GetString("AddImages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We couldn&apos;t find the address.
-        /// </summary>
-        internal static string AddressFound {
-            get {
-                return ResourceManager.GetString("AddressFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Send.
         /// </summary>
         internal static string AppSend {
             get {
                 return ResourceManager.GetString("AppSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technology for a sustainable future.
+        /// </summary>
+        internal static string AppSub {
+            get {
+                return ResourceManager.GetString("AppSub", resourceCulture);
             }
         }
         
@@ -115,65 +97,11 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        internal static string Close {
-            get {
-                return ResourceManager.GetString("Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Compact mode.
         /// </summary>
         internal static string CompactMode {
             get {
                 return ResourceManager.GetString("CompactMode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not have an account yet? Register here.
-        /// </summary>
-        internal static string CreateAccount {
-            get {
-                return ResourceManager.GetString("CreateAccount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create account.
-        /// </summary>
-        internal static string CreateAccuntBton {
-            get {
-                return ResourceManager.GetString("CreateAccuntBton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string DateCancel {
-            get {
-                return ResourceManager.GetString("DateCancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm.
-        /// </summary>
-        internal static string DateConfirm {
-            get {
-                return ResourceManager.GetString("DateConfirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Day.
-        /// </summary>
-        internal static string Day {
-            get {
-                return ResourceManager.GetString("Day", resourceCulture);
             }
         }
         
@@ -196,15 +124,6 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
-        /// </summary>
-        internal static string Email {
-            get {
-                return ResourceManager.GetString("Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Technology for a Sustainable Future.
         /// </summary>
         internal static string Energy {
@@ -214,29 +133,11 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home.
+        ///   Looks up a localized string similar to No internet access.
         /// </summary>
-        internal static string HomePage {
+        internal static string Internet {
             get {
-                return ResourceManager.GetString("HomePage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hour.
-        /// </summary>
-        internal static string Hour {
-            get {
-                return ResourceManager.GetString("Hour", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This email is not valid.
-        /// </summary>
-        internal static string InvalidEmail {
-            get {
-                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+                return ResourceManager.GetString("Internet", resourceCulture);
             }
         }
         
@@ -250,15 +151,6 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
-        /// </summary>
-        internal static string Login {
-            get {
-                return ResourceManager.GetString("Login", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Map types.
         /// </summary>
         internal static string MapTypes {
@@ -268,56 +160,11 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minute.
+        ///   Looks up a localized string similar to News.
         /// </summary>
-        internal static string Minute {
+        internal static string News {
             get {
-                return ResourceManager.GetString("Minute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Month.
-        /// </summary>
-        internal static string Month {
-            get {
-                return ResourceManager.GetString("Month", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save.
-        /// </summary>
-        internal static string NewTurbine {
-            get {
-                return ResourceManager.GetString("NewTurbine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The user does not exist.
-        /// </summary>
-        internal static string NotExist {
-            get {
-                return ResourceManager.GetString("NotExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password.
-        /// </summary>
-        internal static string Password {
-            get {
-                return ResourceManager.GetString("Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create Account.
-        /// </summary>
-        internal static string Register {
-            get {
-                return ResourceManager.GetString("Register", resourceCulture);
+                return ResourceManager.GetString("News", resourceCulture);
             }
         }
         
@@ -331,29 +178,11 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seconds.
-        /// </summary>
-        internal static string Seconds {
-            get {
-                return ResourceManager.GetString("Seconds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Charging stations.
+        ///   Looks up a localized string similar to Stations.
         /// </summary>
         internal static string Stations {
             get {
                 return ResourceManager.GetString("Stations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Success.
-        /// </summary>
-        internal static string Success {
-            get {
-                return ResourceManager.GetString("Success", resourceCulture);
             }
         }
         
@@ -466,65 +295,11 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uknown error.
-        /// </summary>
-        internal static string Uknown {
-            get {
-                return ResourceManager.GetString("Uknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User already exists.
-        /// </summary>
-        internal static string UserExist {
-            get {
-                return ResourceManager.GetString("UserExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password must be more than 6 characters.
-        /// </summary>
-        internal static string WeekPassord {
-            get {
-                return ResourceManager.GetString("WeekPassord", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Welcome back.
-        /// </summary>
-        internal static string Welcome {
-            get {
-                return ResourceManager.GetString("Welcome", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sign in to continue.
-        /// </summary>
-        internal static string WelcomeSubtitle {
-            get {
-                return ResourceManager.GetString("WelcomeSubtitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to What&apos;s new.
         /// </summary>
         internal static string WhatsNew {
             get {
                 return ResourceManager.GetString("WhatsNew", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Year.
-        /// </summary>
-        internal static string Year {
-            get {
-                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

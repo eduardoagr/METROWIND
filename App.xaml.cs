@@ -1,25 +1,25 @@
 ﻿namespace METROWIND
 {
-    public partial class App : Application
+    public partial class App: Application
     {
-        AppShell shell;
+        public static MainWindow? WindowInstance { get; private set; }
 
-        public App(AppShell appShell)
+        private readonly AppShell _shell;
+        private readonly MainWindow _mainWindow;
+
+        public App(MainWindow mainWindow, AppShell shell)
         {
-
             SyncfusionLicenseProvider.RegisterLicense(AppConstants.SYNCFUSION_KEY);
-
             InitializeComponent();
+            _mainWindow = mainWindow;
+            _shell = shell;
 
-            shell = appShell;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            Window window = new MainWindow(shell);
-
-            return window;
-
+            WindowInstance = _mainWindow;
+            return WindowInstance;
         }
     }
 }

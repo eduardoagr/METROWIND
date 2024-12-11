@@ -1,0 +1,49 @@
+﻿namespace METROWIND.ViewModel
+{
+    public partial class NewsPageViewModel: ObservableObject
+    {
+        public ObservableCollection<Article> ArticleList { get; set; } = [];
+
+        readonly IHttpService _httpService;
+        readonly IDeviceLanguageService _deviceLanguageService;
+        readonly IAppService _appService;
+
+        public NewsPageViewModel(IDeviceLanguageService deviceLanguageService,
+            IHttpService httpService,
+            IAppService appService)
+        {
+            _deviceLanguageService = deviceLanguageService;
+            _httpService = httpService;
+            _appService = appService;
+            LoadNews();
+
+        }
+
+        public async void LoadNews()
+        {
+            var language = _deviceLanguageService.GetDeviceCultureInfo();
+            var newsUrl = AppConstants.GetNewsUrl(language.TwoLetterISOLanguageName);
+
+            var newsObj = await _httpService.GetAsync<News>(newsUrl);
+
+            if (newsObj != null && newsObj.Articles != null)
+            {
+                foreach (var article in newsObj.Articles)
+                {
+                    ArticleList.Add(article);
+                }
+            }
+        }
+
+        [RelayCommand]
+        async Task ShowNewsDetail(Article article)
+        {
+            if (article != null)
+            {
+                await _appService.NavigateToPage($"{nameof(ArticleDetailsPage)}",
+                     new Dictionary<string, object> {{ "articleObj", article }
+                });
+            }
+        }
+    }
+}

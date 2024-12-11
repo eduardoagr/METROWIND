@@ -2,17 +2,15 @@
 {
 
     [QueryProperty(nameof(ArticleObj), "articleObj")]
-    public partial class ArticleDetailsPageViewModel : ObservableObject
+    public partial class ArticleDetailsPageViewModel(IShare share): ObservableObject
     {
-
         [ObservableProperty]
         Article? articleObj;
 
         [RelayCommand]
-        private static void OpenShareMenu(Article article)
+        async Task OpenShareMenu(Article article)
         {
-
-            Share.Default.RequestAsync(new ShareTextRequest
+            await share.RequestAsync(new ShareTextRequest
             {
                 Uri = article.Url,
                 Title = "Check out this article"

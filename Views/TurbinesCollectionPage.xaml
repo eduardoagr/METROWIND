@@ -9,31 +9,22 @@
     xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:rex="clr-namespace:METROWIND.Resources"
     xmlns:vm="clr-namespace:METROWIND.ViewModel"
-    x:Name="TurbinesCollection"
+    x:Name="CollectionPage"
     x:DataType="vm:TurbinesCollectionPageViewModel"
     HideSoftInputOnTapped="True">
 
-    <ContentPage.Behaviors>
-        <mct:EventToCommandBehavior
-            Command="{x:Binding PageEnterCommand}"
-            CommandParameter="{x:Binding Source={x:Reference TurbineCollection}}"
-            EventName="Appearing" />
-    </ContentPage.Behaviors>
-
-    <VerticalStackLayout
-        Spacing="-20">
+    <VerticalStackLayout Spacing="-20">
         <inputLayout:SfTextInputLayout
             x:Name="MobileContent"
             Style="{x:StaticResource TurbineCollectionComboBoxStyle}">
             <editors:SfComboBox
                 x:Name="combobox"
                 DisplayMemberPath="Turbine.Name"
-                ItemsSource="{x:Binding Turbines}"
+                ItemsSource="{x:Binding TurbinePins}"
                 Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
                 <editors:SfComboBox.Behaviors>
                     <mct:EventToCommandBehavior
                         Command="{x:Binding SelectedItemChangeCommand}"
-                        CommandParameter="{x:Reference combobox}}"
                         EventName="SelectionChanged" />
                 </editors:SfComboBox.Behaviors>
             </editors:SfComboBox>
@@ -42,7 +33,7 @@
         <CollectionView
             x:Name="TurbineCollection"
             Grid.Row="1"
-            ItemsSource="{x:Binding Turbines}"
+            ItemsSource="{x:Binding TurbinePins}"
             SelectionMode="None"
             Style="{x:StaticResource TurbineCollectionViewStyle}">
             <CollectionView.ItemTemplate>
@@ -81,7 +72,7 @@
 
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{x:Binding OnPinMarkerClickedCommand,
+                                Command="{x:Binding PinClickedCommand,
                                                     Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
                                 CommandParameter="{x:Binding}" />
                         </Border.GestureRecognizers>

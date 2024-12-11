@@ -1,17 +1,16 @@
 ﻿namespace METROWIND.Services;
 
-public class FirestoreService(ILogger<FirestoreService> logger)
+public class FirestoreService(ILogger<FirestoreService> logger): IFirestoreService
 {
 
     private FirestoreDb? _firestoreDb;
 
     public async Task<bool> InitializeFirestoreAsync()
     {
-
-
         try
         {
-            using var stream = await FileSystem.OpenAppPackageFileAsync("metrowind_firestore_config.json");
+            using var stream = await FileSystem.OpenAppPackageFileAsync
+                ("metrowind_firestore_config.json");
             using var reader = new StreamReader(stream);
             string json = await reader.ReadToEndAsync();
             var credential = GoogleCredential.FromJson(json);
@@ -26,7 +25,7 @@ public class FirestoreService(ILogger<FirestoreService> logger)
         }
         catch (Exception ex)
         {
-            logger.LogWarning($"Failed to initialize Firestore: {ex.Message}");
+            logger.LogError("Failed to initialize Firestore: {Message}", ex.Message);
             return false;
         }
     }

@@ -11,8 +11,7 @@
 
     <Grid
         Padding="10"
-        RowDefinitions="250,*"
-        RowSpacing="20">
+        RowDefinitions="*,*">
 
         <Border>
             <controls:BorderlessEditor

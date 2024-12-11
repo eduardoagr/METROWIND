@@ -1,8 +1,7 @@
 ﻿namespace METROWIND.Models
 {
-
     [FirestoreData]
-    public partial class Turbine : ObservableObject
+    public partial class Turbine: ObservableObject
     {
         [FirestoreProperty]
         public string? Id { get; set; }

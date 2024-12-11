@@ -2,22 +2,4 @@
 <Window
     x:Class="METROWIND.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
-    xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core">
-
-    <Window.TitleBar>
-        <TitleBar
-            Title="METROWIND"
-            BackgroundColor="#3C155F"
-            HeightRequest="48"
-            Icon="icon_win.png">
-            <TitleBar.Content>
-                <editors:SfComboBox
-                    Margin="5"
-                    IsEditable="True"
-                    WidthRequest="650" />
-            </TitleBar.Content>
-        </TitleBar>
-    </Window.TitleBar>
-</Window>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" />

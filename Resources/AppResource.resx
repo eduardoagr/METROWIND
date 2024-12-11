@@ -117,17 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccountCreated" xml:space="preserve">
-    <value>Your account has been created succesfully</value>
-  </data>
-  <data name="AddImages" xml:space="preserve">
-    <value>Add images</value>
-  </data>
-  <data name="AddressFound" xml:space="preserve">
-    <value>We couldn't find the address</value>
-  </data>
   <data name="AppSend" xml:space="preserve">
     <value>Send</value>
+  </data>
+  <data name="AppSub" xml:space="preserve">
+    <value>Technology for a sustainable future</value>
   </data>
   <data name="AppSuport" xml:space="preserve">
     <value>How may we assist you?</value>
@@ -135,26 +129,8 @@
   <data name="ChooseStation" xml:space="preserve">
     <value>Choose a charging station</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
   <data name="CompactMode" xml:space="preserve">
     <value>Compact mode</value>
-  </data>
-  <data name="CreateAccount" xml:space="preserve">
-    <value>Do not have an account yet? Register here</value>
-  </data>
-  <data name="CreateAccuntBton" xml:space="preserve">
-    <value>Create account</value>
-  </data>
-  <data name="DateCancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="DateConfirm" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
-  <data name="Day" xml:space="preserve">
-    <value>Day</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
@@ -162,59 +138,26 @@
   <data name="Detail" xml:space="preserve">
     <value>Article</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
   <data name="Energy" xml:space="preserve">
     <value>Technology for a Sustainable Future</value>
   </data>
-  <data name="HomePage" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="Hour" xml:space="preserve">
-    <value>Hour</value>
-  </data>
-  <data name="InvalidEmail" xml:space="preserve">
-    <value>This email is not valid</value>
+  <data name="Internet" xml:space="preserve">
+    <value>No internet access</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading news</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
-  </data>
   <data name="MapTypes" xml:space="preserve">
     <value>Map types</value>
   </data>
-  <data name="Minute" xml:space="preserve">
-    <value>Minute</value>
-  </data>
-  <data name="Month" xml:space="preserve">
-    <value>Month</value>
-  </data>
-  <data name="NewTurbine" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="NotExist" xml:space="preserve">
-    <value>The user does not exist</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>Create Account</value>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
   </data>
   <data name="Satelite" xml:space="preserve">
     <value>Satelite</value>
   </data>
-  <data name="Seconds" xml:space="preserve">
-    <value>Seconds</value>
-  </data>
   <data name="Stations" xml:space="preserve">
-    <value>Charging stations</value>
-  </data>
-  <data name="Success" xml:space="preserve">
-    <value>Success</value>
+    <value>Stations</value>
   </data>
   <data name="Support" xml:space="preserve">
     <value>Help</value>
@@ -252,25 +195,7 @@
   <data name="TurbineSearch" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="Uknown" xml:space="preserve">
-    <value>Uknown error</value>
-  </data>
-  <data name="UserExist" xml:space="preserve">
-    <value>User already exists</value>
-  </data>
-  <data name="WeekPassord" xml:space="preserve">
-    <value>Password must be more than 6 characters</value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Welcome back</value>
-  </data>
-  <data name="WelcomeSubtitle" xml:space="preserve">
-    <value>Sign in to continue</value>
-  </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>What's new</value>
-  </data>
-  <data name="Year" xml:space="preserve">
-    <value>Year</value>
   </data>
 </root>

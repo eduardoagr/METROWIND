@@ -1,45 +1,40 @@
 ﻿namespace METROWIND.Services
 {
-
-    public class HttpService(HttpClient httpClient, IConnectivity connectivity, ILogger<HttpService> logger)
+    public class HttpService: IHttpService
     {
-        public async Task<T?> GetAsync<T>(string url)
+        readonly HttpClient _httpClient;
+        readonly ILogger<HttpService> _logger;
+
+
+        public HttpService(HttpClient httpClient, ILogger<HttpService> logger)
         {
+            _httpClient = httpClient;
+            _logger = logger;
 
-            if (connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-
-                await Shell.Current.DisplayAlert("Error",
-                    "No internet connectivity"
-                    , "OK");
-
-                return default;
-
-            }
-
-            // Add User-Agent header
-            httpClient.DefaultRequestHeaders.Add
-                ("User-Agent",
+            // Set User-Agent header once in the constructor
+            _httpClient.DefaultRequestHeaders.Add(
+                "User-Agent",
                 "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html)");
 
+        }
+
+        public async Task<T?> GetAsync<T>(string url)
+        {
             try
             {
-                var response =
-                        await httpClient.GetAsync(url);
+                var response = await _httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonData = await response.Content.ReadAsStringAsync();
-
-                    var data = await response.Content.ReadFromJsonAsync<T>();
-                    return data;
-
-                }
+                var data = await response.Content.ReadFromJsonAsync<T>();
+                return data;
             }
-            catch (Exception e)
+            catch (HttpRequestException ex)
             {
-
-                logger.LogError($"Http Service: {e.Message}");
+                _logger.LogError("HttpRequestException in HttpService: {Message}", ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error in HttpService");
             }
 
             return default;

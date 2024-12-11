@@ -2,16 +2,12 @@
 
 namespace METROWIND.Controls
 {
-
-    public class CustomMapPin : Pin
+    public partial class CustomMapPin: Pin
     {
 
         public static readonly BindableProperty MarkerClickedCommandProperty =
-            BindableProperty.Create(
-                nameof(MarkerClickedCommand),
-                typeof(ICommand),
-                typeof(CustomMapPin),
-                null);
+            BindableProperty.Create(nameof(MarkerClickedCommand), typeof(ICommand),
+                typeof(CustomMapPin));
 
         public ICommand? MarkerClickedCommand
         {
@@ -20,11 +16,11 @@ namespace METROWIND.Controls
         }
 
         public static readonly BindableProperty MarkerClickedCommandParameterProperty = BindableProperty.Create(
-            nameof(MarkerClickedCommandParameter), typeof(Turbine), typeof(CustomMapPin));
+            nameof(MarkerClickedCommandParameter), typeof(TurbinePin), typeof(CustomMapPin));
 
-        public Turbine MarkerClickedCommandParameter
+        public TurbinePin MarkerClickedCommandParameter
         {
-            get => (Turbine)GetValue(MarkerClickedCommandParameterProperty);
+            get => (TurbinePin)GetValue(MarkerClickedCommandParameterProperty);
             set => SetValue(MarkerClickedCommandParameterProperty, value);
         }
 
@@ -65,13 +61,17 @@ namespace METROWIND.Controls
 
         private void CustomPin_MarkerClicked(object? sender, PinClickedEventArgs e)
         {
-            // Ensure info window is shown
-            e.HideInfoWindow = true;
-
-            // Execute command if any
-            if (MarkerClickedCommand?.CanExecute(MarkerClickedCommandParameter) == true)
             {
-                MarkerClickedCommand.Execute(MarkerClickedCommandParameter);
+                Debug.WriteLine($"-----------MarkerClickedCommand: {MarkerClickedCommand != null}");
+
+                // Ensure info window is shown
+                e.HideInfoWindow = true;
+
+                // Execute command if any
+                if (MarkerClickedCommand?.CanExecute(MarkerClickedCommandParameter) == true)
+                {
+                    MarkerClickedCommand.Execute(MarkerClickedCommandParameter);
+                }
             }
         }
     }
