@@ -30,14 +30,18 @@
             };
         }
 
-        public void SetItemSource(
+        public void UpdateProperties(
             IEnumerable<object> itemSouce,
             string displayMemberPath,
-            string textMemberPath)
+            string textMemberPath,
+            bool IsEditable,
+            OccurrenceMode TextHighlightMode = OccurrenceMode.MultipleOccurrence)
         {
             ComboBox!.ItemsSource = itemSouce;
             ComboBox.DisplayMemberPath = displayMemberPath;
             ComboBox.TextMemberPath = textMemberPath;
+            ComboBox.IsEditable = IsEditable;
+            ComboBox.TextHighlightMode = TextHighlightMode;
         }
     }
 }

@@ -19,8 +19,8 @@ public partial class TurbinesCollectionPage: ContentPage
         BindingContext = turbinesCollectionPageViewModel;
 
         var tb = new AppTitleBar();
-        tb.SetItemSource(PageViewModel.TurbinePins,
-            "Turbine.Name", "Turbine.Name");
+        tb.UpdateProperties(PageViewModel.TurbinePins,
+            "Turbine.Name", "Turbine.Name", true);
         App.WindowInstance!.TitleBar = tb;
         PageViewModel.ColletionComboBox = tb.ComboBox;
         tb.ComboBox.SelectionChanged += ComboBox_SelectionChanged;

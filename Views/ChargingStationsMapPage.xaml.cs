@@ -29,8 +29,8 @@ namespace METROWIND.Views
         private void InitializeTitleBar()
         {
             var tb = new AppTitleBar();
-            tb.SetItemSource(PageViewModel.TurbinePins,
-                "Turbine.Name", "Turbine.Name");
+            tb.UpdateProperties(PageViewModel.TurbinePins,
+                "Turbine.Name", "Turbine.Name", true);
             App.WindowInstance!.TitleBar = tb;
 
             tb.ComboBox.SelectionChanged += ComboBox_SelectionChanged;

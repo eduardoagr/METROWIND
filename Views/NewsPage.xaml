@@ -15,6 +15,7 @@
         RowDefinitions="Auto,*">
 
         <CollectionView
+            x:Name="NewsList"
             Grid.Row="1"
             ItemsSource="{x:Binding ArticleList}"
             SelectionMode="None">

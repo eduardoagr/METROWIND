@@ -13,8 +13,8 @@ public partial class NewsPage: ContentPage
         BindingContext = newsPageViewModel;
 
         var tb = new AppTitleBar();
-        tb.SetItemSource(pageViewModel.ArticleList,
-            "Title", "Title");
+        tb.UpdateProperties(pageViewModel.ArticleList,
+            "Title", "Title", false, OccurrenceMode.None);
         App.WindowInstance!.TitleBar = tb;
 
         tb.ComboBox.SelectionChanged += ComboBox_SelectionChanged;
@@ -24,7 +24,10 @@ public partial class NewsPage: ContentPage
     {
         var combobox = sender as SfComboBox;
 
-        Debug.WriteLine($"Selected item: {combobox!.SelectedItem}, Index: {combobox.SelectedIndex}");
+        if (combobox != null)
+        {
+            NewsList.ScrollTo(combobox.SelectedIndex, -1, ScrollToPosition.Center);
+        }
 
     }
 }
