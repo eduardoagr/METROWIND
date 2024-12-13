@@ -147,9 +147,6 @@
   <data name="Loading" xml:space="preserve">
     <value>Cargando noticias</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Iniciar sesión</value>
-  </data>
   <data name="MapTypes" xml:space="preserve">
     <value>Tipos de mapa</value>
   </data>
@@ -197,8 +194,5 @@
   </data>
   <data name="TurbinesCollection" xml:space="preserve">
     <value>Turbinas</value>
-  </data>
-  <data name="WhatsNew" xml:space="preserve">
-    <value>Noticias</value>
   </data>
 </root>
