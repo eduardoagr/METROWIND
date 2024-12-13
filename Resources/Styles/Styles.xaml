@@ -578,7 +578,7 @@
         <Setter Property="TextColor" Value="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
         <Setter Property="IsFilteringEnabled" Value="True" />
         <Setter Property="SelectionMode" Value="Single" />
-        <Setter Property="NoResultsFoundText" Value="{x:Static rex:AppResource.NotFound}"
+        <Setter Property="NoResultsFoundText" Value="{x:Static rex:AppResource.NotFound}"/>
         <Setter Property="Stroke" Value="Transparent" />
         <Setter Property="TextSearchMode" Value="Contains" />
         <Setter Property="PlaceholderColor" Value="Black" />
