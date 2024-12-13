@@ -65,6 +65,7 @@
     <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
     <PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.4" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="FFImageLoading.Maui" Version="1.2.7" />
     <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
     <PackageReference Include="Google.Cloud.Firestore" Version="3.9.0" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.12" />

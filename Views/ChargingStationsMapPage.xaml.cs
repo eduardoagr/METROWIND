@@ -1,4 +1,6 @@
-﻿using SelectionChangedEventArgs = Syncfusion.Maui.Inputs.SelectionChangedEventArgs;
+﻿using METROWIND.Helpers;
+
+using SelectionChangedEventArgs = Syncfusion.Maui.Inputs.SelectionChangedEventArgs;
 
 namespace METROWIND.Views
 {

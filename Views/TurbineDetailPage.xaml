@@ -2,6 +2,7 @@
     x:Class="METROWIND.Views.TurbineDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:model="clr-namespace:METROWIND.Models"
     xmlns:rex="clr-namespace:METROWIND.Resources"
@@ -138,15 +139,18 @@
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout
-                    ItemSpacing="5"
+                    ItemSpacing="10"
                     Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
-                    <Image
+                    <ffimageloading:CachedImage
                         x:Name="CurrentImage"
                         Aspect="AspectFit"
+                        BitmapOptimizations="True"
+                        CacheDuration="30"
+                        LoadingPlaceholder="loading.gif"
                         Source="{Binding}"
                         VerticalOptions="Center" />
                 </DataTemplate>
@@ -154,6 +158,4 @@
 
         </CollectionView>
     </Grid>
-
-
 </ContentPage>

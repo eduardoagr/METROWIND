@@ -21,7 +21,7 @@
                 x:Name="combobox"
                 DisplayMemberPath="Turbine.Name"
                 ItemsSource="{x:Binding TurbinePins}"
-                Style="{x:DynamicResource TurbinesCollectionComboBoxStyle}">
+                Style="{x:DynamicResource ComboBoxStyle}">
                 <editors:SfComboBox.Behaviors>
                     <mct:EventToCommandBehavior
                         Command="{x:Binding SelectedItemChangeCommand}"

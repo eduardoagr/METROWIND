@@ -1,3 +1,5 @@
+using SelectionChangedEventArgs = Syncfusion.Maui.Inputs.SelectionChangedEventArgs;
+
 namespace METROWIND.Views;
 
 public partial class NewsPage: ContentPage
@@ -12,13 +14,13 @@ public partial class NewsPage: ContentPage
 
         var tb = new AppTitleBar();
         tb.SetItemSource(pageViewModel.ArticleList,
-            "Article.Title", "Article.Title");
+            "Title", "Title");
         App.WindowInstance!.TitleBar = tb;
 
         tb.ComboBox.SelectionChanged += ComboBox_SelectionChanged;
     }
 
-    private void ComboBox_SelectionChanged(object? sender, Syncfusion.Maui.Inputs.SelectionChangedEventArgs e)
+    private void ComboBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         var combobox = sender as SfComboBox;
 

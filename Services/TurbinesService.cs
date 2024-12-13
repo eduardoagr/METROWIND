@@ -4,22 +4,32 @@ namespace METROWIND.Services
 {
     public class TurbinesService: ITurbineService, ICommandHandler
     {
-        private const string collectionName = "turbines";
-        private readonly IFirestoreService firestoreService;
-        private readonly IBlobService blobService;
+        public event Action NoInternet;
+
+        private const string collectionName = AppConstants.COLLECTIONNAME;
+        private readonly IFirestoreService _firestoreService;
+        private readonly IBlobService _blobService;
+        private readonly IConnectivity _connectivity;
         private static Timer? _timer;
         private FirestoreDb? _firestoreDb;
         private IPinClickHandler? _pinClickHandler;
+        private bool isInitializing = false;
 
         public ICommand PinClickedCommand { get; private set; }
 
         public ObservableCollection<TurbinePin> TurbinePins { get; set; } = [];
 
-        public TurbinesService(IFirestoreService firestoreService, IBlobService blobService)
+        public TurbinesService(IFirestoreService firestoreService, IBlobService blobService, IConnectivity connectivity)
         {
-            this.firestoreService = firestoreService;
-            this.blobService = blobService;
+            _firestoreService = firestoreService;
+            _blobService = blobService;
+            _connectivity = connectivity;
+            AssingCommand();
 
+        }
+
+        private void AssingCommand()
+        {
             PinClickedCommand = new Command<TurbinePin>(async (pin) =>
             {
                 if (_pinClickHandler != null)
@@ -31,19 +41,42 @@ namespace METROWIND.Services
 
         public async Task InitializeAsync()
         {
-            TurbinePins.Clear();
-
-            bool isInitialized = await firestoreService.InitializeFirestoreAsync();
-            if (isInitialized)
+            if (isInitializing)
             {
-                _firestoreDb = firestoreService.GetFirestoreDb();
-                if (_firestoreDb != null)
+                return; // Prevent multiple initializations
+            }
+
+            isInitializing = true;
+            TurbinePins.Clear();
+            try
+            {
+                if (_connectivity.NetworkAccess != NetworkAccess.Internet)
                 {
-                    await LoadOrInitializeTurbineAsync();
-                    //InitializeTimer();
+                    NoInternet?.Invoke();
+                    isInitializing = false;
+                    return;
+                }
+                bool isInitialized = await _firestoreService.InitializeFirestoreAsync();
+                if (isInitialized)
+                {
+                    _firestoreDb = _firestoreService.GetFirestoreDb();
+                    if (_firestoreDb != null)
+                    {
+                        await LoadOrInitializeTurbineAsync();
+                        //InitializeTimer();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Initialization failed: {ex.Message}");
+            }
+            finally
+            {
+                isInitializing = false;
+            }
         }
+
 
         private async Task LoadOrInitializeTurbineAsync()
         {
@@ -52,31 +85,7 @@ namespace METROWIND.Services
 
             if (snapshot.Count == 0)
             {
-                var turbine = new Turbine
-                {
-                    Id = "EC-G-SB",
-                    Country = "Ecuador",
-                    Name = "Estación Ciudadela Simón Bolívar",
-                    Address = "Av. de las Américas, Guayaquil 090513, Ecuador",
-                    Latitude = -2.151993,
-                    Longitude = -79.886109,
-                    InstalationDateTime = new DateTime(2024, 8, 2, 0, 0, 0,
-                    DateTimeKind.Utc),
-
-                    ImagesURLs = [],
-                };
-
-                turbine.RemovedCo2Kilograms = Math.Round(
-                    turbine.EnergyProduced * turbine.Co2EmissionOffset, 5);
-
-                await AddTurbineImagesAsync(turbine);
-
-                var turbineDocRef = turbinesRef.Document(
-                    turbine.Id);
-
-                await turbineDocRef.SetAsync(turbine);
-
-                AddToCollection(turbine);
+                await InitializeAsyncDefaultTurbine(turbinesRef);
             }
             else
             {
@@ -97,9 +106,38 @@ namespace METROWIND.Services
             }
         }
 
+        private async Task InitializeAsyncDefaultTurbine(CollectionReference turbinesRef)
+        {
+            var turbine = new Turbine
+            {
+                Id = "EC-G-SB",
+                Country = "Ecuador",
+                Name = "Estación Ciudadela Simón Bolívar",
+                Address = "Av. de las Américas, Guayaquil 090513, Ecuador",
+                Latitude = -2.151993,
+                Longitude = -79.886109,
+                InstalationDateTime = new DateTime(2024, 8, 2, 0, 0, 0,
+                    DateTimeKind.Utc),
+
+                ImagesURLs = [],
+            };
+
+            turbine.RemovedCo2Kilograms = Math.Round(
+                turbine.EnergyProduced * turbine.Co2EmissionOffset, 5);
+
+            await AddTurbineImagesAsync(turbine);
+
+            var turbineDocRef = turbinesRef.Document(
+                turbine.Id);
+
+            await turbineDocRef.SetAsync(turbine);
+
+            AddToCollection(turbine);
+        }
+
         private async Task AddTurbineImagesAsync(Turbine turbine)
         {
-            turbine.ImagesURLs = (await blobService.GetImagessFromBlob(turbine.Country!)).ToList();
+            turbine.ImagesURLs = (await _blobService.GetImagessFromBlob(turbine.Country!)).ToList();
         }
 
         private void AddToCollection(Turbine turbine)

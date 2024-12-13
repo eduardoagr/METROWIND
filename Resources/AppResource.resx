@@ -120,9 +120,6 @@
   <data name="AppSend" xml:space="preserve">
     <value>Send</value>
   </data>
-  <data name="AppSub" xml:space="preserve">
-    <value>Technology for a sustainable future</value>
-  </data>
   <data name="AppSuport" xml:space="preserve">
     <value>How may we assist you?</value>
   </data>
@@ -138,9 +135,6 @@
   <data name="Detail" xml:space="preserve">
     <value>Article</value>
   </data>
-  <data name="Energy" xml:space="preserve">
-    <value>Technology for a Sustainable Future</value>
-  </data>
   <data name="Internet" xml:space="preserve">
     <value>No internet access</value>
   </data>
@@ -152,6 +146,9 @@
   </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Not Found</value>
   </data>
   <data name="Satelite" xml:space="preserve">
     <value>Satelite</value>
@@ -194,8 +191,5 @@
   </data>
   <data name="TurbineSearch" xml:space="preserve">
     <value>Search</value>
-  </data>
-  <data name="WhatsNew" xml:space="preserve">
-    <value>What's new</value>
   </data>
 </root>

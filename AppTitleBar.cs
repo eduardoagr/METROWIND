@@ -25,7 +25,8 @@
                 HighlightedTextColor = Colors.Red,
                 HighlightedTextFontAttributes = FontAttributes.Bold,
                 IsFilteringEnabled = true,
-                TextHighlightMode = OccurrenceMode.MultipleOccurrence
+                TextHighlightMode = OccurrenceMode.MultipleOccurrence,
+                NoResultsFoundText = AppResource.NotFound
             };
         }
 
@@ -35,6 +36,8 @@
             string textMemberPath)
         {
             ComboBox!.ItemsSource = itemSouce;
+            ComboBox.DisplayMemberPath = displayMemberPath;
+            ComboBox.TextMemberPath = textMemberPath;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace METROWIND.Services;
+﻿using Google.Apis.Auth.OAuth2;
+
+namespace METROWIND.Services;
 
 public class FirestoreService(ILogger<FirestoreService> logger): IFirestoreService
 {

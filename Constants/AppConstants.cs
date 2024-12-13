@@ -26,6 +26,10 @@
 
         public const string FIREBASE_PROJECT_ID = "metrowind-2e473";
 
+        //Firebase Collection
+
+        public const string COLLECTIONNAME = "turbines";
+
         //Azure connection string
 
         public const string AZURE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=metrowindstorage;AccountKey=ZmY3ys1l0YjKBm1cTRfo4CI6Xg8xuYfCQaitnmQcey1+nIQzZf3B7Jl27ubQcyrTMhbdSVeOYpwH+ASt6ShJNA==;EndpointSuffix=core.windows.net";

@@ -1,6 +1,4 @@
-﻿using SkiaSharp.Views.Maui.Controls.Hosting;
-
-using Map = Microsoft.Maui.ApplicationModel.Map;
+﻿using Map = Microsoft.Maui.ApplicationModel.Map;
 
 namespace METROWIND;
 
@@ -11,7 +9,6 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            .UseSkiaSharp()
 #if WINDOWS
             .UseMauiCommunityToolkitMaps(AppConstants.BINGMAPS_APIKEY)
 #elif ANDROID || IOS
@@ -19,6 +16,7 @@ public static class MauiProgram
 #endif
             .UseMauiCommunityToolkit()
             .ConfigureSyncfusionCore()
+            .UseFFImageLoading()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

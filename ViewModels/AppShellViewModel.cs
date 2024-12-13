@@ -1,5 +1,4 @@
-﻿
-namespace METROWIND.ViewModel
+﻿namespace METROWIND.ViewModel
 {
     public partial class AppShellViewModel: ObservableObject, IPinClickHandler
     {
@@ -10,11 +9,12 @@ namespace METROWIND.ViewModel
         private readonly ICommandHandler _commandHandler;
         private readonly IConnectivity _connectivity;
         private readonly IAppService _appService;
+        private bool isInitializing = false; // Flag to track initialization
 
         public ObservableCollection<TurbinePin> TurbinePins => _turbineService.TurbinePins;
         public ICommand PinClickedCommand => _turbineService.PinClickedCommand;
 
-        public const string FLYOUT_KEY = "flyouy_key";
+        public const string FLYOUT_KEY = "flyout_key";
         public const string SWITCH_KEY = "switch_key";
 
         [ObservableProperty]
@@ -24,7 +24,7 @@ namespace METROWIND.ViewModel
         bool isCompactMode;
 
         [ObservableProperty]
-        bool isMenuPopUpOen;
+        bool isMenuPopUpOpen;
 
         public AppShellViewModel(ITurbineService turbineService, IAppService appService,
             IServiceProvider serviceProvider, ICommandHandler commandHandler,
@@ -34,33 +34,48 @@ namespace METROWIND.ViewModel
             _turbineService = turbineService;
             _appService = appService;
             _commandHandler = commandHandler;
-
-            // Set the service command to execute the ViewModel method
-            _commandHandler.SetPinClickedCommand(new Command<TurbinePin>(async (pin) =>
-            await PinMarkerClicked(pin))); // Ensure the service knows this ViewModel as the handler
-
-            _turbineService.SetPinClickHandler(this);
             _connectivity = connectivity;
             _noInternetPopUp = noInternetPopUp;
+
+            _turbineService.NoInternet += TurbineService_NoInternet;
+
+            InitializeCommand();
+
+            _turbineService.SetPinClickHandler(this);
+
+            _connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        }
+
+        private void TurbineService_NoInternet()
+        {
+            _noInternetPopUp.Show();
+        }
+
+        private void InitializeCommand()
+        {
+            _commandHandler.SetPinClickedCommand(new Command<TurbinePin>(async (pin) =>
+            await PinMarkerClicked(pin)));
         }
 
         [RelayCommand]
-        async void Appearing(AppShell appShell)
+        async Task Appearing(AppShell appShell)
         {
             _shell = appShell;
 
-            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+            try
             {
-                _noInternetPopUp.Show();
+                if (TurbinePins.Count == 0 && !isInitializing)
+                {
+                    isInitializing = true;
+                    await _turbineService.InitializeAsync();
+                    isInitializing = false;
+                }
             }
-            else if (_connectivity.NetworkAccess == NetworkAccess.Internet)
+            catch (Exception ex)
             {
-                await _turbineService.InitializeAsync();
-
-                _commandHandler.SetPinClickedCommand(PinClickedCommand);
+                Debug.WriteLine($"Initialization failed: {ex.Message}");
+                isInitializing = false;
             }
-
-            _connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
 
         private void Connectivity_ConnectivityChanged(object? sender, ConnectivityChangedEventArgs e)
@@ -68,16 +83,41 @@ namespace METROWIND.ViewModel
             HandleConnectivityChangeAsync();
         }
 
-        [RelayCommand]
-        void OpenMenu()
+        private async void HandleConnectivityChangeAsync()
         {
-            IsMenuPopUpOen = true;
+            if (_connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                _noInternetPopUp.IsOpen = false;
+                try
+                {
+                    if (TurbinePins.Count == 0 && !isInitializing)
+                    {
+                        isInitializing = true;
+                        await _turbineService.InitializeAsync();
+                        isInitializing = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Initialization failed: {ex.Message}");
+                    isInitializing = false;
+                }
+            }
+            else
+            {
+                TurbineService_NoInternet();
+            }
         }
 
         [RelayCommand]
-        void ToogleSwitch()
+        void OpenMenu()
         {
+            IsMenuPopUpOpen = true;
+        }
 
+        [RelayCommand]
+        void ToggleSwitch()
+        {
             if (IsCompactMode)
             {
                 _shell!.FlyoutWidth = 65;
@@ -87,26 +127,7 @@ namespace METROWIND.ViewModel
                 _shell!.FlyoutWidth = 300;
             }
 
-            IsMenuPopUpOen = false;
-
-        }
-
-        private void HandleConnectivityChangeAsync()
-        {
-            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                _noInternetPopUp.Show();
-            }
-            else if (_connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                if (_noInternetPopUp.IsOpen)
-                {
-                    _noInternetPopUp.IsOpen = false;
-                }
-
-                Application.Current!.Windows[0].Page = new AppShell(this);
-            }
-
+            IsMenuPopUpOpen = false;
         }
 
         public async Task PinMarkerClicked(TurbinePin turbine)
@@ -143,4 +164,3 @@ namespace METROWIND.ViewModel
         }
     }
 }
-

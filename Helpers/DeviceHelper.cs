@@ -1,4 +1,4 @@
-﻿namespace METROWIND
+﻿namespace METROWIND.Helpers
 {
     public static class DeviceHelper
     {

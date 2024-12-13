@@ -70,15 +70,6 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Technology for a sustainable future.
-        /// </summary>
-        internal static string AppSub {
-            get {
-                return ResourceManager.GetString("AppSub", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to How may we assist you?.
         /// </summary>
         internal static string AppSuport {
@@ -124,15 +115,6 @@ namespace METROWIND.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Technology for a Sustainable Future.
-        /// </summary>
-        internal static string Energy {
-            get {
-                return ResourceManager.GetString("Energy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No internet access.
         /// </summary>
         internal static string Internet {
@@ -165,6 +147,15 @@ namespace METROWIND.Resources {
         internal static string News {
             get {
                 return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Found.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
             }
         }
         
@@ -291,15 +282,6 @@ namespace METROWIND.Resources {
         internal static string TurbineSearch {
             get {
                 return ResourceManager.GetString("TurbineSearch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What&apos;s new.
-        /// </summary>
-        internal static string WhatsNew {
-            get {
-                return ResourceManager.GetString("WhatsNew", resourceCulture);
             }
         }
     }

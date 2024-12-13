@@ -2,6 +2,8 @@
 {
     public interface ITurbineService
     {
+        event Action NoInternet;
+
         ObservableCollection<TurbinePin> TurbinePins { get; }
 
         ICommand PinClickedCommand { get; }

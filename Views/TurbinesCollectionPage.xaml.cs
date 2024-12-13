@@ -1,3 +1,5 @@
+using METROWIND.Helpers;
+
 namespace METROWIND.Views;
 
 public partial class TurbinesCollectionPage: ContentPage
