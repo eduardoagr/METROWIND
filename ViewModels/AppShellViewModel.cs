@@ -9,7 +9,7 @@
         private readonly ICommandHandler _commandHandler;
         private readonly IConnectivity _connectivity;
         private readonly IAppService _appService;
-        private bool isInitializing = false; // Flag to track initialization
+        private bool isInitializing = false;
 
         public ObservableCollection<TurbinePin> TurbinePins => _turbineService.TurbinePins;
         public ICommand PinClickedCommand => _turbineService.PinClickedCommand;

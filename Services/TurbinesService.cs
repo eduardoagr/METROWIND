@@ -4,7 +4,7 @@ namespace METROWIND.Services
 {
     public class TurbinesService: ITurbineService, ICommandHandler
     {
-        public event Action NoInternet;
+        public event Action NoInternet = delegate { };
 
         private const string collectionName = AppConstants.COLLECTIONNAME;
         private readonly IFirestoreService _firestoreService;
@@ -15,7 +15,7 @@ namespace METROWIND.Services
         private IPinClickHandler? _pinClickHandler;
         private bool isInitializing = false;
 
-        public ICommand PinClickedCommand { get; private set; }
+        public ICommand PinClickedCommand { get; private set; } = null!;
 
         public ObservableCollection<TurbinePin> TurbinePins { get; set; } = [];
 
@@ -25,7 +25,6 @@ namespace METROWIND.Services
             _blobService = blobService;
             _connectivity = connectivity;
             AssingCommand();
-
         }
 
         private void AssingCommand()

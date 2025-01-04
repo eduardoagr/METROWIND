@@ -39,7 +39,7 @@
                 Padding="20"
                 AbsoluteY="10"
                 AutoSizeMode="Both"
-                IsOpen="{Binding IsMenuPopUpOen}"
+                IsOpen="{Binding OpenMenuCommand}"
                 RelativePosition="AlignBottomLeft"
                 RelativeView="{x:Reference ConfigMenu}"
                 ShowHeader="False"
