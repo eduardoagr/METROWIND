@@ -36,39 +36,38 @@
                 </Image.GestureRecognizers>
             </Image>
             <popup:SfPopup
-                Padding="20"
-                AbsoluteY="10"
+                Padding="5"
+                AbsoluteY="5"
                 AutoSizeMode="Both"
-                IsOpen="{Binding OpenMenuCommand}"
-                RelativePosition="AlignBottomLeft"
+                IsOpen="{Binding IsMenuPopUpOpen}"
+                RelativePosition="AlignToRightOf"
                 RelativeView="{x:Reference ConfigMenu}"
                 ShowHeader="False"
                 ShowOverlayAlways="False">
                 <popup:SfPopup.PopupStyle>
-                    <popup:PopupStyle CornerRadius="0" />
+                    <popup:PopupStyle CornerRadius="8" />
                 </popup:SfPopup.PopupStyle>
                 <popup:SfPopup.ContentTemplate>
                     <DataTemplate>
-                        <Grid
+                        <HorizontalStackLayout
                             BackgroundColor="#908686"
-                            ColumnDefinitions="*,*"
-                            HorizontalOptions="Fill">
+                            WidthRequest="180">
                             <Label
                                 Margin="10,0,0,0"
                                 Text="{x:Static rex:AppResource.CompactMode}"
                                 VerticalTextAlignment="Center" />
                             <controls:CustomSwitch
-                                Grid.Column="1"
+                                Margin="10,0,0,0"
                                 IsToggled="{Binding IsCompactMode}"
-                                OnColor="Green">
+                                OnColor="#4E2B75">
                                 <Switch.Behaviors>
                                     <toolkit:EventToCommandBehavior
-                                        Command="{Binding ToogleSwitchCommand}"
+                                        Command="{Binding ToggleSwitchCommand}"
                                         CommandParameter="{Binding IsCompactMode}"
                                         EventName="Toggled" />
                                 </Switch.Behaviors>
                             </controls:CustomSwitch>
-                        </Grid>
+                        </HorizontalStackLayout>
                     </DataTemplate>
                 </popup:SfPopup.ContentTemplate>
             </popup:SfPopup>
@@ -115,6 +114,7 @@
     </FlyoutItem>
 
     <!--  TabBar for Phone  -->
+    
     <TabBar>
         <Tab
             Title="{x:Static rex:AppResource.Stations}"
