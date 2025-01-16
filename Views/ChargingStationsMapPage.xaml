@@ -14,7 +14,7 @@
     x:Name="stationsMapPage"
     x:DataType="vm:ChargingStationsMapPageViewModel">
 
-    <Grid>
+    <Grid x:DataType="vm:ChargingStationsMapPageViewModel">
         <Border
             x:Name="MobileContent"
             Style="{x:StaticResource ChargeStationBorderStyle}">
@@ -90,6 +90,7 @@
         </Button>
 
         <popup:SfPopup
+            WidthRequest="{Binding Source={x:Reference mapLayers}, Path=Width}"
             x:Name="MapChangeTypuPopUp"
             RelativeView="{x:Reference mapLayers}"
             Style="{x:StaticResource ChargeStationPopupStyle}">

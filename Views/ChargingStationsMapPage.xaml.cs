@@ -1,8 +1,4 @@
-﻿using METROWIND.Helpers;
-
-using SelectionChangedEventArgs = Syncfusion.Maui.Inputs.SelectionChangedEventArgs;
-
-namespace METROWIND.Views
+﻿namespace METROWIND.Views
 {
     public partial class ChargingStationsMapPage: ContentPage
     {
@@ -18,12 +14,14 @@ namespace METROWIND.Views
             InitializeMap();
             InitializeTitleBar();
             DeviceHelper.AddOrRemoveContentBasedOnDevice(MobileContent);
+
         }
 
         private void InitializeMap()
         {
             PageViewModel.MapView = ChargingStationMap;
             PageViewModel.MapDialogPopUp = MapChangeTypuPopUp;
+          
         }
 
         private void InitializeTitleBar()

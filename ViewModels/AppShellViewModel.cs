@@ -3,13 +3,15 @@
     public partial class AppShellViewModel: ObservableObject, IPinClickHandler
     {
         private AppShell? _shell;
-        private NoInternetPopUp _noInternetPopUp;
+        private readonly NoInternetPopUp _noInternetPopUp;
         private readonly IServiceProvider _serviceProvider;
         private readonly ITurbineService _turbineService;
         private readonly ICommandHandler _commandHandler;
         private readonly IConnectivity _connectivity;
         private readonly IAppService _appService;
         private bool isInitializing = false;
+
+        static bool _isConnectivityEventRegistered;
 
         public ObservableCollection<TurbinePin> TurbinePins => _turbineService.TurbinePins;
         public ICommand PinClickedCommand => _turbineService.PinClickedCommand;
@@ -43,7 +45,13 @@
 
             _turbineService.SetPinClickHandler(this);
 
-            _connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            if (!_isConnectivityEventRegistered)
+            {
+                _connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+                _isConnectivityEventRegistered = true;
+            }
+
+
         }
 
         private void TurbineService_NoInternet()
@@ -88,6 +96,7 @@
             if (_connectivity.NetworkAccess == NetworkAccess.Internet)
             {
                 _noInternetPopUp.IsOpen = false;
+
                 try
                 {
                     if (TurbinePins.Count == 0 && !isInitializing)

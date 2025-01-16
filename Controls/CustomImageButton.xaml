@@ -2,32 +2,37 @@
     x:Class="METROWIND.Controls.CustomImageButton"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Name="ImageButton">
+    x:Name="ImageButton"
+    xmlns:cc="clr-namespace:METROWIND.Controls"
+    x:DataType="cc:CustomImageButton">
 
-    <VerticalStackLayout BindingContext="{x:Binding Source={x:Reference ImageButton}}">
+    <HorizontalStackLayout BindingContext="{x:Binding Source={x:Reference ImageButton}}">
         <Border
             Margin="10"
-            Padding="10"
-            HorizontalOptions="Start"
+            HeightRequest="{OnIdiom Desktop=40,
+                                    Phone=60}"
             Stroke="{x:Binding BorderColor}"
-            StrokeThickness="2">
+            StrokeThickness="2"
+            WidthRequest="{OnIdiom Desktop=40,
+                                   Phone=60}">
             <Label
                 FontFamily="ma"
-                FontSize="Large"
+                FontSize="{OnIdiom Desktop=40,
+                                   Phone=60}"
                 Text="{x:Binding ImageName}"
-                TextColor="Black"
-                VerticalOptions="Center" />
+                TextColor="Black" />
         </Border>
 
         <Label
-            Margin="0,-10,0,0"
             HorizontalTextAlignment="Center"
             Text="{x:Binding Caption}"
-            TextColor="Black" />
-        <VerticalStackLayout.GestureRecognizers>
+            TextColor="Black"
+            Margin="5"
+            VerticalTextAlignment="Center" />
+        <HorizontalStackLayout.GestureRecognizers>
             <TapGestureRecognizer
                 Command="{x:Binding ClickCommand}"
                 CommandParameter="{x:Binding Parameter}" />
-        </VerticalStackLayout.GestureRecognizers>
-    </VerticalStackLayout>
+        </HorizontalStackLayout.GestureRecognizers>
+    </HorizontalStackLayout>
 </ContentView>

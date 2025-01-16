@@ -61,17 +61,13 @@ namespace METROWIND.Controls
 
         private void CustomPin_MarkerClicked(object? sender, PinClickedEventArgs e)
         {
+            // Ensure info window is shown
+            e.HideInfoWindow = true;
+
+            // Execute command if any
+            if (MarkerClickedCommand?.CanExecute(MarkerClickedCommandParameter) == true)
             {
-                Debug.WriteLine($"-----------MarkerClickedCommand: {MarkerClickedCommand != null}");
-
-                // Ensure info window is shown
-                e.HideInfoWindow = true;
-
-                // Execute command if any
-                if (MarkerClickedCommand?.CanExecute(MarkerClickedCommandParameter) == true)
-                {
-                    MarkerClickedCommand.Execute(MarkerClickedCommandParameter);
-                }
+                MarkerClickedCommand.Execute(MarkerClickedCommandParameter);
             }
         }
     }

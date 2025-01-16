@@ -1,5 +1,4 @@
-﻿
-using Map = Microsoft.Maui.Controls.Maps.Map;
+﻿using Map = Microsoft.Maui.Controls.Maps.Map;
 
 namespace METROWIND.ViewModel
 {
@@ -22,7 +21,6 @@ namespace METROWIND.ViewModel
             MapDialogButtons();
 
         }
-
 
         public ObservableCollection<MapTypeButton> MapTypeButtons { get; set; } = [];
 

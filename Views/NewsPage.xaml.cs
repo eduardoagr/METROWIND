@@ -1,5 +1,3 @@
-using SelectionChangedEventArgs = Syncfusion.Maui.Inputs.SelectionChangedEventArgs;
-
 namespace METROWIND.Views;
 
 public partial class NewsPage: ContentPage
@@ -22,9 +20,7 @@ public partial class NewsPage: ContentPage
 
     private void ComboBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        var combobox = sender as SfComboBox;
-
-        if (combobox != null)
+        if (sender is SfComboBox combobox)
         {
             NewsList.ScrollTo(combobox.SelectedIndex, -1, ScrollToPosition.Center);
         }
