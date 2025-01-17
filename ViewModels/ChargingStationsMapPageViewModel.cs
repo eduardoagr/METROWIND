@@ -21,7 +21,6 @@ namespace METROWIND.ViewModel
             MapDialogButtons();
 
         }
-
         public ObservableCollection<MapTypeButton> MapTypeButtons { get; set; } = [];
 
         private void MapDialogButtons()

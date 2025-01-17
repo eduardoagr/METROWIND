@@ -46,12 +46,12 @@ namespace METROWIND.ViewModel
         }
 
         [RelayCommand]
-        async Task GotoLocation(TurbinePin turbinePin)
+        static async Task GotoLocation(TurbinePin turbinePin)
         {
             await Navigate(turbinePin);
         }
 
-        public async Task Navigate(TurbinePin turbinePin)
+        public static async Task Navigate(TurbinePin turbinePin)
         {
             var location = new Location(turbinePin.Turbine!.Latitude, turbinePin.Turbine.Longitude);
             var options = new MapLaunchOptions

@@ -50,8 +50,6 @@
                 _connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
                 _isConnectivityEventRegistered = true;
             }
-
-
         }
 
         private void TurbineService_NoInternet()

@@ -18,7 +18,7 @@
     <Shell.Behaviors>
         <toolkit:EventToCommandBehavior
             Command="{Binding AppearingCommand}"
-            CommandParameter="{Binding Source={x:Reference shelly}, x:DataType=Shell}"
+            CommandParameter="{Binding Source={x:Reference shelly}}"
             EventName="Appearing" />
     </Shell.Behaviors>
 
@@ -29,6 +29,7 @@
                 Margin="10,10,0,15"
                 HeightRequest="48"
                 HorizontalOptions="Start"
+                Source="windmill.png"
                 WidthRequest="48">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OpenMenuCommand}" />
@@ -57,7 +58,6 @@
                                 VerticalTextAlignment="Center" />
                             <controls:CustomSwitch
                                 Margin="10,0,0,0"
-                                x:DataType="vm:AppShellViewModel"
                                 IsToggled="{Binding IsCompactMode}"
                                 OnColor="#4E2B75">
                                 <Switch.Behaviors>
@@ -76,29 +76,34 @@
 
     <!--  Flyout for Desktop  -->
 
-    <FlyoutItem Title="{x:Static rex:AppResource.Stations}">
+    <FlyoutItem
+        Title="{x:Static rex:AppResource.Stations}"
+        Icon="stations.png">
         <ShellContent
             ContentTemplate="{DataTemplate views:ChargingStationsMapPage}"
             Route="ChargingStationsMapPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static rex:AppResource.TurbinesCollection}">
-
+    <FlyoutItem
+        Title="{x:Static rex:AppResource.TurbinesCollection}"
+        Icon="turbines.png">
         <ShellContent
             ContentTemplate="{DataTemplate views:TurbinesCollectionPage}"
             Route="TurbinesCollectionPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static rex:AppResource.Support}">
-
+    <FlyoutItem
+        Title="{x:Static rex:AppResource.Support}"
+        Icon="help.png">
         <ShellContent
             ContentTemplate="{DataTemplate views:SupportPage}"
             Route="SupportPage"
             Shell.NavBarIsVisible="False" />
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static rex:AppResource.News}">
-
+    <FlyoutItem
+        Title="{x:Static rex:AppResource.News}"
+        Icon="news.png">
         <ShellContent
             ContentTemplate="{DataTemplate views:NewsPage}"
             Route="NewsPage"

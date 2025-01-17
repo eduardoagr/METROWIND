@@ -14,7 +14,7 @@
     x:Name="stationsMapPage"
     x:DataType="vm:ChargingStationsMapPageViewModel">
 
-    <Grid x:DataType="vm:ChargingStationsMapPageViewModel">
+    <Grid>
         <Border
             x:Name="MobileContent"
             Style="{x:StaticResource ChargeStationBorderStyle}">
@@ -49,7 +49,8 @@
                                             <TapGestureRecognizer
                                                 Command="{x:Binding Source={x:Reference stationsMapPage},
                                                                     Path=BindingContext.ItemSelectedCommand}"
-                                                CommandParameter="{x:Binding Turbine}" />
+                                                CommandParameter="{x:Binding Turbine,
+                                                                             x:DataType=model:TurbinePin}" />
                                         </Border.GestureRecognizers>
 
                                     </Border>
@@ -90,10 +91,10 @@
         </Button>
 
         <popup:SfPopup
-            WidthRequest="{Binding Source={x:Reference mapLayers}, Path=Width}"
             x:Name="MapChangeTypuPopUp"
             RelativeView="{x:Reference mapLayers}"
-            Style="{x:StaticResource ChargeStationPopupStyle}">
+            Style="{x:StaticResource ChargeStationPopupStyle}"
+            WidthRequest="{Binding Source={x:Reference mapLayers}, Path=Width}">
             <popup:SfPopup.PopupStyle>
                 <popup:PopupStyle CornerRadius="8" />
             </popup:SfPopup.PopupStyle>
