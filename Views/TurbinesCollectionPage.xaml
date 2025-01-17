@@ -63,7 +63,8 @@
                                 Grid.Column="1"
                                 BackgroundColor="#63B62B"
                                 Command="{x:Binding GotoLocationCommand,
-                                                    Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                                    Source={RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}},
+                                                    x:DataType=vm:TurbinesCollectionPageViewModel}"
                                 CommandParameter="{x:Binding}"
                                 FontFamily="ma"
                                 FontSize="Large"
@@ -73,7 +74,8 @@
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
                                 Command="{x:Binding PinClickedCommand,
-                                                    Source={x:RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}}}"
+                                                    Source={RelativeSource AncestorType={x:Type vm:TurbinesCollectionPageViewModel}},
+                                                    x:DataType=vm:TurbinesCollectionPageViewModel}"
                                 CommandParameter="{x:Binding}" />
                         </Border.GestureRecognizers>
                     </Border>

@@ -102,8 +102,7 @@
                         </Grid>
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{x:Binding ShowNewsDetailCommand,
-                                                    Source={x:RelativeSource AncestorType={x:Type vm:NewsPageViewModel}}}"
+                                Command="{Binding ShowNewsDetailCommand, Source={RelativeSource AncestorType={x:Type vm:NewsPageViewModel}}, x:DataType=vm:NewsPageViewModel}"
                                 CommandParameter="{x:Binding .}" />
                         </Border.GestureRecognizers>
                     </Border>

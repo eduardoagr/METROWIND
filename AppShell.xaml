@@ -18,7 +18,7 @@
     <Shell.Behaviors>
         <toolkit:EventToCommandBehavior
             Command="{Binding AppearingCommand}"
-            CommandParameter="{Binding Source={x:Reference shelly}}"
+            CommandParameter="{Binding Source={x:Reference shelly}, x:DataType=Shell}"
             EventName="Appearing" />
     </Shell.Behaviors>
 
@@ -58,6 +58,7 @@
                                 VerticalTextAlignment="Center" />
                             <controls:CustomSwitch
                                 Margin="10,0,0,0"
+                                x:DataType="vm:AppShellViewModel"
                                 IsToggled="{Binding IsCompactMode}"
                                 OnColor="#4E2B75">
                                 <Switch.Behaviors>

@@ -47,10 +47,10 @@
                                         </Border.Behaviors>
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer
-                                                Command="{x:Binding Source={x:Reference stationsMapPage},
-                                                                    Path=BindingContext.ItemSelectedCommand}"
-                                                CommandParameter="{x:Binding Turbine,
-                                                                             x:DataType=model:TurbinePin}" />
+                                                Command="{x:Binding ItemSelectedCommand,
+                                                                    Source={RelativeSource AncestorType={x:Type vm:ChargingStationsMapPageViewModel}},
+                                                                    x:DataType=vm:ChargingStationsMapPageViewModel}"
+                                                CommandParameter="{x:Binding Turbine}" />
                                         </Border.GestureRecognizers>
 
                                     </Border>
@@ -99,7 +99,7 @@
                 <popup:PopupStyle CornerRadius="8" />
             </popup:SfPopup.PopupStyle>
             <popup:SfPopup.ContentTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="vm:ChargingStationsMapPageViewModel">
                     <VerticalStackLayout Spacing="10">
                         <VerticalStackLayout BindableLayout.ItemsSource="{x:Binding MapTypeButtons}">
                             <BindableLayout.ItemTemplate>
@@ -107,8 +107,7 @@
                                     <controls:CustomImageButton
                                         BorderColor="{Binding SelectedColor}"
                                         Caption="{Binding Caption}"
-                                        ClickCommand="{x:Binding ChangeMapTypeCommand,
-                                                                 Source={x:RelativeSource AncestorType={x:Type vm:ChargingStationsMapPageViewModel}}}"
+                                        ClickCommand="{Binding ChangeMapTypeCommand, Source={RelativeSource AncestorType={x:Type vm:ChargingStationsMapPageViewModel}}, x:DataType=vm:ChargingStationsMapPageViewModel}"
                                         ImageName="{Binding ImageName}"
                                         MapNumber="{x:Binding MapNumber}"
                                         Parameter="{Binding}" />
