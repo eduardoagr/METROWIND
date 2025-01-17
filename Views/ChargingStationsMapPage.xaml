@@ -92,11 +92,8 @@
 
         <popup:SfPopup
             x:Name="MapChangeTypuPopUp"
-            BindingContext="{x:Reference mapLayers}"
             RelativeView="{x:Reference mapLayers}"
-            Style="{x:StaticResource ChargeStationPopupStyle}"
-            WidthRequest="{x:Binding Width,
-                                     Source={x:Reference mapLayers}}">
+            Style="{x:StaticResource ChargeStationPopupStyle}">
             <popup:SfPopup.PopupStyle>
                 <popup:PopupStyle CornerRadius="8" />
             </popup:SfPopup.PopupStyle>
