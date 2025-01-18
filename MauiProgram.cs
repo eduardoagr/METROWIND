@@ -1,4 +1,6 @@
-﻿using Map = Microsoft.Maui.ApplicationModel.Map;
+﻿
+
+using Map = Microsoft.Maui.ApplicationModel.Map;
 
 namespace METROWIND;
 
@@ -16,6 +18,7 @@ public static class MauiProgram
 #endif
             .UseMauiCommunityToolkit()
             .ConfigureSyncfusionCore()
+            .UseFFImageLoading()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

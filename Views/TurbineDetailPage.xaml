@@ -149,7 +149,8 @@
                         x:Name="CurrentImage"
                         Aspect="AspectFit"
                         BitmapOptimizations="True"
-                        CacheDuration="30"
+                        CacheDuration="60"
+                        DownsampleToViewSize="True"
                         LoadingPlaceholder="loading.gif"
                         Source="{Binding}"
                         VerticalOptions="Center" />
