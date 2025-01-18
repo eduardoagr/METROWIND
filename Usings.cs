@@ -5,9 +5,6 @@ global using CommunityToolkit.Maui.Core.Platform;
 global using CommunityToolkit.Maui.Maps;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
-global using CommunityToolkit.Mvvm.Messaging;
-
-global using FFImageLoading.Maui;
 
 global using Google.Cloud.Firestore;
 

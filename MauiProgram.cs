@@ -16,7 +16,6 @@ public static class MauiProgram
 #endif
             .UseMauiCommunityToolkit()
             .ConfigureSyncfusionCore()
-            .UseFFImageLoading()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
