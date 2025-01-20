@@ -36,12 +36,12 @@
         }
 
         [RelayCommand]
-        async Task ShowNewsDetail(Article article)
+        async Task ShowNewsDetail(string Url)
         {
-            if (article != null)
+            if (!string.IsNullOrEmpty(Url))
             {
                 await _appService.NavigateToPage($"{nameof(ArticleDetailsPage)}",
-                     new Dictionary<string, object> {{ "articleObj", article }
+                     new Dictionary<string, object> {{ "articleURL", Url }
                 });
             }
         }

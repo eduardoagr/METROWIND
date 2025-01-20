@@ -16,6 +16,7 @@
 
         <CollectionView
             x:Name="NewsList"
+            VerticalOptions="Center"
             Grid.Row="1"
             ItemsSource="{x:Binding ArticleList}"
             SelectionMode="None">
@@ -29,8 +30,6 @@
             <CollectionView.EmptyViewTemplate>
                 <DataTemplate>
                     <VerticalStackLayout
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand">
                         <ActivityIndicator IsRunning="True" />
                         <Label
                             HorizontalOptions="Center"
@@ -104,7 +103,7 @@
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
                                 Command="{Binding ShowNewsDetailCommand, Source={RelativeSource AncestorType={x:Type vm:NewsPageViewModel}}, x:DataType=vm:NewsPageViewModel}"
-                                CommandParameter="{x:Binding .}" />
+                                CommandParameter="{x:Binding Url}" />
                         </Border.GestureRecognizers>
                     </Border>
                 </DataTemplate>

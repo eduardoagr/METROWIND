@@ -15,8 +15,7 @@
                 Style="{x:StaticResource ShareLabelStyle}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
-                        Command="{x:Binding OpenShareMenuCommand}"
-                        CommandParameter="{x:Binding ArticleObj}" />
+                        Command="{x:Binding OpenShareMenuCommand}" />
                 </Label.GestureRecognizers>
             </Label>
 
@@ -26,6 +25,6 @@
 
     </Shell.TitleView>
 
-    <WebView Source="{x:Binding ArticleObj.Url}" />
+    <WebView Source="{x:Binding Url}" />
 
 </ContentPage>

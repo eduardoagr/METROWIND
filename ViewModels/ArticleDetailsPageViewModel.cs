@@ -1,18 +1,18 @@
 ﻿namespace METROWIND.ViewModel
 {
 
-    [QueryProperty(nameof(ArticleObj), "articleObj")]
+    [QueryProperty(nameof(Url), "articleURL")]
     public partial class ArticleDetailsPageViewModel(IShare share): ObservableObject
     {
         [ObservableProperty]
-        Article? articleObj;
+        string? url;
 
         [RelayCommand]
-        async Task OpenShareMenu(Article article)
+        async Task OpenShareMenu()
         {
             await share.RequestAsync(new ShareTextRequest
             {
-                Uri = article.Url,
+                Uri = url,
                 Title = "Check out this article"
             });
         }
