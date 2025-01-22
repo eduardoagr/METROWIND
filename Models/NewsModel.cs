@@ -1,7 +1,5 @@
 ﻿namespace METROWIND.Models
 {
-
-
     public class Source
     {
 

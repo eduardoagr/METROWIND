@@ -77,7 +77,7 @@
 
     <!--  Flyout for Desktop  -->
 
-    <FlyoutItem
+    <!--<FlyoutItem
         Title="{x:Static rex:AppResource.Stations}"
         Icon="stations.png">
         <ShellContent
@@ -109,7 +109,7 @@
             ContentTemplate="{DataTemplate views:NewsPage}"
             Route="NewsPage"
             Shell.NavBarIsVisible="False" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <!--  TabBar for Phone  -->
 

@@ -28,22 +28,28 @@
 
             if (newsObj != null && newsObj.Articles != null)
             {
-                foreach (var article in newsObj.Articles)
+                var tasks = newsObj.Articles.Select(async article =>
                 {
+                    // Any async operation on the article can be done here
                     ArticleList.Add(article);
-                }
+                });
+
+                await Task.WhenAll(tasks);
             }
         }
+
 
         [RelayCommand]
         async Task ShowNewsDetail(string Url)
         {
             if (!string.IsNullOrEmpty(Url))
             {
+                Debug.WriteLine($"Navigating to ArticleDetailsPage with URL: {Url}");
                 await _appService.NavigateToPage($"{nameof(ArticleDetailsPage)}",
-                     new Dictionary<string, object> {{ "articleURL", Url }
-                });
+                    new Dictionary<string, object> { { "articleURL", Url } }
+                );
             }
         }
+
     }
 }

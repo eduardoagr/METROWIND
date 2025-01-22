@@ -1,6 +1,6 @@
 namespace METROWIND.Views;
 
-public partial class ArticleDetailsPage : ContentPage
+public partial class ArticleDetailsPage: ContentPage
 {
     public ArticleDetailsPage(ArticleDetailsPageViewModel articleDetailsPageViewModel)
     {

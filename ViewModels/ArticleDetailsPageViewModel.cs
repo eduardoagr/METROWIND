@@ -12,7 +12,7 @@
         {
             await share.RequestAsync(new ShareTextRequest
             {
-                Uri = url,
+                Uri = Url,
                 Title = "Check out this article"
             });
         }

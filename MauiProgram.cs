@@ -1,5 +1,7 @@
 ﻿
 
+using FFImageLoading.Maui;
+
 using Map = Microsoft.Maui.ApplicationModel.Map;
 
 namespace METROWIND;
