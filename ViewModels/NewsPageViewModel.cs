@@ -1,4 +1,6 @@
-﻿namespace METROWIND.ViewModel
+﻿using System.Collections.Concurrent;
+
+namespace METROWIND.ViewModel
 {
     public partial class NewsPageViewModel: ObservableObject
     {
@@ -15,11 +17,17 @@
             _deviceLanguageService = deviceLanguageService;
             _httpService = httpService;
             _appService = appService;
-            LoadNews();
 
+            // Initialize the news asynchronously
+            InitializeAsync().ConfigureAwait(false);
         }
 
-        public async void LoadNews()
+        private async Task InitializeAsync()
+        {
+            await LoadNewsAsync();
+        }
+
+        public async Task LoadNewsAsync()
         {
             var language = _deviceLanguageService.GetDeviceCultureInfo();
             var newsUrl = AppConstants.GetNewsUrl(language.TwoLetterISOLanguageName);
@@ -28,28 +36,34 @@
 
             if (newsObj != null && newsObj.Articles != null)
             {
+                var concurrentBag = new ConcurrentBag<Article>();
+
                 var tasks = newsObj.Articles.Select(async article =>
                 {
                     // Any async operation on the article can be done here
-                    ArticleList.Add(article);
+                    concurrentBag.Add(article);
+                    await Task.CompletedTask;
                 });
 
                 await Task.WhenAll(tasks);
+
+                foreach (var article in concurrentBag)
+                {
+                    ArticleList.Add(article);
+                }
             }
         }
 
 
         [RelayCommand]
-        async Task ShowNewsDetail(string Url)
+        public async Task ShowNewsDetail(string url)
         {
-            if (!string.IsNullOrEmpty(Url))
+            if (!string.IsNullOrEmpty(url))
             {
-                Debug.WriteLine($"Navigating to ArticleDetailsPage with URL: {Url}");
                 await _appService.NavigateToPage($"{nameof(ArticleDetailsPage)}",
-                    new Dictionary<string, object> { { "articleURL", Url } }
+                    new Dictionary<string, object> { { "articleURL", url } }
                 );
             }
         }
-
     }
 }

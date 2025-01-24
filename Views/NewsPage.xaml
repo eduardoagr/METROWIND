@@ -53,7 +53,7 @@
                                 Aspect="{OnIdiom Desktop=AspectFill,
                                                  Phone=AspectFit}"
                                 Source="{x:Binding UrlToImage,
-                                                   TargetNullValue=no_image.png}" />
+                                                   TargetNullValue=ghost.png}" />
                             <!--  Title  -->
                             <Label
                                 Grid.Row="1"
