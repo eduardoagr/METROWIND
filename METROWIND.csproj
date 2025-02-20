@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.23.0" />
-    <PackageReference Include="CommunityToolkit.Maui" Version="11.1.0" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
     <PackageReference Include="CommunityToolkit.Maui.Maps" Version="3.0.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="FFImageLoading.Maui" Version="1.2.7" />

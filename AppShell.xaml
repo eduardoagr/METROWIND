@@ -19,6 +19,7 @@
         <toolkit:EventToCommandBehavior
             Command="{Binding AppearingCommand}"
             CommandParameter="{Binding Source={x:Reference shelly}, x:DataType=Shell}"
+            BindingContext="{Binding BindingContext, Source={x:Reference shelly}}"
             EventName="Appearing" />
     </Shell.Behaviors>
 
